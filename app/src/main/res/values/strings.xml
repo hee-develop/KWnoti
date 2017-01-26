@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">광운알리미</string>
+
+    <!-- 메인 액티비티 -->
+    <string name="main_idCard">모바일\n학생증</string>
+    <string name="main_calendar">학사일정</string>
+    <string name="main_info">공지사항</string>
+    <string name="main_settings">설정</string>
+
+    <!-- 공지사항 액티비티 -->
+    <string name="info_title">광운대학교 공지사항</string>
+    <string name="card_info_attachment">첨부파일 있음</string>
+    <string name="card_info_new">최근 공지</string>
+
+    <!-- 설정 액티비티 -->
+    <!-- 알림 필터 액티비티 -->
+    <string name="filter_add_tags">태그를 입력하여 추가합니다. (ex: 입찰)</string>
+    <string name="filter_guide">아래의 문구가 포함된 알람은 수신하지 않습니다.</string>
+    <string name="toast_tags_max_length_is">태그의 최대 길이는\n한글 10자 / 영문 30자입니다.</string>
+    <string name="toast_tags_same_found">중복된 태그가 있습니다.</string>
+    <!-- 앱 정보 액티비티 -->
+    <string name="app_story">광운알리미는 광운대학교 비공식 어플리케이션으로,\n평소 공지사항을 놓친 적이 많아 알림이 왔으면 좋겠다는 생각에 만든 어플리케이션입니다. 실력이 부족해 기능이 많진 않지만 공부해서 지속적으로 추가하겠습니다ㅠㅠ</string>
+    <string name="app_openSource">사용된 오픈소스</string>
+    <string name="app_openSource_zxing">ZebraXing (https://github.com/zxing/zxing)</string>
+    <string name="app_openSource_jsoup">Jsoup (https://jsoup.org)</string>
+    <string name="app_usedColor">사용된 색상</string>
+    <string name="app_color_brown">Material Color Brown</string>
+    <string name="app_color_amber">Material Color Amber</string>
+    <string name="app_color_gray">Material Color Gray</string>
+
+    <!-- Preferences 키값 -->
+    <string name="key_pushActive">pushActive</string>
+    <string name="key_weatherService">weatherActive</string>
+
+    <!-- Toast & Dialog -->
+    <string name="toast_enter_value">값을 입력해 주세요.</string>
+    <string name="toast_deleted"> 삭제되었습니다.</string>
+    <string name="toast_refreshed">새로고침되었습니다.</string>
+    <string name="toast_failed">인터넷 상태를 확인해 주세요.</string>
+    <string name="dialog_loading">잠시만 기다려주세요..</string>
+
+    <!-- 이미지에 대한 설명(접근성 관련) -->
+    <string name="description_search_info">공지사항 검색</string>
+    <string name="description_refresh_calendar">학사일정 새로고침</string>
+</resources>

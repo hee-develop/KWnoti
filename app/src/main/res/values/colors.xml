@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="deepBlack">#000000</color>
+    <color name="deepWhite">#FFFFFF</color>
+    <color name="white">#F8F7F2</color>
+
+    <color name="brown50">#EFEBE9</color>
+    <color name="brown100">#D7CCC8</color>
+    <color name="brown200">#BCAAA4</color>
+    <color name="brown300">#A1887F</color>
+    <color name="brown400">#8D6E63</color>
+    <color name="brown500">#795548</color>
+    <color name="brown600">#6D4C41</color>
+    <color name="brown700">#5D4037</color>
+    <color name="brown800">#4E342E</color>
+    <color name="brown900">#3E2723</color>
+
+    <color name="amber50">#FFF8E1</color>
+    <color name="amber100">#FFECB3</color>
+    <color name="amber200">#FFE082</color>
+    <color name="amber300">#FFD54F</color>
+    <color name="amber400">#FFCA28</color>
+    <color name="amber500">#ffc107</color>
+    <color name="amberA100">#FFE57F</color>
+    <color name="amberA200">#FFD740</color>
+    <color name="amberA400">#FFC400</color>
+    <color name="amberA700">#FFAB00</color>
+
+    <color name="gray200">#EEEEEE</color>
+    <color name="gray300">#E0E0E0</color>
+    <color name="gray500">#9E9E9E</color>
+    <color name="gray600">#757575</color>
+    <color name="gray700">#616161</color>
+    <color name="gray800">#424242</color>
+    <color name="gray900">#212121</color>
+
+    <!-- Origin color setting
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color> -->
+</resources>

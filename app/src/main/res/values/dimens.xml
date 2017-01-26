@@ -1,0 +1,15 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- QHD 기준 360dp, 즉 xhdpi 를 기준으로 만든 앱임. px / 4 -->
+
+    <!-- 메인 화면의 카드 사이즈 -->
+    <dimen name="card_size">120dp</dimen>
+    <dimen name="card_size_x2">240dp</dimen>
+    <dimen name="card_size_x3">360dp</dimen>
+    <!-- 학생증 화면에서 보여지는 사진 사이즈 -->
+    <dimen name="card_landscape_stuImgWidth">150dp</dimen>
+    <dimen name="card_landscape_stuImgHeight">200dp</dimen>
+</resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kr.hee.kwnoti">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!-- ==================================== 푸쉬 서비스 ==================================== -->
+        <service
+            android:name=".FcmService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- 토큰 등록 서비스 -->
+        <service
+            android:name=".FcmIdService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- ================================= 스플래시 액티비티 ================================== -->
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- =================================== 메인 액티비티 =================================== -->
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- ================================= 공지사항 액티비티 ================================== -->
+        <activity
+            android:name=".info_activity.InfoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- ================================= 학사일정 액티비티 ================================== -->
+        <activity
+            android:name=".calendar_activity.CalendarActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- =================================== 설정 액티비티 =================================== -->
+        <activity
+            android:name=".settings_activity.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 앱 정보 액티비티 -->
+        <activity
+            android:name=".settings_activity.AppInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SHOW_APP_INFO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- 푸쉬 필터 액티비티 -->
+        <activity android:name=".settings_activity.PushFilterActivity">
+            <intent-filter>
+                <action android:name="hee.kwnoti.intent.action.PUSH_FILTER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

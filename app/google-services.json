@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "64831362282",
+    "firebase_url": "https://kwnoti-push-5d396.firebaseio.com",
+    "project_id": "kwnoti-push-5d396",
+    "storage_bucket": "kwnoti-push-5d396.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64831362282:android:5a6a926fb2d5cb60",
+        "android_client_info": {
+          "package_name": "kr.hee.kwnoti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64831362282-imomgdhmtfaho3isbt8j7g4nfcir8vdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.hee.kwnoti",
+            "certificate_hash": "A9056D5AD843BC61CF1B762127AC2DF50B9E16FD"
+          }
+        },
+        {
+          "client_id": "64831362282-dg1dvrvsehm9pqruu4om0taggr0aupk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhP0ngPHbDbxf-ZjRJnl-RMohAcuRlgbw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64831362282-dg1dvrvsehm9pqruu4om0taggr0aupk8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
