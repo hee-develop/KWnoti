@@ -47,7 +47,7 @@ public class CalendarActivity extends Activity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage(getString(R.string.dialog_loading));
 
-        adapter = new CalendarAdapter(getApplicationContext());
+        adapter = new CalendarAdapter(CalendarActivity.this);
         // 데이터가 없으면 새로 불러오기
         if (adapter.getItemCount() == 0)
             new ParserThread().start();
@@ -73,7 +73,7 @@ public class CalendarActivity extends Activity {
                 }
             });
 
-            CalendarDB db = new CalendarDB(getApplicationContext());
+            CalendarDB db = new CalendarDB(CalendarActivity.this);
 
             String url = "http://www.kw.ac.kr/ko/life/bachelor_calendar.do";
             try {
@@ -125,7 +125,7 @@ public class CalendarActivity extends Activity {
                 // 파싱 성공 시 토스트 출력
                 runOnUiThread(new Runnable() {
                     @Override public void run() {
-                        recyclerView.setAdapter(new CalendarAdapter(getApplicationContext()));
+                        recyclerView.setAdapter(new CalendarAdapter(CalendarActivity.this));
                         Toast.makeText(CalendarActivity.this, getString(R.string.toast_refreshed),
                                 Toast.LENGTH_SHORT).show();
                     }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="info_search_options">
+        <item>제목</item>
+        <item>내용</item>
+        <item>제목 + 내용</item>
+        <item>작성자</item>
+    </string-array>
+</resources>

@@ -9,28 +9,47 @@
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:columnCount="3">
-        <RelativeLayout android:layout_width="@dimen/card_size_x3"
-            android:layout_height="wrap_content"
-            android:background="@color/brown800"
-            android:layout_columnSpan="3">
-
+        <!-- 상단 마크 및 날씨 레이아웃 -->
+        <!--<RelativeLayout android:layout_width="@dimen/card_size_x3" android:layout_height="wrap_content"
+            android:paddingTop="4dp" android:paddingBottom="4dp"
+            android:background="?android:colorPrimaryDark" android:layout_columnSpan="3">
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/splash_mark" />
-        </RelativeLayout>
+                android:src="@drawable/splash_mark"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>-->
 
-        <TextView style="@style/CardStyle"
+        <!--<TextView style="@style/CardStyle"
             android:id="@+id/main_btn_idCard"
             android:background="@color/brown600"
-            android:text="@string/main_idCard" />
+            android:text="@string/main_idCard" />-->
+
+        <!-- 학교 공지사항 -->
+        <TextView style="@style/CardStyle"
+            android:id="@+id/main_btn_info"
+            android:layout_width="@dimen/card_size_x2"
+            android:layout_height="@dimen/card_size_x2"
+            android:layout_columnSpan="2"
+            android:layout_rowSpan="2"
+            android:background="@color/brown900"
+            android:text="@string/main_info"
+            android:textSize="24sp" />
+
+        <!-- 학사 일정 -->
         <TextView style="@style/CardStyle"
             android:id="@+id/main_btn_calendar"
-            android:background="@color/brown700"
+            android:background="@color/brown600"
             android:text="@string/main_calendar" />
+
+        <!-- 설정 -->
+        <TextView style="@style/CardStyle"
+            android:id="@+id/main_btn_settings"
+            android:background="@color/brown300"
+            android:text="@string/main_settings" />
 
         <!--<TextView style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_food"-->
@@ -42,21 +61,8 @@
         <!--<TextView style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_phone"-->
             <!--android:text="구내전화" />-->
-        <TextView style="@style/CardStyle"
-            android:id="@+id/main_btn_info"
-            android:layout_width="@dimen/card_size_x2"
-            android:layout_height="@dimen/card_size_x2"
-            android:layout_columnSpan="2"
-            android:layout_rowSpan="2"
-            android:background="@color/brown900"
-            android:text="@string/main_info"
-            android:textSize="24sp" />
-        <TextView style="@style/CardStyle"
-            android:id="@+id/main_btn_settings"
-            android:background="@color/brown300"
-            android:text="@string/main_settings" />
 
-
+<!--
 
         <TextView style="@style/CardStyle"
             android:id="@+id/main_btn_link_dongMoon"
@@ -76,6 +82,6 @@
         <TextView style="@style/CardStyle"
             android:background="@drawable/icon_refresh"
             android:text="중앙도서관\n바로가기"
-            android:textColor="@color/brown800" />
+            android:textColor="@color/brown800" />-->
     </GridLayout>
 </ScrollView>

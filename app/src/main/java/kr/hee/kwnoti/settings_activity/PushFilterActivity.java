@@ -21,7 +21,7 @@ public class PushFilterActivity extends Activity {
         setContentView(R.layout.activity_settings_push_filter);
         edit_addFilter  = (EditText)findViewById(R.id.filter_editText);
         filters         = (RecyclerView)findViewById(R.id.filter_recyclerView);
-        adapter         = new PushFilterAdapter(getApplicationContext());
+        adapter         = new PushFilterAdapter(PushFilterActivity.this);
 
         filters.setAdapter(adapter);
         filters.setLayoutManager(new StaggeredGridLayoutManager(10,

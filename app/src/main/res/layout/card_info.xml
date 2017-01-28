@@ -3,18 +3,15 @@
     android:id="@+id/card_info"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="6dp"
-    android:paddingBottom="6dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:padding="4dp">
     <TextView
         android:id="@+id/card_info_title"
-        android:layout_width="340dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textStyle="bold"
         android:textColor="@color/gray800"
         android:lines="2" />
+
     <TextView
         android:id="@+id/card_info_writer"
         android:layout_width="wrap_content"
@@ -24,16 +21,17 @@
         android:textSize="14sp"
         android:textColor="@color/gray700" />
 
+    <!-- 조회수 -->
     <TextView
         android:id="@+id/card_info_views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/card_info_writer"
         android:layout_toStartOf="@+id/card_info_date"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:textSize="10sp"
         android:textColor="@color/gray600" />
-
+    <!-- 날짜 -->
     <TextView
         android:id="@+id/card_info_date"
         android:layout_width="wrap_content"
@@ -48,8 +46,9 @@
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="2dp"
+        android:layout_alignTop="@id/card_info_title"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
         android:src="@drawable/icon_new"
         android:contentDescription="@string/card_info_new" />
     <ImageView
@@ -58,13 +57,12 @@
         android:layout_height="12dp"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/card_info_new"
-        android:layout_marginTop="2dp"
         android:src="@drawable/icon_save"
-        android:contentDescription="@string/card_info_attachment"/>
+        android:contentDescription="@string/card_info_attachment" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/card_info_writer"
         android:layout_marginTop="6dp"
-        android:background="@color/gray700" />
+        android:background="@color/gray300" />
 </RelativeLayout>

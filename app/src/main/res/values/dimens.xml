@@ -9,7 +9,4 @@
     <dimen name="card_size">120dp</dimen>
     <dimen name="card_size_x2">240dp</dimen>
     <dimen name="card_size_x3">360dp</dimen>
-    <!-- 학생증 화면에서 보여지는 사진 사이즈 -->
-    <dimen name="card_landscape_stuImgWidth">150dp</dimen>
-    <dimen name="card_landscape_stuImgHeight">200dp</dimen>
 </resources>

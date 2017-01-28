@@ -34,7 +34,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     /** 최초 실행인지 확인하는 메소드 */
     void checkFirstUse() {
         SharedPreferences firstUse = PreferenceManager.
-                getDefaultSharedPreferences(getApplicationContext());
+                getDefaultSharedPreferences(MainActivity.this);
         if (firstUse.getBoolean("First use", true)) {
             //startActivity(new Intent(this, FirstActivity.class)); TODO
             //FirebaseMessaging.getInstance().subscribeToTopic("notice");
@@ -46,7 +46,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
      * @return  날씨 설정 여부 */
     boolean checkUseWeatherService() {
         SharedPreferences useWeather = PreferenceManager.
-                getDefaultSharedPreferences(getApplicationContext());
+                getDefaultSharedPreferences(MainActivity.this);
         return useWeather.getBoolean(getString(R.string.key_weatherService), true);
     }
 
@@ -54,12 +54,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     void initView() {
         setContentView(R.layout.activity_main);
 
-        btn_card    = (TextView)findViewById(R.id.main_btn_idCard);
+        //btn_card    = (TextView)findViewById(R.id.main_btn_idCard);
         btn_calendar= (TextView)findViewById(R.id.main_btn_calendar);
         btn_info    = (TextView)findViewById(R.id.main_btn_info);
         btn_settings= (TextView)findViewById(R.id.main_btn_settings);
 
-        btn_card.setOnClickListener(this);
+        //btn_card.setOnClickListener(this);
         btn_calendar.setOnClickListener(this);
         btn_info.setOnClickListener(this);
         btn_settings.setOnClickListener(this);
@@ -70,7 +70,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override public void onClick(View view) {
         switch (view.getId())
         {
-            case R.id.main_btn_idCard :
+            //case R.id.main_btn_idCard :
                 //startActivity(new Intent(this, StudentCardActivity.class)); break;
             case R.id.main_btn_calendar :
                 startActivity(new Intent(this, CalendarActivity.class)); break;

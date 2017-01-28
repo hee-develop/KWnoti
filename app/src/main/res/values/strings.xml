@@ -2,7 +2,6 @@
     <string name="app_name">광운알리미</string>
 
     <!-- 메인 액티비티 -->
-    <string name="main_idCard">모바일\n학생증</string>
     <string name="main_calendar">학사일정</string>
     <string name="main_info">공지사항</string>
     <string name="main_settings">설정</string>
@@ -11,6 +10,7 @@
     <string name="info_title">광운대학교 공지사항</string>
     <string name="card_info_attachment">첨부파일 있음</string>
     <string name="card_info_new">최근 공지</string>
+    <string name="info_accessibility_search">공지사항 검색 켜기/끄기</string>
 
     <!-- 설정 액티비티 -->
     <!-- 알림 필터 액티비티 -->
@@ -29,6 +29,11 @@
     <string name="app_color_gray">Material Color Gray</string>
 
     <!-- Preferences 키값 -->
+    <string name="key_studentID">stuID</string>
+    <string name="key_studentName">stuName</string>
+    <string name="key_studentMajor">stuMajor</string>
+    <string name="key_studentUCampusPassword">stuUPwd</string>
+    <string name="key_studentLibraryPassword">stuLibPwd</string>
     <string name="key_pushActive">pushActive</string>
     <string name="key_weatherService">weatherActive</string>
 
@@ -42,4 +47,5 @@
     <!-- 이미지에 대한 설명(접근성 관련) -->
     <string name="description_search_info">공지사항 검색</string>
     <string name="description_refresh_calendar">학사일정 새로고침</string>
+    <string name="info_hint_search">검색할 공지사항을 입력하세요.</string>
 </resources>

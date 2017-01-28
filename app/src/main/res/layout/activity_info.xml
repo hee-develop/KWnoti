@@ -5,7 +5,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="kr.hee.kwnoti.info_activity.InfoActivity">
-    <Toolbar style="@style/ToolbarStyle"
+    <LinearLayout
+        android:id="@+id/info_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray200"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+        <Spinner
+            android:id="@+id/info_search_spinner"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="8dp"
+            android:entries="@array/info_search_options" />
+        <EditText
+            android:id="@+id/info_search_editText"
+            android:layout_width="0dp"
+            android:layout_weight="0.75"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="8dp"
+            android:hint="공지사항 검색하기"
+            android:textSize="16sp"
+            android:textColorHint="@color/gray500"
+            android:text=""
+            android:inputType="text"
+            android:imeOptions="actionSearch" />
+    </LinearLayout>
+    <!--<Toolbar style="@style/ToolbarStyle"
         android:id="@+id/info_toolbar">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,7 +56,7 @@
                 android:src="@drawable/btn_search"
                 android:contentDescription="@string/description_search_info" />
         </RelativeLayout>
-    </Toolbar>
+    </Toolbar>-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/info_recyclerView"
         android:layout_width="match_parent"

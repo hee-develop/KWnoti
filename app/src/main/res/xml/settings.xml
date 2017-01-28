@@ -3,21 +3,26 @@
     <PreferenceCategory android:title="개인정보 관리">
         <EditTextPreference
             android:title="학번"
-            android:key="studentID"
-            android:inputType="numberDecimal"
-            android:imeOptions="actionDone" />
+            android:key="@string/key_studentID"
+            android:inputType="numberDecimal" />
         <EditTextPreference
             android:title="이름"
-            android:key="studentName"
-            android:inputType="text"
-            android:imeOptions="actionDone" />
+            android:key="@string/key_studentName"
+            android:inputType="text" />
         <EditTextPreference
             android:title="전공"
-            android:key="studentMajor"
-            android:inputType="text"
-            android:imeOptions="actionDone" />
+            android:key="@string/key_studentMajor"
+            android:inputType="text" />
+        <EditTextPreference
+            android:title="유캠퍼스 비밀번호"
+            android:key="@string/key_studentUCampusPassword"
+            android:inputType="textPassword" />
+        <EditTextPreference
+            android:title="중앙도서관 비밀번호"
+            android:key="@string/key_studentLibraryPassword"
+            android:inputType="textPassword" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="공지사항 알림">
+    <PreferenceCategory android:title="공지사항 푸쉬 알림">
         <SwitchPreference
             android:title="공지사항 알림 받기"
             android:key="@string/key_pushActive"
@@ -25,19 +30,19 @@
             android:summaryOff="공지사항을 푸쉬 알람으로 받지 않습니다."
             android:defaultValue="true" />
         <Preference
-            android:title="알림 필터"
+            android:title="알림 필터 설정"
             android:persistent="false"
-            android:summary="불필요한 알림은 받지 않게 설정할 수 있습니다.">
+            android:summary="특정 알림을 울리게 할지, 안 울리게 할지를 설정합니다.">
             <intent android:action="hee.kwnoti.intent.action.PUSH_FILTER" />
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory android:title="기타">
-        <SwitchPreference
+        <!--<SwitchPreference
             android:title="메인 화면에 날씨 표시"
             android:key="@string/key_weatherService"
             android:defaultValue="true"
             android:summaryOn="1시간 뒤의 월계동의 날씨를 표시합니다."
-            android:summaryOff="메인 화면에 날씨를 표시하지 않습니다." />
+            android:summaryOff="메인 화면에 날씨를 표시하지 않습니다." />-->
         <Preference
             android:title="앱 정보"
             android:persistent="false">

@@ -69,4 +69,13 @@ class InfoAdapter extends RecyclerView.Adapter<InfoViewHolder> {
         array.add(data);
         return true;
     }
+
+    /** 어댑터의 모든 데이터를 삭제하는 메소드
+     * @return         삭제됐는지 여부(ArrayList 크기가 0 이하이면 삭제가 불가능하므로 false 반환) */
+    boolean cleanInfo() {
+        if (array.size() < 1) return false;
+
+        array.clear();
+        return true;
+    }
 }

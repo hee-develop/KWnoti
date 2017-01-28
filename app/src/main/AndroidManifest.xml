@@ -45,9 +45,11 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <!-- ================================= 공지사항 액티비티 ================================== -->
-        <activity
-            android:name=".info_activity.InfoActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".info_activity.InfoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
         <!-- ================================= 학사일정 액티비티 ================================== -->
         <activity
             android:name=".calendar_activity.CalendarActivity"
