@@ -4,8 +4,11 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -41,6 +44,11 @@ public class FcmService extends FirebaseMessagingService {
                     // 작성자에 포함되어 있거나
                 else if (jsonObject.getString("content").contains(filters.get(i))) return;
             }
+            // 알람 기타 설정(진동 등) ----------------------------------------------------------------
+            SharedPreferences prefs = PreferenceManager.
+                    getDefaultSharedPreferences(getApplicationContext());
+            boolean vibratorActive = prefs.getBoolean(getString(R.string.key_pushVibrator), true);
+            boolean soundActive = prefs.getBoolean(getString(R.string.key_pushSound), true);
             // -------------------------------------------------------------------------------------
 
             Intent notiIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(jsonObject.getString("link")));
@@ -51,7 +59,10 @@ public class FcmService extends FirebaseMessagingService {
             Notification.Builder builder = new Notification.Builder(this)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                     .setSmallIcon(R.drawable.splash_mark)
-                    .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+                    .setDefaults(
+                            (soundActive ? Notification.DEFAULT_SOUND : 0) |
+                            (vibratorActive ? Notification.DEFAULT_VIBRATE : 0))
+                    .setLights(Color.argb(255, 255, 60, 100), 600, 6000)
                     .setContentTitle(jsonObject.getString("title"))
                     .setContentText(jsonObject.getString("content"))
                     .setTicker(jsonObject.getString("title"))

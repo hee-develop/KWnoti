@@ -4,7 +4,7 @@
         android:title="전체"
         android:showAsAction="ifRoom" />
     <item android:id="@+id/info_toolbar_search"
-        android:icon="@drawable/icon_search"
         android:title="@string/info_accessibility_search"
+        android:icon="@drawable/icon_search"
         android:showAsAction="always" />
 </menu>

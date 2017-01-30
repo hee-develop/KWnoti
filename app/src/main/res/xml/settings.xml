@@ -4,23 +4,28 @@
         <EditTextPreference
             android:title="학번"
             android:key="@string/key_studentID"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:summary="* 현재 구현되지 않은 기능입니다." />
         <EditTextPreference
             android:title="이름"
             android:key="@string/key_studentName"
-            android:inputType="text" />
+            android:inputType="text"
+            android:summary="* 현재 구현되지 않은 기능입니다." />
         <EditTextPreference
             android:title="전공"
             android:key="@string/key_studentMajor"
-            android:inputType="text" />
+            android:inputType="text"
+            android:summary="* 현재 구현되지 않은 기능입니다." />
         <EditTextPreference
             android:title="유캠퍼스 비밀번호"
             android:key="@string/key_studentUCampusPassword"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:summary="* 현재 구현되지 않은 기능입니다." />
         <EditTextPreference
             android:title="중앙도서관 비밀번호"
             android:key="@string/key_studentLibraryPassword"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:summary="* 현재 구현되지 않은 기능입니다." />
     </PreferenceCategory>
     <PreferenceCategory android:title="공지사항 푸쉬 알림">
         <SwitchPreference
@@ -29,11 +34,27 @@
             android:summaryOn="공지사항을 푸쉬 알람으로 받습니다."
             android:summaryOff="공지사항을 푸쉬 알람으로 받지 않습니다."
             android:defaultValue="true" />
+        <SwitchPreference
+            android:title="알림음 설정"
+            android:key="@string/key_pushSound"
+            android:summaryOn="알림을 받으면 알림음이 울립니다."
+            android:summaryOff="알림을 받아도 알림음이 울리지 않습니다."
+            android:defaultValue="true"
+            android:dependency="@string/key_pushActive" />
+        <SwitchPreference
+            android:title="진동 설정"
+            android:key="@string/key_pushVibrator"
+            android:summaryOn="알람을 받으면 진동이 울립니다."
+            android:summaryOff="알람을 받아도 진동이 울리지 않습니다."
+            android:defaultValue="true"
+            android:dependency="@string/key_pushActive" />
         <Preference
             android:title="알림 필터 설정"
             android:persistent="false"
-            android:summary="특정 알림을 울리게 할지, 안 울리게 할지를 설정합니다.">
+            android:summary="특정 단어가 포함된 알림은 울리지 않게 할 수 있습니다."
+            android:dependency="@string/key_pushActive">
             <intent android:action="hee.kwnoti.intent.action.PUSH_FILTER" />
+            <!--android:summary="특정 알림을 울리게 할지, 안 울리게 할지를 설정합니다."-->
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory android:title="기타">

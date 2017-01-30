@@ -12,6 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!-- ==================================== 푸쉬 서비스 ==================================== -->
         <service
             android:name=".FcmService"
@@ -37,6 +38,7 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -45,19 +47,11 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <!-- ================================= 공지사항 액티비티 ================================== -->
-        <activity android:name=".info_activity.InfoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".info_activity.InfoActivity" />
         <!-- ================================= 학사일정 액티비티 ================================== -->
-        <activity
-            android:name=".calendar_activity.CalendarActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".calendar_activity.CalendarActivity" />
         <!-- =================================== 설정 액티비티 =================================== -->
-        <activity
-            android:name=".settings_activity.SettingsActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".settings_activity.SettingsActivity" />
         <!-- 앱 정보 액티비티 -->
         <activity
             android:name=".settings_activity.AppInfoActivity"
@@ -76,5 +70,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".UCampusActivity" />
+        <activity android:name=".StudentCardActivity"></activity>
     </application>
+
 </manifest>

@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -22,8 +24,6 @@ import kr.hee.kwnoti.UTILS;
 
 /** 학사 일정 액티비티 */
 public class CalendarActivity extends Activity {
-    Toolbar toolbar;
-    ImageView btn_refresh;
     RecyclerView recyclerView;
     CalendarAdapter adapter;
     ProgressDialog progressDialog;
@@ -31,16 +31,8 @@ public class CalendarActivity extends Activity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        toolbar      = (Toolbar)findViewById(R.id.calendar_toolbar);
-        btn_refresh  = (ImageView)findViewById(R.id.calendar_toolbar_refresh);
+        setTitle(getString(R.string.calendar_title));
         recyclerView = (RecyclerView)findViewById(R.id.calendar_recyclerView);
-        setActionBar(toolbar);
-        // 새로고침 버튼을 누르면 데이터 삭제 후 새로 불러오기
-        btn_refresh.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                new ParserThread().start();
-            }
-        });
 
         // 다이얼로그 모양 설정
         progressDialog = new ProgressDialog(this, android.R.style.Theme_Material_Light_Dialog);
@@ -57,6 +49,19 @@ public class CalendarActivity extends Activity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    // 메뉴 버튼 인플레이트
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_calendar, menu);
+        return true;
+    }
+
+    // 메뉴 버튼 클릭 이벤트 리스너 - 새로고침 하나밖에 없으므로 별도의 switch 필요 없음
+    @Override public boolean onMenuItemSelected(int clickId, final MenuItem item) {
+        new ParserThread().start();
+        return true;
+    }
+
+    // 다이얼로그 메모리 유출 방지
     @Override protected void onDestroy() {
         super.onDestroy();
         progressDialog.dismiss();
@@ -101,6 +106,7 @@ public class CalendarActivity extends Activity {
 
                         String[] startDays  = startDay.split("\\-");
                         String[] endDays    = endDay.split("\\-");
+                        content = content.replaceAll("\\n", "");
 
                         // 형변환 오류 수정을 위한 띄어쓰기 제거
                         startDays[0] = startDays[0].replaceAll(" ", "");

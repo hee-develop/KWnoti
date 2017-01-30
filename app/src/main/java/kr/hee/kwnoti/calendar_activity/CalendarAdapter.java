@@ -18,12 +18,10 @@ import kr.hee.kwnoti.settings_activity.PushFilterDB;
 class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     private ArrayList<CalendarData> array;
     private CalendarDB db;
-    private Context context;
 
     /** 생성자
      * @param context    어댑터를 부른 액티비티 Context */
     CalendarAdapter(Context context) {
-        this.context = context;
         db = new CalendarDB(context);
         array = new ArrayList<>();
         db.getCalendar(array); // 파라미터 포인터로 가져옴
@@ -48,11 +46,11 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
                 startDate   = Integer.parseInt(array.get(position).startDate),
                 endDate     = Integer.parseInt(array.get(position).endDate);
 
-        String month = (startMonth == endMonth) ? startMonth + "" : (startMonth + "-" + endMonth),
-                date = (startDate == endDate) ? startDate + "" : (startDate + " - " + endDate);
+        String month = (startMonth == endMonth) ? startMonth + "" : (startMonth + "~" + endMonth),
+                date = (startDate == endDate) ? startDate + "" : (startDate + "~" + endDate);
 
-        holder.month.setText(month + ".");
-        holder.date.setText(date);
+        holder.month.setText(month + "월");
+        holder.date.setText(date + "일");
         holder.content.setText(array.get(position).content);
     }
 
@@ -63,5 +61,9 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     /** 학사 일정 데이터를 모두 없애는 메소드 */
     void cleanData() {
         db.cleanCalendar();
+    }
+
+    void addData(CalendarData data) {
+        array.add(data);
     }
 }

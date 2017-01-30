@@ -33,12 +33,16 @@
         <item name="android:padding">6dp</item>
     </style>
 
-    <!-- 툴바 스타일 -->
-    <style name="ToolbarStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">?android:attr/actionBarSize</item>
-        <item name="android:contentInsetEnd">8dp</item>
-        <item name="android:background">?android:colorPrimary</item>
-        <item name="android:elevation">4dp</item>
+    <!-- 학생증 화면에서 쓰이는 표 글씨 스타일 -->
+    <style name="StudentCard_titleStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/brown800</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="StudentCard_textStyle">
+        <item name="android:layout_weight">4</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/deepBlack</item>
     </style>
 </resources>
