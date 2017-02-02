@@ -73,9 +73,9 @@
         <!--<TextView style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_facility"-->
             <!--android:text="시설안내" />-->
-        <!--<TextView style="@style/CardStyle"-->
-            <!--android:id="@+id/main_btn_phone"-->
-            <!--android:text="구내전화" />-->
+        <TextView style="@style/CardStyle"
+            android:id="@+id/main_btn_phone"
+            android:text="@string/main_phone" />
 
 <!--
 

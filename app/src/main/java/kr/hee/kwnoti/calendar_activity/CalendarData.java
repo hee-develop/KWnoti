@@ -1,14 +1,14 @@
 package kr.hee.kwnoti.calendar_activity;
 
 /** 캘린더 데이터를 담는 클래스 */
-public class CalendarData {
-    public String  year,
+class CalendarData {
+    String  year,
             startMonth,
             startDate,
             endMonth,
             endDate,
             content;
-    public CalendarData(String year, String month, String date, String content) {
+    CalendarData(String year, String month, String date, String content) {
         this.year  = year;
         this.startMonth = month;
         this.startDate  = date;
@@ -16,8 +16,8 @@ public class CalendarData {
         this.endDate    = startDate;
         this.content = content;
     }
-    public CalendarData(String year, String startMonth, String startDate,
-                        String endMonth, String endDate, String content) {
+    CalendarData(String year, String startMonth, String startDate,
+                 String endMonth, String endDate, String content) {
         this.year  = year;
         this.startMonth = startMonth;
         this.startDate  = startDate;

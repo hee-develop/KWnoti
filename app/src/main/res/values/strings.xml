@@ -7,6 +7,7 @@
     <string name="main_info">공지사항</string>
     <string name="main_uCampus">유캠퍼스 공지사항</string>
     <string name="main_food">오늘의 식단</string>
+    <string name="main_phone">교내\n전화번호</string>
     <string name="main_settings">설정</string>
 
     <!-- 학생증 액티비티 -->

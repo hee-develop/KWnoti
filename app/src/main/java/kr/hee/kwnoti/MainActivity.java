@@ -26,6 +26,7 @@ import kr.hee.kwnoti.settings_activity.SettingsActivity;
 public class MainActivity extends Activity implements View.OnClickListener {
     TextView    btn_card,       // 학생증
                 btn_calendar,   // 학사일정
+                btn_phone,      // 교내 전화번호
                 btn_info,       // 학교 공지사항
                 btn_uCampus,    // 유캠퍼스 공지사항
                 btn_settings;   // 설정
@@ -44,7 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 getDefaultSharedPreferences(MainActivity.this);
         if (firstUse.getBoolean("First use", true)) {
             //startActivity(new Intent(this, FirstActivity.class)); TODO
-            //FirebaseMessaging.getInstance().subscribeToTopic("notice");
+            FirebaseMessaging.getInstance().subscribeToTopic("notice");
             //finish();
         }
     }
@@ -63,12 +64,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         btn_card    = (TextView)findViewById(R.id.main_btn_idCard);
         btn_calendar= (TextView)findViewById(R.id.main_btn_calendar);
+        btn_phone   = (TextView)findViewById(R.id.main_btn_phone);
         btn_info    = (TextView)findViewById(R.id.main_btn_info);
         //btn_uCampus = (TextView)findViewById(R.id.main_btn_uInfo);
         btn_settings= (TextView)findViewById(R.id.main_btn_settings);
 
         btn_card.setOnClickListener(this);
         btn_calendar.setOnClickListener(this);
+        btn_phone.setOnClickListener(this);
         btn_info.setOnClickListener(this);
         //btn_uCampus.setOnClickListener(this);
         btn_settings.setOnClickListener(this);
@@ -83,6 +86,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(this, StudentCardActivity.class)); break;
             case R.id.main_btn_calendar :
                 startActivity(new Intent(this, CalendarActivity.class)); break;
+            //case R.id.main_btn_phone :
+                //startActivity(new Intent(this, PhoneActivity.class)); break;
             case R.id.main_btn_info :
                 startActivity(new Intent(this, InfoActivity.class)); break;
 //            case R.id.main_btn_uInfo :

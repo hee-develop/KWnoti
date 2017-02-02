@@ -8,11 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 /** 학사 일정 데이터를 관리하는 DB 클래스 */
-public class CalendarDB {
+class CalendarDB {
     private SQLiteDatabase db;
     private final String DB_NAME = "Calendar";
 
-    public CalendarDB(Context context) {
+    CalendarDB(Context context) {
         db = context.openOrCreateDatabase(DB_NAME + ".db",
                 SQLiteDatabase.CREATE_IF_NECESSARY, null);
         String query = "CREATE TABLE IF NOT EXISTS Calendar(" +

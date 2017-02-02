@@ -37,6 +37,17 @@ public class StudentCardActivity extends Activity {
         setData(qrData);
     }
 
+    // 돌아왔을 때 자동으로 새로고침
+    @Override protected void onResume() {
+        super.onResume();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (studentId != null) QRCodeGenerator(studentId.getText().toString());
+            }
+        });
+    }
+
     /** 뷰 초기화(연결) 메소드 */
     void initView() {
         studentId = (TextView)findViewById(R.id.studentCard_ID);
@@ -46,6 +57,8 @@ public class StudentCardActivity extends Activity {
         qrCodeView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 QRCodeGenerator(studentId.getText().toString());
+                Toast.makeText(StudentCardActivity.this, getString(R.string.toast_refreshed),
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -79,8 +92,9 @@ public class StudentCardActivity extends Activity {
 
         // QR 코드를 만들 데이터 생성(학번, 시간 등)
         String qrData = "_KW    0";
-        Calendar calendar = new GregorianCalendar();
-        int qrYear  = calendar.get(Calendar.YEAR),
+        final Calendar calendar = new GregorianCalendar();
+        calendar.add(Calendar.SECOND, 110); // 약 1분 57초 정도 빨라 편의상 110초로 진행
+        final int qrYear  = calendar.get(Calendar.YEAR),
             qrMonth = calendar.get(Calendar.MONTH),
             qrDate  = calendar.get(Calendar.DATE),
             qrHour  = calendar.get(Calendar.HOUR_OF_DAY),
@@ -91,8 +105,12 @@ public class StudentCardActivity extends Activity {
         qrData += (qrMonth < 9) ? "0"+(qrMonth+1) : (qrMonth+1);
         qrData += (qrDate < 9)  ? "0"+qrDate : qrDate;
         qrData += (qrHour < 9)  ? "0"+qrHour : qrHour;
-        qrData += (qrMinute < 9)? "0"+qrMinute : qrMinute; // TODO 앱에선 시간이 2분정도 빠른데 괜찮나?
+        qrData += (qrMinute < 9)? "0"+qrMinute : qrMinute;
         qrData += (qrSecond < 9)? "0"+qrSecond : qrSecond;
+        qrData += (int)(Math.random() * 100000);
+//        long time = calendar.getTimeInMillis() << 10;
+        // 초 자릿수가 7자리인데 Calendar 클래스로는 2자리밖에 못받음
+        // << 연산으로 long 반환값을 잘라서 넣거나 랜덤으로 2+5자리를 넣거나. 현재는 후자
 
         // QR 코드 생성
         MultiFormatWriter generator = new MultiFormatWriter();
@@ -114,6 +132,7 @@ public class StudentCardActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return true;
     }
 }
