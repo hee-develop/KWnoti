@@ -22,3 +22,8 @@
 -keeppackagenames org.jsoup.nodes
 # zxing 라이브러리
 -keeppackagenames com.google.zxing.**
+# Retrofit2 라이브러리
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions

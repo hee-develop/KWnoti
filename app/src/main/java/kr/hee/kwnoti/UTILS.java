@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public final class UTILS {
     /** EditText 뷰에서 키보드를 강제로 띄워 주는 메소드
@@ -21,5 +22,13 @@ public final class UTILS {
     public static void disappearKeyboard(Context context, EditText editText) {
         InputMethodManager manager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
         manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+    }
+
+    /** 토스트를 출력하는 메소드
+     * 출력 메소드가 너무 길어서 여기서 간편하게 구현
+     * @param context    출력할 액티비티
+     * @param value      출력할 값 */
+    public static void showToast(Context context, String value) {
+        Toast.makeText(context, value, Toast.LENGTH_SHORT).show();
     }
 }

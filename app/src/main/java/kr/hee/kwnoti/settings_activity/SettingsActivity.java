@@ -1,11 +1,19 @@
 package kr.hee.kwnoti.settings_activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
+import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -78,3 +86,4 @@ public class SettingsActivity extends Activity {
         }
     }
 }
+// 출처 http://stackoverflow.com/questions/3326317/possible-to-autocomplete-a-edittextpreference/4309195

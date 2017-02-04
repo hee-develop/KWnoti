@@ -6,4 +6,33 @@
         <item>제목 + 내용</item>
         <item>작성자</item>
     </string-array>
+    <string-array name="majors">
+        <item>전자공학과</item>
+        <item>전자통신공학과</item>
+        <item>전자융합공학과</item>
+        <item>전기공학과</item>
+        <item>전자재료공학과</item>
+        <item>로봇학부</item>
+        <item>컴퓨터정보공학부</item>
+        <item>소프트웨어학부</item>
+        <item>정보융합학부</item>
+        <item>건축학과</item>
+        <item>건축공학과</item>
+        <item>화학공학과</item>
+        <item>환경공학과</item>
+        <item>수학과</item>
+        <item>전자바이오물리학과</item>
+        <item>화학과</item>
+        <item>생활체육학과</item>
+        <item>국어국문학과</item>
+        <item>영어영문학과</item>
+        <item>미디어영상학부</item>
+        <item>산업심리학과</item>
+        <item>동북아문화산업학부</item>
+        <item>행정학과</item>
+        <item>법학부</item>
+        <item>국제학부</item>
+        <item>경영학부</item>
+        <item>국제통상학부</item>
+    </string-array>
 </resources>

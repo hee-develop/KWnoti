@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/brown500"
-    tools:context="kr.hee.kwnoti.StudentCardActivity">
+    tools:context="kr.hee.kwnoti.student_card_activity.StudentCardActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

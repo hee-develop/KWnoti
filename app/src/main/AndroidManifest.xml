@@ -50,7 +50,7 @@
         <!-- ================================= 학사일정 액티비티 ================================== -->
         <activity android:name=".calendar_activity.CalendarActivity" />
         <!-- ================================== 학생증 액티비티 =================================== -->
-        <activity android:name=".StudentCardActivity" />
+        <activity android:name=".student_card_activity.StudentCardActivity" />
         <!-- =================================== 설정 액티비티 =================================== -->
         <activity android:name=".settings_activity.SettingsActivity" />
         <!-- 앱 정보 액티비티 -->

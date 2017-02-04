@@ -9,10 +9,13 @@
             android:title="이름"
             android:key="@string/key_studentName"
             android:inputType="text" />
-        <EditTextPreference
+        <kr.hee.kwnoti.settings_activity.AutoCompleteEditTextPreference
+            android:title="전공"
+            android:key="@string/key_studentMajor" />
+        <!--<EditTextPreference
             android:title="전공"
             android:key="@string/key_studentMajor"
-            android:inputType="text" />
+            android:inputType="textAutoComplete" />-->
         <EditTextPreference
             android:title="유캠퍼스 비밀번호"
             android:key="@string/key_studentUCampusPassword"
