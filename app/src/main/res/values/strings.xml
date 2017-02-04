@@ -38,8 +38,10 @@
     <!-- 앱 정보 액티비티 -->
     <string name="app_story">광운알리미는 광운대학교 비공식 어플리케이션으로,\n평소 공지사항을 놓친 적이 많아 알림이 왔으면 좋겠다는 생각에 만든 어플리케이션입니다. 실력이 부족해 기능이 많진 않지만 공부해서 지속적으로 추가하겠습니다ㅠㅠ</string>
     <string name="app_openSource">사용된 오픈소스</string>
-    <string name="app_openSource_zxing">ZebraXing (https://github.com/zxing/zxing)</string>
     <string name="app_openSource_jsoup">Jsoup (https://jsoup.org)</string>
+    <string name="app_openSource_zxing">ZebraXing (https://github.com/zxing/zxing)</string>
+    <string name="app_openSource_retrofit">Retrofit (https://square.github.io/retrofit)</string>
+    <string name="app_openSource_simple">Simple (http://simple.sourceforge.net)</string>
     <string name="app_usedColor">사용된 색상</string>
     <string name="app_color_brown">Material Color Brown</string>
     <string name="app_color_amber">Material Color Amber</string>
