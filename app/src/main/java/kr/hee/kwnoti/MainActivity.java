@@ -56,14 +56,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         btn_card    = (TextView)findViewById(R.id.main_btn_idCard);
         btn_calendar= (TextView)findViewById(R.id.main_btn_calendar);
-        btn_phone   = (TextView)findViewById(R.id.main_btn_phone);
+        //btn_phone   = (TextView)findViewById(R.id.main_btn_phone);
         btn_info    = (TextView)findViewById(R.id.main_btn_info);
         //btn_uCampus = (TextView)findViewById(R.id.main_btn_uInfo);
         btn_settings= (TextView)findViewById(R.id.main_btn_settings);
 
         btn_card.setOnClickListener(this);
         btn_calendar.setOnClickListener(this);
-        btn_phone.setOnClickListener(this);
+        //btn_phone.setOnClickListener(this);
         btn_info.setOnClickListener(this);
         //btn_uCampus.setOnClickListener(this);
         btn_settings.setOnClickListener(this);
