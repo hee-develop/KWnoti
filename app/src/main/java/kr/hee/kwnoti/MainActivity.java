@@ -14,6 +14,7 @@ import kr.hee.kwnoti.calendar_activity.CalendarActivity;
 import kr.hee.kwnoti.info_activity.InfoActivity;
 import kr.hee.kwnoti.settings_activity.SettingsActivity;
 import kr.hee.kwnoti.student_card_activity.StudentCardActivity;
+import kr.hee.kwnoti.u_campus_activity.UCampusActivity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     TextView    btn_card,       // 학생증
@@ -35,10 +36,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     void checkFirstUse() {
         SharedPreferences firstUse = PreferenceManager.
                 getDefaultSharedPreferences(MainActivity.this);
-        if (firstUse.getBoolean("First use", true)) {
+        if (firstUse.getBoolean(KEY.FIRST_USE, true)) {
             //startActivity(new Intent(this, FirstActivity.class)); TODO
             FirebaseMessaging.getInstance().subscribeToTopic("notice");
             //finish();
+
+            // 최초 실행 종료
+            SharedPreferences.Editor editor = firstUse.edit();
+            editor.putBoolean(KEY.FIRST_USE, true).apply();
         }
     }
 
@@ -58,14 +63,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_calendar= (TextView)findViewById(R.id.main_btn_calendar);
         //btn_phone   = (TextView)findViewById(R.id.main_btn_phone);
         btn_info    = (TextView)findViewById(R.id.main_btn_info);
-        //btn_uCampus = (TextView)findViewById(R.id.main_btn_uInfo);
+        btn_uCampus = (TextView)findViewById(R.id.main_btn_uInfo);
         btn_settings= (TextView)findViewById(R.id.main_btn_settings);
 
         btn_card.setOnClickListener(this);
         btn_calendar.setOnClickListener(this);
         //btn_phone.setOnClickListener(this);
         btn_info.setOnClickListener(this);
-        //btn_uCampus.setOnClickListener(this);
+        btn_uCampus.setOnClickListener(this);
         btn_settings.setOnClickListener(this);
 
         //Document doc = Jsoup.connect("http://m.kma.go.kr/m/observation/observation_01.jsp").get();
@@ -82,8 +87,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 //startActivity(new Intent(this, PhoneActivity.class)); break;
             case R.id.main_btn_info :
                 startActivity(new Intent(this, InfoActivity.class)); break;
-//            case R.id.main_btn_uInfo :
-//                startActivity(new Intent(this, UCampusActivity.class)); break;
+            case R.id.main_btn_uInfo :
+                startActivity(new Intent(this, UCampusActivity.class)); break;
             case R.id.main_btn_settings :
                 startActivity(new Intent(this, SettingsActivity.class)); break;
         }

@@ -5,6 +5,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
+/** 학번을 POST 하는 인터페이스 */
 interface PostInterface {
     String URL = "http://mobileid.kw.ac.kr/mobile/MA/xml_userInfo.php/";
 

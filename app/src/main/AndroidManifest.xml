@@ -73,7 +73,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".UCampusActivity" />
+        <activity android:name=".u_campus_activity.UCampusActivity" />
     </application>
 
 </manifest>
