@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
 
 import kr.hee.kwnoti.R;
+import kr.hee.kwnoti.UTILS;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -31,10 +33,36 @@ public class UCampusActivity extends Activity {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addNetworkInterceptor(cookieAdder).addInterceptor(cookieInterceptor).build();
         // Retrofit 빌드
-        Retrofit retrofit;
+        Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(FirstLoginInterface.URL).build();
+        FirstLoginInterface request = retrofit.create(FirstLoginInterface.class);
+        Call<ResponseBody> response = request.getCookie("2", "http%3A%2F%2Finfo.kw.ac.kr%2F", "11", "", "KOREAN", id, pwd);
+
+        // 연결 요청
+        response.enqueue(new Callback<ResponseBody>() {
+            @Override public void onResponse(Call<ResponseBody> call, Response<ResponseBody> res) {
+                try {
+                    // 정보를 잘못 입력했거나 정보가 없는 경우 로그인 실패로 패스
+                    String responseHtml = new String(res.body().bytes(), "EUC-kR");
+                    if (responseHtml.contains("비밀번호가 맞지 않습니다") || responseHtml.contains("비밀번호를 입력하세요"))
+                        throw new IOException();
+                }
+                catch (IOException e) {
+                    onFailure(call, e);
+                }
+
+            }
+
+            @Override public void onFailure(Call<ResponseBody> call, Throwable t) {
+                UTILS.showToast(getApplicationContext(), "로그인에 실패했습니다.");
+                t.printStackTrace();
+            }
+        });
+
+
+
         // 쿠키 데이터가 없는 경우
 //        if (!cookieAdder.hasCookie()) {
-            // TODO 쿠키와 내 학번이 같은지 확인
+            /*// TODO 쿠키와 내 학번이 같은지 확인
             retrofit = new Retrofit.Builder().client(client).baseUrl(FirstLoginInterface.URL).build();
             FirstLoginInterface request = retrofit.create(FirstLoginInterface.class);
             Call<ResponseBody> response = request.getCookie("2", "http%3A%2F%2Finfo.kw.ac.kr%2F",
@@ -63,7 +91,7 @@ public class UCampusActivity extends Activity {
                 @Override public void onFailure(Call<ResponseBody> call, Throwable t) {
                     t.printStackTrace();
                 }
-            });
+            });*/
 //        }
         /*else
             retrofit = new Retrofit.Builder().client(client).baseUrl("").build(); // TODO 학번이 다를 떄 초기화해줘야지..*/

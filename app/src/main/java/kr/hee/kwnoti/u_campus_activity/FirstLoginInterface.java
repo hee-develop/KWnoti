@@ -12,8 +12,7 @@ import retrofit2.http.POST;
  * POST 로그인을 사용하며 Response 에서 쿠키값만 가져오는 용도로 사용한다 */
 interface FirstLoginInterface {
     String URL = "https://info.kw.ac.kr/";
-    @FormUrlEncoded
-    @POST("webnote/login/login_proc.php")
+    @FormUrlEncoded @POST("webnote/login/login_proc.php")
     Call<ResponseBody> getCookie(
             @Field("login_type")            String login_type,
             @Field("redirect_url")          String redirect_url,
