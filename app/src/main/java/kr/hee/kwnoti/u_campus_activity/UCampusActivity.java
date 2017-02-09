@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 
 import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
@@ -33,11 +32,11 @@ public class UCampusActivity extends Activity {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addNetworkInterceptor(cookieAdder).addInterceptor(cookieInterceptor).build();
         // Retrofit 빌드
-        Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(FirstLoginInterface.URL).build();
-        FirstLoginInterface request = retrofit.create(FirstLoginInterface.class);
+        Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(UCampusInterface.URL).build();
+        UCampusInterface request = retrofit.create(UCampusInterface.class);
         Call<ResponseBody> response = request.getCookie("2", "http%3A%2F%2Finfo.kw.ac.kr%2F", "11", "", "KOREAN", id, pwd);
 
-        // 연결 요청
+        // 로그인 요청
         response.enqueue(new Callback<ResponseBody>() {
             @Override public void onResponse(Call<ResponseBody> call, Response<ResponseBody> res) {
                 try {
@@ -58,67 +57,22 @@ public class UCampusActivity extends Activity {
             }
         });
 
-
-
-        // 쿠키 데이터가 없는 경우
-//        if (!cookieAdder.hasCookie()) {
-            /*// TODO 쿠키와 내 학번이 같은지 확인
-            retrofit = new Retrofit.Builder().client(client).baseUrl(FirstLoginInterface.URL).build();
-            FirstLoginInterface request = retrofit.create(FirstLoginInterface.class);
-            Call<ResponseBody> response = request.getCookie("2", "http%3A%2F%2Finfo.kw.ac.kr%2F",
-                    "11", "", "KOREAN", "2014722028", "5813");
-
-            response.enqueue(new Callback<ResponseBody>() {
-                @Override public void onResponse(Call<ResponseBody> call, Response<ResponseBody> res) {
-                    res.headers();
-
-                    Retrofit r = new Retrofit.Builder().baseUrl("http://info2.kw.ac.kr/servlet/controller.homepage.KwuMainServlet/").build();
-                    UCampusInterface req = r.create(UCampusInterface.class);
-                    Call<ResponseBody> res1 = req.getMain();
-                    res1.enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            response.code();
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            t.printStackTrace();
-                        }
-                    });
+        // 유캠퍼스 데이터 요청
+        response = request.getMain();
+        response.enqueue(new Callback<ResponseBody>() {
+            @Override public void onResponse(Call<ResponseBody> call, Response<ResponseBody> res) {
+                try {
+                    String frdspaj = res.body().string();
+                    String a = "A";
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-                @Override public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    t.printStackTrace();
-                }
-            });*/
-//        }
-        /*else
-            retrofit = new Retrofit.Builder().client(client).baseUrl("").build(); // TODO 학번이 다를 떄 초기화해줘야지..*/
-
-
-
-
-    }
-
-
-    private static boolean findCookie(HttpURLConnection paramHttpURLConnection)
-    {
-        int i = 1;
-        new StringBuilder();
-        for (int j = i;; j++)
-        {
-            String str = paramHttpURLConnection.getHeaderFieldKey(j);
-            if (str != null)
-            {
-                if (!str.equals("Set-Cookie")) {
-                    continue;
-                }
-                if (paramHttpURLConnection.getHeaderField(j).contains("deleted")) {
-                    i = 0;
-                }
+                res.raw();
             }
-            return i != 0;
-        }
+
+            @Override public void onFailure(Call<ResponseBody> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 }

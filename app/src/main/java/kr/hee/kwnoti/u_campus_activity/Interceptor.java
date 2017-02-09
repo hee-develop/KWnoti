@@ -21,13 +21,6 @@ class AddCookieInterceptor implements Interceptor {
         this.context = context;
     }
 
-    /** 쿠키가 있는지 여부를 반환 */
-    public boolean hasCookie() {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        Set<String> cookies = pref.getStringSet(KEY.COOKIE_SET, null);
-        return !(cookies == null || cookies.isEmpty());
-    }
-
     @Override public Response intercept(Chain chain) throws IOException {
         Request.Builder builder = chain.request().newBuilder();
 
