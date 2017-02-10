@@ -12,7 +12,8 @@ import retrofit2.http.POST;
 /** 최초 로그인 시 사용하는 인터페이스
  * POST 로그인을 사용하며 Response 에서 쿠키값만 가져오는 용도로 사용한다 */
 interface UCampusInterface {
-    String URL = "https://info.kw.ac.kr/";
+    /* ====================================== 유캠퍼스 로그인 ====================================== */
+    String LOGIN_URL = "https://info.kw.ac.kr/";
     @FormUrlEncoded @POST("webnote/login/login_proc.php")
     Call<ResponseBody> getCookie(
             @Field("login_type")            String login_type,
@@ -24,23 +25,26 @@ interface UCampusInterface {
             @Field("password")              String pwd          // 비밀번호
     );
 
-
+    /* ==================================== 유캠퍼스 데이터 로드 ==================================== */
+    String UCAMPUS_URL = "http://info2.kw.ac.kr/";
+    // 원칙적으로는 host에 /servlet/~ 하는 것이 맞으나 그지같은 유캠퍼스 호스팅때문에 어쩔 수 없이 길게 우회
     @GET("http://info2.kw.ac.kr/servlet/controller.homepage.MainServlet?p_gate=univ&p_process=main&p_page=learning&p_kwLoginType=cookie&gubun_code=11")
-    Call<ResponseBody> getMain();
+    Call<ResponseBody> getUcampus();
+
+    /* ========================== 유캠퍼스 코어 데이터(학생의 실제 정보) 로드 ========================== */
+    //@FormUrlEncoded
+    @POST("http://info2.kw.ac.kr/servlet/controller.homepage.KwuMainServlet?p_process=openStu&p_grcode=N000003")
+    Call<ResponseBody> getUcampusCore(/*
+            @Field("p_process") @Nullable       String process,
+            @Field("p_gate")            String gate,
+            @Field("p_grcode")          String gradeCode,
+            @Field("p_subj")            String subject,
+            @Field("p_year")            String year,
+            @Field("p_subjseq")         String sequence,
+            @Field("p_class")           String classNum,
+            @Field("p_userid")          String id,
+            @Field("p_page") @Nullable  String page,
+            @Field("gubun_code")        String gubunCode,
+            @Field("p_tutor_name") @Nullable    String tutorName*/
+    );
 }
-/*
-    String URL = "http://info2.kw.ac.kr/servlet/controller.homepage.MainServlet/";
-
-    @GET("/")
-    Call<ResponseBody> getMain();
-
-    login_type=2&redirect_url=http%3A%2F%2Finfo.kw.ac.kr%2F&layout_opt=&gubun_code=11&
-    p_language=KOREAN&image.x=19&image.y=18&
-    p_gate=univ&p_process=main&p_page=learning&p_kwLoginType=cookie&gubun_code=11"
-
-        // POST 요청으로 Response body 받는 메소드
-        @FormUrlEncoded @POST(URL)
-        Call<PostResult> getBody(
-                @Field("real_id") String id,
-                @Field("new_check") String check);
-*/
