@@ -1,19 +1,11 @@
 package kr.hee.kwnoti.settings_activity;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
-import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -23,7 +15,7 @@ import kr.hee.kwnoti.R;
 public class SettingsActivity extends Activity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getString(R.string.main_settings));
+        setTitle(R.string.main_settings);
         setContentView(R.layout.activity_settings);
         getFragmentManager().beginTransaction().replace(
                 R.id.setting_frame, new SettingsFragment()).commit();

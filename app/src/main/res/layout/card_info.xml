@@ -3,7 +3,10 @@
     android:id="@+id/card_info"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="4dp">
+    android:foreground="@drawable/fg_ripple_gray"
+    android:paddingTop="4dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp">
     <TextView
         android:id="@+id/card_info_title"
         android:layout_width="320dp"
@@ -48,7 +51,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@id/card_info_title"
         android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
         android:src="@drawable/icon_new"
         android:contentDescription="@string/card_info_new" />
     <ImageView
@@ -57,6 +59,7 @@
         android:layout_height="12dp"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/card_info_new"
+        android:layout_marginTop="6dp"
         android:src="@drawable/icon_save"
         android:contentDescription="@string/card_info_attachment" />
     <View

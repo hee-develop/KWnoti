@@ -8,10 +8,11 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Url;
 
 /** 최초 로그인 시 사용하는 인터페이스
  * POST 로그인을 사용하며 Response 에서 쿠키값만 가져오는 용도로 사용한다 */
-interface UCampusInterface {
+public interface Interface {
     /* ====================================== 유캠퍼스 로그인 ====================================== */
     String LOGIN_URL = "https://info.kw.ac.kr/";
     @FormUrlEncoded @POST("webnote/login/login_proc.php")
@@ -33,7 +34,7 @@ interface UCampusInterface {
 
     /* ========================== 유캠퍼스 코어 데이터(학생의 실제 정보) 로드 ========================== */
     //@FormUrlEncoded
-    @POST("http://info2.kw.ac.kr/servlet/controller.homepage.KwuMainServlet?p_process=openStu&p_grcode=N000003")
+    @POST("http://info2.kw.ac.kr/servlet/controller.homepage.KwuMainServlet?p_process=openStu&")
     Call<ResponseBody> getUcampusCore(/*
             @Field("p_process") @Nullable       String process,
             @Field("p_gate")            String gate,
@@ -47,4 +48,23 @@ interface UCampusInterface {
             @Field("gubun_code")        String gubunCode,
             @Field("p_tutor_name") @Nullable    String tutorName*/
     );
+
+    /* =========================== 강의 별 데이터(공지사항, 자료실 등) 로드 ============================ */
+    @FormUrlEncoded @POST
+    Call<ResponseBody> getList(
+            @Url String url,
+            @Field("p_process") @Nullable   String process,
+            @Field("p_grcode")              String gradeCode,
+            @Field("p_subj")                String subjectNum,
+            @Field("p_year")                String year,
+            @Field("p_subjseq")             String sequence,
+            @Field("p_class")               String classNum,
+            @Field("p_pageno")              int pageNum);
+
+    /* ======================================= 게시글 로드 ======================================== */
+    @FormUrlEncoded @POST
+    Call<ResponseBody> getContent(
+            @Url String url,
+            @Field("p_process")     String process,
+            @Field("p_bdseq")       String sequence);
 }

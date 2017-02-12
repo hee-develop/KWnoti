@@ -7,10 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +17,6 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 
 import kr.hee.kwnoti.R;
-import kr.hee.kwnoti.UTILS;
 
 /** 학사 일정 액티비티 */
 public class CalendarActivity extends Activity {
@@ -31,11 +27,11 @@ public class CalendarActivity extends Activity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        setTitle(getString(R.string.calendar_title));
+        setTitle(R.string.calendar_title);
         recyclerView = (RecyclerView)findViewById(R.id.calendar_recyclerView);
 
         // 다이얼로그 모양 설정
-        progressDialog = new ProgressDialog(this, android.R.style.Theme_Material_Light_Dialog);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage(getString(R.string.dialog_loading));
 

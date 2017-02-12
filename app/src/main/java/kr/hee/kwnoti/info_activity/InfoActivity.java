@@ -54,7 +54,7 @@ public class InfoActivity extends Activity {
     // 다이얼로그 생성(출력이 아님!)
     @Override protected void onStart() {
         super.onStart();
-        progressDialog = new ProgressDialog(this, android.R.style.Theme_Material_Light_Dialog);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage(getString(R.string.dialog_loading));
     }
@@ -105,8 +105,7 @@ public class InfoActivity extends Activity {
                                 showTopNotify = true;
                                 new ParserThread().start();
                             }
-                        })
-                        .show();
+                        }).show();
                 break;
         }
         return true;
@@ -115,7 +114,7 @@ public class InfoActivity extends Activity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-        setTitle(getString(R.string.info_title));
+        setTitle(R.string.info_title);
         initView();
         // 파싱 시작 TODO join() 메소드 불가...
         new ParserThread().start();

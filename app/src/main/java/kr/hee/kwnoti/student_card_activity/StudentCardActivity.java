@@ -35,7 +35,7 @@ public class StudentCardActivity extends Activity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_card);
-        setTitle(getString(R.string.studentCard_title));
+        setTitle(R.string.studentCard_title);
 
         // 뷰 초기화
         initView();

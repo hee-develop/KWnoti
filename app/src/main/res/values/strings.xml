@@ -5,7 +5,7 @@
     <string name="main_calendar">학사일정</string>
     <string name="main_idCard">모바일 학생증</string>
     <string name="main_info">공지사항</string>
-    <string name="main_uCampus">유캠퍼스 공지사항</string>
+    <string name="main_uCampus">나의\n유캠퍼스</string>
     <string name="main_food">오늘의 식단</string>
     <string name="main_phone">교내\n전화번호</string>
     <string name="main_settings">설정</string>
@@ -24,6 +24,9 @@
     <string name="info_accessibility_search">공지사항 검색 켜기/끄기</string>
     <string name="card_info_attachment">첨부파일 있음</string>
     <string name="card_info_new">최근 공지</string>
+
+    <!-- 유캠퍼스 액티비티 -->
+    <string name="ucampus_title">모바일 유캠퍼스</string>
 
     <!-- 학사일정 액티비티 -->
     <string name="calendar_title">학사일정 안내</string>

@@ -12,20 +12,15 @@
         <kr.hee.kwnoti.settings_activity.AutoCompleteEditTextPreference
             android:title="전공"
             android:key="@string/key_studentMajor" />
-        <!--<EditTextPreference
-            android:title="전공"
-            android:key="@string/key_studentMajor"
-            android:inputType="textAutoComplete" />-->
         <EditTextPreference
             android:title="유캠퍼스 비밀번호"
             android:key="@string/key_studentUCampusPassword"
-            android:inputType="textPassword"
-            android:summary="* 현재 구현되지 않은 기능입니다." />
-        <EditTextPreference
+            android:inputType="textPassword" />
+        <!--<EditTextPreference
             android:title="중앙도서관 비밀번호"
             android:key="@string/key_studentLibraryPassword"
             android:inputType="textPassword"
-            android:summary="* 현재 구현되지 않은 기능입니다." />
+            android:summary="* 현재 구현되지 않은 기능입니다." />-->
     </PreferenceCategory>
     <PreferenceCategory android:title="공지사항 푸쉬 알림">
         <SwitchPreference

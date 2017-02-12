@@ -14,7 +14,7 @@ import kr.hee.kwnoti.calendar_activity.CalendarActivity;
 import kr.hee.kwnoti.info_activity.InfoActivity;
 import kr.hee.kwnoti.settings_activity.SettingsActivity;
 import kr.hee.kwnoti.student_card_activity.StudentCardActivity;
-import kr.hee.kwnoti.u_campus_activity.UCampusActivity;
+import kr.hee.kwnoti.u_campus_activity.UCampusMainActivity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     TextView    btn_card,       // 학생증
@@ -43,7 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             // 최초 실행 종료
             SharedPreferences.Editor editor = firstUse.edit();
-            editor.putBoolean(KEY.FIRST_USE, true).apply();
+            editor.putBoolean(KEY.FIRST_USE, false).apply();
         }
     }
 
@@ -88,7 +88,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.main_btn_info :
                 startActivity(new Intent(this, InfoActivity.class)); break;
             case R.id.main_btn_uInfo :
-                startActivity(new Intent(this, UCampusActivity.class)); break;
+                startActivity(new Intent(this, UCampusMainActivity.class)); break;
             case R.id.main_btn_settings :
                 startActivity(new Intent(this, SettingsActivity.class)); break;
         }
