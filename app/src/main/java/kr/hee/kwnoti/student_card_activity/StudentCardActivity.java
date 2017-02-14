@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,8 +23,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
+/** 학생증 액티비티 */
+// TODO 가로 학생증 액티비티도 추가해줘야 함
 public class StudentCardActivity extends Activity {
-    private static final String TAG = "StudentCard";
     // 뷰
     TextView    studentId, studentName, studentMajor;
     ImageView   qrCodeView;
@@ -67,8 +67,6 @@ public class StudentCardActivity extends Activity {
         studentName.setText(pref.getString(getString(R.string.key_studentName), loadFailed));
         studentMajor.setText(pref.getString(getString(R.string.key_studentMajor), loadFailed));
         ID = "0" + pref.getString(getString(R.string.key_studentID), "");
-
-        Log.d(TAG, "Current student ID : " + ID);
     }
 
     /** 중앙도서관 서버에서 인증 시도 메소드. QR 코드 생성도 여기서 호출 */
@@ -78,27 +76,28 @@ public class StudentCardActivity extends Activity {
 
         // Retrofit 객체
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(PostInterface.URL)
+                .baseUrl(Interface.URL)
                 .addConverterFactory(SimpleXmlConverterFactory.create()).build();
         // Retrofit 객체로 인터넷 연결을 시도 할 어노테이션 인터페이스
-        PostInterface postInterface = retrofit.create(PostInterface.class);
+        Interface postInterface = retrofit.create(Interface.class);
         // Base64 인코드 및 연결 설정(encodedId, Y 두 개가 POST 할 메세지)
         final String encodedId = Base64.encodeToString(id.getBytes(), Base64.DEFAULT);
-        Call<PostResult> body = postInterface.getBody(encodedId, "Y");
+        Call<Result> body = postInterface.getBody(encodedId, "Y");
+
         // Async 연결 시도
-        body.enqueue(new Callback<PostResult>() {
+        body.enqueue(new Callback<Result>() {
             // 인증 성공
-            @Override public void onResponse(Call<PostResult> call, Response<PostResult> response) {
+            @Override public void onResponse(Call<Result> call, Response<Result> response) {
                 // 정상 인증인 경우 QR 코드 생성 및 사용 가능
                 if (response.body().resultMsg.equals("정상")) {
                     QRCodeGenerator(response.body().qrCode);
-                    Log.d(TAG, "QR refreshed : " + response.body().qrCode);
+                    UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_refreshed));
                 }
-                else UTILS.showToast(StudentCardActivity.this, "인증에 문제가 발생했습니다.");
+                else UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_certificate_failed));
             }
             // 연결 혹은 인증 실패
-            @Override public void onFailure(Call<PostResult> call, Throwable err) {
-                UTILS.showToast(StudentCardActivity.this, "인증에 실패했습니다.");
+            @Override public void onFailure(Call<Result> call, Throwable err) {
+                UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_certificate_failed));
                 err.printStackTrace();
             }
         });
@@ -109,7 +108,7 @@ public class StudentCardActivity extends Activity {
      * QR 코드 생성 메소드. QR 이미지 뷰어에 자동으로 값 반환
      * @param qrValue  QR 코드를 생성할 데이터
      * @return boolean 학번 생성 여부 반환 */
-    boolean QRCodeGenerator(String qrValue) {
+    synchronized boolean QRCodeGenerator(String qrValue) {
         // 학번이 제대로 전달이 안되면 null 리턴
         if (qrValue.isEmpty()) return false;
 

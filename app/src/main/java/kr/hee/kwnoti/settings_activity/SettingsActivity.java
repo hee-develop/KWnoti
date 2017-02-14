@@ -15,8 +15,8 @@ import kr.hee.kwnoti.R;
 public class SettingsActivity extends Activity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.main_settings);
         setContentView(R.layout.activity_settings);
+        setTitle(R.string.main_settings);
         getFragmentManager().beginTransaction().replace(
                 R.id.setting_frame, new SettingsFragment()).commit();
     }

@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +16,7 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 
 import kr.hee.kwnoti.R;
+import kr.hee.kwnoti.UTILS;
 
 /** 학사 일정 액티비티 */
 public class CalendarActivity extends Activity {
@@ -28,21 +28,26 @@ public class CalendarActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
         setTitle(R.string.calendar_title);
+
+        // 뷰 초기화 및 다이얼로그 설정
+        initView();
+
+        // 어댑터가 비어 있으면 학사일정 새로 불러오기
+        if (adapter.getItemCount() == 0)
+            new ParserThread().start();
+    }
+
+    // 뷰 초기화 메소드
+    void initView() {
+        // 리사이클러 뷰 연결
         recyclerView = (RecyclerView)findViewById(R.id.calendar_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter = new CalendarAdapter(this));
 
         // 다이얼로그 모양 설정
         progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage(getString(R.string.dialog_loading));
-
-        adapter = new CalendarAdapter(CalendarActivity.this);
-        // 데이터가 없으면 새로 불러오기
-        if (adapter.getItemCount() == 0)
-            new ParserThread().start();
-
-        // 어댑터 연결 및 레이아웃 설정
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     // 메뉴 버튼 인플레이트
@@ -60,10 +65,11 @@ public class CalendarActivity extends Activity {
     // 다이얼로그 메모리 유출 방지
     @Override protected void onDestroy() {
         super.onDestroy();
-        progressDialog.dismiss();
+        if (progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
-    /** Jsoup을 이용한 파서 스레드, InfoActivity 파서와 방식이 달라서 따로 만들었음. */
+    /** Jsoup을 이용한 파서 스레드 */
     class ParserThread extends Thread {
         @Override public void run() {
             super.run();
@@ -74,6 +80,7 @@ public class CalendarActivity extends Activity {
                 }
             });
 
+            // 학사 일정 데이터를 저장할 클래스. DB 파일을 직접적으로 다룸
             CalendarDB db = new CalendarDB(CalendarActivity.this);
 
             String url = "http://www.kw.ac.kr/ko/life/bachelor_calendar.do";
@@ -128,8 +135,7 @@ public class CalendarActivity extends Activity {
                 runOnUiThread(new Runnable() {
                     @Override public void run() {
                         recyclerView.setAdapter(new CalendarAdapter(CalendarActivity.this));
-                        Toast.makeText(CalendarActivity.this, getString(R.string.toast_refreshed),
-                                Toast.LENGTH_SHORT).show();
+                        UTILS.showToast(CalendarActivity.this, getString(R.string.toast_refreshed));
                     }
                 });
             }
@@ -137,8 +143,7 @@ public class CalendarActivity extends Activity {
                 // 파싱 실패 시 토스트 출력
                 runOnUiThread(new Runnable() {
                     @Override public void run() {
-                        Toast.makeText(CalendarActivity.this, getString(R.string.toast_failed),
-                                Toast.LENGTH_SHORT).show();
+                        UTILS.showToast(CalendarActivity.this, getString(R.string.toast_failed));
                     }
                 });
             }

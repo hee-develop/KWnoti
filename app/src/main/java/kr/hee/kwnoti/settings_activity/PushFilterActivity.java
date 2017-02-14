@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import kr.hee.kwnoti.R;
 
+/** 푸쉬 알림에서 차단/수신설정 할 데이터를 넣어주는 액티비티 */
 public class PushFilterActivity extends Activity {
     EditText edit_addFilter;
     RecyclerView filters;
@@ -35,7 +36,8 @@ public class PushFilterActivity extends Activity {
                     if (adapter.addFilter(text)) textView.setText("");
                     else return false;
                 }
-                return false;
+                // 키보드가 내려가지 않도록 설정해줌
+                return true;
             }
         });
     }

@@ -2,7 +2,6 @@ package kr.hee.kwnoti.info_activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import kr.hee.kwnoti.BrowserActivity;
+import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
 
 /** 공지사항을 출력해 주는 어댑터 */
@@ -47,11 +48,9 @@ class InfoAdapter extends RecyclerView.Adapter<InfoViewHolder> {
         else holder.newInfo.setVisibility(View.INVISIBLE);
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(array.get(holder.getAdapterPosition()).link));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent = new Intent(context, BrowserActivity.class);
+                intent.putExtra(KEY.BROWSER_URL, array.get(holder.getAdapterPosition()).link);
                 context.startActivity(intent);
-                // TODO 자체 브라우저 기능 활용
             }
         });
     }

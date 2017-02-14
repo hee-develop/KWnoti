@@ -5,11 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import kr.hee.kwnoti.R;
+import kr.hee.kwnoti.UTILS;
 
 /** 푸쉬 필터 데이터를 출력해 주는 어댑터
  * DB는 {@link PushFilterDB} 클래스에서 관리함 */
@@ -57,12 +57,12 @@ class PushFilterAdapter extends RecyclerView.Adapter<PushFilterViewHolder> {
     boolean addFilter(String filter) {
         // 입력된 값이 없을 때
         if (filter.length() < 1) {
-            Toast.makeText(context, R.string.toast_enter_value, Toast.LENGTH_SHORT).show();
+            UTILS.showToast(context, R.string.toast_enter_value);
             return false;
         }
         // 입력된 값이 30byte 초과일 때
         else if (filter.getBytes().length > 30) {
-            Toast.makeText(context, R.string.toast_tags_max_length_is, Toast.LENGTH_SHORT).show();
+            UTILS.showToast(context, R.string.toast_tags_max_length_is);
             return false;
         }
         // 정상 입력 범위
@@ -74,7 +74,7 @@ class PushFilterAdapter extends RecyclerView.Adapter<PushFilterViewHolder> {
             }
             // 중복된 값이 존재할 때
             else {
-                Toast.makeText(context, R.string.toast_tags_same_found, Toast.LENGTH_SHORT).show();
+                UTILS.showToast(context, R.string.toast_tags_same_found);
                 return false;
             }
         }
@@ -84,8 +84,7 @@ class PushFilterAdapter extends RecyclerView.Adapter<PushFilterViewHolder> {
     private void removeFilter(PushFilterViewHolder holder) {
         String text = holder.card_name.getText().toString();
         if (db.removeFilter(text)) {
-            Toast.makeText(context, text + context.getString(R.string.toast_deleted),
-                    Toast.LENGTH_SHORT).show();
+            UTILS.showToast(context, text + context.getString(R.string.toast_deleted));
             array.remove(holder.card_name.getText().toString());
             notifyDataSetChanged();
         }

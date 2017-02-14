@@ -4,8 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="kr.hee.kwnoti.BrowserActivity">
-    <WebView
+    <kr.hee.kwnoti.Browser
         android:id="@+id/browser_webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/browser_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        style="?android:attr/progressBarStyleHorizontal" />
+
+    <ImageButton
+        android:id="@+id/browser_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@drawable/bg_fab"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:elevation="4dp"
+        android:src="@drawable/icon_left"
+        android:contentDescription="@string/browser_description_fab" />
 </RelativeLayout>

@@ -5,7 +5,7 @@
         <item name="android:colorPrimaryDark">@color/brown700</item>
         <item name="android:colorAccent">@color/amberA200</item>
         <item name="android:colorBackground">@color/deepWhite</item>
-        <item name="android:navigationBarColor">?android:attr/colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?android:attr/colorPrimary</item>
     </style>
     <!-- 상단바 없는 테마 -->
     <style name="AppTheme.NoActionBar">

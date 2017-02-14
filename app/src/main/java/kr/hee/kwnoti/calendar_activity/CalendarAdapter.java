@@ -1,17 +1,14 @@
 package kr.hee.kwnoti.calendar_activity;
 
 import android.content.Context;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import kr.hee.kwnoti.R;
-import kr.hee.kwnoti.settings_activity.PushFilterDB;
 
 /** 학사일정 데이터를 출력해 주는 어댑터
  * DB는 {@link CalendarDB} 클래스에서 관리함 */
@@ -49,7 +46,7 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
         String month = (startMonth == endMonth) ? startMonth + "" : (startMonth + "~" + endMonth),
                 date = (startDate == endDate) ? startDate + "" : (startDate + "~" + endDate);
 
-        holder.month.setText(month + "월");
+        holder.month.setText(month + "월"); // TODO 추후 다국어 지원을 위한 변경
         holder.date.setText(date + "일");
         holder.content.setText(array.get(position).content);
     }
@@ -61,9 +58,5 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     /** 학사 일정 데이터를 모두 없애는 메소드 */
     void cleanData() {
         db.cleanCalendar();
-    }
-
-    void addData(CalendarData data) {
-        array.add(data);
     }
 }

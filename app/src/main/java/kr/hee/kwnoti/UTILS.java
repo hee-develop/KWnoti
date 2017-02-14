@@ -1,8 +1,6 @@
 package kr.hee.kwnoti;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,8 +25,11 @@ public final class UTILS {
     /** 토스트를 출력하는 메소드
      * 출력 메소드가 너무 길어서 여기서 간편하게 구현
      * @param context    출력할 액티비티
-     * @param value      출력할 값 */
+     * @param value      출력할 값(resId 입력 받는 경우엔 string 아이디) */
     public static void showToast(Context context, String value) {
         Toast.makeText(context, value, Toast.LENGTH_SHORT).show();
+    }
+    public static void showToast(Context context, int resId) {
+        showToast(context, context.getString(resId));
     }
 }

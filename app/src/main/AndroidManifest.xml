@@ -5,6 +5,7 @@
     <!-- 권한 설정은 따로 필요가 없으나 PlayStore 검색 옵션을 위한 명시적 권한 설정임. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -49,6 +50,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <!-- ================================= 유캠퍼스 액티비티 ================================== -->
         <activity android:name=".u_campus_activity.UCampusMainActivity" />
+        <activity android:name=".u_campus_activity.UCampusListActivity" />
         <!-- ================================= 공지사항 액티비티 ================================== -->
         <activity android:name=".info_activity.InfoActivity" />
         <!-- ================================= 학사일정 액티비티 ================================== -->
@@ -77,8 +79,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".u_campus_activity.UCampusListActivity" />
-        <activity android:name=".BrowserActivity"></activity>
+        <!-- ================================= 브라우저 액티비티 ================================== -->
+        <activity android:name=".BrowserActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:hardwareAccelerated="true" />
     </application>
 
 </manifest>
