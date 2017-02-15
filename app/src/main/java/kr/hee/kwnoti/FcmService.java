@@ -80,7 +80,6 @@ public class FcmService extends FirebaseMessagingService {
                     .setWhen(System.currentTimeMillis())
                     .setAutoCancel(true);
             notiManager.notify(0, builder.build());
-            // TODO Intent 커스텀 브라우저로 수정 & 소리, 진동 등 재설정
         }
         catch (JSONException e) {
             e.printStackTrace();

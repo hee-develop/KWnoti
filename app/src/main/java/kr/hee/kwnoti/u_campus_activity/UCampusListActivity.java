@@ -116,7 +116,7 @@ public class UCampusListActivity extends Activity {
             catch (IOException e) {
                 runOnUiThread(new Runnable() {
                     @Override public void run() {
-                        UTILS.showToast(getApplicationContext(), "오류가 발생했습니다.");
+                        UTILS.showToast(UCampusListActivity.this, "오류가 발생했습니다.");
                     }
                 });
                 e.printStackTrace();

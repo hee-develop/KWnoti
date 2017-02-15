@@ -10,47 +10,42 @@
     <!-- 월 -->
     <TextView
         android:id="@+id/card_calendar_month"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:maxWidth="56dp"
         android:textSize="12sp"
         android:textStyle="bold"
         android:textColor="@color/brown800" />
     <!-- 일 -->
     <TextView
         android:id="@+id/card_calendar_date"
-        android:layout_width="wrap_content"
+        android:layout_width="68dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="2dp"
-        android:maxWidth="64dp"
         android:textSize="16sp"
         android:textColor="@color/brown500" />
-    <View
+    <View style="@style/Line"
         android:id="@+id/card_calendar_line_v"
-        android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="72dp"
-        android:background="@color/gray500" />
+        android:layout_toEndOf="@id/card_calendar_date"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp" />
+
     <!-- 내용 -->
     <TextView
         android:id="@+id/card_calendar_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toEndOf="@id/card_calendar_line_v"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:textSize="18sp"
         android:textColor="@color/gray700"
         android:includeFontPadding="false"
-        android:gravity="center_vertical"
         android:maxLines="2" />
-    <View
+    <View style="@style/Line"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/gray500" />
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

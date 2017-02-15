@@ -36,15 +36,20 @@ import retrofit2.Response;
 import static android.content.pm.PackageManager.PERMISSION_DENIED;
 
 public class BrowserActivity extends Activity {
+    // 브라우저
     ProgressBar progressBar;
     Browser webView;
+    Browser.ScrollChangedCallback fabVisibilityCallback;
+    DownloadListener downloadListener;
+    // FAB 버튼
     ImageButton fab;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
 
-        // 뷰 초기화
+        // 변수 및 뷰 초기화
+        init();
         initView();
 
         // 넘어온 인텐트 데이터 분석. 유캠퍼스에서 넘어온 정적 HTML 파일이면 다르게 불러야함
@@ -77,7 +82,7 @@ public class BrowserActivity extends Activity {
                 @Override public void onFailure(Call<ResponseBody> call, Throwable t) {
                     runOnUiThread(new Runnable() {
                         @Override public void run() {
-                            UTILS.showToast(getApplicationContext(), "로드 실패");
+                            UTILS.showToast(BrowserActivity.this, "로드 실패");
                         }
                     });
                 }
@@ -85,6 +90,75 @@ public class BrowserActivity extends Activity {
         }
         else
             webView.loadUrl(intentData.getString(KEY.BROWSER_URL));
+    }
+
+    void init() {
+        // 스크롤에 따른 FAB 버튼 보임/가림
+        fabVisibilityCallback = new Browser.ScrollChangedCallback() {
+            boolean fabVisible = true;
+            short scrollCount = 0;
+            Animation shrink = AnimationUtils.loadAnimation(BrowserActivity.this, R.anim.shrink);
+            Animation expansion = AnimationUtils.loadAnimation(BrowserActivity.this, R.anim.expand);
+
+            @Override public void onScroll(int cX, int cY, int oX, int oY) {
+                final int delayAmount = 2;
+                fabVisible = fab.getVisibility() == View.VISIBLE;
+
+                // 스크롤 내릴 때
+                if (cY > oY) {
+                    scrollCount++;
+                    if (scrollCount > delayAmount && fabVisible) {
+                        fab.startAnimation(shrink);
+                        fab.setVisibility(View.GONE);
+                        scrollCount = 0;
+                    }
+                    else if (!fabVisible) scrollCount = 0;
+                }
+                else {
+                    scrollCount--;
+                    if (scrollCount < -delayAmount && !fabVisible) {
+                        fab.startAnimation(expansion);
+                        fab.setVisibility(View.VISIBLE);
+                        scrollCount = 0;
+                    }
+                }
+            }
+        };
+
+        downloadListener = new DownloadListener() {
+            @Override public void onDownloadStart(String url, String userAgent, String contentDisposition,
+                                                  String mimeType, long contentLength) {
+                try {
+                    DownloadManager downloadManager = (DownloadManager)getSystemService(DOWNLOAD_SERVICE);
+                    DownloadManager.Request downloadRequest = new DownloadManager.Request(Uri.parse(url));
+                    downloadRequest.setMimeType(mimeType);
+                    downloadRequest.addRequestHeader("User-Agent", userAgent);
+                    String fileName = URLUtil.guessFileName(url, contentDisposition, mimeType); // 파일 이름 추출
+                    downloadRequest.setTitle(fileName);
+                    downloadRequest.allowScanningByMediaScanner();
+                    downloadRequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                    downloadRequest.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+                    // 다운로드 시작
+                    downloadManager.enqueue(downloadRequest);
+                    UTILS.showToast(BrowserActivity.this, "다운로드 시작..");
+                }
+                catch (Exception e) {
+                    // 파일 저장 권한
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                == PERMISSION_DENIED) {
+                            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                                UTILS.showToast(BrowserActivity.this, "첨부파일을 받으려면 권한이 필요합니다.");
+                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
+                            } else {
+                                UTILS.showToast(BrowserActivity.this, "첨부파일을 받으려면 권한이 필요합니다.");
+                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
+                            }
+                        }
+                    }
+                }
+            }
+        };
     }
 
     void initView() {
@@ -130,74 +204,4 @@ public class BrowserActivity extends Activity {
             webView.goBack();
         return super.onKeyDown(keyCode, event);
     }
-
-    //
-
-    // 스크롤에 따른 FAB 버튼 보임/가림
-    Browser.ScrollChangedCallback fabVisibilityCallback = new Browser.ScrollChangedCallback() {
-        boolean fabVisible = true;
-        short scrollCount = 0;
-        Animation shrink = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shrink);
-        Animation expansion = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.expand);
-
-        @Override public void onScroll(int cX, int cY, int oX, int oY) {
-            final int delayAmount = 2;
-            fabVisible = fab.getVisibility() == View.VISIBLE;
-
-            // 스크롤 내릴 때
-            if (cY > oY) {
-                scrollCount++;
-                if (scrollCount > delayAmount && fabVisible) {
-                    fab.startAnimation(shrink);
-                    fab.setVisibility(View.GONE);
-                    scrollCount = 0;
-                }
-                else if (!fabVisible) scrollCount = 0;
-            }
-            else {
-                scrollCount--;
-                if (scrollCount < -delayAmount && !fabVisible) {
-                    fab.startAnimation(expansion);
-                    fab.setVisibility(View.VISIBLE);
-                    scrollCount = 0;
-                }
-            }
-        }
-    };
-
-    // 첨부파일 다운로드 리스너
-    DownloadListener downloadListener = new DownloadListener() {
-        @Override public void onDownloadStart(String url, String userAgent, String contentDisposition,
-                                              String mimeType, long contentLength) {
-            try {
-                DownloadManager downloadManager = (DownloadManager)getSystemService(DOWNLOAD_SERVICE);
-                DownloadManager.Request downloadRequest = new DownloadManager.Request(Uri.parse(url));
-                downloadRequest.setMimeType(mimeType);
-                downloadRequest.addRequestHeader("User-Agent", userAgent);
-                String fileName = URLUtil.guessFileName(url, contentDisposition, mimeType); // 파일 이름 추출
-                downloadRequest.setTitle(fileName);
-                downloadRequest.allowScanningByMediaScanner();
-                downloadRequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                downloadRequest.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
-                // 다운로드 시작
-                downloadManager.enqueue(downloadRequest);
-                UTILS.showToast(BrowserActivity.this, "다운로드 시작..");
-            }
-            catch (Exception e) {
-                // 파일 저장 권한
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            == PERMISSION_DENIED) {
-                        if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                            UTILS.showToast(BrowserActivity.this, "첨부파일을 받으려면 권한이 필요합니다.");
-                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
-                        } else {
-                            UTILS.showToast(BrowserActivity.this, "첨부파일을 받으려면 권한이 필요합니다.");
-                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
-                        }
-                    }
-                }
-            }
-        }
-    };
 }
