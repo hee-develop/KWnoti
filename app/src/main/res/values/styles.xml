@@ -46,4 +46,10 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/deepBlack</item>
     </style>
+
+    <style name="Line">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray300</item>
+    </style>
 </resources>

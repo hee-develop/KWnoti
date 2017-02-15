@@ -1,12 +1,8 @@
 package kr.hee.kwnoti;
 
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -34,34 +30,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         checkFirstUse();            // 최초 실행 여부 검사
         weatherActive = checkUseWeatherService(); // 날씨 서비스를 켰는지 여부 확인
         initView();                 // 뷰 초기화
-
-        // 클릭했을 때 이동할 액티비티 설정
-        Intent intent = new Intent(this, BrowserActivity.class);
-        intent.putExtra(KEY.BROWSER_URL, "http://www.naver.com");
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
-        // 알람 선언 및 표시
-        NotificationManager notiManager = (NotificationManager)getSystemService(
-                NOTIFICATION_SERVICE);
-        Notification.Builder builder = new Notification.Builder(this)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-                .setSmallIcon(R.drawable.splash_mark)
-                .setContentTitle("Hi")
-                .setContentIntent(pIntent)
-                .setPriority(Notification.PRIORITY_HIGH)
-                .setWhen(System.currentTimeMillis())
-                .setAutoCancel(true);
-        notiManager.notify(0, builder.build());
-
-        // create our manager instance after the content view is set
-        /*SystemBarTintManager tintManager = new SystemBarTintManager(this);
-// enable status bar tint
-        tintManager.setStatusBarTintEnabled(true);
-// enable navigation bar tint
-        tintManager.setNavigationBarTintEnabled(true);
-// set the transparent color of the status bar, 20% darker
-        tintManager.setTintColor(Color.parseColor("#20000000"));
-*/
     }
 
     /** 최초 실행인지 확인하는 메소드 */

@@ -14,16 +14,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class UCampusListActivity extends Activity {
     RecyclerView recyclerView;
@@ -57,16 +54,7 @@ public class UCampusListActivity extends Activity {
 
         setTitle(parcel.subjName + " : " + listType);
 
-
-        // 유캠퍼스 로그인을 위한 쿠키(반응과 요청에 대한 인터셉터)
-        AddCookieInterceptor cookieAdder = new AddCookieInterceptor(this);
-        ReceivedCookieInterceptor cookieInterceptor = new ReceivedCookieInterceptor(this);
-        // OkHttpClient 설정(쿠키 인터셉터들 삽입)
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10000, TimeUnit.MILLISECONDS)
-                .addNetworkInterceptor(cookieAdder).addInterceptor(cookieInterceptor).build();
-        // Retrofit 빌드
-        Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(Interface.LOGIN_URL).build();
-        request = retrofit.create(Interface.class);
+        request = UTILS.makeRequestClientForUCampus(this, Interface.LOGIN_URL);
 
         new ParserThread(parcel).start();
     }

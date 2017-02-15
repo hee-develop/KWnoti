@@ -14,15 +14,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class UCampusMainActivity extends Activity {
     // 리사이클러 뷰 친구들
@@ -54,15 +51,8 @@ public class UCampusMainActivity extends Activity {
         stuId   = pref.getString(getString(R.string.key_studentID), "");
         stuPwd  = pref.getString(getString(R.string.key_studentUCampusPassword), "");
 
-        // 유캠퍼스 로그인을 위한 쿠키(반응과 요청에 대한 인터셉터)
-        AddCookieInterceptor cookieAdder = new AddCookieInterceptor(this);
-        ReceivedCookieInterceptor cookieInterceptor = new ReceivedCookieInterceptor(this);
-        // OkHttpClient 설정(쿠키 인터셉터들 삽입)
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10000, TimeUnit.MILLISECONDS)
-                .addNetworkInterceptor(cookieAdder).addInterceptor(cookieInterceptor).build();
-        // Retrofit 빌드
-        Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(Interface.LOGIN_URL).build();
-        request = retrofit.create(Interface.class);
+        // 유캠퍼스 로그인 생성
+        request = UTILS.makeRequestClientForUCampus(this, Interface.LOGIN_URL);
 
         // 로그인 요청
         loginThread = new LoginThread();
@@ -135,7 +125,10 @@ public class UCampusMainActivity extends Activity {
             Call<ResponseBody> call = request.getUcampusCore(/*"", "univ", "N000003", "U2016209697220013", "2016", "2", "01", "2014722028UA", "", "11", ""*/);
             try {
                 Response<ResponseBody> response = call.execute();
-                String responseHtml = response.body().string();
+                String responseHtml;
+                if (response.body() == null)
+                    responseHtml = "";
+                else responseHtml = response.body().string();
                 // 로그인 이후 나온 데이터를 파싱하여 RecyclerView 데이터로 넣어줌
                 setViewData(responseHtml);
             }

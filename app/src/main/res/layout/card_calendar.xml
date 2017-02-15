@@ -2,48 +2,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_calendar"
     android:layout_width="match_parent"
-    android:layout_height="54dp"
+    android:layout_height="52dp"
     android:orientation="vertical"
-    android:paddingTop="6dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:paddingTop="4dp"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp">
+    <!-- 월 -->
     <TextView
         android:id="@+id/card_calendar_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        android:maxWidth="60dp"
+        android:layout_marginTop="2dp"
+        android:maxWidth="56dp"
         android:textSize="12sp"
         android:textStyle="bold"
         android:textColor="@color/brown800" />
-
+    <!-- 일 -->
     <TextView
         android:id="@+id/card_calendar_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/card_calendar_month"
-        android:maxWidth="60dp"
-        android:textSize="14sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dp"
+        android:maxWidth="64dp"
+        android:textSize="16sp"
         android:textColor="@color/brown500" />
-
     <View
+        android:id="@+id/card_calendar_line_v"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:layout_marginBottom="4dp"
-        android:layout_marginStart="60dp"
-        android:background="@color/gray400" />
-
+        android:layout_marginStart="72dp"
+        android:background="@color/gray500" />
+    <!-- 내용 -->
     <TextView
         android:id="@+id/card_calendar_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="-4dp"
+        android:layout_toEndOf="@id/card_calendar_line_v"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:textSize="18sp"
         android:textColor="@color/gray700"
+        android:includeFontPadding="false"
+        android:gravity="center_vertical"
         android:maxLines="2" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
