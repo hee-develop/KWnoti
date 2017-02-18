@@ -80,9 +80,11 @@
             </intent-filter>
         </activity>
         <!-- ================================= 브라우저 액티비티 ================================== -->
-        <activity android:name=".BrowserActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:hardwareAccelerated="true" />
+        <activity
+            android:name=".BrowserActivity"
+            android:hardwareAccelerated="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".tel_activity.TelActivity"></activity>
     </application>
 
 </manifest>

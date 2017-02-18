@@ -57,7 +57,14 @@
         <!-- 학사 일정 -->
         <TextView style="@style/CardStyle"
             android:id="@+id/main_btn_calendar"
+            android:background="@color/brown700"
             android:text="@string/main_calendar" />
+
+        <!-- 교내 전화번호 -->
+        <TextView style="@style/CardStyle"
+            android:id="@+id/main_btn_tel"
+            android:background="@color/brown400"
+            android:text="@string/main_tel" />
 
         <!-- 설정 -->
         <TextView style="@style/CardStyle"
@@ -72,9 +79,6 @@
         <!--<TextView style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_facility"-->
             <!--android:text="시설안내" />-->
-        <!--<TextView style="@style/CardStyle"
-            android:id="@+id/main_btn_phone"
-            android:text="@string/main_phone" />-->
 <!--
 
         <TextView style="@style/CardStyle"

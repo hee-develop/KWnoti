@@ -118,32 +118,12 @@
             android:textColor="@color/white"
             android:textStyle="bold" />
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/app_openSource_jsoup"
+            android:text="@string/app_openSource_sourceList"
             android:textSize="14sp"
-            android:textColor="@color/brown50" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/app_openSource_zxing"
-            android:textSize="14sp"
-            android:textColor="@color/brown50" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/app_openSource_retrofit"
-            android:textSize="14sp"
-            android:textColor="@color/brown50" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/app_openSource_simple"
-            android:textSize="14sp"
-            android:textColor="@color/brown50" />
+            android:textColor="@color/brown50"
+            android:lineSpacingMultiplier="1.2" />
     </LinearLayout>
 </ScrollView>
