@@ -15,7 +15,7 @@ public class TelDB {
     TelDB(Context context) {
         db = context.openOrCreateDatabase(DB_NAME + ".db",
                 SQLiteDatabase.CREATE_IF_NECESSARY, null);
-        String query = "CREATE TABLE IF NOT EXISTS Tel(" +
+        String query = "CREATE TABLE IF NOT EXISTS " + DB_NAME + "(" +
                 "`groupName` text not null," +
                 "`departName` text not null," +
                 "`telNumber` text not null);";
@@ -74,7 +74,7 @@ public class TelDB {
         ArrayList<TelData> array = new ArrayList<>();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + DB_NAME +
-                "where groupName=" + find + "or departName=" + find + "or telNumber=" + find, null);
+                " where groupName LIKE '%" + find + "%' OR departName LIKE '%" + find + "%' OR telNumber LIKE '%" + find + "%';", null);
         while (cursor.moveToNext()) {
             TelData telData = new TelData(
                     cursor.getString(0),

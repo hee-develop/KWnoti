@@ -41,6 +41,7 @@ public class BrowserActivity extends Activity {
     Browser webView;
     Browser.ScrollChangedCallback fabVisibilityCallback;
     DownloadListener downloadListener;
+    short scrollCount = 0;
     // FAB 버튼
     ImageButton fab;
 
@@ -96,7 +97,6 @@ public class BrowserActivity extends Activity {
         // 스크롤에 따른 FAB 버튼 보임/가림
         fabVisibilityCallback = new Browser.ScrollChangedCallback() {
             boolean fabVisible = true;
-            short scrollCount = 0;
             Animation shrink = AnimationUtils.loadAnimation(BrowserActivity.this, R.anim.shrink);
             Animation expansion = AnimationUtils.loadAnimation(BrowserActivity.this, R.anim.expand);
 
