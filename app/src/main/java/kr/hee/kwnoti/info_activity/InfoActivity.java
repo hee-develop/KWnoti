@@ -82,7 +82,7 @@ public class InfoActivity extends Activity {
                 break;
             // 글 그룹 선택
             case R.id.info_toolbar_group :
-                UTILS.showAlertDialog(InfoActivity.this, "분류를 선택하세요", options,
+                UTILS.showAlertDialog(InfoActivity.this, "분류를 선택하세요", options, // TODO 다국어지원
                         new DialogInterface.OnClickListener() {
                             @Override public void onClick(DialogInterface dInterface, int i) {
                                 // 클릭한 값에 맞게 메뉴 글씨 변경 및 실제 값 변경

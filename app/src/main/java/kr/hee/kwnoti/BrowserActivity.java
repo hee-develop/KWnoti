@@ -83,7 +83,7 @@ public class BrowserActivity extends Activity {
                 @Override public void onFailure(Call<ResponseBody> call, Throwable t) {
                     runOnUiThread(new Runnable() {
                         @Override public void run() {
-                            UTILS.showToast(BrowserActivity.this, "로드 실패");
+                            UTILS.showToast(BrowserActivity.this, R.string.text_loadFailed);
                         }
                     });
                 }
@@ -101,7 +101,7 @@ public class BrowserActivity extends Activity {
             Animation expansion = AnimationUtils.loadAnimation(BrowserActivity.this, R.anim.expand);
 
             @Override public void onScroll(int cX, int cY, int oX, int oY) {
-                final int delayAmount = 2;
+                final int delayAmount = 10;
                 fabVisible = fab.getVisibility() == View.VISIBLE;
 
                 // 스크롤 내릴 때
@@ -115,8 +115,7 @@ public class BrowserActivity extends Activity {
                     else if (!fabVisible) scrollCount = 0;
                 }
                 else {
-                    scrollCount--;
-                    if (scrollCount < -delayAmount && !fabVisible) {
+                    if (!fabVisible) {
                         fab.startAnimation(expansion);
                         fab.setVisibility(View.VISIBLE);
                         scrollCount = 0;

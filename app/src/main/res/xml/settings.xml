@@ -37,7 +37,7 @@
             android:defaultValue="true"
             android:dependency="@string/key_pushActive" />
         <SwitchPreference
-            android:title=""
+            android:title="@string/setting_push_vibrate"
             android:key="@string/key_pushVibrator"
             android:summaryOn="@string/setting_push_vibrate_on"
             android:summaryOff="@string/setting_push_vibrate_off"
