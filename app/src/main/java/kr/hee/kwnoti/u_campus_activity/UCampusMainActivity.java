@@ -42,21 +42,26 @@ public class UCampusMainActivity extends Activity {
         setContentView(R.layout.activity_ucampus_main);
         setTitle(R.string.ucampus_title);
 
-        // 뷰 초기화 및 로딩 다이얼로그 표시
-        initView();
-        progressDialog.show();
+        SharedPreferences pref = UTILS.checkUserData(this);
+        if (pref == null)   finish();
+        else {
+            initView();
+            init(pref);
+            progressDialog.show();
+        }
+    }
 
-        // 학생정보(학번, 비밀번호)를 불러옴
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+    /** 액티비티 데이터 초기화 및 데이터 불러오기 메소드 */
+    void init(SharedPreferences pref) {
+        // 유저 데이터 불러오기
         stuId   = pref.getString(getString(R.string.key_studentID), "");
         stuPwd  = pref.getString(getString(R.string.key_studentUCampusPassword), "");
 
-        // 유캠퍼스 로그인 생성
+        // 로그인 시도
         request = UTILS.makeRequestClientForUCampus(this, Interface.LOGIN_URL);
-
-        // 로그인 요청
         loginThread = new LoginThread();
         loginThread.start();
+        // 유캠퍼스 접속 시도
         new GetUcampusThread().start();
     }
 
@@ -149,8 +154,11 @@ public class UCampusMainActivity extends Activity {
             }
         }
 
-        void setViewData(String html) {
+        void setViewData(String html) throws IOException {
             Document doc = Jsoup.parse(html);
+            if (doc.text().equals(""))
+                throw new IOException();
+
             // 수강 과목 및 데이터 추출
             Elements elements = doc.select("table.main_box").last().select("td.list_txt");
 
@@ -199,6 +207,7 @@ public class UCampusMainActivity extends Activity {
 
     @Override protected void onDestroy() {
         super.onDestroy();
-        progressDialog.dismiss();
+        if (progressDialog != null && progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 }

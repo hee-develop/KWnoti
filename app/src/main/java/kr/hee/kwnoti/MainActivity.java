@@ -1,6 +1,8 @@
 package kr.hee.kwnoti;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,9 +22,10 @@ import kr.hee.kwnoti.u_campus_activity.UCampusMainActivity;
 public class MainActivity extends Activity implements View.OnClickListener {
     TextView    btn_card,       // 학생증
                 btn_calendar,   // 학사일정
-            btn_tel,      // 교내 전화번호
+                btn_tel,        // 교내 전화번호
                 btn_info,       // 학교 공지사항
                 btn_uCampus,    // 유캠퍼스 공지사항
+                btn_links,      // 바로가기 모음
                 btn_settings;   // 설정
     boolean     weatherActive;  // 실시간 날씨 사용 여부
 
@@ -65,6 +68,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_tel     = (TextView)findViewById(R.id.main_btn_tel);
         btn_info    = (TextView)findViewById(R.id.main_btn_info);
         btn_uCampus = (TextView)findViewById(R.id.main_btn_uInfo);
+        btn_links   = (TextView)findViewById(R.id.main_btn_links);
         btn_settings= (TextView)findViewById(R.id.main_btn_settings);
 
         btn_card.setOnClickListener(this);
@@ -72,6 +76,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_tel.setOnClickListener(this);
         btn_info.setOnClickListener(this);
         btn_uCampus.setOnClickListener(this);
+        btn_links.setOnClickListener(this);
         btn_settings.setOnClickListener(this);
 
         //Document doc = Jsoup.connect("http://m.kma.go.kr/m/observation/observation_01.jsp").get();
@@ -90,6 +95,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(this, InfoActivity.class)); break;
             case R.id.main_btn_uInfo :
                 startActivity(new Intent(this, UCampusMainActivity.class)); break;
+            case R.id.main_btn_links :
+                final String[] name = {
+                        "광운대 대신 전해드려요 페이스북",
+                        "광운대학교 대나무숲 페이스북",
+                        "총학생회 페이스북",
+                        "중앙도서관",
+                        "미디어광운",
+                        "총동문회" };
+                final String[] url = {
+                        "https://www.facebook.com/kwtalk/",
+                        "https://www.facebook.com/kwubamboo/",
+                        "https://www.facebook.com/kw2017TheGreen/",
+                        "http://kupis.kw.ac.kr/",
+                        "http://www.mediakw.org/",
+                        "http://dongmoon.kw.ac.kr/" };
+
+                // 링크가 여러개 있으므로 다이얼로그로 띄워줌
+                UTILS.showAlertDialog(MainActivity.this, "어디로 갈까요?", name,
+                        new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dInterface, int i) {
+                                Intent intent = new Intent(getApplicationContext(), BrowserActivity.class);
+                                intent.putExtra(KEY.BROWSER_URL, url[i]);
+                                startActivity(intent);
+                            }
+                        }
+                );
+                break;
             case R.id.main_btn_settings :
                 startActivity(new Intent(this, SettingsActivity.class)); break;
         }

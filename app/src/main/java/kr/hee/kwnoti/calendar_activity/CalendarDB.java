@@ -35,6 +35,13 @@ class CalendarDB {
         }
     }
 
+    /** DB 메모리 누수 방지 */
+    @Override protected void finalize() throws Throwable {
+        super.finalize();
+        if (db.isOpen())
+            db.close();
+    }
+
     /** DB에 데이터 추가 메소드
      * @param data     CalendarData 클래스
      * @return         추가됐는지 여부 */

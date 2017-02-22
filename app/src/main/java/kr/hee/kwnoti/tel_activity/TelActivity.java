@@ -88,9 +88,10 @@ public class TelActivity extends Activity {
 
             String url = "http://info.kw.ac.kr/webnote/phonebook/phonebook_fuz.php";
             try {
-                adapter.cleanData();
-
                 Document doc = Jsoup.connect(url).timeout(5000).get();
+
+                // 어댑터 내 모든 데이터 삭제
+                adapter.cleanData();
 
                 Elements elements = doc.select("dl dt, dd li");
 

@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 /** 전화번호 데이터를 관리하는 DB 클래스 */
-public class TelDB {
+class TelDB {
     private SQLiteDatabase db;
     private final String DB_NAME = "TelNumber";
 
@@ -19,12 +19,24 @@ public class TelDB {
                 "`groupName` text not null," +
                 "`departName` text not null," +
                 "`telNumber` text not null);";
+        /* 테이블 모양 구성 ----------------------------
+         * groupName    부서 그룹   / 텍스트 / NOT NULL
+         * departName   부서명     / 텍스트 / NOT NULL
+         * telNumber    전화번호    / 텍스트 / NOT NULL
+         * ------------------------------------------ */
         try {
             db.execSQL(query);
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /** DB 메모리 누수 방지 */
+    @Override protected void finalize() throws Throwable {
+        super.finalize();
+        if (db.isOpen())
+            db.close();
     }
 
     /** DB에 데이터 추가 메소드

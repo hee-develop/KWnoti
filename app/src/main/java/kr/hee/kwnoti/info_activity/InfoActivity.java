@@ -82,20 +82,8 @@ public class InfoActivity extends Activity {
                 break;
             // 글 그룹 선택
             case R.id.info_toolbar_group :
-                // 다이얼로그 제목 및 색상 지정
-                // TODO 폰트 색상이 상수임
-                final String text = "<b><font color=#795548>분류를 선택하세요</font></b>";
-                final CharSequence title;
-                // TODO Nougat 이상의 SDK 에서는 fromHtml() 메소드가 Deprecated 되었음.
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-                    title = Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY);
-                else
-                    title = Html.fromHtml(text);
-                // 다이얼로그 생성 및 출력
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(InfoActivity.this);
-                dialogBuilder
-                        .setTitle(title)
-                        .setItems(options, new DialogInterface.OnClickListener() {
+                UTILS.showAlertDialog(InfoActivity.this, "분류를 선택하세요", options,
+                        new DialogInterface.OnClickListener() {
                             @Override public void onClick(DialogInterface dInterface, int i) {
                                 // 클릭한 값에 맞게 메뉴 글씨 변경 및 실제 값 변경
                                 item.setTitle(groupType = options[i]);
@@ -105,7 +93,8 @@ public class InfoActivity extends Activity {
                                 showTopNotify = true;
                                 new ParserThread().start();
                             }
-                        }).show();
+                        }
+                );
                 break;
         }
         return true;

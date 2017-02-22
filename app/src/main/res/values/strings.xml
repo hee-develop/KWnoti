@@ -8,9 +8,10 @@
     <string name="main_calendar">학사일정</string>
     <string name="main_idCard">모바일 학생증</string>
     <string name="main_info">공지사항</string>
-    <string name="main_uCampus">나의\n유캠퍼스</string>
-    <string name="main_food">오늘의 식단</string>
+    <string name="main_uCampus">U-CAMPUS</string>
+    <string name="main_food">오늘의 학식</string>
     <string name="main_tel">교내\n전화번호</string>
+    <string name="main_links">기타\n바로가기</string>
     <string name="main_settings">설정</string>
 
     <!-- 학생증 액티비티 -->
@@ -38,8 +39,28 @@
     <!-- 전화번호 액티비티 -->
     <string name="tel_title">교내 전화번호 안내</string>
     <string name="tel_accessibility_refresh">새로고침</string>
+    <string name="tel_search_telNum">전화번호 검색</string>
 
     <!-- 설정 액티비티 -->
+    <string name="setting_group_user">개인정보 관리</string>
+    <string name="setting_id">학번</string>
+    <string name="setting_name">이름</string>
+    <string name="setting_major">전공</string>
+    <string name="setting_u_pwd">유캠퍼스 비밀번호</string>
+    <string name="setting_group_push">공지사항 푸쉬 알림</string>
+    <string name="setting_send_push">공지사항 알림 받기</string>
+    <string name="setting_send_push_on">공지사항을 푸쉬 알람으로 받습니다.</string>
+    <string name="setting_send_push_off">공지사항을 푸쉬 알람으로 받지 않습니다.</string>
+    <string name="setting_push_ringtone">소리 설정</string>
+    <string name="setting_push_ringtone_on">알림을 받으면 알림음이 울립니다.</string>
+    <string name="setting_push_ringtone_off">알림을 받아도 알림음이 울리지 않습니다.</string>
+    <string name="setting_push_vibrate">진동 설정</string>
+    <string name="setting_push_vibrate_on">알람을 받으면 진동이 울립니다.</string>
+    <string name="setting_push_vibrate_off">알람을 받아도 진동이 울리지 않습니다.</string>
+    <string name="setting_push_filter">알림 필터 설정</string>
+    <string name="setting_push_filter_description">특정 단어가 포함된 알림은 차단할 수 있습니다.</string>
+    <string name="setting_etc">기타</string>
+    <string name="setting_etc_appInfo">앱 정보</string>
     <!-- 알림 필터 액티비티 -->
     <string name="filter_add_tags">태그를 입력하여 추가합니다. (ex: 입찰)</string>
     <string name="filter_guide">아래의 문구가 포함된 알람은 수신하지 않습니다.</string>
@@ -80,4 +101,5 @@
     <string name="toast_refreshed">새로고침되었습니다.</string>
     <string name="toast_failed">인터넷 상태를 확인해 주세요.</string>
     <string name="toast_certificate_failed">인증에 실패했습니다.</string>
+    <string name="toast_check_user">사용자 정보를 확인해주세요.</string>
 </resources>

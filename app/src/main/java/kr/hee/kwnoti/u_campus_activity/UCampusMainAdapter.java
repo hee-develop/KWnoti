@@ -1,6 +1,5 @@
 package kr.hee.kwnoti.u_campus_activity;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +12,7 @@ import java.util.ArrayList;
 
 import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
+import kr.hee.kwnoti.UTILS;
 
 /** 유캠퍼스 메인화면의 RecyclerView Adapter */
 class UCampusMainAdapter extends RecyclerView.Adapter<UCampusMainViewHolder> {
@@ -33,6 +33,9 @@ class UCampusMainAdapter extends RecyclerView.Adapter<UCampusMainViewHolder> {
         return new UCampusMainViewHolder(view);
     }
 
+    /** 뷰 홀더에 데이터를 넣어 주는 메소드
+     * @param holder      뷰 홀더
+     * @param position    리사이클러 뷰에서의 위치 */
     @Override public void onBindViewHolder(final UCampusMainViewHolder holder, final int position) {
         final String subjName = array.get(position).subjName;
         final String[] listType = { KEY.SUBJECT_INFO, KEY.SUBJECT_UTIL, KEY.SUBJECT_STUDENT, /*TODO 과제제출 비활성화 KEY.SUBJECT_ASSIGNMENT,*/ KEY.SUBJECT_QNA };
@@ -41,10 +44,8 @@ class UCampusMainAdapter extends RecyclerView.Adapter<UCampusMainViewHolder> {
         holder.room.setText(array.get(position).subjPlace);
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
-                dialogBuilder
-                        .setTitle(subjName)
-                        .setItems(listType, new DialogInterface.OnClickListener() {
+                UTILS.showAlertDialog(context, subjName, listType,
+                        new DialogInterface.OnClickListener() {
                             @Override public void onClick(DialogInterface dInterface, int i) {
                                 Intent intent = new Intent(context, UCampusListActivity.class);
                                 intent.putExtra(KEY.SUBJECT, array.get(holder.getAdapterPosition()));
@@ -60,7 +61,8 @@ class UCampusMainAdapter extends RecyclerView.Adapter<UCampusMainViewHolder> {
                                 // 클릭한 과목에 해당하는 액티비티 생성
                                 context.startActivity(intent);
                             }
-                        }).show();
+                        }
+                );
             }
         });
     }

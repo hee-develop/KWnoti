@@ -37,8 +37,11 @@ public class StudentCardActivity extends Activity {
         setContentView(R.layout.activity_student_card);
         setTitle(R.string.studentCard_title);
 
-        // 뷰 초기화
-        initView();
+        // 사용자 정보 유무 확인
+        SharedPreferences pref = UTILS.checkUserData(this);
+        if (pref == null)   finish();
+        // 정보 확인되면 뷰 초기화 실행
+        else                initView(pref);
     }
 
     /** 화면이 보여질 때마다 자동으로 인증 & QR 새로고침 */
@@ -48,7 +51,7 @@ public class StudentCardActivity extends Activity {
     }
 
     /** 뷰 초기화 메소드 */
-    void initView() {
+    void initView(SharedPreferences pref) {
         studentId   = (TextView)findViewById(R.id.studentCard_ID);
         studentName = (TextView)findViewById(R.id.studentCard_name);
         studentMajor= (TextView)findViewById(R.id.studentCard_major);
@@ -62,7 +65,6 @@ public class StudentCardActivity extends Activity {
 
         // 설정 값을 통해 뷰 데이터 설정 및 ID값 설정
         String loadFailed = getString(R.string.text_loadFailed);
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         studentId.setText(pref.getString(getString(R.string.key_studentID), loadFailed));
         studentName.setText(pref.getString(getString(R.string.key_studentName), loadFailed));
         studentMajor.setText(pref.getString(getString(R.string.key_studentMajor), loadFailed));

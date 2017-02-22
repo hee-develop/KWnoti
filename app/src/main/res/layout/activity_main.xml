@@ -23,12 +23,6 @@
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>-->
 
-        <!-- 금주의 식단 -->
-        <!--<TextView style="@style/CardStyle"
-            android:id="@+id/main_btn_food"
-            android:background="@color/brown400"
-            android:text="@string/main_food" />-->
-
         <!-- 모바일 학생증 -->
         <TextView style="@style/CardStyle"
             android:id="@+id/main_btn_idCard"
@@ -66,39 +60,26 @@
             android:background="@color/brown400"
             android:text="@string/main_tel" />
 
+        <!-- 오늘의 학식 -->
+        <!--<TextView style="@style/CardStyle"
+            android:id="@+id/main_btn_food"
+            android:background="@color/brown500"
+            android:text="@string/main_food" />-->
+
+        <!--  기타 바로가기 모음 -->
+        <TextView style="@style/CardStyle"
+            android:id="@+id/main_btn_links"
+            android:background="@color/brown300"
+            android:text="@string/main_links" />
+
         <!-- 설정 -->
         <TextView style="@style/CardStyle"
-            android:id="@+id/main_btn_settings"
-            android:background="@color/brown300"
-            android:text="@string/main_settings" />
+        android:id="@+id/main_btn_settings"
+        android:background="@color/brown200"
+        android:text="@string/main_settings" />
 
-        <!--<TextView style="@style/CardStyle"-->
-            <!--android:id="@+id/main_btn_food"-->
-            <!--android:background="@color/brown400"-->
-            <!--android:text="금주의 식단" />-->
         <!--<TextView style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_facility"-->
             <!--android:text="시설안내" />-->
-<!--
-
-        <TextView style="@style/CardStyle"
-            android:id="@+id/main_btn_link_dongMoon"
-            android:background="@drawable/icon_refresh"
-            android:text="총동문회\n바로가기"
-            android:textColor="@color/brown800" />
-        <TextView style="@style/CardStyle"
-            android:id="@+id/main_btn_link_uCampus"
-            android:background="@drawable/icon_refresh"
-            android:text="유캠퍼스\n바로가기"
-            android:textColor="@color/brown800" />
-        <TextView style="@style/CardStyle"
-            android:id="@+id/main_btn_link_mediaKW"
-            android:background="@drawable/icon_refresh"
-            android:text="미디어광운\n바로가기"
-            android:textColor="@color/brown800" />
-        <TextView style="@style/CardStyle"
-            android:background="@drawable/icon_refresh"
-            android:text="중앙도서관\n바로가기"
-            android:textColor="@color/brown800" />-->
     </GridLayout>
 </ScrollView>

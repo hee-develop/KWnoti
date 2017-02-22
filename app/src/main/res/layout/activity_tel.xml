@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:hint="전화번호 검색"
+        android:hint="@string/tel_search_telNum"
         android:inputType="text"
         android:imeOptions="actionSearch"
         android:maxLines="1"
@@ -22,7 +22,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/tel_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 </LinearLayout>

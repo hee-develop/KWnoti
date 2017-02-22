@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">KWnoti</string>
+
+    <!-- 브라우저 액티비티 -->
+    <string name="browser_description_fab">Back</string>
+
+    <!-- 메인 액티비티 -->
+    <string name="main_calendar">Schedule</string>
+    <string name="main_idCard">Mobile ID card</string>
+    <string name="main_info">Notify</string>
+    <string name="main_uCampus">U-CAMPUS</string>
+    <string name="main_food">Today\'s food</string>
+    <string name="main_tel">Phone number</string>
+    <string name="main_links">Links</string>
+    <string name="main_settings">Settings</string>
+
+    <!-- 학생증 액티비티 -->
+    <string name="studentCard_title">KwangWoon univ. ID card</string>
+    <string name="studentCard_refresh">Touch QR code to refresh.</string>
+    <string name="studentCard_id">ID</string>
+    <string name="studentCard_name">Name</string>
+    <string name="studentCard_major">Major</string>
+    <string name="studentCard_description_qrCode">Student ID code</string>
+
+    <!-- 공지사항 액티비티 -->
+    <string name="info_title">Notify</string>
+    <string name="info_hint_search">Search..</string>
+    <string name="info_accessibility_search">Toggle search on/off</string>
+    <string name="card_info_attachment">Have attachment</string>
+    <string name="card_info_new">New notify</string>
+
+    <!-- 유캠퍼스 액티비티 -->
+    <string name="ucampus_title">U-CAMPUS</string>
+
+    <!-- 학사일정 액티비티 -->
+    <string name="calendar_title">Schedule</string>
+    <string name="calendar_accessibility_refresh">Refresh</string>
+
+    <!-- 전화번호 액티비티 -->
+    <string name="tel_title">KwangWoon phone number</string>
+    <string name="tel_accessibility_refresh">Refresh</string>
+    <string name="tel_search_telNum">Search..</string>
+
+    <!-- 설정 액티비티 -->
+    <string name ="setting_group_user">Personal Information</string>
+    <string name ="setting_id">ID</string>
+    <string name ="setting_name">Name</string>
+    <string name ="setting_major">Major</string>
+    <string name ="setting_u_pwd">U-CAMPUS password</string>
+    <string name ="setting_group_push">Push settings</string>
+    <string name ="setting_send_push">Receive push alarms</string>
+    <string name ="setting_send_push_on">Receive new notify.</string>
+    <string name ="setting_send_push_off">Never receive new notify.</string>
+    <string name ="setting_push_ringtone">Sound</string>
+    <string name ="setting_push_ringtone_on">Rings when new notify is received.</string>
+    <string name ="setting_push_ringtone_off">Never rings even new notify is received.</string>
+    <string name ="setting_push_vibrate">Vibration</string>
+    <string name ="setting_push_vibrate_on">Vibrate when new notify is received.</string>
+    <string name ="setting_push_vibrate_off">Never vibrate even new notify is received.</string>
+    <string name ="setting_push_filter">Notification filter</string>
+    <string name ="setting_push_filter_description">You can block notifications that contain certain words.</string>
+    <string name ="setting_etc">ETC</string>
+    <string name ="setting_etc_appInfo">About</string>
+    <!-- 알림 필터 액티비티 -->
+    <string name="filter_add_tags">Enter filter to add.. (ex: 입찰)</string>
+    <string name="filter_guide">Alarms with the following text are not received.</string>
+    <string name="toast_tags_max_length_is">Max length of filter is 30bytes.</string>
+    <string name="toast_tags_same_found">Same tag founded.</string>
+    <!-- 앱 정보 액티비티 -->
+    <string name="app_story">KWnoti is unofficial app of KwangWoon univ.
+    </string>
+    <string name="app_openSource">Used open source</string>
+    <string name="app_openSource_sourceList">Jsoup (https://jsoup.org)
+        \nZebraXing (https://github.com/zxing/zxing)
+        \nRetrofit (https://square.github.io/retrofit)
+        \nSimple (http://simple.sourceforge.net)
+    </string>
+    <string name="app_usedColor">Used color</string>
+    <string name="app_color_brown">Material Color Brown</string>
+    <string name="app_color_amber">Material Color Amber</string>
+    <string name="app_color_gray">Material Color Gray</string>
+
+    <!-- Preferences 키값 -->
+    <string name="key_studentID">stuID</string>
+    <string name="key_studentName">stuName</string>
+    <string name="key_studentMajor">stuMajor</string>
+    <string name="key_studentUCampusPassword">stuUPwd</string>
+    <string name="key_studentLibraryPassword">stuLibPwd</string>
+    <string name="key_pushActive">pushActive</string>
+    <string name="key_pushVibrator">vibratorActive</string>
+    <string name="key_pushSound">ringtoneActive</string>
+    <string name="key_weatherService">weatherActive</string>
+
+    <!-- Toast & Dialog -->
+    <string name="dialog_loading">Loading..</string>
+    <string name="text_loadFailed">Load failed.</string>
+    <string name="toast_enter_value">Please enter value.</string>
+    <string name="toast_deleted"> removed.</string>
+    <string name="toast_refreshed">Refreshed.</string>
+    <string name="toast_failed">Please check the internet state.</string>
+    <string name="toast_certificate_failed">Certificate failed.</string>
+    <string name="toast_check_user">Check user\'s data.</string>
+</resources>
