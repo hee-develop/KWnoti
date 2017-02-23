@@ -40,10 +40,10 @@ public class FcmService extends FirebaseMessagingService {
             String  title   = jsonObject.getString("title"),
                     whoWrite= jsonObject.getString("content"),
                     url     = jsonObject.getString("link");
-            int requestCode = Integer.parseInt(url.split("&|=")[3]);
+            //int requestCode = Integer.parseInt(url.split("&|=")[3]);
 
             // 필터링 할 단어가 있으면 알림을 울리지 않게 함
-            if (this.isFiltered(context, title, whoWrite))
+            if (!this.isFiltered(context, title, whoWrite))
                 return;
 
             // 알람 기타 설정(진동 등)
@@ -54,7 +54,8 @@ public class FcmService extends FirebaseMessagingService {
             // 클릭했을 때 이동할 액티비티 설정
             Intent intent = new Intent(context, BrowserActivity.class);
             intent.putExtra(KEY.BROWSER_URL, url);
-            PendingIntent pIntent = PendingIntent.getActivity(context, requestCode, intent, 0);
+            PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
 
             // 알람 선언 및 표시
             NotificationManager notiManager = (NotificationManager)getSystemService(
