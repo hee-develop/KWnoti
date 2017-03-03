@@ -2,6 +2,7 @@ package kr.hee.kwnoti.student_card_activity;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,19 +30,20 @@ public class StudentCardActivity extends Activity {
     // 뷰
     TextView    studentId, studentName, studentMajor;
     ImageView   qrCodeView;
-    // 학번
+    // 사용자 정보 및 학번
+    SharedPreferences pref;
     static String   ID = null;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_card);
         setTitle(R.string.studentCard_title);
 
         // 사용자 정보 유무 확인
-        SharedPreferences pref = UTILS.checkUserData(this);
-        if (pref == null)   finish();
-        // 정보 확인되면 뷰 초기화 실행
-        else                initView(pref);
+        if ((pref = UTILS.checkUserData(this)) == null) finish();
+
+        // 뷰 초기화 및 ID 설정
+        initView(pref, Configuration.ORIENTATION_PORTRAIT);
+        ID = "0" + pref.getString(getString(R.string.key_studentID), "");
     }
 
     /** 화면이 보여질 때마다 자동으로 인증 & QR 새로고침 */
@@ -50,25 +52,44 @@ public class StudentCardActivity extends Activity {
         certificate(ID);
     }
 
+    /** 화면이 돌아가면 돌아간 화면에 맞게 뷰 재설정 */
+    @Override public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        int deviceOrientation = getResources().getConfiguration().orientation;
+        initView(pref, deviceOrientation);
+    }
+
     /** 뷰 초기화 메소드 */
-    void initView(SharedPreferences pref) {
+    void initView(SharedPreferences pref, int orientation) {
+        String  loadFailed = getString(R.string.text_loadFailed);
+        String  stuId   = pref.getString(getString(R.string.key_studentID), loadFailed),
+                stuName = pref.getString(getString(R.string.key_studentName), loadFailed),
+                stuMajor= pref.getString(getString(R.string.key_studentMajor), loadFailed);
+
+        // 세로 화면
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_student_card);
+
+            qrCodeView  = (ImageView)findViewById(R.id.studentCard_qrCode);
+            // QR 코드를 누르면 새로고침
+            qrCodeView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View view) {
+                    certificate(ID);
+                }
+            });
+        }
+        // 가로 화면
+        else {
+            setContentView(R.layout.activity_student_card_landscape);
+        }
+
         studentId   = (TextView)findViewById(R.id.studentCard_ID);
         studentName = (TextView)findViewById(R.id.studentCard_name);
         studentMajor= (TextView)findViewById(R.id.studentCard_major);
-        qrCodeView  = (ImageView)findViewById(R.id.studentCard_qrCode);
-        // QR 코드를 누르면 새로고침
-        qrCodeView.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                certificate(ID);
-            }
-        });
 
-        // 설정 값을 통해 뷰 데이터 설정 및 ID값 설정
-        String loadFailed = getString(R.string.text_loadFailed);
-        studentId.setText(pref.getString(getString(R.string.key_studentID), loadFailed));
-        studentName.setText(pref.getString(getString(R.string.key_studentName), loadFailed));
-        studentMajor.setText(pref.getString(getString(R.string.key_studentMajor), loadFailed));
-        ID = "0" + pref.getString(getString(R.string.key_studentID), "");
+        studentId.setText(stuId);
+        studentName.setText(stuName);
+        studentMajor.setText(stuMajor);
     }
 
     /** 중앙도서관 서버에서 인증 시도 메소드. QR 코드 생성도 여기서 호출 */
