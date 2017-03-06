@@ -37,7 +37,7 @@ class FoodAdapter extends RecyclerView.Adapter<FoodViewHolder> {
      * @param holder      'onCreateViewHolder'에서 만들어진 {@link FoodViewHolder}
      * @param position    'RecyclerView'에서의 위치(array 에서도 사용 가능) */
     @Override public void onBindViewHolder(final FoodViewHolder holder, int position) {
-        // 값 입력
+        /*// 값 입력
         int     startMonth  = Integer.parseInt(array.get(position).startMonth),
                 endMonth    = Integer.parseInt(array.get(position).endMonth),
                 startDate   = Integer.parseInt(array.get(position).startDate),
@@ -48,7 +48,7 @@ class FoodAdapter extends RecyclerView.Adapter<FoodViewHolder> {
 
         holder.month.setText(month + "월"); // TODO 추후 다국어 지원을 위한 변경
         holder.date.setText(date + "일");
-        holder.content.setText(array.get(position).content);
+        holder.content.setText(array.get(position).content);*/
     }
 
     @Override public int getItemCount() {

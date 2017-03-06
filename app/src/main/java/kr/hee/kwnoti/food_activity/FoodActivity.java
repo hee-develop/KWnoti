@@ -7,10 +7,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 
 import kr.hee.kwnoti.R;
+import kr.hee.kwnoti.UTILS;
 
 /** 금주의 학식 */
 public class FoodActivity extends Activity {
@@ -54,7 +59,7 @@ public class FoodActivity extends Activity {
     }
 
     /** Jsoup을 이용한 파서 스레드 */
-    class ParserThread extends Thread {
+    private class ParserThread extends Thread {
         @Override public void run() {
             super.run();
             // 로딩 중 다이얼로그 표시
@@ -71,10 +76,11 @@ public class FoodActivity extends Activity {
             try {
                 Document doc = Jsoup.connect(url).timeout(5000).get();
 
-                // 최신 데이터인지 확인
-                String date = doc.select("h4").toString();
+                // 학식 조회 기간 설정
+                String foodDate = doc.select("div input[id=endPeriodTime").val();
+                // TODO
 
-                if (/* 최신 데이터라면 */) {
+                /*if (*//* 최신 데이터라면 *//*) {
                     adapter.cleanData();
                 }
 
@@ -137,13 +143,13 @@ public class FoodActivity extends Activity {
                         recyclerView.setAdapter(new FoodAdapter(CalendarActivity.this));
                         UTILS.showToast(CalendarActivity.this, getString(R.string.toast_refreshed));
                     }
-                });
+                });*/
             }
-            catch (IOException | JSONException e) {
+            catch (IOException e) {
                 // 파싱 실패 시 토스트 출력
                 runOnUiThread(new Runnable() {
                     @Override public void run() {
-                        UTILS.showToast(CalendarActivity.this, getString(R.string.toast_failed));
+                        UTILS.showToast(FoodActivity.this, getString(R.string.toast_failed));
                     }
                 });
             }

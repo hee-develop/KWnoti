@@ -14,7 +14,7 @@ class FoodViewHolder extends RecyclerView.ViewHolder {
 
     public FoodViewHolder(View view) {
         super(view);
-        dayOfWeek = view.findViewById(R.id.)
+//        dayOfWeek = view.findViewById(R.id.)
         this.dayOfWeek = dayOfWeek;
         this.title = title;
         this.content = content;

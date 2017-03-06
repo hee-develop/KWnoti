@@ -41,8 +41,10 @@ public class StudentCardActivity extends Activity {
         if ((pref = UTILS.checkUserData(this)) == null) finish();
 
         // 뷰 초기화 및 ID 설정
-        initView(pref, Configuration.ORIENTATION_PORTRAIT);
-        ID = "0" + pref.getString(getString(R.string.key_studentID), "");
+        else {
+            initView(pref, Configuration.ORIENTATION_PORTRAIT);
+            ID = "0" + pref.getString(getString(R.string.key_studentID), "");
+        }
     }
 
     /** 화면이 보여질 때마다 자동으로 인증 & QR 새로고침 */
