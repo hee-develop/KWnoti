@@ -86,7 +86,8 @@
             android:name=".BrowserActivity"
             android:hardwareAccelerated="true"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".tel_activity.TelActivity"></activity>
+        <activity android:name=".tel_activity.TelActivity" />
+        <activity android:name=".food_activity.FoodActivity"></activity>
     </application>
 
 </manifest>

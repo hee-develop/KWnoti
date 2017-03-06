@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
@@ -80,7 +79,7 @@ public class StudentCardActivity extends Activity {
         }
         // 가로 화면
         else {
-            setContentView(R.layout.activity_student_card_landscape);
+//            setContentView(R.layout.activity_student_card);
         }
 
         studentId   = (TextView)findViewById(R.id.studentCard_ID);

@@ -1,7 +1,6 @@
 package kr.hee.kwnoti;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -78,8 +77,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_uCampus.setOnClickListener(this);
         btn_links.setOnClickListener(this);
         btn_settings.setOnClickListener(this);
-
-        //Document doc = Jsoup.connect("http://m.kma.go.kr/m/observation/observation_01.jsp").get();
     }
 
     @Override public void onClick(View view) {

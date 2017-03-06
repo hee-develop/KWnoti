@@ -32,6 +32,9 @@
     <!-- 유캠퍼스 액티비티 -->
     <string name="ucampus_title">모바일 유캠퍼스</string>
 
+    <!-- 금주의 학식 액티비티 -->
+    <string name="food_title">금주의 학식</string>
+
     <!-- 학사일정 액티비티 -->
     <string name="calendar_title">학사일정 안내</string>
     <string name="calendar_accessibility_refresh">새로고침</string>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="kr.hee.kwnoti.food_activity.FoodActivity">
+    <TextView
+        android:id="@+id/food_today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="지금 판매 중인 음식은\n + fdsaf"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/food_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
