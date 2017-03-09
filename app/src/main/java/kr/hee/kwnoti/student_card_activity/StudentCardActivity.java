@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,6 +34,9 @@ public class StudentCardActivity extends Activity {
     SharedPreferences pref;
     static String   ID = null;
 
+    WindowManager.LayoutParams params;
+    float brightness;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.studentCard_title);
@@ -45,12 +49,28 @@ public class StudentCardActivity extends Activity {
             initView(pref, Configuration.ORIENTATION_PORTRAIT);
             ID = "0" + pref.getString(getString(R.string.key_studentID), "");
         }
+
+        // 밝기에 대한 변수 설정
+        params = getWindow().getAttributes();
     }
 
     /** 화면이 보여질 때마다 자동으로 인증 & QR 새로고침 */
     @Override protected void onResume() {
         super.onResume();
         certificate(ID);
+
+        // 기존 밝기 저장 및 최대밝기로 설정
+        brightness = params.screenBrightness;
+        params.screenBrightness = 100f;
+        getWindow().setAttributes(params);
+    }
+
+    /** 화면이 가려질 때마다 밝기를 기존 밝기로 변경 */
+    @Override protected void onPause() {
+        super.onPause();
+        // 기존 밝기로 변경
+        params.screenBrightness = brightness;
+        getWindow().setAttributes(params);
     }
 
     /** 화면이 돌아가면 돌아간 화면에 맞게 뷰 재설정 */

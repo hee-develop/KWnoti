@@ -2,12 +2,11 @@ package kr.hee.kwnoti.calendar_activity;
 
 /** 캘린더 데이터를 담는 클래스 */
 class CalendarData {
-    String  year,
-            startMonth,
-            startDate,
-            endMonth,
-            endDate,
-            content;
+    String  year,                   // 연도
+            startMonth, startDate,  // 시작월/일
+            endMonth,   endDate,    // 종료월/일(없는 경우 시작월/일과 동일)
+            content;                // 내용
+
     CalendarData(String year, String month, String date, String content) {
         this.year  = year;
         this.startMonth = month;

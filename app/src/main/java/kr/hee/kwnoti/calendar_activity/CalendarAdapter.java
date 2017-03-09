@@ -37,18 +37,22 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
      * @param holder      'onCreateViewHolder'에서 만들어진 {@link CalendarViewHolder}
      * @param position    'RecyclerView'에서의 위치(array 에서도 사용 가능) */
     @Override public void onBindViewHolder(final CalendarViewHolder holder, int position) {
-        // 값 입력
-        int     startMonth  = Integer.parseInt(array.get(position).startMonth),
-                endMonth    = Integer.parseInt(array.get(position).endMonth),
-                startDate   = Integer.parseInt(array.get(position).startDate),
-                endDate     = Integer.parseInt(array.get(position).endDate);
+        CalendarData data = array.get(position);
 
+        // 값 입력
+        int startMonth  = Integer.parseInt(data.startMonth),
+            endMonth    = Integer.parseInt(data.endMonth),
+            startDate   = Integer.parseInt(data.startDate),
+            endDate     = Integer.parseInt(data.endDate);
+
+        // 월/일 입력(만약 당일 이벤트가 아닌 경우 ~ 추가)
         String month = (startMonth == endMonth) ? startMonth + "" : (startMonth + "~" + endMonth),
                 date = (startDate == endDate) ? startDate + "" : (startDate + "~" + endDate);
 
+        // 데이터 설정
         holder.month.setText(month + "월"); // TODO 추후 다국어 지원을 위한 변경
         holder.date.setText(date + "일");
-        holder.content.setText(array.get(position).content);
+        holder.content.setText(data.content);
     }
 
     @Override public int getItemCount() {

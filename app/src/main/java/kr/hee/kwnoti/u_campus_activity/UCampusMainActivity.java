@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -186,7 +185,7 @@ public class UCampusMainActivity extends Activity {
                     // 신규 공지사항
                     if (newSomething.contains("btn_n.gif")) data.newNotice = true;
                     // 신규 과제
-                    else                                    data.newAssignment = true;
+                    else if (newSomething.contains("btn_w.gif")) data.newAssignment = true;
                 }
 
                 // 데이터 추가

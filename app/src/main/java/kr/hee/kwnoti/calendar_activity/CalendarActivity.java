@@ -20,8 +20,10 @@ import kr.hee.kwnoti.UTILS;
 
 /** 학사 일정 액티비티 */
 public class CalendarActivity extends Activity {
+    // 학사 일정 리사이클러 뷰
     RecyclerView recyclerView;
     CalendarAdapter adapter;
+    // 로딩 프로그레스 다이얼로그
     ProgressDialog progressDialog;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class CalendarActivity extends Activity {
             new ParserThread().start();
     }
 
-    // 뷰 초기화 메소드
+    /** 뷰 초기화 메소드 */
     void initView() {
         // 리사이클러 뷰 연결
         recyclerView = (RecyclerView)findViewById(R.id.calendar_recyclerView);
@@ -70,7 +72,7 @@ public class CalendarActivity extends Activity {
     }
 
     /** Jsoup을 이용한 파서 스레드 */
-    class ParserThread extends Thread {
+    private class ParserThread extends Thread {
         @Override public void run() {
             super.run();
             // 로딩 중 다이얼로그 표시

@@ -13,12 +13,12 @@ class UCampusMainData implements Parcelable {
     String subjTerm;     // 강의 학기
     String subjClass;    // 강의 분반
 
-    boolean newNotice;   // 새 공지사항 여부
-    boolean newAssignment; // 새 과제 여부
+    boolean newNotice = false;      // 새 공지사항 여부
+    boolean newAssignment = false;  // 새 과제 여부
 
     UCampusMainData() { }
 
-    UCampusMainData(Parcel in) {
+    private UCampusMainData(Parcel in) {
         subjName = in.readString();
         subjPlace = in.readString();
         subjId = in.readString();

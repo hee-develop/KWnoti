@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:layout_margin="4dp"
+    android:background="@drawable/bg_id_landscape"
     tools:context="kr.hee.kwnoti.student_card_activity.StudentCardActivity">
 
     <ImageView
@@ -16,36 +17,36 @@
         android:src="@drawable/no_image"
         android:padding="3dp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:orientation="vertical">
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:weightSum="5">
-            <TableRow android:layout_margin="8dp">
-                <TextView style="@style/StudentCard_titleStyle"
-                    android:text="@string/studentCard_id" />
-                <TextView style="@style/StudentCard_textStyle"
-                    android:id="@+id/studentCard_ID" />
-            </TableRow>
-            <View style="@style/Line" />
-            <TableRow android:layout_margin="8dp">
-                <TextView style="@style/StudentCard_titleStyle"
-                    android:text="@string/studentCard_name" />
-                <TextView style="@style/StudentCard_textStyle"
-                    android:id="@+id/studentCard_name" />
-            </TableRow>
-            <View style="@style/Line" />
-            <TableRow android:layout_margin="8dp">
-                <TextView style="@style/StudentCard_titleStyle"
-                    android:text="@string/studentCard_major" />
-                <TextView style="@style/StudentCard_textStyle"
-                    android:id="@+id/studentCard_major" />
-            </TableRow>
-        </TableLayout>
-    </RelativeLayout>
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/splash_mark"
+        android:layout_centerInParent="true"/>
+
+    <TableLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:weightSum="5">
+        <TableRow android:layout_margin="8dp">
+            <TextView style="@style/StudentCard_titleStyle"
+                android:text="@string/studentCard_id" />
+            <TextView style="@style/StudentCard_textStyle"
+                android:id="@+id/studentCard_ID" />
+        </TableRow>
+        <View style="@style/Line" />
+        <TableRow android:layout_margin="8dp">
+            <TextView style="@style/StudentCard_titleStyle"
+                android:text="@string/studentCard_name" />
+            <TextView style="@style/StudentCard_textStyle"
+                android:id="@+id/studentCard_name" />
+        </TableRow>
+        <View style="@style/Line" />
+        <TableRow android:layout_margin="8dp">
+            <TextView style="@style/StudentCard_titleStyle"
+                android:text="@string/studentCard_major" />
+            <TextView style="@style/StudentCard_textStyle"
+                android:id="@+id/studentCard_major" />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
