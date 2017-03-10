@@ -8,9 +8,7 @@ import kr.hee.kwnoti.R;
 
 /** XML 뷰를 실체화 시키는 뷰 홀더 */
 class CalendarViewHolder extends RecyclerView.ViewHolder {
-    TextView    month,
-                date,
-                content;
+    TextView    month, date, content; // 학사 일정의 월, 일, 내용
 
     CalendarViewHolder(View view) {
         super(view);

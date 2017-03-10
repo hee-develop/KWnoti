@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -78,27 +80,21 @@ public class FoodActivity extends Activity {
 
                 // 학식 조회 기간 설정
                 String foodDate = doc.select("div input[id=endPeriodTime").val();
-                // TODO
+                // TODO SharedPRef에 데이터 추가
 
-                /*if (*//* 최신 데이터라면 *//*) {
-                    adapter.cleanData();
+                // 학식을 JSON 형식으로 가져 옴
+                JSONObject foodArray = new JSONObject(doc.select("textarea").text());
+
+                int length = (Integer)foodArray.get("dietLength");
+                for (int i = 0; i < length; i++) {
+                    
                 }
 
-
-
-
-
-
-
-
-
-                // 최초 형태는 JSON Object({}) 형태임
-                JSONObject bachelorJSON = new JSONObject(doc.select("textarea").text());
 
                 // 어댑터의 모든 데이터를 삭제
                 adapter.cleanData();
 
-                for (int month = 1; month <= bachelorJSON.length(); month++) {
+                /*for (int month = 1; month <= bachelorJSON.length(); month++) {
                     // JSON Array([]) 형태를 가져 옴
                     String monthData = bachelorJSON.get("bachelor_" + month).toString();
                     // 배열이긴 하나 JSON Object 딸랑 하나 들어있어서 배열의 의미가 없음. 정규식을 통해 배열 해제
@@ -152,8 +148,9 @@ public class FoodActivity extends Activity {
                         UTILS.showToast(FoodActivity.this, getString(R.string.toast_failed));
                     }
                 });
-            }
-            finally {
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } finally {
                 // 파싱이 종료되면 다이얼로그 없앰
                 progressDialog.dismiss();
             }

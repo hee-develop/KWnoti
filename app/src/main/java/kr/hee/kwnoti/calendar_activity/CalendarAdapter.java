@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import kr.hee.kwnoti.R;
 
@@ -15,13 +18,31 @@ import kr.hee.kwnoti.R;
 class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     private ArrayList<CalendarData> array;
     private CalendarDB db;
+    // 오늘 날짜 기준의 객체 위치
+    private int todayPosition = 0;
 
     /** 생성자
      * @param context    어댑터를 부른 액티비티 Context */
     CalendarAdapter(Context context) {
         db = new CalendarDB(context);
         array = new ArrayList<>();
-        db.getCalendar(array); // 파라미터 포인터로 가져옴
+        db.getData(array); // 파라미터 포인터로 가져옴
+
+        db.closeDB();
+
+        // 오늘 날짜를 받아 객체 위치를 찾음
+        Calendar cal = new GregorianCalendar(Locale.KOREA);
+        int todayMonth  = cal.get(Calendar.MONTH) + 1,
+            todayDate   = cal.get(Calendar.DATE);
+        for (int i = 0; i < array.size(); i++) {
+            CalendarData data = array.get(i);
+            int startMonth = Integer.parseInt(data.startMonth);
+            int startDate = Integer.parseInt(data.startDate);
+
+            if (startMonth < todayMonth) todayPosition = i;
+            else if (startMonth == todayMonth && startDate < todayDate) todayPosition = i;
+            else break;
+        }
     }
 
     /** 뷰 홀더를 inflate 시켜주는 메소드
@@ -59,8 +80,16 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
         return array.size();
     }
 
+    /** 오늘 날짜 기준의 객체 위치 반환 메소드
+     * @return  객체 위치 */
+    int getTodayPosition() {
+        return todayPosition;
+    }
+
     /** 학사 일정 데이터를 모두 없애는 메소드 */
-    void cleanData() {
-        db.cleanCalendar();
+    void cleanData(Context context) {
+        db = new CalendarDB(context);
+        db.cleanDB();
+        db.closeDB();
     }
 }

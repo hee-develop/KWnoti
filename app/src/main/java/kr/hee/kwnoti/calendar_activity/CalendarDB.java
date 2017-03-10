@@ -7,13 +7,19 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import kr.hee.kwnoti.DatabaseHelper;
+
 /** 학사 일정 데이터를 관리하는 DB 클래스 */
-class CalendarDB {
-    private SQLiteDatabase db;
-    private final String DB_NAME = "Calendar";
+class CalendarDB extends DatabaseHelper {
+    private final static String DB_NAME = "Calendar";
 
     CalendarDB(Context context) {
-        db = context.openOrCreateDatabase(DB_NAME + ".db",
+        super(DB_NAME, context);
+    }
+
+    /** DB 생성 메소드 */
+    @Override public void createDB(Context context) {
+        SQLiteDatabase db = context.openOrCreateDatabase(DB_NAME + ".db",
                 SQLiteDatabase.CREATE_IF_NECESSARY, null);
         String query = "CREATE TABLE IF NOT EXISTS Calendar(" +
                 "`year` text not null, `startMonth` text not null, " +
@@ -33,21 +39,17 @@ class CalendarDB {
         catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // DB 설정
+        setDB(db);
     }
 
-    /** DB 메모리 누수 방지 */
-    @Override protected void finalize() throws Throwable {
-        super.finalize();
-        if (db.isOpen())
-            db.close();
-    }
+    /** DB 데이터 추가 메소드 */
+    @Override public boolean addToDB(Object value) {
+        CalendarData data = (CalendarData)value;
 
-    /** DB에 데이터 추가 메소드
-     * @param data     CalendarData 클래스
-     * @return         추가됐는지 여부 */
-    boolean addCalendar(CalendarData data) {
         try {
-            db.execSQL("INSERT INTO " + DB_NAME +
+            getDB().execSQL("INSERT INTO " + DB_NAME +
                     " VALUES(\'" + data.year     + "\'," +
                     "\'" + data.startMonth    + "\'," +
                     "\'" + data.startDate     + "\'," +
@@ -61,17 +63,11 @@ class CalendarDB {
         return true;
     }
 
-    /** DB 전체 삭제 메소드 */
-    void cleanCalendar() {
-        db.execSQL("DELETE FROM " + DB_NAME);
-    }
-
-    /** DB 데이터를 가져오는 메소드
-     * @param calendars    데이터가 들어 갈 ArrayList. 포인터를 통해 데이터 제공 */
-    void getCalendar(ArrayList<CalendarData> calendars) {
+    /** DB 데이터를 가져오는 메소드 */
+    @Override public void getData(Object calendars) {
         if (calendars == null) return;
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DB_NAME, null);
+        Cursor cursor = getDB().rawQuery("SELECT * FROM " + DB_NAME, null);
         while (cursor.moveToNext()) {
             CalendarData data = new CalendarData(
                     cursor.getString(0), // 년
@@ -80,7 +76,7 @@ class CalendarDB {
                     cursor.getString(3), // 종료월
                     cursor.getString(4), // 종료일
                     cursor.getString(5));// 내용
-            calendars.add(data);
+            ((ArrayList<CalendarData>)calendars).add(data);
         }
         cursor.close();
     }

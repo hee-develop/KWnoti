@@ -20,8 +20,9 @@ import kr.hee.kwnoti.UTILS;
 
 /** 학사 일정 액티비티 */
 public class CalendarActivity extends Activity {
-    // 학사 일정 리사이클러 뷰
+    // 학사 일정 리스트
     RecyclerView recyclerView;
+    LinearLayoutManager layoutManager;
     CalendarAdapter adapter;
     // 로딩 프로그레스 다이얼로그
     ProgressDialog progressDialog;
@@ -35,15 +36,21 @@ public class CalendarActivity extends Activity {
         initView();
 
         // 어댑터가 비어 있으면 학사일정 새로 불러오기
-        if (adapter.getItemCount() == 0)
-            new ParserThread().start();
+        if (adapter.getItemCount() == 0) new CalendarParserThread().start();
+
+        // 오늘의 날짜에 맞는 학사 일정으로 자동 이동
+        recyclerView.post(new Runnable() {
+            @Override public void run() {
+                layoutManager.scrollToPositionWithOffset(adapter.getTodayPosition(), 0);
+            }
+        });
     }
 
     /** 뷰 초기화 메소드 */
     void initView() {
         // 리사이클러 뷰 연결
         recyclerView = (RecyclerView)findViewById(R.id.calendar_recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(layoutManager = new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter = new CalendarAdapter(this));
 
         // 다이얼로그 모양 설정
@@ -60,19 +67,19 @@ public class CalendarActivity extends Activity {
 
     // 메뉴 버튼 클릭 이벤트 리스너 - 새로고침 하나밖에 없으므로 별도의 switch 필요 없음
     @Override public boolean onMenuItemSelected(int clickId, final MenuItem item) {
-        new ParserThread().start();
+        new CalendarParserThread().start();
         return true;
     }
 
-    // 다이얼로그 메모리 유출 방지
+    // 메모리 유출 방지
     @Override protected void onDestroy() {
         super.onDestroy();
         if (progressDialog.isShowing())
             progressDialog.dismiss();
     }
 
-    /** Jsoup을 이용한 파서 스레드 */
-    private class ParserThread extends Thread {
+    /** Jsoup을 이용한 파서 스레드 TODO 성능 최적화 */
+    private class CalendarParserThread extends Thread {
         @Override public void run() {
             super.run();
             // 로딩 중 다이얼로그 표시
@@ -92,7 +99,7 @@ public class CalendarActivity extends Activity {
                 JSONObject bachelorJSON = new JSONObject(doc.select("textarea").text());
 
                 // 어댑터의 모든 데이터를 삭제
-                adapter.cleanData();
+                adapter.cleanData(CalendarActivity.this);
 
                 for (int month = 1; month <= bachelorJSON.length(); month++) {
                     // JSON Array([]) 형태를 가져 옴
@@ -130,7 +137,7 @@ public class CalendarActivity extends Activity {
                         else
                             data = new CalendarData(startDays[0], startDays[1], startDays[2],
                                     endDays[1], endDays[2], content);
-                        db.addCalendar(data);
+                        db.addToDB(data);
                     }
                 }
                 // 파싱 성공 시 토스트 출력

@@ -55,7 +55,7 @@ public class FcmService extends FirebaseMessagingService {
             Intent intent = new Intent(context, BrowserActivity.class);
             intent.putExtra(KEY.BROWSER_URL, url);
             PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent,
-                    PendingIntent.FLAG_ONE_SHOT);
+                    PendingIntent.FLAG_UPDATE_CURRENT);
 
             // 알람 선언 및 표시
             NotificationManager notiManager = (NotificationManager)getSystemService(
