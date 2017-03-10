@@ -1,9 +1,13 @@
 package kr.hee.kwnoti;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -35,6 +39,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
         checkFirstUse();            // 최초 실행 여부 검사
         weatherActive = checkUseWeatherService(); // 날씨 서비스를 켰는지 여부 확인
         initView();                 // 뷰 초기화
+
+
+        // 알람 선언 및 표시
+        NotificationManager notiManager = (NotificationManager)getSystemService(
+                NOTIFICATION_SERVICE);
+        Notification.Builder builder = new Notification.Builder(this)
+                .setContentTitle("A")         // 제목
+                .setTicker("새 알림이 있습니다.")  // 제목(소형 알람이 울리게 설정돼있을 경우)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+                .setSmallIcon(R.drawable.splash_mark)
+                .setCategory()
+                .setLights(Color.argb(255, 255, 60, 100), 600, 6000)
+                .setPriority(Notification.PRIORITY_DEFAULT)
+                .setWhen(System.currentTimeMillis())
+                .setAutoCancel(true);
+        notiManager.notify(0, builder.build());
     }
 
     /** 최초 실행인지 확인하는 메소드 */

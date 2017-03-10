@@ -71,8 +71,6 @@ public class FcmService extends FirebaseMessagingService {
                             (soundActive ? Notification.DEFAULT_SOUND : 0) |
                             (vibratorActive ? Notification.DEFAULT_VIBRATE : 0))
                     .setLights(Color.argb(255, 255, 60, 100), 600, 6000)
-                    .setPriority(Notification.PRIORITY_DEFAULT)
-                    .setWhen(System.currentTimeMillis())
                     .setAutoCancel(true);
             notiManager.notify(0, builder.build());
         }
