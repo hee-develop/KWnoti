@@ -21,7 +21,7 @@ class FoodAdapter extends RecyclerView.Adapter<FoodViewHolder> {
     FoodAdapter(Context context) {
         db = new FoodDB(context);
         array = new ArrayList<>();
-        db.getFoods(array); // 파라미터 포인터로 가져옴
+        db.getData(array); // 파라미터 포인터로 가져옴
     }
 
     /** 뷰 홀더를 inflate 시켜주는 메소드
@@ -57,6 +57,6 @@ class FoodAdapter extends RecyclerView.Adapter<FoodViewHolder> {
 
     /** 학식 데이터를 모두 없애는 메소드 */
     void cleanData() {
-        db.cleanFood();
+        db.cleanDB();
     }
 }

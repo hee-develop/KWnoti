@@ -1,6 +1,7 @@
 package kr.hee.kwnoti;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -37,6 +38,7 @@ public final class UTILS {
         InputMethodManager manager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
         manager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
+
     // ============================== 토스트 출력을 짧게 만들어주는 메소드 ===============================
     /** 토스트를 출력하는 메소드
      * 출력 메소드가 너무 길어서 여기서 간편하게 구현
@@ -48,6 +50,7 @@ public final class UTILS {
     public static void showToast(Context context, int resId) {
         showToast(context, context.getString(resId));
     }
+
     // ========================== 리스트 선택형 다이얼로그를 짧게 만들어주는 메소드 =========================
     /** 리스트 다이얼로그를 출력하는 메소드
      * @param context          다이얼로그를 출력할 액티비티
@@ -67,6 +70,7 @@ public final class UTILS {
         builder.setItems(list, clickListener);
         builder.show();
     }
+
     // ========================== 유캠퍼스 로그인 인터페이스를 만들어 주는 메소드 ==========================
     /** 유캠퍼스 로그인을 위해 쿠키 인터셉터를 추가해주는 메소드
      * @param context    로그인을 시도하는 액티비티
@@ -83,6 +87,7 @@ public final class UTILS {
         Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(baseUrl).build();
         return retrofit.create(Interface.class);
     }
+
     // ============================ 사용자 정보가 들어 있는지 확인해주는 메소드 ===========================
     /** SharedPreferences 내부에 사용자 정보가 있는지 확인하는 메소드
      * @return      사용자 정보가 들어 있는 SharedPreferences, 정보를 못찾았으면 null 반환 */
@@ -96,4 +101,6 @@ public final class UTILS {
         }
         else return pref;
     }
+
+
 }

@@ -70,4 +70,8 @@ public class PushFilterDB {
         }
         cursor.close();
     }
+
+    public void closeDB() {
+        db.close();
+    }
 }

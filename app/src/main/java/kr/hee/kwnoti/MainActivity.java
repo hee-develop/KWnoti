@@ -1,9 +1,14 @@
 package kr.hee.kwnoti;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -11,9 +16,12 @@ import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.ArrayList;
+
 import kr.hee.kwnoti.calendar_activity.CalendarActivity;
 import kr.hee.kwnoti.food_activity.FoodActivity;
 import kr.hee.kwnoti.info_activity.InfoActivity;
+import kr.hee.kwnoti.settings_activity.PushFilterDB;
 import kr.hee.kwnoti.settings_activity.SettingsActivity;
 import kr.hee.kwnoti.student_card_activity.StudentCardActivity;
 import kr.hee.kwnoti.tel_activity.TelActivity;
