@@ -50,10 +50,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <!-- ================================= 유캠퍼스 액티비티 ================================== -->
-        <activity android:name=".u_campus_activity.UCampusMainActivity" />
-        <activity android:name=".u_campus_activity.UCampusListActivity" />
+        <activity
+            android:name=".u_campus_activity.UCampusMainActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".u_campus_activity.UCampusListActivity"
+            android:configChanges="orientation|screenSize" />
         <!-- ================================= 공지사항 액티비티 ================================== -->
-        <activity android:name=".info_activity.InfoActivity" />
+        <activity
+            android:name=".info_activity.InfoActivity"
+            android:configChanges="orientation|screenSize" />
         <!-- ================================= 학사일정 액티비티 ================================== -->
         <activity android:name=".calendar_activity.CalendarActivity" />
         <!-- ================================== 학생증 액티비티 =================================== -->
@@ -61,6 +67,10 @@
             android:name=".student_card_activity.StudentCardActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize" />
+        <!-- ================================= 교내전화 액티비티 ================================== -->
+        <activity android:name=".tel_activity.TelActivity" />
+        <!-- =================================== 학식 액티비티 =================================== -->
+        <activity android:name=".food_activity.FoodActivity" />
         <!-- =================================== 설정 액티비티 =================================== -->
         <activity android:name=".settings_activity.SettingsActivity" />
         <!-- 앱 정보 액티비티 -->
@@ -85,9 +95,8 @@
         <activity
             android:name=".BrowserActivity"
             android:hardwareAccelerated="true"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".tel_activity.TelActivity" />
-        <activity android:name=".food_activity.FoodActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize" />
     </application>
 
 </manifest>

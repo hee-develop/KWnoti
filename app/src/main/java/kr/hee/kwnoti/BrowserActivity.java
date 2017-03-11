@@ -55,6 +55,11 @@ public class BrowserActivity extends Activity {
 
         // 넘어온 인텐트 데이터 분석. 유캠퍼스에서 넘어온 정적 HTML 파일이면 다르게 불러야함
         Bundle intentData = getIntent().getExtras();
+        if (intentData == null) {
+            UTILS.showToast(BrowserActivity.this, "에러 발생");
+            return;
+        }
+
         boolean startFromUcampus = intentData.getBoolean(KEY.BROWSER_FROM_UCAMPUS, false);
         String title = intentData.getString(KEY.BROWSER_TITLE);
         setTitle(title);
