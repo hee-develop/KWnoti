@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import kr.hee.kwnoti.calendar_activity.CalendarActivity;
-import kr.hee.kwnoti.food_activity.FoodActivity;
 import kr.hee.kwnoti.info_activity.InfoActivity;
 import kr.hee.kwnoti.settings_activity.SettingsActivity;
 import kr.hee.kwnoti.student_card_activity.StudentCardActivity;
@@ -68,7 +67,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_calendar= (TextView)findViewById(R.id.main_btn_calendar);
         btn_tel     = (TextView)findViewById(R.id.main_btn_tel);
         btn_info    = (TextView)findViewById(R.id.main_btn_info);
-        btn_food    = (TextView)findViewById(R.id.main_btn_food);
+        //btn_food    = (TextView)findViewById(R.id.main_btn_food);
         btn_uCampus = (TextView)findViewById(R.id.main_btn_uInfo);
         btn_links   = (TextView)findViewById(R.id.main_btn_links);
         btn_settings= (TextView)findViewById(R.id.main_btn_settings);
@@ -77,7 +76,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_calendar.setOnClickListener(this);
         btn_tel.setOnClickListener(this);
         btn_info.setOnClickListener(this);
-        btn_food.setOnClickListener(this);
+        //btn_food.setOnClickListener(this);
         btn_uCampus.setOnClickListener(this);
         btn_links.setOnClickListener(this);
         btn_settings.setOnClickListener(this);
@@ -92,8 +91,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(this, CalendarActivity.class)); break;
             case R.id.main_btn_tel :
                 startActivity(new Intent(this, TelActivity.class)); break;
-            case R.id.main_btn_food :
-                startActivity(new Intent(this, FoodActivity.class)); break;
+            /*case R.id.main_btn_food :
+                startActivity(new Intent(this, FoodActivity.class)); break;*/
             case R.id.main_btn_info :
                 startActivity(new Intent(this, InfoActivity.class)); break;
             case R.id.main_btn_uInfo :

@@ -61,10 +61,10 @@
             android:text="@string/main_tel" />
 
         <!-- 오늘의 학식 -->
-        <TextView style="@style/CardStyle"
+        <!--<TextView style="@style/CardStyle"
             android:id="@+id/main_btn_food"
             android:background="@color/brown500"
-            android:text="@string/main_food" />
+            android:text="@string/main_food" />-->
 
         <!--  기타 바로가기 모음 -->
         <TextView style="@style/CardStyle"

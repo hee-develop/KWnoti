@@ -100,4 +100,5 @@
     <string name="toast_failed">Please check the internet state.</string>
     <string name="toast_certificate_failed">Certificate failed.</string>
     <string name="toast_check_user">Check user\'s data.</string>
+    <string name="food_title">Food</string>
 </resources>
