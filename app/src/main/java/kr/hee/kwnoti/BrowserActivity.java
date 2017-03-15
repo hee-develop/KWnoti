@@ -79,6 +79,9 @@ public class BrowserActivity extends Activity {
                         Document doc = Jsoup.parse(body);
                         Elements elements = doc.select("td.tl_l2");
 
+                        Elements file = doc.select("samp.link_b2 a");
+
+
                         webView.loadData(elements.html(), "text/html; charset=UTF-8", null);
                     } catch (IOException e) {
                         e.printStackTrace();

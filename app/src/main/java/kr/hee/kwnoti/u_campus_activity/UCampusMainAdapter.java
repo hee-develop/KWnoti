@@ -37,11 +37,15 @@ class UCampusMainAdapter extends RecyclerView.Adapter<UCampusMainViewHolder> {
      * @param holder      뷰 홀더
      * @param position    리사이클러 뷰에서의 위치 */
     @Override public void onBindViewHolder(final UCampusMainViewHolder holder, final int position) {
-        final String subjName = array.get(position).subjName;
+        UCampusMainData viewData = array.get(position);
+
+        final String subjName = viewData.subjName;
         final String[] listType = { KEY.SUBJECT_INFO, KEY.SUBJECT_UTIL, KEY.SUBJECT_STUDENT, /*TODO 과제제출 비활성화 KEY.SUBJECT_ASSIGNMENT,*/ KEY.SUBJECT_QNA };
 
         holder.title.setText(subjName);
-        holder.room.setText(array.get(position).subjPlace);
+        holder.room.setText(viewData.subjPlace);
+        if (viewData.newNotice) holder.newInfo.setVisibility(View.VISIBLE);
+        if (viewData.newAssignment) holder.newAssignment.setVisibility(View.VISIBLE);
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 UTILS.showAlertDialog(context, subjName, listType,

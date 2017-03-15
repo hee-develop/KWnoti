@@ -182,10 +182,15 @@ public class UCampusMainActivity extends Activity {
                 // 신규 과제 혹은 공지사항 여부 확인
                 if (subjectData.length > 9) {
                     String newSomething = subjectData[16];
+                    String newAssignment = null;
+                    if (subjectData.length > 17) newAssignment = subjectData[24];
+
                     // 신규 공지사항
                     if (newSomething.contains("btn_n.gif")) data.newNotice = true;
                     // 신규 과제
                     else if (newSomething.contains("btn_w.gif")) data.newAssignment = true;
+
+                    if (newAssignment != null) data.newAssignment = true;
                 }
 
                 // 데이터 추가

@@ -18,5 +18,7 @@ class UCampusMainViewHolder extends RecyclerView.ViewHolder {
         this.view   = view.findViewById(R.id.card_ucampus);
         title       = (TextView)view.findViewById(R.id.card_ucampus_title);
         room        = (TextView)view.findViewById(R.id.card_ucampus_room);
+        newInfo     = (ImageView)view.findViewById(R.id.card_ucampus_newNotice);
+        newAssignment = (ImageView)view.findViewById(R.id.card_ucampus_newAssignment);
     }
 }

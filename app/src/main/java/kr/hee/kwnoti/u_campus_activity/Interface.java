@@ -67,4 +67,8 @@ public interface Interface {
             @Url String url,
             @Field("p_process")     String process,
             @Field("p_bdseq")       String sequence);
+
+
+    @POST("http://info2.kw.ac.kr/webnote/lecture/h_lecture01_2.php")
+    Call<ResponseBody> getLectureNote();
 }
