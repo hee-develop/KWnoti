@@ -6,7 +6,10 @@
     <!-- QHD 기준 360dp, 즉 xhdpi 를 기준으로 만든 앱임. px / 4 -->
 
     <!-- 메인 화면의 카드 사이즈 -->
-    <dimen name="card_size">120dp</dimen>
+    <!--<dimen name="card_size">120dp</dimen>
     <dimen name="card_size_x2">240dp</dimen>
-    <dimen name="card_size_x3">360dp</dimen>
+    <dimen name="card_size_x3">360dp</dimen>-->
+    <dimen name="card_size">116dp</dimen>
+    <dimen name="card_size_x2">236dp</dimen>
+    <dimen name="card_size_x3">356dp</dimen>
 </resources>

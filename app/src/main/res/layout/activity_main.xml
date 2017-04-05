@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main"
+    android:background="@color/kwRed"
     tools:context="kr.hee.kwnoti.MainActivity">
+    <!--android:background="@drawable/bg_main"-->
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -12,30 +13,32 @@
         android:layout_gravity="center_horizontal"
         android:columnCount="3">
         <!-- 상단 마크 및 날씨 레이아웃 -->
-        <!--<RelativeLayout android:layout_width="@dimen/card_size_x3" android:layout_height="wrap_content"
+        <RelativeLayout
+            android:layout_height="56dp"
             android:paddingTop="4dp" android:paddingBottom="4dp"
-            android:background="?android:colorPrimaryDark" android:layout_columnSpan="3">
+            android:layout_columnSpan="3" android:layout_columnWeight="3">
             <ImageView
-                android:layout_width="48dp"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/splash_mark"
+                android:layout_centerVertical="true"
+                android:src="@drawable/dd"
                 android:contentDescription="@string/app_name" />
-        </RelativeLayout>-->
+        </RelativeLayout>
 
         <!-- 모바일 학생증 -->
         <TextView style="@style/CardStyle"
             android:id="@+id/main_btn_idCard"
-            android:background="@color/brown400"
             android:text="@string/main_idCard" />
+        <!--android:background="@color/brown400"-->
 
         <!-- 유캠퍼스 공지사항 -->
         <TextView style="@style/CardStyle"
             android:id="@+id/main_btn_uInfo"
             android:layout_width="@dimen/card_size_x2"
             android:layout_columnSpan="2"
-            android:background="@color/brown800"
             android:text="@string/main_uCampus" />
+        <!--android:background="@color/brown800"-->
 
         <!-- 학교 공지사항 -->
         <TextView style="@style/CardStyle"
@@ -44,21 +47,21 @@
             android:layout_height="@dimen/card_size_x2"
             android:layout_columnSpan="2"
             android:layout_rowSpan="2"
-            android:background="@color/brown900"
             android:text="@string/main_info"
             android:textSize="24sp" />
+        <!--android:background="@color/brown900"-->
 
         <!-- 학사 일정 -->
         <TextView style="@style/CardStyle"
             android:id="@+id/main_btn_calendar"
-            android:background="@color/brown700"
             android:text="@string/main_calendar" />
+        <!--android:background="@color/brown700"-->
 
         <!-- 교내 전화번호 -->
         <TextView style="@style/CardStyle"
             android:id="@+id/main_btn_tel"
-            android:background="@color/brown400"
             android:text="@string/main_tel" />
+        <!--android:background="@color/brown400"-->
 
         <!-- 오늘의 학식 -->
         <!--<TextView style="@style/CardStyle"
@@ -69,14 +72,18 @@
         <!--  기타 바로가기 모음 -->
         <TextView style="@style/CardStyle"
             android:id="@+id/main_btn_links"
-            android:background="@color/brown300"
             android:text="@string/main_links" />
+        <!--android:background="@color/brown300"-->
 
         <!-- 설정 -->
         <TextView style="@style/CardStyle"
         android:id="@+id/main_btn_settings"
-        android:background="@color/brown200"
         android:text="@string/main_settings" />
+        <!--android:background="@color/brown200"-->
+
+        <TextView style="@style/CardStyle"
+            android:id="@+id/main_btn_settings"
+            android:text="@string/main_settings" />
 
         <!--<TextView style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_facility"-->

@@ -1,11 +1,6 @@
 package kr.hee.kwnoti.calendar_activity;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import org.json.JSONException;
@@ -16,66 +11,47 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 
 import kr.hee.kwnoti.R;
+import kr.hee.kwnoti.RecyclerViewActivity;
 import kr.hee.kwnoti.UTILS;
 
 /** 학사 일정 액티비티 */
-public class CalendarActivity extends Activity {
-    // 학사 일정 리스트
-    RecyclerView recyclerView;
-    LinearLayoutManager layoutManager;
+public class CalendarActivity extends RecyclerViewActivity {
     CalendarAdapter adapter;
-    // 로딩 프로그레스 다이얼로그
-    ProgressDialog progressDialog;
 
+    // 액티비티 초기화 및 데이터 설정
+    CalendarActivity() {
+        super(R.layout.activity_calendar,   // 액티비티 레이아웃
+              R.menu.menu_calendar,         // 액티비티 메뉴
+              R.id.calendar_recyclerView);  // 리사이클러 뷰 ID
+    }
+
+    /** 타이틀 및 어댑터 설정 */
+    @Override public void setTitleAndAdapter() {
+        setTitle(R.string.calendar_title);
+        recyclerView.setAdapter(adapter = new CalendarAdapter(this));
+    }
+
+    /** 학사 일정 불러오기 및 리스트 위치 자동 이동 */
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
-        setTitle(R.string.calendar_title);
-
-        // 뷰 초기화 및 다이얼로그 설정
-        initView();
 
         // 어댑터가 비어 있으면 학사일정 새로 불러오기
-        if (adapter.getItemCount() == 0) new CalendarParserThread().start();
+        if (adapter.getItemCount() == 0)
+            new CalendarParserThread().start();
 
         // 오늘의 날짜에 맞는 학사 일정으로 자동 이동
         recyclerView.post(new Runnable() {
             @Override public void run() {
-                layoutManager.scrollToPositionWithOffset(adapter.getTodayPosition(), 0);
+                layoutManager.
+                        scrollToPositionWithOffset(adapter.getTodayPosition(), 0);
             }
         });
     }
 
-    /** 뷰 초기화 메소드 */
-    void initView() {
-        // 리사이클러 뷰 연결
-        recyclerView = (RecyclerView)findViewById(R.id.calendar_recyclerView);
-        recyclerView.setLayoutManager(layoutManager = new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter = new CalendarAdapter(this));
-
-        // 다이얼로그 모양 설정
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage(getString(R.string.dialog_loading));
-    }
-
-    // 메뉴 버튼 인플레이트
-    @Override public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_calendar, menu);
-        return true;
-    }
-
-    // 메뉴 버튼 클릭 이벤트 리스너 - 새로고침 하나밖에 없으므로 별도의 switch 필요 없음
+    /** 메뉴 버튼 클릭 리스너 설정 */
     @Override public boolean onMenuItemSelected(int clickId, final MenuItem item) {
         new CalendarParserThread().start();
         return true;
-    }
-
-    // 메모리 유출 방지
-    @Override protected void onDestroy() {
-        super.onDestroy();
-        if (progressDialog.isShowing())
-            progressDialog.dismiss();
     }
 
     /** Jsoup을 이용한 파서 스레드 TODO 성능 최적화 */

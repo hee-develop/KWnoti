@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="kwRed">#762531</color>
+    <color name="white">#F8F7F2</color>
+    <!--<color name="kwRed">#8A1601</color> ?? -->
+
+    <color name="black">#221E1F</color>
+    <!--<color name="white">#FFFFFF</color>-->
+    <color name="kwGray">#8D9093</color>
+    <color name="kwDarkGray">#57575A</color>
+
+
+    <!-- 구 색상 -->
     <color name="deepBlack">#000000</color>
     <color name="deepWhite">#FFFFFF</color>
-    <color name="white">#F8F7F2</color>
+    <!--<color name="white">#F8F7F2</color>-->
 
     <color name="brown50">#EFEBE9</color>
     <color name="brown100">#D7CCC8</color>
