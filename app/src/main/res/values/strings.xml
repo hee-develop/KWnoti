@@ -84,11 +84,24 @@
         구현이 늦어지고 있습니다ㅜㅜ. 3월 내로 완료될 예정이니 조금만 기다려주세요.
     </string>
     <string name="app_openSource">사용된 오픈소스</string>
-    <string name="app_openSource_sourceList">Jsoup (https://jsoup.org)
-        \nZebraXing (https://github.com/zxing/zxing)
-        \nRetrofit (https://square.github.io/retrofit)
-        \nSimple (http://simple.sourceforge.net)
-    </string>
+    <string name="app_openSource_sourceList">
+<![CDATA[
+        <b>Jsoup (<a href="https://jsoup.org">https://jsoup.org</a>)</b>
+        <br>&nbsp; Copyright 2009-2016 by Jonathan Hedley
+        <br>&nbsp; via MIT License
+        <br><b>Zebra Crossing (<a href="https://github.com/zxing/zxing">https://github.com/zxing/zxing</a>)</b>
+        <br>&nbsp; Copyright 2014 by ZXing
+        <br>&nbsp; via Apache License 2.0
+        <br><b>Retrofit (<a href="https://square.github.io/retrofit">https://square.github.io/retrofit</a>)</b>
+        <br>&nbsp; Copyright 2013 by Square, Inc.
+        <br>&nbsp; via Apache License 2.0
+        <br><b>Simple (<a href="http://simple.sourceforge.net">http://simple.sourceforge.net</a>)</b>
+        <br>&nbsp; Copyright 2008 by Niall Gallagher
+        <br>&nbsp; via Apache License 2.0
+        <br><b>Typekit (<a href="https://github.com/tsengvn/typekit">https://github.com/tsengvn/typekit</a>)</b>
+        <br>&nbsp; Copyright 2015 by Hien Ngo
+        <br>&nbsp; via Apache License 2.0
+]]></string>
     <string name="app_usedColor">사용된 색상</string>
     <string name="app_color_brown">Material Color Brown</string>
     <string name="app_color_amber">Material Color Amber</string>

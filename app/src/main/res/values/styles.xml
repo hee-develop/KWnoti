@@ -2,9 +2,9 @@
     <!-- 메인 테마 -->
     <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
         <item name="android:colorPrimary">@color/kwRed</item>
-        <item name="android:colorPrimaryDark">@color/brown700</item>
+        <item name="android:colorPrimaryDark">@color/kwRedDark</item>
         <item name="android:colorAccent">@color/amberA400</item>
-        <item name="android:colorBackground">@color/deepWhite</item>
+        <item name="android:colorBackground">@color/white</item>
         <item name="android:navigationBarColor">?android:attr/colorPrimary</item>
     </style>
     <!-- 상단바 없는 테마 -->
@@ -27,6 +27,7 @@
         <item name="android:layout_rowSpan">1</item>
         <item name="android:layout_margin">2dp</item>
         <item name="android:background">@color/white</item>
+        <item name="android:foreground">@drawable/fg_ripple_white</item>
         <!--<item name="android:background">@color/brown500</item>
         <item name="android:foreground">@drawable/fg_ripple_brown</item>-->
         <!-- 글자 -->
@@ -35,6 +36,7 @@
         <item name="android:textColor">@color/kwGray</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily"></item>
         <item name="android:textAlignment">gravity</item>
         <item name="android:padding">6dp</item>
     </style>
@@ -49,7 +51,7 @@
     <style name="StudentCard_textStyle">
         <item name="android:layout_weight">4</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/deepBlack</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Line">

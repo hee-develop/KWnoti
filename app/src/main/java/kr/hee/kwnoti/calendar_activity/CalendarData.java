@@ -1,7 +1,7 @@
 package kr.hee.kwnoti.calendar_activity;
 
 /** 캘린더 데이터를 담는 클래스 */
-public class CalendarData {
+class CalendarData {
     String  year,                   // 학사 일정 년도
             startMonth, startDate,  // 시작 월/일
             endMonth,   endDate,    // 종료 월/일 (없으면 시작과 동일)

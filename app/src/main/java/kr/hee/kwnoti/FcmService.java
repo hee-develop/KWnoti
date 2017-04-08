@@ -85,8 +85,8 @@ public class FcmService extends FirebaseMessagingService {
                     .setGroup(GROUP_NAME)
                     .setGroupSummary(true)
                     .setSubText("여러 개의 알림이 있습니다. 클릭하면 펼쳐집니다.")
-                    .setColor(getColor(R.color.brown500))
-                    .setSmallIcon(R.drawable.splash_mark);
+                    .setColor(getColor(R.color.brown500));
+//                    .setSmallIcon(R.drawable.splash_mark);
             notiManager.notify(TAG, GROUP_ID, groupBuilder.build());
         }
 
@@ -101,7 +101,7 @@ public class FcmService extends FirebaseMessagingService {
                 .setGroup(GROUP_NAME)
                 // 아이콘 설정
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-                .setSmallIcon(R.drawable.splash_mark)
+//                .setSmallIcon(R.drawable.splash_mark)
                 // 클릭 시 이동할 인텐트 설정
                 .setContentIntent(pIntent)
                 // 진동, 소리, LED 설정
