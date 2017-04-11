@@ -11,12 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:columnCount="3">
+
         <!-- 상단 마크 및 날씨 레이아웃 -->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:layout_columnSpan="3"
             android:layout_columnWeight="3">
             <ImageView
@@ -49,7 +50,7 @@
             android:layout_columnSpan="2"
             android:layout_rowSpan="2"
             android:text="@string/main_info"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
         <!--android:background="@color/brown900"-->
 
         <!-- 학사 일정 -->

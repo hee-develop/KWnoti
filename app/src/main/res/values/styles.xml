@@ -28,15 +28,11 @@
         <item name="android:layout_margin">2dp</item>
         <item name="android:background">@color/white</item>
         <item name="android:foreground">@drawable/fg_ripple_white</item>
-        <!--<item name="android:background">@color/brown500</item>
-        <item name="android:foreground">@drawable/fg_ripple_brown</item>-->
         <!-- 글자 -->
         <item name="android:gravity">bottom|end</item>
-        <!--<item name="android:textColor">@color/white</item>-->
+        <item name="android:letterSpacing">0.05</item>
         <item name="android:textColor">@color/kwGray</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily"></item>
         <item name="android:textAlignment">gravity</item>
         <item name="android:padding">6dp</item>
     </style>

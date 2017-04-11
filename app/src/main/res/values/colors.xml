@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="kwRed">#7A232E</color>
+    <color name="kwRed">#79242F</color>
     <color name="kwRedDark">#47141B</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#222222</color>
 
-
-    <color name="kwGray">#8D9093</color>
-    <color name="kwDarkGray">#57575A</color>
+    <color name="kwLightGray">#7B7B7B</color>
+    <color name="kwGray">#5E5C5C</color>
+    <color name="kwDarkGray">#413D3C</color>
 
 
     <!-- 구 색상 -->
-
     <color name="brown50">#EFEBE9</color>
     <color name="brown100">#D7CCC8</color>
     <color name="brown200">#BCAAA4</color>
@@ -42,9 +41,4 @@
     <color name="gray700">#616161</color>
     <color name="gray800">#424242</color>
     <color name="gray900">#212121</color>
-
-    <!-- Origin color setting
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color> -->
 </resources>

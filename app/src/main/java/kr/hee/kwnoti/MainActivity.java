@@ -1,6 +1,7 @@
 package kr.hee.kwnoti;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import kr.hee.kwnoti.calendar_activity.CalendarActivity;
 import kr.hee.kwnoti.info_activity.InfoActivity;
@@ -28,6 +30,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 btn_links,      // 바로가기 모음
                 btn_settings;   // 설정
     boolean     weatherActive;  // 실시간 날씨 사용 여부
+
+    @Override protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
