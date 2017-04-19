@@ -27,6 +27,8 @@ class Result {
     public String userPhotoUrl;
     @Path("item") @Element(name = "qr_code")
     public String qrCode;
+    @Path("item") @Element(name = "qr_time")
+    public String qrTime;
     @Path("item") @Element(name = "sysdate")
     public String sysDate;
 }

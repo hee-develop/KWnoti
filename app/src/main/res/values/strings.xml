@@ -6,7 +6,7 @@
 
     <!-- 메인 액티비티 -->
     <string name="main_calendar">학사일정</string>
-    <string name="main_idCard">모바일 학생증</string>
+    <string name="main_idCard">모바일학생증</string>
     <string name="main_info">공지사항</string>
     <string name="main_uCampus">U-CAMPUS</string>
     <string name="main_food">오늘의 학식</string>

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 import kr.hee.kwnoti.R;
@@ -25,7 +26,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 /** 학생증 액티비티 */
-// TODO 가로 학생증 액티비티도 추가해줘야 함
 public class StudentCardActivity extends Activity {
     // 뷰
     TextView    studentId, studentName, studentMajor;
@@ -33,9 +33,11 @@ public class StudentCardActivity extends Activity {
     // 사용자 정보 및 학번
     SharedPreferences pref;
     static String   ID = null;
-
+    // 밝기에 대한 변수
     WindowManager.LayoutParams params;
     float brightness;
+    // 화면 방향
+    int deviceOrientation;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,29 +47,32 @@ public class StudentCardActivity extends Activity {
         if ((pref = UTILS.checkUserData(this)) == null) finish();
 
         // 뷰 초기화 및 ID 설정
-        else {
-            initView(pref, Configuration.ORIENTATION_PORTRAIT);
-            ID = "0" + pref.getString(getString(R.string.key_studentID), "");
-        }
+        else ID = "0" + pref.getString(getString(R.string.key_studentID), "");
 
         // 밝기에 대한 변수 설정
         params = getWindow().getAttributes();
+
+        // 화면 방향 확인 및 화면 구성
+        deviceOrientation = getResources().getConfiguration().orientation;
+        initView(pref, deviceOrientation);
     }
 
     /** 화면이 보여질 때마다 자동으로 인증 & QR 새로고침 */
     @Override protected void onResume() {
         super.onResume();
-        certificate(ID);
+        if (deviceOrientation == Configuration.ORIENTATION_PORTRAIT)
+            certificate(ID);
 
         // 기존 밝기 저장 및 최대밝기로 설정
         brightness = params.screenBrightness;
-        params.screenBrightness = 100f;
+        params.screenBrightness = 1f;
         getWindow().setAttributes(params);
     }
 
     /** 화면이 가려질 때마다 밝기를 기존 밝기로 변경 */
     @Override protected void onPause() {
         super.onPause();
+
         // 기존 밝기로 변경
         params.screenBrightness = brightness;
         getWindow().setAttributes(params);
@@ -76,8 +81,12 @@ public class StudentCardActivity extends Activity {
     /** 화면이 돌아가면 돌아간 화면에 맞게 뷰 재설정 */
     @Override public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        int deviceOrientation = getResources().getConfiguration().orientation;
+        deviceOrientation = getResources().getConfiguration().orientation;
         initView(pref, deviceOrientation);
+
+        // 화면이 돌아가고 세로 화면이 됐을 때 QR 코드 재생성
+        if (deviceOrientation == Configuration.ORIENTATION_PORTRAIT)
+            certificate(ID);
     }
 
     /** 뷰 초기화 메소드 */
@@ -101,7 +110,7 @@ public class StudentCardActivity extends Activity {
         }
         // 가로 화면
         else {
-//            setContentView(R.layout.activity_student_card);
+            setContentView(R.layout.activity_student_card);
         }
 
         studentId   = (TextView)findViewById(R.id.studentCard_ID);
@@ -134,7 +143,11 @@ public class StudentCardActivity extends Activity {
             @Override public void onResponse(Call<Result> call, Response<Result> response) {
                 // 정상 인증인 경우 QR 코드 생성 및 사용 가능
                 if (response.body().resultMsg.equals("정상")) {
-                    QRCodeGenerator(response.body().qrCode);
+                    try {
+                        QRCodeGenerator(response.body().qrCode);
+                    } catch (WriterException e) {
+                        e.printStackTrace();
+                    }
                     UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_refreshed));
                 }
                 else UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_certificate_failed));
@@ -152,30 +165,27 @@ public class StudentCardActivity extends Activity {
      * QR 코드 생성 메소드. QR 이미지 뷰어에 자동으로 값 반환
      * @param qrValue  QR 코드를 생성할 데이터
      * @return boolean 학번 생성 여부 반환 */
-    synchronized boolean QRCodeGenerator(String qrValue) {
+    boolean QRCodeGenerator(String qrValue) throws WriterException {
         // 학번이 제대로 전달이 안되면 null 리턴
         if (qrValue.isEmpty()) return false;
 
         // QR 코드 생성
         MultiFormatWriter generator = new MultiFormatWriter();
-        try {
-            final int WIDTH = 600, HEIGHT = 600;
-            BitMatrix matrix = generator.encode(qrValue, BarcodeFormat.QR_CODE, WIDTH, HEIGHT);
-            Bitmap qrCode = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888);
-            for (int i = 0; i < WIDTH; i++)
-                for (int j = 0; j < HEIGHT; j++)
-                    qrCode.setPixel(i, j, matrix.get(i, j) ? Color.BLACK : Color.WHITE);
+        final int WIDTH = 240, HEIGHT = 240;
+        BitMatrix matrix = generator.encode(qrValue, BarcodeFormat.QR_CODE, WIDTH, HEIGHT);
+        Bitmap qrCode = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888);
+        for (int i = 0; i < WIDTH; i++)
+            for (int j = 0; j < HEIGHT; j++)
+                qrCode.setPixel(i, j, matrix.get(i, j) ? Color.BLACK : Color.WHITE);
 
-            // 생성된 QR 코드를 적용
-            final Bitmap QR_CODE = qrCode;
-            runOnUiThread(new Runnable() {
-                @Override public void run() {
-                    qrCodeView.setImageBitmap(QR_CODE);
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // 생성된 QR 코드를 적용
+        final Bitmap QR_CODE = qrCode;
+        runOnUiThread(new Runnable() {
+            @Override public void run() {
+                qrCodeView.setImageBitmap(QR_CODE);
+            }
+        });
+
         return true;
     }
 }
