@@ -16,13 +16,12 @@
         <RelativeLayout
             android:layout_width="@dimen/card_size_x3"
             android:layout_height="56dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="8dp"
             android:layout_columnSpan="3">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/splash_mark_v23"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ci"
                 android:layout_centerHorizontal="true"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
@@ -78,13 +77,13 @@
 
         <!-- 설정 -->
         <TextView style="@style/CardStyle"
-        android:id="@+id/main_btn_settings"
-        android:text="@string/main_settings" />
+            android:id="@+id/main_btn_settings"
+            android:text="@string/main_settings" />
         <!--android:background="@color/brown200"-->
 
         <TextView style="@style/CardStyle"
-            android:id="@+id/main_btn_settings"
-            android:text="@string/main_settings" />
+            android:id="@+id/main_test"
+            android:text="테스트용 버튼" />
 
         <!--<TextView style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_facility"-->

@@ -29,6 +29,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 btn_uCampus,    // 유캠퍼스 공지사항
                 btn_links,      // 바로가기 모음
                 btn_settings;   // 설정
+    // TEST
+    TextView testBtn;
     boolean     weatherActive;  // 실시간 날씨 사용 여부
 
     @Override protected void attachBaseContext(Context newBase) {
@@ -40,6 +42,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         checkFirstUse();            // 최초 실행 여부 검사
         weatherActive = checkUseWeatherService(); // 날씨 서비스를 켰는지 여부 확인
         initView();                 // 뷰 초기화
+
+        // TEST
+        testBtn = (TextView)findViewById(R.id.main_test);
     }
 
     /** 최초 실행인지 확인하는 메소드 */
