@@ -29,15 +29,13 @@ public class FcmService extends FirebaseMessagingService {
     private static final int GROUP_ID = 954;
 
     @Override public void onMessageReceived(RemoteMessage remoteMessage) {
-        // 로그 출력
+        // 알림을 수신하면 로그로 출력
         Log.d(TAG, ""+remoteMessage.getData());
 
-        // 알람에 들어갈 데이터들(제목, 작성자, URL)
-        Context context = null;
-        String  title,
-                whoWrite,
-                url;
-        int requestCode;
+        Context context = getApplicationContext();
+        // 알람에 들어갈 데이터들(제목, 작성자, URL, 알림 고유번호)
+        String  title, whoWrite, url;
+        int reqCode;
 
         // {message ...} 껍데기 제거
         JSONObject jsonObject = new JSONObject();
@@ -46,11 +44,14 @@ public class FcmService extends FirebaseMessagingService {
             String jsonString = jsonObject.getString("data").replace("{message=", "");
             jsonObject = new JSONObject(jsonString);
             // JSON 데이터 추출
-            context = getApplicationContext();
             title   = jsonObject.getString("title");
             whoWrite= jsonObject.getString("content");
             url     = jsonObject.getString("link");
-            requestCode = Integer.parseInt(url.split("&|=")[3]);
+            // 광운대에서 오지 않은 메세지에 대한 예외처리
+            if (url.contains("kw.ac.kr"))
+                reqCode = Integer.parseInt(url.split("&|=")[3]);
+            else
+                reqCode = 0;
         }
         // 제대로 자르는데에 실패하면 알람을 울리지 않음
         catch (JSONException e) {
@@ -59,10 +60,10 @@ public class FcmService extends FirebaseMessagingService {
             return;
         }
 
-        // 필터링 할 단어가 있으면 알림을 울리지 않게 함
+        // 사용자 지정 단어 필터링
         if (!this.isFiltered(context, title, whoWrite)) return;
 
-        // 알람 기타 설정(진동 등)
+        // 알림과 관련된 진동, 알림음 설정 (기본값 : 참)
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         boolean vibratorActive = prefs.getBoolean(getString(R.string.key_pushVibrator), true);
         boolean soundActive = prefs.getBoolean(getString(R.string.key_pushSound), true);
@@ -71,8 +72,7 @@ public class FcmService extends FirebaseMessagingService {
         // 앱에서 여러 개의 알람을 울리게 할 수 있도록 FLAG_ONE_SHOT & requestCode 설정
         Intent intent = new Intent(context, BrowserActivity.class);
         intent.putExtra(KEY.BROWSER_URL, url);
-        PendingIntent pIntent = PendingIntent.getActivity(context, requestCode, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pIntent = PendingIntent.getActivity(context, reqCode, intent, PendingIntent.FLAG_ONE_SHOT);
 
         // 알람 선언
         NotificationManager notiManager = (NotificationManager)getSystemService(
@@ -110,7 +110,7 @@ public class FcmService extends FirebaseMessagingService {
                 .setLights(Color.argb(255, 255, 60, 100), 600, 6000)
                 // 클릭 시 사라지도록 설정
                 .setAutoCancel(true);
-        notiManager.notify(requestCode, builder.build());
+        notiManager.notify(reqCode, builder.build());
     }
 
     /** 필터 DB에 걸리는 내용이 포함되어 있는지 확인하는 메소드

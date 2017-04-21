@@ -97,7 +97,6 @@
         <activity
             android:name=".BrowserActivity"
             android:hardwareAccelerated="true"
-            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize" />
     </application>
 

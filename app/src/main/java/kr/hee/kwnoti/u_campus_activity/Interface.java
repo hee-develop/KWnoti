@@ -8,6 +8,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 /** 최초 로그인 시 사용하는 인터페이스
@@ -68,7 +69,15 @@ public interface Interface {
             @Field("p_process")     String process,
             @Field("p_bdseq")       String sequence);
 
-
-    @POST("http://info2.kw.ac.kr/webnote/lecture/h_lecture01_2.php")
-    Call<ResponseBody> getLectureNote();
+    /* ===================================== 강의 계획서 로드 ====================================== */
+    @GET
+    Call<ResponseBody> getLectureNote(
+            @Url String url,
+            @Query("bunban_no")     String classNumber,
+            @Query("hakgi")         char semester,
+            @Query("open_grade")    char grade,
+            @Query("open_gwamok_no")String subjectNumber,
+            @Query("open_major_code")String majorCode,
+            @Query("this_year")     String thisYear
+    );
 }

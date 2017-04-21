@@ -40,7 +40,9 @@ class UCampusMainAdapter extends RecyclerView.Adapter<UCampusMainViewHolder> {
         UCampusMainData viewData = array.get(position);
 
         final String subjName = viewData.subjName;
-        final String[] listType = { KEY.SUBJECT_INFO, KEY.SUBJECT_UTIL, KEY.SUBJECT_STUDENT, /*TODO 과제제출 비활성화 KEY.SUBJECT_ASSIGNMENT,*/ KEY.SUBJECT_QNA };
+        final String[] listType = {
+                KEY.SUBJECT_PLAN, KEY.SUBJECT_INFO, KEY.SUBJECT_UTIL,
+                KEY.SUBJECT_STUDENT, /*TODO 과제제출 비활성화 KEY.SUBJECT_ASSIGNMENT,*/ KEY.SUBJECT_QNA };
 
         holder.title.setText(subjName);
         holder.room.setText(viewData.subjPlace);
@@ -60,6 +62,7 @@ class UCampusMainAdapter extends RecyclerView.Adapter<UCampusMainViewHolder> {
                                     case 2 : intent.putExtra(KEY.SUBJECT_LOAD_TYPE, listType[2]); break;
                                     case 3 : intent.putExtra(KEY.SUBJECT_LOAD_TYPE, listType[3]); break;
                                     case 4 : intent.putExtra(KEY.SUBJECT_LOAD_TYPE, listType[4]); break;
+                                    case 5 : intent.putExtra(KEY.SUBJECT_LOAD_TYPE, listType[5]); break;
                                     default: intent.putExtra(KEY.SUBJECT_LOAD_TYPE, "Error"); break;
                                 }
                                 // 클릭한 과목에 해당하는 액티비티 생성

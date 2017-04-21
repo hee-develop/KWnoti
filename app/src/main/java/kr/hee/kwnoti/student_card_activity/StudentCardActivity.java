@@ -44,7 +44,8 @@ public class StudentCardActivity extends Activity {
         setTitle(R.string.studentCard_title);
 
         // 사용자 정보 유무 확인
-        if ((pref = UTILS.checkUserData(this)) == null) finish();
+        if ((pref = UTILS.checkUserData(this)) == null)
+            finish();
 
         // 뷰 초기화 및 ID 설정
         else ID = "0" + pref.getString(getString(R.string.key_studentID), "");

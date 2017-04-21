@@ -77,7 +77,7 @@ public class UCampusMainActivity extends Activity {
     }
 
     /** 유캠퍼스 로그인을 위한 Thread 객체 */
-    class LoginThread extends Thread {
+    private class LoginThread extends Thread {
         @Override public void run() {
             // 로그인 요청 ===========================================================================
             Call<ResponseBody> call = request.getCookie("2", "http%3A%2F%2Finfo.kw.ac.kr%2F", "11",
@@ -153,6 +153,7 @@ public class UCampusMainActivity extends Activity {
             }
         }
 
+        // 파싱된 데이터를 RecyclerView 데이터로 넣는 메소드
         void setViewData(String html) throws IOException {
             Document doc = Jsoup.parse(html);
             if (doc.text().equals(""))
@@ -161,14 +162,15 @@ public class UCampusMainActivity extends Activity {
             // 수강 과목 및 데이터 추출
             Elements elements = doc.select("table.main_box").last().select("td.list_txt");
 
+            // 과목 별 데이터 추출
             UCampusMainData data = null;
             Element element = elements.first();
             for (int i = 0; i < elements.size();) {
                 data = new UCampusMainData();
                 // 과목명
-                String name = element.text();
-                name = name.replace("[학부]", "");
-                data.subjName = name;
+                data.subjName = element.text()
+                        .replace("[학부]", "")        // [학부] 제거
+                        .replaceAll(" \\(..\\)", "");// (01) 제거
                 element = elements.get(++i);
                 // 강의실
                 data.subjPlace = element.text();

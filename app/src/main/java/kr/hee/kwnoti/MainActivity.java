@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,10 +30,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 btn_uCampus,    // 유캠퍼스 공지사항
                 btn_links,      // 바로가기 모음
                 btn_settings;   // 설정
-    // TEST
-    TextView testBtn;
     boolean     weatherActive;  // 실시간 날씨 사용 여부
 
+    /** 폰트 삽입 메소드 */
     @Override protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
@@ -40,11 +40,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkFirstUse();            // 최초 실행 여부 검사
-        weatherActive = checkUseWeatherService(); // 날씨 서비스를 켰는지 여부 확인
+//        weatherActive = checkUseWeatherService(); // 날씨 서비스를 켰는지 여부 확인
         initView();                 // 뷰 초기화
 
-        // TEST
-        testBtn = (TextView)findViewById(R.id.main_test);
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("test");
     }
 
     /** 최초 실행인지 확인하는 메소드 */
@@ -52,8 +51,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         SharedPreferences firstUse = PreferenceManager.
                 getDefaultSharedPreferences(MainActivity.this);
         if (firstUse.getBoolean(KEY.FIRST_USE, true)) {
+            // FCM 공지사항 알림 수신 설정
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    FirebaseMessaging.getInstance().subscribeToTopic("notice");
+                    Log.d("MainActivity", "First run - FCM Enabled.");
+                }
+            }).start();
+
             //startActivity(new Intent(this, FirstActivity.class)); TODO
-            FirebaseMessaging.getInstance().subscribeToTopic("notice");
             //finish();
 
             // 최초 실행 종료
@@ -110,12 +116,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(this, UCampusMainActivity.class)); break;
             case R.id.main_btn_links :
                 final String[] name = {
-                        "광운대 대신 전해드려요 페이스북",
-                        "광운대학교 대나무숲 페이스북",
-                        "총학생회 페이스북",
-                        "중앙도서관",
-                        "미디어광운",
-                        "총동문회" };
+                        "광운대 대신 전해드려요 페이스북",    "광운대학교 대나무숲 페이스북",
+                        "총학생회 페이스북",                "중앙도서관",
+                        "미디어광운",                    "총동문회" };
                 final String[] url = {
                         "https://www.facebook.com/kwtalk/",
                         "https://www.facebook.com/kwubamboo/",
