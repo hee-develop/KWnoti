@@ -93,7 +93,7 @@
 
     <!-- Toast & Dialog -->
     <string name="dialog_loading">Loading..</string>
-    <string name="text_loadFailed">Load failed.</string>
+    <string name="toast_loadFailed">Load failed.</string>
     <string name="toast_enter_value">Please enter value.</string>
     <string name="toast_deleted"> removed.</string>
     <string name="toast_refreshed">Refreshed.</string>

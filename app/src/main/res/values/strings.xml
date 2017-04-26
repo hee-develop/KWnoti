@@ -120,7 +120,7 @@
 
     <!-- Toast & Dialog -->
     <string name="dialog_loading">잠시만 기다려주세요..</string>
-    <string name="text_loadFailed">불러오기 실패</string>
+    <string name="toast_loadFailed">불러오기 실패</string>
     <string name="toast_enter_value">값을 입력해 주세요.</string>
     <string name="toast_deleted"> 삭제되었습니다.</string>
     <string name="toast_refreshed">새로고침되었습니다.</string>

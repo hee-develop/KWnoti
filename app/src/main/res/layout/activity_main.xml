@@ -75,9 +75,9 @@
             android:id="@+id/main_btn_settings"
             android:text="@string/main_settings" />
 
-        <TextView style="@style/CardStyle"
-            android:id="@+id/main_test"
-            android:text="테스트용 버튼" />
+        <!--<TextView style="@style/CardStyle"-->
+            <!--android:id="@+id/main_test"-->
+            <!--android:text="테스트용 버튼" />-->
 
         <!--<TextView style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_facility"-->

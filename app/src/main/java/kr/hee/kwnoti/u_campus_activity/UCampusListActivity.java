@@ -58,53 +58,13 @@ public class UCampusListActivity extends Activity {
 
         // 강의 계획서인 경우
         if (listType.equals(KEY.SUBJECT_PLAN)) {
-            char[] subject = parcel.subjId.toCharArray();
-            final char[]  year    = { subject[0], subject[1], subject[2], subject[3] };
-            final char    semester= subject[4];
-            final char[]  subjId  = { subject[5], subject[6], subject[7], subject[8] },
-                    major   = { subject[9], subject[10], subject[11], subject[12] },
-                    subClass= { subject[13], subject[14] };
-            final char    grade   = subject[15];
-
-            /*String url = "http://info.kw.ac.kr/webnote/lecture/h_lecture01_2.php?layout_opt=N&engineer_code=&skin_opt=&fsel1_code=&fsel1_str=&fsel2_code=&fsel2_str=&fsel2=00_00&fsel3_&fsel4=00_00&hh=&sugang_opt=all&tmp_key=tmp__stu&" +
-                    "bunban_no=" + Arrays.toString(subClass) + "&hakgi=" + semester + "&open_grade=" + grade +
-                    "open_gwamok_no=" + Arrays.toString(subjId) + "&open_major_code=" + Arrays.toString(major) +
-                    "this_year=" + Arrays.toString(year);*/
-
-            final Interface request = UTILS.makeRequestClientForUCampus(this, "http://info.kw.ac.kr/");
-            final String[] responseHtml = new String[1];
-            Thread loadLectureNote = new Thread(new Runnable() {
-                @Override public void run() {
-                    Call<ResponseBody> call = request.getLectureNote(
-                            "http://info.kw.ac.kr/webnote/lecture/h_lecture01_2.php?layout_opt=N&engineer_code=&skin_opt=&fsel1_code=&fsel1_str=&fsel2_code=&fsel2_str=&fsel2=00_00&fsel3=&fsel4=00_00&hh=&sugang_opt=all&tmp_key=tmp__stu&",
-                            new String(subClass), semester, grade, new String(subjId),
-                            new String(major), new String(year));
-                    try {
-                        Response<ResponseBody> response = call.execute();
-                        responseHtml[0] = new String(response.body().bytes(), "EUC-KR");
-                    }
-                    catch (IOException e) {
-                        runOnUiThread(new Runnable() {
-                            @Override public void run() {
-                                UTILS.showToast(UCampusListActivity.this, R.string.text_loadFailed);
-                            }
-                        });
-                        e.printStackTrace();
-                    }
-                }
-            });
-            loadLectureNote.start();
-            try {
-                loadLectureNote.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
             Intent intent = new Intent(this, BrowserActivity.class);
             intent.putExtra(KEY.BROWSER_TITLE, parcel.subjName + " : 강의 계획서");
+            intent.putExtra(KEY.BROWSER_FROM_LECTURE_NOTE, true);
+            intent.putExtra(KEY.BROWSER_DATA, parcel.subjId); // 강의계획서의 경우 아이디를 데이터로 보냄
 
-            intent.putExtra(KEY.BROWSER_URL, responseHtml[0]);
             startActivity(intent);
+            finish();
         }
         else {
             request = UTILS.makeRequestClientForUCampus(this, Interface.LOGIN_URL);

@@ -115,31 +115,36 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.main_btn_uInfo :
                 startActivity(new Intent(this, UCampusMainActivity.class)); break;
             case R.id.main_btn_links :
-                final String[] name = {
-                        "광운대 대신 전해드려요 페이스북",    "광운대학교 대나무숲 페이스북",
-                        "총학생회 페이스북",                "중앙도서관",
-                        "미디어광운",                    "총동문회" };
-                final String[] url = {
-                        "https://www.facebook.com/kwtalk/",
-                        "https://www.facebook.com/kwubamboo/",
-                        "https://www.facebook.com/kw2017TheGreen/",
-                        "http://kupis.kw.ac.kr/",
-                        "http://www.mediakw.org/",
-                        "http://dongmoon.kw.ac.kr/" };
-
-                // 링크가 여러개 있으므로 다이얼로그로 띄워줌
-                UTILS.showAlertDialog(MainActivity.this, "어디로 갈까요?", name,
-                        new DialogInterface.OnClickListener() {
-                            @Override public void onClick(DialogInterface dInterface, int i) {
-                                Intent intent = new Intent(getApplicationContext(), BrowserActivity.class);
-                                intent.putExtra(KEY.BROWSER_URL, url[i]);
-                                startActivity(intent);
-                            }
-                        }
-                );
-                break;
+                whereToGo(); break;
             case R.id.main_btn_settings :
                 startActivity(new Intent(this, SettingsActivity.class)); break;
         }
+    }
+
+    /** 어디로 갈까요? 다이얼로그에 대한 메소드 */
+    void whereToGo() {
+        // 브라우저를 가리키는 인텐트
+        final Intent intent = new Intent(this, BrowserActivity.class);
+
+        // 이동할 사이트의 이름과 URL
+        final String[] name = { "광운대 대신 전해드려요 페이스북",    "광운대학교 대나무숲 페이스북",
+                                "총학생회 페이스북",                "중앙도서관",
+                                "미디어광운",                    "총동문회" };
+        final String[] url = {  "https://www.facebook.com/kwtalk/",
+                                "https://www.facebook.com/kwubamboo/",
+                                "https://www.facebook.com/kw2017TheGreen/",
+                                "http://kupis.kw.ac.kr/",
+                                "http://www.mediakw.org/",
+                                "http://dongmoon.kw.ac.kr/" };
+
+        // 링크가 여러개 있으므로 다이얼로그로 띄워줌
+        UTILS.showAlertDialog(MainActivity.this, "어디로 갈까요?", name,
+                new DialogInterface.OnClickListener() {
+                    @Override public void onClick(DialogInterface dInterface, int i) {
+                        intent.putExtra(KEY.BROWSER_URL, url[i]);
+                        startActivity(intent);
+                    }
+                }
+        );
     }
 }

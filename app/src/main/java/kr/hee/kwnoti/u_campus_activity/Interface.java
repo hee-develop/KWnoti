@@ -8,7 +8,6 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 /** 최초 로그인 시 사용하는 인터페이스
@@ -72,12 +71,12 @@ public interface Interface {
     /* ===================================== 강의 계획서 로드 ====================================== */
     @GET
     Call<ResponseBody> getLectureNote(
-            @Url String url,
+            @Url String url/*,
             @Query("bunban_no")     String classNumber,
             @Query("hakgi")         char semester,
             @Query("open_grade")    char grade,
             @Query("open_gwamok_no")String subjectNumber,
             @Query("open_major_code")String majorCode,
-            @Query("this_year")     String thisYear
+            @Query("this_year")     String thisYear*/
     );
 }

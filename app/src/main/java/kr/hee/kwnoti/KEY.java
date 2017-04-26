@@ -25,6 +25,7 @@ public interface KEY {
 
     String BROWSER_DATA         = "BrowserOpenData";
     String BROWSER_FROM_UCAMPUS = "BrowserFromUCampus";
+    String BROWSER_FROM_LECTURE_NOTE = "BrowserFromLectureNote";
     String BROWSER_URL          = "BrowserURL";
     String BROWSER_TITLE        = "BrowserTitle";
 }
