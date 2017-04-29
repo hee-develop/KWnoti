@@ -7,8 +7,8 @@ android {
         applicationId "kr.hee.kwnoti"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 8
-        versionName "1.0"
+        versionCode 9
+        versionName "1.00"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -37,6 +37,7 @@ dependencies {
     }
     compile 'com.tsengvn:typekit:1.0.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.yalantis:ucrop:2.2.0-native'
 }
 
 apply plugin: 'com.google.gms.google-services'

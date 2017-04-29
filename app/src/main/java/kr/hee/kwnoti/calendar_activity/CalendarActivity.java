@@ -19,7 +19,7 @@ public class CalendarActivity extends RecyclerViewActivity {
     CalendarAdapter adapter;
 
     // 액티비티 초기화 및 데이터 설정
-    CalendarActivity() {
+    public CalendarActivity() {
         super(R.layout.activity_calendar,   // 액티비티 레이아웃
               R.menu.menu_calendar,         // 액티비티 메뉴
               R.id.calendar_recyclerView);  // 리사이클러 뷰 ID

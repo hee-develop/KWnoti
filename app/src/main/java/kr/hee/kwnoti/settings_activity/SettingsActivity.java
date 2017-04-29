@@ -1,13 +1,19 @@
 package kr.hee.kwnoti.settings_activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.yalantis.ucrop.UCrop;
+
+import java.io.File;
 
 import kr.hee.kwnoti.R;
 
@@ -27,7 +33,8 @@ public class SettingsActivity extends Activity {
         EditTextPreference  studentId,
                             studentName,
                             studentMajor;
-        String key_stuId, key_stuName, key_stuMajor;
+        Preference          studentImage;
+        String key_stuId, key_stuName, key_stuMajor, key_stuImage;
 
         @Override public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -44,10 +51,33 @@ public class SettingsActivity extends Activity {
             key_stuId   = getString(R.string.key_studentID);
             key_stuName = getString(R.string.key_studentName);
             key_stuMajor= getString(R.string.key_studentMajor);
+            key_stuImage= getString(R.string.key_studentImage);
 
             studentId   = (EditTextPreference)findPreference(key_stuId);
             studentName = (EditTextPreference)findPreference(key_stuName);
             studentMajor= (EditTextPreference)findPreference(key_stuMajor);
+            studentImage= findPreference(key_stuImage);
+
+            studentImage.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override public boolean onPreferenceClick(Preference preference) {
+
+                    return false;
+                }
+            });
+        }
+
+        @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            if (resultCode == RESULT_OK) {
+                if (requestCode == 99) {
+                    final Uri selectedUri = data.getData();
+                    if (selectedUri != null) {
+                        String destFileName = "studentImage.jpg";
+
+                        UCrop uCrop = UCrop.of(data.getData(), Uri.fromFile(new File(getActivity().getCacheDir(), destFileName)));
+                        uCrop.start(getActivity());
+                    }
+                }
+            }
         }
 
         /** Summary 값 변경 */

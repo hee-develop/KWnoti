@@ -43,7 +43,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //        weatherActive = checkUseWeatherService(); // 날씨 서비스를 켰는지 여부 확인
         initView();                 // 뷰 초기화
 
-        FirebaseMessaging.getInstance().unsubscribeFromTopic("test");
     }
 
     /** 최초 실행인지 확인하는 메소드 */

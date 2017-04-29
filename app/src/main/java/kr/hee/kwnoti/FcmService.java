@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -33,6 +32,7 @@ public class FcmService extends FirebaseMessagingService {
         Log.d(TAG, ""+remoteMessage.getData());
 
         Context context = getApplicationContext();
+
         // 알람에 들어갈 데이터들(제목, 작성자, URL, 알림 고유번호)
         String  title, whoWrite, url;
         int reqCode;
@@ -82,25 +82,24 @@ public class FcmService extends FirebaseMessagingService {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Notification.Builder groupBuilder = new Notification.Builder(this)
                     .setContentTitle(getString(R.string.app_name))
-                    .setGroup(GROUP_NAME)
-                    .setGroupSummary(true)
-                    .setSubText("여러 개의 알림이 있습니다. 클릭하면 펼쳐집니다.")
                     .setColor(getColor(R.color.brown500))
-                    .setSmallIcon(R.drawable.splash_mark);
+                    .setSmallIcon(R.drawable.splash_mark)
+                    .setAutoCancel(true)
+                    .setSubText(getString(R.string.noti_unread))
+                    .setGroup(GROUP_NAME)
+                    .setGroupSummary(true);
             notiManager.notify(TAG, GROUP_ID, groupBuilder.build());
         }
 
         // 알람 설정
         Notification.Builder builder = new Notification.Builder(this)
-                // 제목(ContentTitle) 및 작성자(ContentText), 소형 제목(Ticker), 시간 설정
+                // 제목(ContentTitle) 및 작성자(ContentText), 시간 설정
                 .setContentTitle(title)
                 .setContentText(whoWrite)
-                .setTicker("새 알림이 있습니다.")
                 .setWhen(System.currentTimeMillis())
                 // 그룹 설정
                 .setGroup(GROUP_NAME)
                 // 아이콘 설정
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                 .setSmallIcon(R.drawable.splash_mark)
                 // 클릭 시 이동할 인텐트 설정
                 .setContentIntent(pIntent)

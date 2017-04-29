@@ -16,6 +16,12 @@
             android:title="@string/setting_u_pwd"
             android:key="@string/key_studentUCampusPassword"
             android:inputType="textPassword" />
+        <Preference
+            android:title="학생증 사진 설정"
+            android:key="@string/key_studentImage"
+            android:persistent="false"
+            android:summary="학생증 사진을 수정할 수 있습니다.">
+        </Preference>
         <!--<EditTextPreference
             android:title="중앙도서관 비밀번호"
             android:key="@string/key_studentLibraryPassword"

@@ -71,20 +71,15 @@
     <string name="toast_tags_same_found">중복된 태그가 있습니다.</string>
     <!-- 앱 정보 액티비티 -->
     <string name="app_story">더 이상 공지사항을 놓치지 마세요!
-        \n"광운알리미"는 평소 공지사항을 자주 놓쳐 알람이 왔으면 좋겠다는 생각으로 시작하게 된 프로젝트입니다.
-        \n광운대에서 유용하게 쓸 수 있는 다양한 기능들을 지원하고 있습니다. 비록 공식 앱은 아니지만,
-        정보 부서에서 협의 및 허가를 받은 앱이므로 안심하고 쓰셔도 된답니다.
-        \n지속적으로 기능을 추가하고 있으나, 1인 개발이기도 하고 첫 개발이라 여러모로 벅차네요..
-        최대한 빨리 모든 기능을 집어 넣어 광운대 대표 앱이 되겠습니다ㅎㅎ 많이 이용해주세요. 감사합니다 :)
-        \n\n※ 광운알리미는 사용자의 정보(비밀번호 등)를 서버 등에 별도로 저장하지 않습니다.
-        \n※ 학생증이 정상적으로 뜨지 않는다면, 공식 중앙도서관 어플을 설치해 1회 로그인 해주세요.
-        중앙도서관은 서버 인증 방식이기 때문에 해당 어플을 통한 로그인이 반드시 필요합니다.
-        로그인 이후엔 공식 어플을 지워도 무방합니다.
-        \n※ 현재 유캠퍼스 기능은 베타버전입니다. 이는 앱의 기존 방향인 "공지사항 알림"에 더 집중하기 위해
-        구현이 늦어지고 있습니다ㅜㅜ. 3월 내로 완료될 예정이니 조금만 기다려주세요.
+        \n"광운알리미"는 공지사항을 자주 놓쳐 알림이 왔으면 좋겠다는 생각으로 만든 앱입니다.
+        \n유캠퍼스를 비롯해, 학사일정, 전화번호부 등 유용하게 쓸 수 있는 다양한 기능들을 지원하고 있습니다.
+        비록 공식 앱은 아니지만, 정보 부서에서 협의 및 허가를 받은 앱이므로 안심하고 쓰셔도 된답니다.
+        \n광운대 대표 앱이 되는 그날까지!! 많이 이용해주세요ㅎㅎ 감사합니다~! :)
+        \n\n※ 광운알리미에 작성된 개인 정보(유캠퍼스 비밀번호 등)는 휴대폰 내에만 저장됩니다.
+        \n※ 학생증을 이용하기 위해선 중앙도서관 어플을 사용한 적이 있어야 합니다(서버 인증 방식이라 어쩔수가 없네요ㅠㅠ).
     </string>
     <string name="app_openSource">사용된 오픈소스</string>
-    <string name="app_openSource_sourceList">
+    <string name="app_openSource_sourceList" translatable="false">
 <![CDATA[
         <b>Jsoup (<a href="https://jsoup.org">https://jsoup.org</a>)</b>
         <br>&nbsp; Copyright 2009-2016 by Jonathan Hedley
@@ -103,22 +98,24 @@
         <br>&nbsp; via Apache License 2.0
 ]]></string>
     <string name="app_usedColor">사용된 색상</string>
-    <string name="app_color_brown">Material Color Brown</string>
-    <string name="app_color_amber">Material Color Amber</string>
-    <string name="app_color_gray">Material Color Gray</string>
+    <string name="app_color_brown" translatable="false">Material Color Brown</string>
+    <string name="app_color_amber" translatable="false">Material Color Amber</string>
+    <string name="app_color_gray" translatable="false">Material Color Gray</string>
 
     <!-- Preferences 키값 -->
-    <string name="key_studentID">stuID</string>
-    <string name="key_studentName">stuName</string>
-    <string name="key_studentMajor">stuMajor</string>
-    <string name="key_studentUCampusPassword">stuUPwd</string>
-    <string name="key_studentLibraryPassword">stuLibPwd</string>
-    <string name="key_pushActive">pushActive</string>
-    <string name="key_pushVibrator">vibratorActive</string>
-    <string name="key_pushSound">ringtoneActive</string>
-    <string name="key_weatherService">weatherActive</string>
+    <string name="key_studentID" translatable="false">stuID</string>
+    <string name="key_studentName" translatable="false">stuName</string>
+    <string name="key_studentMajor" translatable="false">stuMajor</string>
+    <string name="key_studentImage">stuImage</string>
+    <string name="key_studentUCampusPassword" translatable="false">stuUPwd</string>
+    <string name="key_studentLibraryPassword" translatable="false">stuLibPwd</string>
+    <string name="key_pushActive" translatable="false">pushActive</string>
+    <string name="key_pushVibrator" translatable="false">vibratorActive</string>
+    <string name="key_pushSound" translatable="false">ringtoneActive</string>
+    <string name="key_weatherService" translatable="false">weatherActive</string>
 
     <!-- Toast & Dialog -->
+    <string name="noti_unread">여기를 클릭하면 펼쳐집니다.</string>
     <string name="dialog_loading">잠시만 기다려주세요..</string>
     <string name="toast_loadFailed">불러오기 실패</string>
     <string name="toast_enter_value">값을 입력해 주세요.</string>

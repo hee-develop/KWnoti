@@ -228,7 +228,7 @@ public class UCampusListActivity extends Activity {
             // 같은 데이터를 불러 오는 낭비를 하지 않게 하기 위해 설정
             if (totalItemCount > 7) {
                 if (!loading && (totalItemCount - visibleItemCount)
-                        <= firstVisibleItem + visibleThreshold) {
+                        <= (firstVisibleItem + visibleThreshold)) {
                     // 다음 쪽 로딩
                     currPage++;
                     runOnUiThread(new Runnable() {

@@ -75,6 +75,10 @@
         <activity android:name=".food_activity.FoodActivity" />
         <!-- =================================== 설정 액티비티 =================================== -->
         <activity android:name=".settings_activity.SettingsActivity" />
+        <!-- 학생증 크롭 액티비티 -->
+        <activity android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- 앱 정보 액티비티 -->
         <activity
             android:name=".settings_activity.AppInfoActivity"
@@ -96,7 +100,9 @@
         <!-- ================================= 브라우저 액티비티 ================================== -->
         <activity
             android:name=".BrowserActivity"
+            android:theme="@style/BrowserTheme"
             android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
             android:configChanges="orientation|screenSize" />
     </application>
 

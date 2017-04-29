@@ -27,3 +27,7 @@
 -keep class retrofit2.** { *; }
 -keepattributes Signature
 -keepattributes Exceptions
+# UCROP 라이브러리
+-dontwarn com.yalantis.ucrop**
+-keep class com.yalantis.ucrop** { *; }
+-keep interface com.yalantis.ucrop** { *; }

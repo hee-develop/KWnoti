@@ -3,6 +3,7 @@ package kr.hee.kwnoti;
 import android.Manifest;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -38,12 +39,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/** 웹 브라우저 액티비티 */
 public class BrowserActivity extends Activity {
     // 브라우저
-    ProgressBar progressBar;
-    Browser webView;
-    Browser.ScrollChangedCallback fabVisibilityCallback;
-    DownloadListener downloadListener;
+    ProgressBar progressBar; // 브라우저 로딩 바
+    Browser webView; // 브라우저(웹뷰)
+    Browser.ScrollChangedCallback fabVisibilityCallback; // 브라우저 스크롤 리스너
+    DownloadListener downloadListener; // 다운로드 관리자
     short scrollCount = 0;
     // FAB 버튼
     ImageButton fab;
@@ -189,6 +191,9 @@ public class BrowserActivity extends Activity {
                     runOnUiThread(new Runnable() {
                         @Override public void run() {
                             webView.loadData(finalResBody, "text/html; charset=UTF-8", null);
+                            WebSettings settings = webView.getSettings();
+                            settings.setLoadWithOverviewMode(true);
+                            settings.setUseWideViewPort(true);
                         }
                     });
                 }
@@ -276,10 +281,12 @@ public class BrowserActivity extends Activity {
                         if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                                 != PackageManager.PERMISSION_GRANTED) {
                             if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                                UTILS.showToast(BrowserActivity.this, "첨부파일을 받으려면 권한이 필요합니다.");
+                                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(BrowserActivity.this);
+                                dialogBuilder.setMessage("첨부파일을 받으려면 권한이 필요합니다.").create();
                                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
                             } else {
-                                UTILS.showToast(BrowserActivity.this, "첨부파일을 받으려면 권한이 필요합니다.");
+                                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(BrowserActivity.this);
+                                dialogBuilder.setMessage("첨부파일을 받으려면 권한이 필요합니다.").create();
                                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 110);
                             }
                         }
@@ -314,8 +321,6 @@ public class BrowserActivity extends Activity {
         WebSettings webSettings = webView.getSettings();
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);        // 캐시 없음
         webSettings.setJavaScriptEnabled(true);                     // 자바스크립트 허용
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setUseWideViewPort(true);
 
         // FAB 버튼 설정
         fab = (ImageButton)findViewById(R.id.browser_fab);

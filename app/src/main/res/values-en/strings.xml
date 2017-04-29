@@ -6,7 +6,7 @@
 
     <!-- 메인 액티비티 -->
     <string name="main_calendar">Schedule</string>
-    <string name="main_idCard">Mobile ID card</string>
+    <string name="main_idCard">Mobile\\nID card</string>
     <string name="main_info">Notify</string>
     <string name="main_uCampus">U-CAMPUS</string>
     <string name="main_food">Today\'s food</string>
@@ -70,26 +70,9 @@
     <string name="app_story">KWnoti is unofficial app of KwangWoon univ.
     </string>
     <string name="app_openSource">Used open source</string>
-    <string name="app_openSource_sourceList">Jsoup (https://jsoup.org)
-        \nZebraXing (https://github.com/zxing/zxing)
-        \nRetrofit (https://square.github.io/retrofit)
-        \nSimple (http://simple.sourceforge.net)
-    </string>
     <string name="app_usedColor">Used color</string>
-    <string name="app_color_brown">Material Color Brown</string>
-    <string name="app_color_amber">Material Color Amber</string>
-    <string name="app_color_gray">Material Color Gray</string>
 
     <!-- Preferences 키값 -->
-    <string name="key_studentID">stuID</string>
-    <string name="key_studentName">stuName</string>
-    <string name="key_studentMajor">stuMajor</string>
-    <string name="key_studentUCampusPassword">stuUPwd</string>
-    <string name="key_studentLibraryPassword">stuLibPwd</string>
-    <string name="key_pushActive">pushActive</string>
-    <string name="key_pushVibrator">vibratorActive</string>
-    <string name="key_pushSound">ringtoneActive</string>
-    <string name="key_weatherService">weatherActive</string>
 
     <!-- Toast & Dialog -->
     <string name="dialog_loading">Loading..</string>
@@ -101,4 +84,5 @@
     <string name="toast_certificate_failed">Certificate failed.</string>
     <string name="toast_check_user">Check user\'s data.</string>
     <string name="food_title">Food</string>
+    <string name="noti_unread">Touch here to open</string>
 </resources>
