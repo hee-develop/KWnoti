@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
@@ -17,6 +18,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
+import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
 import retrofit2.Call;
@@ -29,7 +31,11 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 public class StudentCardActivity extends Activity {
     // 뷰
     TextView    studentId, studentName, studentMajor;
+    // 세로 화면의 QR 코드 이미지뷰
     ImageView   qrCodeView;
+    // 가로 화면의 학생증 이미지뷰
+    ImageView   studentImage;
+
     // 사용자 정보 및 학번
     SharedPreferences pref;
     static String   ID = null;
@@ -114,6 +120,12 @@ public class StudentCardActivity extends Activity {
         // 가로 화면
         else {
             setContentView(R.layout.activity_student_card);
+
+            studentImage = (ImageView)findViewById(R.id.studentCard_portrait);
+
+            Bitmap stuImage = BitmapFactory.decodeFile(getFilesDir() + "/" + KEY.STUDENT_IMAGE);
+            if (stuImage != null)
+                studentImage.setImageBitmap(stuImage);
         }
 
         studentId   = (TextView)findViewById(R.id.studentCard_ID);

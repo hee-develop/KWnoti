@@ -6,7 +6,7 @@
 
     <!-- 메인 액티비티 -->
     <string name="main_calendar">Schedule</string>
-    <string name="main_idCard">Mobile\\nID card</string>
+    <string name="main_idCard">Mobile\nID card</string>
     <string name="main_info">Notify</string>
     <string name="main_uCampus">U-CAMPUS</string>
     <string name="main_food">Today\'s food</string>
@@ -47,6 +47,8 @@
     <string name ="setting_name">Name</string>
     <string name ="setting_major">Major</string>
     <string name ="setting_u_pwd">U-CAMPUS password</string>
+    <string name="setting_image">ID card image setting</string>
+    <string name="setting_summary_image">Can change your ID card\'s image.</string>
     <string name ="setting_group_push">Push settings</string>
     <string name ="setting_send_push">Receive push alarms</string>
     <string name ="setting_send_push_on">Receive new notify.</string>
@@ -67,8 +69,7 @@
     <string name="toast_tags_max_length_is">Max length of filter is 30bytes.</string>
     <string name="toast_tags_same_found">Same tag founded.</string>
     <!-- 앱 정보 액티비티 -->
-    <string name="app_story">KWnoti is unofficial app of KwangWoon univ.
-    </string>
+    <string name="app_story">KWnoti is unofficial app of KwangWoon univ.</string>
     <string name="app_openSource">Used open source</string>
     <string name="app_usedColor">Used color</string>
 

@@ -3,22 +3,31 @@ package kr.hee.kwnoti.settings_activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
+import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
 
 /** 설정 액티비티. XML 파일을 불러 화면에 띄워줌 */
 public class SettingsActivity extends Activity {
+    // 인텐트의 requestCode
+    private static final int PICK_FROM_GALLERY = 122;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
@@ -42,6 +51,7 @@ public class SettingsActivity extends Activity {
             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
             pref.registerOnSharedPreferenceChangeListener(this);
 
+            // 뷰 초기화
             initView();
             setData(pref);
         }
@@ -60,23 +70,78 @@ public class SettingsActivity extends Activity {
 
             studentImage.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT)
+                            .setType("image/*")
+                            .addCategory(Intent.CATEGORY_OPENABLE);
+                    startActivityForResult(intent, PICK_FROM_GALLERY);
 
                     return false;
                 }
             });
         }
 
+        /** 이미지 크롭을 위한 리스너 */
         @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            if (resultCode == RESULT_OK) {
-                if (requestCode == 99) {
-                    final Uri selectedUri = data.getData();
-                    if (selectedUri != null) {
-                        String destFileName = "studentImage.jpg";
+            // 설정 액티비티
+            Activity sActivity = getActivity();
 
-                        UCrop uCrop = UCrop.of(data.getData(), Uri.fromFile(new File(getActivity().getCacheDir(), destFileName)));
-                        uCrop.start(getActivity());
+            if (resultCode != RESULT_OK) return;
+
+            switch (requestCode) {
+                // 갤러리에서 이미지를 가져왔을 경우
+                case PICK_FROM_GALLERY:
+                    // 이미지 추출
+                    final Uri uri = data.getData();
+
+                    int     kwRed = getResources().getColor(R.color.kwRed),
+                            kwDRed = getResources().getColor(R.color.kwRedDark);
+
+                    UCrop.Options uOptions = new UCrop.Options();
+                    uOptions.setToolbarColor(kwRed);
+                    uOptions.setStatusBarColor(kwDRed);
+                    uOptions.setActiveWidgetColor(kwRed);
+                    uOptions.setToolbarTitle("학생증 이미지 설정");
+
+                    // 이미지를 갤러리에서 가져옴
+                    String tempFile = "stuImgTmp";
+                    UCrop uCrop = UCrop.of(uri,
+                            Uri.fromFile(new File(sActivity.getCacheDir(), tempFile)))
+                            .withAspectRatio(3.5f, 4.5f)
+                            .withOptions(uOptions);
+                    uCrop.start(sActivity.getApplicationContext(), this);
+                    break;
+
+                // 크롭이 완료된 경우
+                case UCrop.REQUEST_CROP:
+                    File file = new File(getActivity().getFilesDir(), KEY.STUDENT_IMAGE);
+                    Bitmap image;
+                    try {
+                        image = MediaStore.Images.Media.getBitmap(sActivity.getContentResolver(),
+                                UCrop.getOutput(data));
                     }
-                }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                        return;
+                    }
+
+                    // 이미지 리사이즈
+                    int vWidth = getResources().getDimensionPixelOffset(R.dimen.stuImage_width),
+                        vHeight= getResources().getDimensionPixelOffset(R.dimen.stuImage_height);
+                    image = Bitmap.createScaledBitmap(image, vWidth, vHeight, true);
+
+                    // 파일 쓰기
+                    try {
+                        OutputStream os = new FileOutputStream(file);
+                        image.compress(Bitmap.CompressFormat.JPEG, 90, os);
+                        os.close();
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    finally {
+                        image.recycle();
+                    }
+                    break;
             }
         }
 
@@ -108,4 +173,3 @@ public class SettingsActivity extends Activity {
         }
     }
 }
-// 출처 http://stackoverflow.com/questions/3326317/possible-to-autocomplete-a-edittextpreference/4309195

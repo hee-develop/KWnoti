@@ -12,4 +12,8 @@
     <dimen name="card_size">116dp</dimen>
     <dimen name="card_size_x2">236dp</dimen>
     <dimen name="card_size_x3">356dp</dimen>
+
+    <!-- 학생증 프로필 사진 크기 -->
+    <dimen name="stuImage_width">147dp</dimen>
+    <dimen name="stuImage_height">189dp</dimen>
 </resources>

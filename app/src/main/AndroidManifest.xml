@@ -78,7 +78,11 @@
         <!-- 학생증 크롭 액티비티 -->
         <activity android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <!--<intent-filter>-->
+
+            <!--</intent-filter>-->
+        </activity>
         <!-- 앱 정보 액티비티 -->
         <activity
             android:name=".settings_activity.AppInfoActivity"

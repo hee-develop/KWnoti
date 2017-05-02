@@ -21,11 +21,15 @@ public interface KEY {
     String SUBJECT_UTIL = "강의자료실";
     String SUBJECT_STUDENT = "학생자료실";
     String SUBJECT_ASSIGNMENT = "과제 제출";
-    String SUBJECT_QNA = "강의 Q&A";
+    String SUBJECT_QNA  = "강의 Q&A";
 
     String BROWSER_DATA         = "BrowserOpenData";
     String BROWSER_FROM_UCAMPUS = "BrowserFromUCampus";
     String BROWSER_FROM_LECTURE_NOTE = "BrowserFromLectureNote";
     String BROWSER_URL          = "BrowserURL";
     String BROWSER_TITLE        = "BrowserTitle";
+
+
+    // 학생증 사진 파일 이름
+    String STUDENT_IMAGE    = "stuImage.jpg";
 }
