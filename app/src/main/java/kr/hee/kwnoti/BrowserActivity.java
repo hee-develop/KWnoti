@@ -149,7 +149,7 @@ public class BrowserActivity extends Activity {
     void loadLectureNote(Bundle lectureNoteData) {
         // 강의 ID 추출 및 예외처리
         char[] subjectId = lectureNoteData.getString(KEY.BROWSER_DATA, "").toCharArray();
-        if (subjectId[0] == '\0') {
+        if (subjectId.length == 0) {
             UTILS.showToast(this, "잘못된 접근입니다.");
             return;
         }

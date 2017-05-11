@@ -177,10 +177,19 @@ public class UCampusMainActivity extends Activity {
                 element = elements.get(++i);
                 // 강의번호
                 String[] subjectData = element.html().split("\'");
-                data.subjId = subjectData[1];
-                data.subjYear = subjectData[3];
-                data.subjTerm = subjectData[5];
-                data.subjClass = subjectData[7];
+                // SELC 인강인 경우 값을 다르게 설정해줘야 함
+                if (subjectData.length == 1) {
+                    data.subjId     = "";
+                    data.subjYear   = "";
+                    data.subjTerm   = "";
+                    data.subjClass  = "";
+                }
+                else {
+                    data.subjId = subjectData[1];
+                    data.subjYear = subjectData[3];
+                    data.subjTerm = subjectData[5];
+                    data.subjClass = subjectData[7];
+                }
                 // 신규 과제 혹은 공지사항 여부 확인
                 if (subjectData.length > 9) {
                     String newSomething = subjectData[16];

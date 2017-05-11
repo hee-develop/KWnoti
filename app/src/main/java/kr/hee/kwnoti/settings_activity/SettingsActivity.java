@@ -169,6 +169,14 @@ public class SettingsActivity extends Activity {
                 if (pref.getBoolean(key, true)) firebaseMessaging.subscribeToTopic("notice");
                 else                            firebaseMessaging.unsubscribeFromTopic("notice");
             }
+            // 학번이나 비밀번호가 변경된 경우, 쿠키를 초기화 함
+            else if (key.equals(getString(R.string.key_studentID))
+                    || key.equals(getString(R.string.key_studentUCampusPassword))) {
+                SharedPreferences.Editor userPrefEdit = PreferenceManager.
+                        getDefaultSharedPreferences(getActivity()).edit();
+                userPrefEdit.putStringSet(KEY.COOKIE_SET, null);
+                userPrefEdit.apply();
+            }
             else setData(pref);
         }
     }
