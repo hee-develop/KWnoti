@@ -1,8 +1,12 @@
 package kr.hee.kwnoti.settings_activity;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +15,8 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.yalantis.ucrop.UCrop;
@@ -70,14 +76,34 @@ public class SettingsActivity extends Activity {
 
             studentImage.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT)
-                            .setType("image/*")
-                            .addCategory(Intent.CATEGORY_OPENABLE);
-                    startActivityForResult(intent, PICK_FROM_GALLERY);
-
+                    if (isCameraPermissionGranted()) {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT)
+                                .setType("image/*")
+                                .addCategory(Intent.CATEGORY_OPENABLE);
+                        startActivityForResult(intent, PICK_FROM_GALLERY);
+                    }
+                    else {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                        dialog.setMessage("사진 수정엔 권한이 필요합니다.");
+                        dialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override public void onClick(DialogInterface dialog, int which) {
+                                ActivityCompat.requestPermissions(getActivity(),
+                                        new String[] { Manifest.permission.CAMERA,
+                                        Manifest.permission.READ_EXTERNAL_STORAGE }, 99);
+                            }
+                        });
+                        dialog.show();
+                    }
                     return false;
                 }
             });
+        }
+
+        boolean isCameraPermissionGranted() {
+            return (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
+                    == PackageManager.PERMISSION_GRANTED) &&
+                    (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_GRANTED);
         }
 
         /** 이미지 크롭을 위한 리스너 */
@@ -169,15 +195,16 @@ public class SettingsActivity extends Activity {
                 if (pref.getBoolean(key, true)) firebaseMessaging.subscribeToTopic("notice");
                 else                            firebaseMessaging.unsubscribeFromTopic("notice");
             }
+            else setData(pref);
+
             // 학번이나 비밀번호가 변경된 경우, 쿠키를 초기화 함
-            else if (key.equals(getString(R.string.key_studentID))
+            if (key.equals(getString(R.string.key_studentID))
                     || key.equals(getString(R.string.key_studentUCampusPassword))) {
                 SharedPreferences.Editor userPrefEdit = PreferenceManager.
                         getDefaultSharedPreferences(getActivity()).edit();
                 userPrefEdit.putStringSet(KEY.COOKIE_SET, null);
                 userPrefEdit.apply();
             }
-            else setData(pref);
         }
     }
 }

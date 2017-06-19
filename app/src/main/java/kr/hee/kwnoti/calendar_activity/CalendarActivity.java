@@ -1,6 +1,11 @@
 package kr.hee.kwnoti.calendar_activity;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import org.json.JSONException;
@@ -11,33 +16,36 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 
 import kr.hee.kwnoti.R;
-import kr.hee.kwnoti.RecyclerViewActivity;
 import kr.hee.kwnoti.UTILS;
 
 /** 학사 일정 액티비티 */
-public class CalendarActivity extends RecyclerViewActivity {
+public class CalendarActivity extends Activity {
     CalendarAdapter adapter;
-
-    // 액티비티 초기화 및 데이터 설정
-    public CalendarActivity() {
-        super(R.layout.activity_calendar,   // 액티비티 레이아웃
-              R.menu.menu_calendar,         // 액티비티 메뉴
-              R.id.calendar_recyclerView);  // 리사이클러 뷰 ID
-    }
-
-    /** 타이틀 및 어댑터 설정 */
-    @Override public void setTitleAndAdapter() {
-        setTitle(R.string.calendar_title);
-        recyclerView.setAdapter(adapter = new CalendarAdapter(this));
-    }
+    public RecyclerView recyclerView;
+    public LinearLayoutManager layoutManager;
+    // 로딩 다이얼로그
+    public ProgressDialog progressDialog;
 
     /** 학사 일정 불러오기 및 리스트 위치 자동 이동 */
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calendar);
+
+        setTitle(R.string.calendar_title);
+
+        // 뷰 초기화
+        recyclerView = (RecyclerView)findViewById(R.id.calendar_recyclerView);
+        recyclerView.setAdapter(adapter = new CalendarAdapter(this));
+        recyclerView.setLayoutManager(layoutManager = new LinearLayoutManager(this));
 
         // 어댑터가 비어 있으면 학사일정 새로 불러오기
         if (adapter.getItemCount() == 0)
             new CalendarParserThread().start();
+
+        // 다이얼로그 모양 설정
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage(getString(R.string.dialog_loading));
 
         // 오늘의 날짜에 맞는 학사 일정으로 자동 이동
         recyclerView.post(new Runnable() {
@@ -46,6 +54,12 @@ public class CalendarActivity extends RecyclerViewActivity {
                         scrollToPositionWithOffset(adapter.getTodayPosition(), 0);
             }
         });
+    }
+
+    /** 액티비티 메뉴 인플레이트 */
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_calendar, menu);
+        return true;
     }
 
     /** 메뉴 버튼 클릭 리스너 설정 */
@@ -137,5 +151,12 @@ public class CalendarActivity extends RecyclerViewActivity {
                 progressDialog.dismiss();
             }
         }
+    }
+
+    /** 액티비티 소멸 때 다이얼로그도 같이 소멸 */
+    @Override protected void onDestroy() {
+        super.onDestroy();
+        if (progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 }
