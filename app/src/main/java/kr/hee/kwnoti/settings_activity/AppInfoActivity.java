@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import kr.hee.kwnoti.R;
 
-/** 설정의 앱 정보 화면 */
+/** 설정의 앱 정보 액티비티 */
 public class AppInfoActivity extends Activity {
     TextView openSource;
 

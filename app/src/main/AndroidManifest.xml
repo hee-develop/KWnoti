@@ -11,12 +11,12 @@
     <!--<uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
 
     <application
+        android:name=".ApplicationBase"
         android:allowBackup="false"
+        android:supportsRtl="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".ApplicationBase">
+        android:theme="@style/AppTheme">
 
         <!-- ==================================== 푸쉬 서비스 ==================================== -->
         <service
@@ -105,10 +105,12 @@
         <!-- ================================= 브라우저 액티비티 ================================== -->
         <activity
             android:name=".BrowserActivity"
-            android:theme="@style/BrowserTheme"
+            android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
-            android:configChanges="orientation|screenSize" />
+            android:theme="@style/BrowserTheme" />
+        <!-- =============================== 올레 와이파이 액티비티 ================================ -->
+        <activity android:name=".WifiActivity" />
     </application>
 
 </manifest>

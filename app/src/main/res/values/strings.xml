@@ -99,6 +99,20 @@
         <br>&nbsp; Copyright 2015 by Hien Ngo
         <br>&nbsp; via Apache License 2.0
 ]]></string>
+    <string name="wifi_privacy">
+<![CDATA[
+        <p><b>개인정보 수집 동의</b></p>
+        <p>* 개인정보 수집,이용 목적
+        <br>① 서비스 가입, 변경 및 해지, 서비스 관련 문의 등을 포함한 이용계약 관련 사항의 처리 및 본인 확인 절차에 이용.
+        <br>② 서비스 이용과정과 사업 처리 과정에서 발생할 수 있는 정보.</p>
+        <p>* 수집하는 개인정보
+        <br>① 성명,학번/교번,휴대전화(연락번호),아이디,비밀번호,이메일 주소, 그외 선택정보.</p>
+        <p>* 개인정보 보유 및 이용기간
+        <br>① 이용기간: 서비스 가입일 ~ 종료일.
+        <br>② 보유기간: 서비스 종료일부터 요금정산, 요금과오납, 민원발생시 이의처리와 소명 등의 사실확인을 위해 6개월간 해당 개인정보를 보유합니다.</p>
+        <p>※ 해지 고객의 개인정보는 상법, 전자상거래법, 세법 등 관련 법령의 규정에 따라 보존될 수 있습니다.</p>
+]]></string>
+
     <string name="app_usedColor">사용된 색상</string>
     <string name="app_color_brown" translatable="false">Material Color Brown</string>
     <string name="app_color_amber" translatable="false">Material Color Amber</string>
@@ -126,4 +140,8 @@
     <string name="toast_failed">인터넷 상태를 확인해 주세요.</string>
     <string name="toast_certificate_failed">인증에 실패했습니다.</string>
     <string name="toast_check_user">사용자 정보를 확인해주세요.</string>
+    <string name="wifi_title_enterPwd">WIFI 비밀번호를 입력해주세요!</string>
+    <string name="wifi_hint">password</string>
+    <string name="wifi_request">ID 발급 신청</string>
+    <string name="wifi_agree">위 내용을 이해했으며 동의합니다.</string>
 </resources>
