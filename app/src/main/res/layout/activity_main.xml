@@ -28,19 +28,19 @@
         </RelativeLayout>
 
         <!-- 모바일 학생증 -->
-        <TextView style="@style/CardStyle"
+        <Button style="@style/CardStyle"
             android:id="@+id/main_btn_idCard"
             android:text="@string/main_idCard" />
 
         <!-- 유캠퍼스 공지사항 -->
-        <TextView style="@style/CardStyle"
+        <Button style="@style/CardStyle"
             android:id="@+id/main_btn_uInfo"
             android:layout_width="@dimen/card_size_x2"
             android:layout_columnSpan="2"
             android:text="@string/main_uCampus" />
 
         <!-- 학교 공지사항 -->
-        <TextView style="@style/CardStyle"
+        <Button style="@style/CardStyle"
             android:id="@+id/main_btn_info"
             android:layout_width="@dimen/card_size_x2"
             android:layout_height="@dimen/card_size_x2"
@@ -50,35 +50,40 @@
             android:textSize="28sp" />
 
         <!-- 학사 일정 -->
-        <TextView style="@style/CardStyle"
+        <Button style="@style/CardStyle"
             android:id="@+id/main_btn_calendar"
             android:text="@string/main_calendar" />
 
         <!-- 교내 전화번호 -->
-        <TextView style="@style/CardStyle"
+        <Button style="@style/CardStyle"
             android:id="@+id/main_btn_tel"
             android:text="@string/main_tel" />
 
         <!-- 오늘의 학식 -->
-        <!--<TextView style="@style/CardStyle"
+        <!--<Button style="@style/CardStyle"
             android:id="@+id/main_btn_food"
             android:text="@string/main_food" />-->
 
+        <!--  와이파이 발급 -->
+        <Button style="@style/CardStyle"
+            android:id="@+id/main_btn_wifi"
+            android:text="@string/main_wifi" />
+        
         <!--  기타 바로가기 모음 -->
-        <TextView style="@style/CardStyle"
+        <Button style="@style/CardStyle"
             android:id="@+id/main_btn_links"
             android:text="@string/main_links" />
 
         <!-- 설정 -->
-        <TextView style="@style/CardStyle"
+        <Button style="@style/CardStyle"
             android:id="@+id/main_btn_settings"
             android:text="@string/main_settings" />
 
-        <!--<TextView style="@style/CardStyle"-->
+        <!--<Button style="@style/CardStyle"-->
             <!--android:id="@+id/main_test"-->
             <!--android:text="테스트용 버튼" />-->
 
-        <!--<TextView style="@style/CardStyle"-->
+        <!--<Button style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_facility"-->
             <!--android:text="시설안내" />-->
     </GridLayout>

@@ -12,6 +12,7 @@
     <string name="main_food">오늘의 학식</string>
     <string name="main_tel">교내\n전화번호</string>
     <string name="main_links">기타\n바로가기</string>
+    <string name="main_wifi">와이파이\n발급</string>
     <string name="main_settings">설정</string>
 
     <!-- 학생증 액티비티 -->
@@ -99,6 +100,8 @@
         <br>&nbsp; Copyright 2015 by Hien Ngo
         <br>&nbsp; via Apache License 2.0
 ]]></string>
+
+    <!-- 와이파이 액티비티 -->
     <string name="wifi_privacy">
 <![CDATA[
         <p><b>개인정보 수집 동의</b></p>
@@ -112,6 +115,10 @@
         <br>② 보유기간: 서비스 종료일부터 요금정산, 요금과오납, 민원발생시 이의처리와 소명 등의 사실확인을 위해 6개월간 해당 개인정보를 보유합니다.</p>
         <p>※ 해지 고객의 개인정보는 상법, 전자상거래법, 세법 등 관련 법령의 규정에 따라 보존될 수 있습니다.</p>
 ]]></string>
+    <string name="wifi_title_enterPwd">WIFI 비밀번호를 입력해주세요!</string>
+    <string name="wifi_hint">password</string>
+    <string name="wifi_request">ID 발급 신청</string>
+    <string name="wifi_agree">위 내용을 이해했으며 동의합니다.</string>
 
     <string name="app_usedColor">사용된 색상</string>
     <string name="app_color_brown" translatable="false">Material Color Brown</string>
@@ -140,8 +147,5 @@
     <string name="toast_failed">인터넷 상태를 확인해 주세요.</string>
     <string name="toast_certificate_failed">인증에 실패했습니다.</string>
     <string name="toast_check_user">사용자 정보를 확인해주세요.</string>
-    <string name="wifi_title_enterPwd">WIFI 비밀번호를 입력해주세요!</string>
-    <string name="wifi_hint">password</string>
-    <string name="wifi_request">ID 발급 신청</string>
-    <string name="wifi_agree">위 내용을 이해했으며 동의합니다.</string>
+    <string name="toast_first_use">공지사항 알림이 활성화되었습니다. 설정에서 언제든 끌 수 있습니다.</string>
 </resources>

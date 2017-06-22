@@ -17,10 +17,6 @@
     <style name="SplashTheme" parent="AppTheme.NoActionBar">
         <item name="android:background">@drawable/splash</item>
     </style>
-    <!-- 브라우저 테마 -->
-    <style name="BrowserTheme" parent="AppTheme">
-        <item name="android:colorBackground">@color/kwRed</item>
-    </style>
 
     <!-- 메인 페이지에서 쓰이는 카드 스타일 -->
     <style name="CardStyle">

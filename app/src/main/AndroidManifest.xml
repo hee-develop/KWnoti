@@ -106,11 +106,12 @@
         <activity
             android:name=".BrowserActivity"
             android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="adjustPan"
             android:hardwareAccelerated="true"
-            android:launchMode="singleTop"
-            android:theme="@style/BrowserTheme" />
+            android:launchMode="singleTop" />
         <!-- =============================== 올레 와이파이 액티비티 ================================ -->
-        <activity android:name=".WifiActivity" />
+        <activity android:name=".WifiActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
