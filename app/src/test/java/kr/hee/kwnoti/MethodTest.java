@@ -35,7 +35,7 @@ public class MethodTest {
         assertEquals(false, checkPwd("abcd12@a"));
         assertEquals(false, checkPwd("@abcd12@a"));
         assertEquals(false, checkPwd("@abcd12@2"));
-        assertEquals(false, checkPwd("11AbCd"));
+        assertEquals(true, checkPwd("11AbCd"));
         assertEquals(false, checkPwd("11AbCd@"));
         assertEquals(false, checkPwd("abcd12!"));
         assertEquals(false, checkPwd("abcd@@!"));

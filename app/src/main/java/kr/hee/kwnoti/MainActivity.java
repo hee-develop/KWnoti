@@ -20,6 +20,7 @@ import kr.hee.kwnoti.settings_activity.SettingsActivity;
 import kr.hee.kwnoti.student_card_activity.StudentCardActivity;
 import kr.hee.kwnoti.tel_activity.TelActivity;
 import kr.hee.kwnoti.u_campus_activity.UCampusMainActivity;
+import kr.hee.kwnoti.wifi_activity.WifiActivity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     TextView    btn_card,       // 학생증

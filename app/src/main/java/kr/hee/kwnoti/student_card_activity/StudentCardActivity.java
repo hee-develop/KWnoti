@@ -1,6 +1,7 @@
 package kr.hee.kwnoti.student_card_activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -17,6 +18,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
@@ -44,6 +46,11 @@ public class StudentCardActivity extends Activity {
     float brightness;
     // 화면 방향
     int deviceOrientation;
+
+    /** 폰트 삽입 메소드 */
+    @Override protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

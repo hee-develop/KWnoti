@@ -110,7 +110,7 @@
             android:hardwareAccelerated="true"
             android:launchMode="singleTop" />
         <!-- =============================== 올레 와이파이 액티비티 ================================ -->
-        <activity android:name=".WifiActivity"
+        <activity android:name=".wifi_activity.WifiActivity"
             android:windowSoftInputMode="adjustPan" />
     </application>
 

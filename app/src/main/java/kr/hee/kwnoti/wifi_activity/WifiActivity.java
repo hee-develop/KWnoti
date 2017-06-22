@@ -1,6 +1,7 @@
-package kr.hee.kwnoti;
+package kr.hee.kwnoti.wifi_activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -13,7 +14,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.tsengvn.typekit.TypekitContextWrapper;
+
 import java.util.regex.Pattern;
+
+import kr.hee.kwnoti.R;
+import kr.hee.kwnoti.UTILS;
+import retrofit2.Retrofit;
 
 /** 와이파이 아이디 생성 액티비티 */
 public class WifiActivity extends Activity {
@@ -22,9 +29,15 @@ public class WifiActivity extends Activity {
     EditText password;
     Button   requestBtn;
 
+    /** 폰트 삽입 메소드 */
+    @Override protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // 뷰 초기화
         initView();
     }
 
@@ -71,6 +84,7 @@ public class WifiActivity extends Activity {
     }
 
     void requestId() {
+        Retrofit retrofit = new Retrofit.Builder().build();
 
     }
 
