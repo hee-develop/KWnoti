@@ -2,13 +2,17 @@ package kr.hee.kwnoti.food_activity;
 
 /** 캘린더 데이터를 담는 클래스 */
 class FoodData {
-    String  dayOfWeek,  // 요일
-            title,      // 조중식 혹은 석식
-            content;    // 학식
+    String type;    // 조식, 중식, 석식
+    String price;   // 학식의 가격
+    String startTime;   // 학식 운영시간
+    String endTime;
+    String[] contents;  // 학식
 
-    FoodData(String dayOfWeek, String title, String content) {
-        this.dayOfWeek = dayOfWeek;
-        this.title = title;
-        this.content = content;
+    FoodData(String type, String price, String startTime, String endTime, String[] contents) {
+        this.type = type;
+        this.price = price;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.contents = contents;
     }
 }

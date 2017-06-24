@@ -82,64 +82,46 @@ public class FoodActivity extends Activity {
                 String foodDate = doc.select("div input[id=endPeriodTime").val();
                 // TODO SharedPRef에 데이터 추가
 
-                // 학식을 JSON 형식으로 가져 옴
-                JSONObject foodArray = new JSONObject(doc.select("textarea").text());
-
-                int length = (Integer)foodArray.get("dietLength");
-                for (int i = 0; i < length; i++) {
-                    
-                }
-
-
                 // 어댑터의 모든 데이터를 삭제
                 adapter.cleanData();
 
-                /*for (int month = 1; month <= bachelorJSON.length(); month++) {
-                    // JSON Array([]) 형태를 가져 옴
-                    String monthData = bachelorJSON.get("bachelor_" + month).toString();
-                    // 배열이긴 하나 JSON Object 딸랑 하나 들어있어서 배열의 의미가 없음. 정규식을 통해 배열 해제
-                    monthData = monthData.replaceAll("\\[|\\]", "");
-                    // 배열을 해제하면 JSON Object 형태만 남으므로, 바로 대입 가능.
-                    JSONObject realData = new JSONObject(monthData);
+                // 학식을 JSON 형식으로 가져 옴
+                JSONObject foodArray = new JSONObject(doc.select("div[class=ko] > textarea").text());
 
-                    int objectSize = Integer.parseInt(realData.getString("size"));
-                    for (int number = 0; number < objectSize; number++) {
-                        // 시작일은 sd_달_번호, 종료일은 ed_달_번호
-                        String  startDay = realData.getString("sd_" + month + "_" + number),
-                                endDay   = realData.getString("ed_" + month + "_" + number),
-                                content  = realData.getString("con_" + month + "_" + number);
+                // JSON 데이터 추출
+                int length = (Integer)foodArray.get("dietLength");
 
-                        String[] startDays  = startDay.split("\\-");
-                        String[] endDays    = endDay.split("\\-");
-                        content = content.replaceAll("\\n", "");
+                for (int i = 0; i < length; i++) {
+                    JSONObject foodObject = foodArray.getJSONObject("diet_" + i);
 
-                        // 형변환 오류 수정을 위한 띄어쓰기 제거
-                        startDays[0] = startDays[0].replaceAll(" ", "");
-                        startDays[1] = startDays[1].replaceAll(" ", "");
-                        startDays[2] = startDays[2].replaceAll(" ", "");
-                        if (endDay.length() != 0) {
-                            endDays[0] = endDays[0].replaceAll(" ", "");
-                            endDays[1] = endDays[1].replaceAll(" ", "");
-                            endDays[2] = endDays[2].replaceAll(" ", "");
-                        }
+                    // 조식, 중식, 석식 구분
+                    String type = (String)foodObject.get("ti");
+                    // 학식 운영시간
+                    String startTime = (String)foodObject.get("st");
+                    String endTime   = (String)foodObject.get("et");
+                    // 가격
+                    String price     = (String)foodObject.get("p");
+                    // 학식 내용
+                    String[] foods   = new String[] {
+                            (String) foodObject.get("d1"),
+                            (String) foodObject.get("d2"),
+                            (String) foodObject.get("d3"),
+                            (String) foodObject.get("d4"),
+                            (String) foodObject.get("d5")
+                    };
 
-                        // DB에 데이터 추가
-                        FoodData data;
-                        if (endDay.length() == 0)
-                            data = new FoodData(startDays[0], startDays[1], startDays[2], content);
-                        else
-                            data = new FoodData(startDays[0], startDays[1], startDays[2],
-                                    endDays[1], endDays[2], content);
-                        db.addCalendar(data);
-                    }
+                    // DB에 학식 데이터 추가
+                    FoodData data = new FoodData(type, price, startTime, endTime, foods);
+                    db.addToDB(data);
                 }
+
                 // 파싱 성공 시 토스트 출력
                 runOnUiThread(new Runnable() {
                     @Override public void run() {
                         recyclerView.setAdapter(new FoodAdapter(CalendarActivity.this));
                         UTILS.showToast(CalendarActivity.this, getString(R.string.toast_refreshed));
                     }
-                });*/
+                });
             }
             catch (IOException e) {
                 // 파싱 실패 시 토스트 출력
@@ -148,9 +130,16 @@ public class FoodActivity extends Activity {
                         UTILS.showToast(FoodActivity.this, getString(R.string.toast_failed));
                     }
                 });
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } finally {
+            }
+            catch (JSONException e) {
+                // 데이터 캐스팅 중 오류 발생 시 토스트 출력
+                runOnUiThread(new Runnable() {
+                    @Override public void run() {
+                        UTILS.showToast(FoodActivity.this, "데이터를 얻어오는 데 문제가 발생했습니다.");
+                    }
+                });
+            }
+            finally {
                 // 파싱이 종료되면 다이얼로그 없앰
                 progressDialog.dismiss();
             }
