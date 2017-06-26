@@ -22,12 +22,17 @@ class FoodDB extends DatabaseHelper {
         SQLiteDatabase db = context.openOrCreateDatabase(DB_NAME + ".db",
                 SQLiteDatabase.CREATE_IF_NECESSARY, null);
         String query = "CREATE TABLE IF NOT EXISTS Food(" +
-                "`dayOfWeek` text not null," +
-                "`title` text not null, `content` text not null);";
+                "`foodType` text not null, " +
+                "`startTime` text not null, " +
+                "`endTime` text not null, " +
+                "`price` text not null, " +
+                "`contents` text not null);";
         /* 테이블 모양 구성 ------------------------------------
-         * dayOfWeek    요일  / 텍스트 / 길이(제한없음) / NOT NULL
-         * title        시간대 / 텍스트 / 길이(제한없음) / NOT NULL
-         * content      식단  / 텍스트 / 길이(제한없음) / NOT NULL
+         * foodType     조식,중식,석식 구분
+         * startTime    학식 운영시간
+         * endTime      학식 운영시간
+         * price        학식 가격
+         * content      식단(월화수목금 식단이 전부 들어있음)
          * -------------------------------------------------- */
         try {
             db.execSQL(query);
@@ -44,11 +49,17 @@ class FoodDB extends DatabaseHelper {
     @Override public boolean addToDB(Object value) {
         FoodData data = (FoodData)value;
 
+        String foodContent = "";
+        for (String content : data.contents)
+            foodContent += content + "|";
+
         try {
             getDB().execSQL("INSERT INTO " + DB_NAME +
-                    " VALUES(\'" + data.dayOfWeek   + "\'," +
-                    "\'" + data.title               + "\'," +
-                    "\'" + data.content             + "\');");
+                    " VALUES('" + data.type + "'," +
+                    "'" + data.startTime + "'," +
+                    "'" + data.endTime + "', " +
+                    "'" + data.price + "', " +
+                    "'" + foodContent + "');");
         }
         catch (SQLException e) {
             return false;
@@ -65,7 +76,9 @@ class FoodDB extends DatabaseHelper {
             FoodData data = new FoodData(
                     cursor.getString(0), // 요일
                     cursor.getString(1), // 시간대
-                    cursor.getString(2));// 식단
+                    cursor.getString(2), // 시간대
+                    cursor.getString(3), // 시간대
+                    cursor.getString(5).split("|"));// 식단
             ((ArrayList<FoodData>)foods).add(data);
         }
         cursor.close();

@@ -2,7 +2,9 @@ package kr.hee.kwnoti.food_activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
 
@@ -80,6 +83,13 @@ public class FoodActivity extends Activity {
 
                 // 학식 조회 기간 설정
                 String foodDate = doc.select("div input[id=endPeriodTime").val();
+
+                // 학식 유효기간 확인
+//                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//                    if (!pref.getString(KEY.FOOD_DATE, "").equals(foodDate)) {
+//                }
+//                SharedPreferences.Editor editor = pref.edit();
+//                editor.putString(KEY.FOOD_DATE, foodDate).apply();
                 // TODO SharedPRef에 데이터 추가
 
                 // 어댑터의 모든 데이터를 삭제
@@ -118,8 +128,8 @@ public class FoodActivity extends Activity {
                 // 파싱 성공 시 토스트 출력
                 runOnUiThread(new Runnable() {
                     @Override public void run() {
-                        recyclerView.setAdapter(new FoodAdapter(CalendarActivity.this));
-                        UTILS.showToast(CalendarActivity.this, getString(R.string.toast_refreshed));
+                        recyclerView.setAdapter(new FoodAdapter(FoodActivity.this));
+                        UTILS.showToast(FoodActivity.this, getString(R.string.toast_refreshed));
                     }
                 });
             }
