@@ -102,7 +102,7 @@
 ]]></string>
 
     <!-- 와이파이 액티비티 -->
-    <string name="wifi_privacy">
+    <string name="wifi_privacy" translatable="false">
 <![CDATA[
         <p><b>개인정보 수집 동의</b></p>
         <p>* 개인정보 수집,이용 목적

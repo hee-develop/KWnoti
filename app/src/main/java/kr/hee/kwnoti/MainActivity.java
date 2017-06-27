@@ -20,7 +20,6 @@ import kr.hee.kwnoti.settings_activity.SettingsActivity;
 import kr.hee.kwnoti.student_card_activity.StudentCardActivity;
 import kr.hee.kwnoti.tel_activity.TelActivity;
 import kr.hee.kwnoti.u_campus_activity.UCampusMainActivity;
-import kr.hee.kwnoti.wifi_activity.WifiActivity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     TextView    btn_card,       // 학생증
@@ -85,9 +84,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_calendar= (TextView)findViewById(R.id.main_btn_calendar);
         btn_tel     = (TextView)findViewById(R.id.main_btn_tel);
         btn_info    = (TextView)findViewById(R.id.main_btn_info);
-        //btn_food    = (TextView)findViewById(R.id.main_btn_food);
+//        btn_food    = (TextView)findViewById(R.id.main_btn_food);
         btn_uCampus = (TextView)findViewById(R.id.main_btn_uInfo);
-        btn_wifi    = (TextView)findViewById(R.id.main_btn_wifi);
+//        btn_wifi    = (TextView)findViewById(R.id.main_btn_wifi);
         btn_links   = (TextView)findViewById(R.id.main_btn_links);
         btn_settings= (TextView)findViewById(R.id.main_btn_settings);
 
@@ -97,7 +96,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_info.setOnClickListener(this);
         //btn_food.setOnClickListener(this);
         btn_uCampus.setOnClickListener(this);
-        btn_wifi.setOnClickListener(this);
+//        btn_wifi.setOnClickListener(this);
         btn_links.setOnClickListener(this);
         btn_settings.setOnClickListener(this);
     }
@@ -111,14 +110,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(new Intent(this, CalendarActivity.class)); break;
             case R.id.main_btn_tel :
                 startActivity(new Intent(this, TelActivity.class)); break;
-            /*case R.id.main_btn_food :
-                startActivity(new Intent(this, FoodActivity.class)); break;*/
+//            case R.id.main_btn_food :
+//                startActivity(new Intent(this, FoodActivity.class)); break;
             case R.id.main_btn_info :
                 startActivity(new Intent(this, InfoActivity.class)); break;
             case R.id.main_btn_uInfo :
                 startActivity(new Intent(this, UCampusMainActivity.class)); break;
-            case R.id.main_btn_wifi :
-                startActivity(new Intent(this,WifiActivity.class)); break;
+//            case R.id.main_btn_wifi :
+//                startActivity(new Intent(this,WifiActivity.class)); break;
             case R.id.main_btn_links :
                 whereToGo(); break;
             case R.id.main_btn_settings :
