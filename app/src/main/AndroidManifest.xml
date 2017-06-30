@@ -89,7 +89,7 @@
             android:name=".settings_activity.AppInfoActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.SHOW_APP_INFO" />
+                <action android:name="hee.kwnoti.intent.action.SHOW_APP_INFO" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

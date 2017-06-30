@@ -9,12 +9,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
@@ -82,27 +80,27 @@ public class FoodActivity extends Activity {
                 Document doc = Jsoup.connect(url).timeout(5000).get();
 
                 // 학식 조회 기간 설정
-                String foodDate = doc.select("div input[id=endPeriodTime").val();
+                String foodDate = doc.select("div input[id=endPeriodTime]").val();
 
                 // 학식 유효기간 확인
-//                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                    if (!pref.getString(KEY.FOOD_DATE, "").equals(foodDate)) {
-//                }
-//                SharedPreferences.Editor editor = pref.edit();
-//                editor.putString(KEY.FOOD_DATE, foodDate).apply();
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    if (!pref.getString(KEY.FOOD_DATE, "").equals(foodDate)) {
+                }
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString(KEY.FOOD_DATE, foodDate).apply();
                 // TODO SharedPRef에 데이터 추가
 
                 // 어댑터의 모든 데이터를 삭제
                 adapter.cleanData();
 
                 // 학식을 JSON 형식으로 가져 옴
-                JSONObject foodArray = new JSONObject(doc.select("div[class=ko] > textarea").text());
+                JSONObject foodArray = new JSONObject(doc.select("div.ko > textarea").text());
 
                 // JSON 데이터 추출
                 int length = (Integer)foodArray.get("dietLength");
 
                 for (int i = 0; i < length; i++) {
-                    JSONObject foodObject = foodArray.getJSONObject("diet_" + i);
+                    JSONObject foodObject = foodArray.getJSONArray("diet_" + i).getJSONObject(0);
 
                     // 조식, 중식, 석식 구분
                     String type = (String)foodObject.get("ti");

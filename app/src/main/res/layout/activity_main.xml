@@ -60,9 +60,9 @@
             android:text="@string/main_tel" />
 
         <!-- 오늘의 학식 -->
-        <!--<Button style="@style/CardStyle"
+        <Button style="@style/CardStyle"
             android:id="@+id/main_btn_food"
-            android:text="@string/main_food" />-->
+            android:text="@string/main_food" />
 
         <!--  와이파이 발급 -->
         <!--<Button style="@style/CardStyle"-->
