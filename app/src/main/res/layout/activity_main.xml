@@ -59,26 +59,27 @@
             android:id="@+id/main_btn_tel"
             android:text="@string/main_tel" />
 
-        <!-- 오늘의 학식 -->
+
+        <!--  와이파이 발급 -->
+        <!--<Button style="@style/CardStyle"-->
+        <!--android:id="@+id/main_btn_wifi"-->
+        <!--android:text="@string/main_wifi" />-->
+
+        <!--  기타 바로가기 모음 -->
+        <Button style="@style/CardStyle"
+        android:id="@+id/main_btn_links"
+        android:text="@string/main_links" />
+
+        <!-- 설정 -->
+        <Button style="@style/CardStyle"
+        android:id="@+id/main_btn_settings"
+        android:text="@string/main_settings" />
+
+        <!-- 오늘의 학식 TODO -->
         <Button style="@style/CardStyle"
             android:id="@+id/main_btn_food"
             android:visibility="gone"
             android:text="@string/main_food" />
-
-        <!--  와이파이 발급 -->
-        <!--<Button style="@style/CardStyle"-->
-            <!--android:id="@+id/main_btn_wifi"-->
-            <!--android:text="@string/main_wifi" />-->
-        
-        <!--  기타 바로가기 모음 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_links"
-            android:text="@string/main_links" />
-
-        <!-- 설정 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_settings"
-            android:text="@string/main_settings" />
 
         <!--<Button style="@style/CardStyle"-->
             <!--android:id="@+id/main_test"-->
