@@ -62,6 +62,7 @@
         <!-- 오늘의 학식 -->
         <Button style="@style/CardStyle"
             android:id="@+id/main_btn_food"
+            android:visibility="gone"
             android:text="@string/main_food" />
 
         <!--  와이파이 발급 -->
