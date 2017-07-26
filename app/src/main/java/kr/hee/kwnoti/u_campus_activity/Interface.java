@@ -8,6 +8,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 /** 최초 로그인 시 사용하는 인터페이스
@@ -78,5 +79,23 @@ public interface Interface {
             @Query("open_gwamok_no")String subjectNumber,
             @Query("open_major_code")String majorCode,
             @Query("this_year")     String thisYear*/
+    );
+
+
+
+
+    /* ===================================== 강의 계획서 검색 ====================================== */
+    @GET("webnote/lecture/h_lecture.php?layout_opt=N")
+    Call<ResponseBody> getLectureListMain();
+
+    @POST("webnote/lecture/h_lecture.php?layout_opt=N&mode=view&user_opt=&skin_opt=&show_hakbu=&sugang_opt=all&x=29&y=18&")
+    Call<ResponseBody> getLectureList(
+            @Query("hh")        String lectureName,     // 강좌명
+            @Query("prof_name") String profName,        // 교수이름
+            @Query("fsel1")     String commonSubject,   // 공통과목
+            @Query("this_year") String year,            // 검색년도
+            @Query("hakgi")     String semester,        // 검색학기
+            @Query("fsel2")     String major,           // 학과/전공
+            @Query("fsel4")     String major2           // ??
     );
 }

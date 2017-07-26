@@ -86,8 +86,8 @@
     <string name="toast_check_user">Check user\'s data.</string>
     <string name="food_title">Food</string>
     <string name="noti_unread">Touch here to open</string>
-    <string name="main_wifi">Get\\nWi-Fi</string>
-    <string name="toast_first_use">Push alarm enabled.\\nYou can disable anytime when you need.</string>
+    <string name="main_wifi">Get\nWi-Fi</string>
+    <string name="toast_first_use">Push alarm enabled.\nYou can disable anytime when you need.</string>
     <string name="wifi_agree">I agree and understand this collection and use of personal information.</string>
     <string name="wifi_hint">password</string>
     <string name="wifi_request">Application for issuance of ID</string>

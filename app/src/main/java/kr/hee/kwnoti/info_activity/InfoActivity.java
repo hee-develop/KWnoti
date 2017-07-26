@@ -1,14 +1,12 @@
 package kr.hee.kwnoti.info_activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -50,6 +50,11 @@ public class InfoActivity extends Activity {
     String groupType = options[0];       // 기본값 : 전체
     static final String[] parserOptions = { "전체", "제목", "내용", "제목 + 내용", "작성자" };
     String parserType= parserOptions[0]; // 기본값 : 전체
+
+    /** 폰트 삽입 메소드 */
+    @Override protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+    }
 
     // 다이얼로그 생성(출력이 아님!)
     @Override protected void onStart() {

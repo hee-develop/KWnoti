@@ -1,6 +1,7 @@
 package kr.hee.kwnoti;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -78,6 +79,15 @@ public class FcmService extends FirebaseMessagingService {
         NotificationManager notiManager = (NotificationManager)getSystemService(
                 NOTIFICATION_SERVICE);
 
+        // 안드로이드 8.0 이상에서 동작하는 알림 그룹 설정
+        NotificationChannel notiChannel = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            String id = "Notice";
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            notiChannel = new NotificationChannel(id, getString(R.string.app_name), importance);
+            notiManager.createNotificationChannel(notiChannel);
+        }
+
         // 누가(안드로이드 7.0) 이상에서만 동작하는 알람 그룹 설정
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Notification.Builder groupBuilder = new Notification.Builder(this)
@@ -88,6 +98,9 @@ public class FcmService extends FirebaseMessagingService {
                     .setSubText(getString(R.string.noti_unread))
                     .setGroup(GROUP_NAME)
                     .setGroupSummary(true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                groupBuilder.setChannelId("Notice");
+            }
             notiManager.notify(TAG, GROUP_ID, groupBuilder.build());
         }
 
