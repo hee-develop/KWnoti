@@ -1,7 +1,5 @@
 package kr.hee.kwnoti.info_activity;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,8 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.tsengvn.typekit.TypekitContextWrapper;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -35,8 +31,6 @@ public class InfoActivity extends ActivityLoadingBase {
     RecyclerView    recyclerView;
     InfoAdapter     adapter;
     LinearLayoutManager layoutManager;
-    // 로딩 다이얼로그
-    ProgressDialog  progressDialog;
     // 검색 뷰 친구들
     LinearLayout    search_layout;
     EditText        search_editText;
@@ -50,19 +44,6 @@ public class InfoActivity extends ActivityLoadingBase {
     String groupType = options[0];       // 기본값 : 전체
     static final String[] parserOptions = { "전체", "제목", "내용", "제목 + 내용", "작성자" };
     String parserType= parserOptions[0]; // 기본값 : 전체
-
-    /** 폰트 삽입 메소드 */
-    @Override protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
-    }
-
-    // 다이얼로그 생성(출력이 아님!)
-    @Override protected void onStart() {
-        super.onStart();
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage(getString(R.string.dialog_loading));
-    }
 
     // 메뉴 버튼 인플레이트
     @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -110,7 +91,8 @@ public class InfoActivity extends ActivityLoadingBase {
         setContentView(R.layout.activity_info);
         setTitle(R.string.info_title);
         initView();
-        // 파싱 시작 TODO join() 메소드 불가...
+
+        // 파싱 시작
         new ParserThread().start();
     }
 
@@ -176,29 +158,49 @@ public class InfoActivity extends ActivityLoadingBase {
         }
     };
 
-    @Override protected void onDestroy() {
-        super.onDestroy();
-        progressDialog.dismiss();
+    /** 로딩화면을 중간에 멈추면 스레드 제거 */
+    @Override public void loadCanceled() {
+        // 현재 동작중인 ParserThread 검색
+        ThreadGroup tg = Thread.currentThread().getThreadGroup();
+        while (true) {
+            ThreadGroup tg2 = tg.getParent();
+            if (tg2 != null) tg = tg2;
+            else break;
+        }
+        Thread[] threads = new Thread[64];
+        tg.enumerate(threads); // 현재 스레드를 배열에 삽입
+
+        // 스레드 동작 중지 요청. interrupt()를 한다고 해도 바로 종료되지는 않기 때문에 flag 추가 설정
+        for (Thread thread : threads) {
+            if (thread != null && thread.getName().equals(THREAD_NAME)) {
+                // 스레드 중지 요청
+                thread.interrupt();
+                // 스레드 내 반복문 강제 중지
+                ((ParserThread)thread).stopLoop = true;
+
+                break;
+            }
+        }
     }
 
-    @Override
-    public void loadCanceled() {
+    private final static String THREAD_NAME = "InfoThread";
 
-    }
-
-    class ParserThread extends Thread {
+    private class ParserThread extends Thread {
         static final int TIMEOUT = 10000;
         boolean noWaitForResponse = false;
+
+        // 중단에 멈추도록 해주는 플래그
+        boolean stopLoop;
 
         @Override public void run() {
             super.run();
 
+            // 스레드 이름과 플래그 초기화
+            setName(THREAD_NAME);
+            stopLoop = false;
+
             // 로딩 중 다이얼로그 표시
-            runOnUiThread(new Runnable() {
-                @Override public void run() {
-                    progressDialog.show();
-                }
-            });
+            loadStart();
 
             // 검색 기능 활성화 여부 확인 및 URL 생성
             String url = "http://www.kw.ac.kr/ko/life/notice.do?mode=list&&articleLimit=10";
@@ -248,6 +250,9 @@ public class InfoActivity extends ActivityLoadingBase {
 
                 Elements elements = doc.select("li");
                 for (Element element : elements) {
+                    // 멈추라는 신호가 있는 경우 중단
+                    if (stopLoop) return;
+
                     // 상단 공지 출력 여부 결정(다음 쪽으로 넘어갈 땐 상단 공지 제거)
                     boolean isTopNotice = element.hasClass("top-notice");
                     if (isTopNotice && !showTopNotify) continue;
@@ -270,6 +275,9 @@ public class InfoActivity extends ActivityLoadingBase {
                     adapter.addInfo(infoData);
                 }
 
+                // 멈추라는 신호가 있는 경우 중단
+                if (stopLoop) return;
+
                 // 파싱이 끝나면 데이터가 변경됐음을 알림
                 runOnUiThread(new Runnable() {
                     @Override public void run() {
@@ -288,8 +296,7 @@ public class InfoActivity extends ActivityLoadingBase {
                 });
             }
             finally {
-                // 에러가 났든 제대로 반영됐든 다이얼로그는 없애줌
-                progressDialog.dismiss();
+                loadFinish();
             }
         }
     }

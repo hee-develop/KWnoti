@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,7 +28,6 @@ public class TelActivity extends ActivityLoadingBase {
     RecyclerView    recyclerView;
     TelAdapter      adapter;
     EditText        editText;
-    ParserThread    parserThread = null;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +36,12 @@ public class TelActivity extends ActivityLoadingBase {
         // 뷰 초기화 및 다이얼로그 설정
         initView();
 
-        parserThread = new ParserThread();
-
         // 어댑터가 비어 있으면 학사일정 새로 불러오기
         if (adapter.getItemCount() == 0)
-            parserThread.start();
+            new ParserThread().start();
     }
 
+    /** 뷰 초기화 메소드 */
     void initView() {
         recyclerView = (RecyclerView)findViewById(R.id.tel_recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -72,37 +69,24 @@ public class TelActivity extends ActivityLoadingBase {
         return true;
     }
 
-    interface FuckingThread {
-        void fuck();
-    }
 
-    FuckingThread fuck = new FuckingThread() {
-        @Override
-        public void fuck() {
-
-        }
-    };
+    /* ================================= 스레드 ================================= */
+    private static final String THREAD_NAME = "TelThread";
 
     /** Jsoup을 이용한 파서 스레드 */
-    private final class ParserThread extends Thread implements FuckingThread {
-        @Override public void fuck() {
-
-        }
-
-        public ParserThread() {
-            Log.d("스레드2", this.getId() + " 번");
-        }
+    private final class ParserThread extends Thread {
+        // 스레드를 멈추는지 여부를 판단할 플래그
+        boolean stopLoop;
 
         @Override public void run() {
             super.run();
-            // 로딩 중 다이얼로그 표시
-            runOnUiThread(new Runnable() {
-                @Override public void run() {
-                    loadStart();
-                }
-            });
+            // 플래그 및 스레드 이름 설정
+            stopLoop = false;
+            setName(THREAD_NAME);
 
-            Log.d("스레드3", this.getId() + " 번");
+            // 로딩 다이얼로그 표시
+            loadStart();
+
 
             TelDB db = new TelDB(TelActivity.this);
 
@@ -117,6 +101,9 @@ public class TelActivity extends ActivityLoadingBase {
 
                 String groupName = null;
                 for (Element element : elements) {
+                    // 멈추라는 신호가 있는 경우 중단
+                    if (stopLoop) return;
+
                     String[] content = element.toString().split(">|<");
                     // 제목인 경우
                     if (content[1].contains("dt")) {
@@ -132,6 +119,9 @@ public class TelActivity extends ActivityLoadingBase {
                         db.addTel(telData);
                     }
                 }
+
+                // 멈추라는 신호가 있는 경우 중단
+                if (stopLoop) return;
 
                 // 어댑터에 데이터 적용 및 새로고침 알림
                 runOnUiThread(new Runnable() {
@@ -165,17 +155,26 @@ public class TelActivity extends ActivityLoadingBase {
 
     /** 로딩화면을 중간에 멈추면 스레드 제거 */
     @Override public void loadCanceled() {
-        if (parserThread != null) {
-            parserThread.interrupt();
-            Toast.makeText(this, "HIHI", Toast.LENGTH_SHORT).show();
-
-            Log.d("스레드1", parserThread.getId() + " 번");
+        // 현재 동작중인 ParserThread 검색
+        ThreadGroup tg = Thread.currentThread().getThreadGroup();
+        while (true) {
+            ThreadGroup tg2 = tg.getParent();
+            if (tg2 != null) tg = tg2;
+            else break;
         }
-    }
+        Thread[] threads = new Thread[64];
+        tg.enumerate(threads); // 현재 스레드를 배열에 삽입
 
-    // 다이얼로그 메모리 유출 방지
-    @Override protected void onDestroy() {
-        super.onDestroy();
-        loadFinish();
+        // 스레드 동작 중지 요청. interrupt()를 한다고 해도 바로 종료되지는 않기 때문에 flag 추가 설정
+        for (Thread thread : threads) {
+            if (thread != null && thread.getName().equals(THREAD_NAME)) {
+                // 스레드 중지 요청
+                thread.interrupt();
+                // 스레드 내 반복문 강제 중지
+                ((ParserThread)thread).stopLoop = true;
+
+                break;
+            }
+        }
     }
 }

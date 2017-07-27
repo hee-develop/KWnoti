@@ -6,14 +6,15 @@
     android:gravity="center">
     <ImageView
         android:id="@+id/loading_gif"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:src="@drawable/loading" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/dialog_loading"
         android:textSize="12sp"
-        android:textColor="@color/gray500" />
+        android:textColor="@color/gray200" />
 </LinearLayout>
