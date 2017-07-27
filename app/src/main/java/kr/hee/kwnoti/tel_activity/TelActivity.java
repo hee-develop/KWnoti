@@ -1,16 +1,17 @@
 package kr.hee.kwnoti.tel_activity;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
+import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,15 +20,16 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+import kr.hee.kwnoti.ActivityLoadingBase;
 import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
 
 /** 교내 전화번호 액티비티 */
-public class TelActivity extends Activity {
+public class TelActivity extends ActivityLoadingBase {
     RecyclerView    recyclerView;
     TelAdapter      adapter;
     EditText        editText;
-    ProgressDialog progressDialog;
+    ParserThread    parserThread = null;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +38,11 @@ public class TelActivity extends Activity {
         // 뷰 초기화 및 다이얼로그 설정
         initView();
 
+        parserThread = new ParserThread();
+
         // 어댑터가 비어 있으면 학사일정 새로 불러오기
         if (adapter.getItemCount() == 0)
-            new ParserThread().start();
+            parserThread.start();
     }
 
     void initView() {
@@ -55,11 +59,6 @@ public class TelActivity extends Activity {
                 return true;
             }
         });
-
-        // 로딩 다이얼로그 설정
-        progressDialog = new ProgressDialog(TelActivity.this);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage(getString(R.string.dialog_loading));
     }
 
     // 메뉴 버튼 인플레이트
@@ -73,16 +72,37 @@ public class TelActivity extends Activity {
         return true;
     }
 
+    interface FuckingThread {
+        void fuck();
+    }
+
+    FuckingThread fuck = new FuckingThread() {
+        @Override
+        public void fuck() {
+
+        }
+    };
+
     /** Jsoup을 이용한 파서 스레드 */
-    class ParserThread extends Thread {
+    private final class ParserThread extends Thread implements FuckingThread {
+        @Override public void fuck() {
+
+        }
+
+        public ParserThread() {
+            Log.d("스레드2", this.getId() + " 번");
+        }
+
         @Override public void run() {
             super.run();
             // 로딩 중 다이얼로그 표시
             runOnUiThread(new Runnable() {
                 @Override public void run() {
-                    progressDialog.show();
+                    loadStart();
                 }
             });
+
+            Log.d("스레드3", this.getId() + " 번");
 
             TelDB db = new TelDB(TelActivity.this);
 
@@ -129,16 +149,33 @@ public class TelActivity extends Activity {
                     }
                 });
             }
-            finally {
-                progressDialog.dismiss();
+            catch (SQLiteDatabaseLockedException e) {
+                // 너무 많은 클릭에 대한 토스트 출력
+                runOnUiThread(new Runnable() {
+                    @Override public void run() {
+                        UTILS.showToast(TelActivity.this, "오류입니다. 다시 시도해주세요.");
+                    }
+                });
             }
+            finally {
+                loadFinish();
+            }
+        }
+    }
+
+    /** 로딩화면을 중간에 멈추면 스레드 제거 */
+    @Override public void loadCanceled() {
+        if (parserThread != null) {
+            parserThread.interrupt();
+            Toast.makeText(this, "HIHI", Toast.LENGTH_SHORT).show();
+
+            Log.d("스레드1", parserThread.getId() + " 번");
         }
     }
 
     // 다이얼로그 메모리 유출 방지
     @Override protected void onDestroy() {
         super.onDestroy();
-        if (progressDialog.isShowing())
-            progressDialog.dismiss();
+        loadFinish();
     }
 }

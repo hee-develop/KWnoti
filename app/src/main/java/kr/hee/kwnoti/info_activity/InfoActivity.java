@@ -1,6 +1,5 @@
 package kr.hee.kwnoti.info_activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,10 +26,11 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+import kr.hee.kwnoti.ActivityLoadingBase;
 import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
 
-public class InfoActivity extends Activity {
+public class InfoActivity extends ActivityLoadingBase {
     // 리사이클러 뷰 친구들
     RecyclerView    recyclerView;
     InfoAdapter     adapter;
@@ -179,6 +179,11 @@ public class InfoActivity extends Activity {
     @Override protected void onDestroy() {
         super.onDestroy();
         progressDialog.dismiss();
+    }
+
+    @Override
+    public void loadCanceled() {
+
     }
 
     class ParserThread extends Thread {
