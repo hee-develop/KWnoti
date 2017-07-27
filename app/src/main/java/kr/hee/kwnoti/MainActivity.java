@@ -1,7 +1,5 @@
 package kr.hee.kwnoti;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.tsengvn.typekit.TypekitContextWrapper;
 
 import kr.hee.kwnoti.calendar_activity.CalendarActivity;
 import kr.hee.kwnoti.food_activity.FoodActivity;
@@ -23,7 +20,7 @@ import kr.hee.kwnoti.tel_activity.TelActivity;
 import kr.hee.kwnoti.u_campus_activity.UCampusMainActivity;
 import kr.hee.kwnoti.wifi_activity.WifiActivity;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends ActivityBase implements View.OnClickListener {
     TextView    btn_card,       // 학생증
                 btn_calendar,   // 학사일정
                 btn_tel,        // 교내 전화번호
@@ -34,11 +31,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 btn_links,      // 바로가기 모음
                 btn_settings;   // 설정
     boolean     weatherActive;  // 실시간 날씨 사용 여부
-
-    /** 폰트 삽입 메소드 */
-    @Override protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
-    }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
