@@ -15,12 +15,12 @@
         <!-- 상단 마크 및 날씨 레이아웃 -->
         <RelativeLayout
             android:layout_width="@dimen/card_size_x3"
-            android:layout_height="56dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
             android:layout_columnSpan="3">
             <ImageView
-                android:layout_width="180dp"
+                android:layout_width="168dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ci"
                 android:layout_centerHorizontal="true"
