@@ -33,8 +33,8 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.net.URLDecoder;
 
-import kr.hee.kwnoti.u_campus_activity.Interface;
-import kr.hee.kwnoti.u_campus_activity.UCampusConnection;
+import kr.hee.kwnoti.u_campus_activity.UCamConnectionInterface;
+import kr.hee.kwnoti.u_campus_activity.UCamConnection;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,7 +96,7 @@ public class BrowserActivity extends Activity {
         if (actionBar != null) actionBar.show();
 
         // 유캠퍼스 접속 인터페이스 생성
-        Interface request = UCampusConnection.getInstance().getUCamInterface();
+        UCamConnectionInterface request = UCamConnection.getInstance().getUCamInterface();
         // 접속을 위한 데이터 추출
         String url = uCampusData.getString(KEY.BROWSER_URL);
         String bdSeq = uCampusData.getString(KEY.BROWSER_DATA);
@@ -176,7 +176,7 @@ public class BrowserActivity extends Activity {
                 .append("&this_year=").append(year);
 
         // 유캠퍼스 로그인
-        final Interface request = UCampusConnection.getInstance().getUCamInterface();
+        final UCamConnectionInterface request = UCamConnection.getInstance().getUCamInterface();
 
         // 스레드를 통해 강의계획서를 불러옴
         new Thread(new Runnable() {

@@ -31,7 +31,7 @@ public class UCampusMainActivity extends Activity {
     // 로그인을 위한 데이터와 Retrofit 인터페이스
     private String stuId;
     private String stuPwd;
-    Interface request;
+    UCamConnectionInterface request;
 
     // 로그인 스레드
     LoginThread loginThread;
@@ -57,7 +57,7 @@ public class UCampusMainActivity extends Activity {
         stuPwd  = pref.getString(getString(R.string.key_studentUCampusPassword), "");
 
         // 로그인 시도
-        request = UCampusConnection.getInstance().getUCamInterface(this);
+        request = UCamConnection.getInstance().getUCamInterface(this);
         loginThread = new LoginThread();
         loginThread.start();
         // 유캠퍼스 접속 시도

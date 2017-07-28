@@ -8,8 +8,8 @@ public abstract class ActivityLoadingBase extends ActivityBase {
     public void loadStart() {
         runOnUiThread(new Runnable() {
             @Override public void run() {
-                ApplicationBase.getInstance().loadStart(ActivityLoadingBase.this);
-                ApplicationBase.getInstance().attachCancelListener(cancelListener);
+                BaseApplication.getInstance().loadStart(ActivityLoadingBase.this);
+                BaseApplication.getInstance().attachCancelListener(cancelListener);
             }
         });
     }
@@ -18,7 +18,7 @@ public abstract class ActivityLoadingBase extends ActivityBase {
     public void loadFinish() {
         runOnUiThread(new Runnable() {
             @Override public void run() {
-                ApplicationBase.getInstance().loadFinish();
+                BaseApplication.getInstance().loadFinish();
             }
         });
     }

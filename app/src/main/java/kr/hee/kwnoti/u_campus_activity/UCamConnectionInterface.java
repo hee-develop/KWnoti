@@ -13,7 +13,7 @@ import retrofit2.http.Url;
 
 /** 최초 로그인 시 사용하는 인터페이스
  * POST 로그인을 사용하며 Response 에서 쿠키값만 가져오는 용도로 사용한다 */
-public interface Interface {
+public interface UCamConnectionInterface {
     /* ====================================== 유캠퍼스 로그인 ====================================== */
     String LOGIN_URL = "http://info.kw.ac.kr/";
     @FormUrlEncoded @POST("webnote/login/login_proc.php")

@@ -1,7 +1,6 @@
 package kr.hee.kwnoti.u_campus_activity;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,40 +8,40 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
 /** 유캠퍼스 연결 객체를 만드는 클래스 */
-public final class UCampusConnection {
+public final class UCamConnection {
     //싱글톤 객체
-    private final static UCampusConnection connection = new UCampusConnection();
-    private UCampusConnection() { }
-    public static UCampusConnection getInstance() {
+    private final static UCamConnection connection = new UCamConnection();
+    private UCamConnection() { }
+    public static UCamConnection getInstance() {
         return connection;
     }
 
     private void UCampusContextInit(Context context) {
         if (context == null) return;
 
-        if (UCampusConnection.context == null)
-            UCampusConnection.context = context;
+        if (UCamConnection.context == null)
+            UCamConnection.context = context;
     }
 
     private void UCampusInit() {
         getUCamLoginRetrofit();     // Retrofit 객체 생성
-        getUCamLoginInterface();    // Interface 객체 생성
+        getUCamLoginInterface();    // UCamConnectionInterface 객체 생성
     }
 
     private static Context context;
     private static Retrofit retrofit = null;
-    private static Interface uCampusInterface = null;
+    private static UCamConnectionInterface uCamConnectionInterface = null;
 
-    public Interface getUCamInterface() throws NoContextException {
+    public UCamConnectionInterface getUCamInterface() throws NoContextException {
         if (context == null)
             throw new NoContextException("Context가 null입니다.");
 
         // 인터페이스가 정의돼있지 않다면 생성
-        if (uCampusInterface == null)
+        if (uCamConnectionInterface == null)
             UCampusInit();
-        return uCampusInterface;
+        return uCamConnectionInterface;
     }
-    public Interface getUCamInterface(Context context) {
+    public UCamConnectionInterface getUCamInterface(Context context) {
         UCampusContextInit(context);
         return getUCamInterface();
     }
@@ -58,11 +57,11 @@ public final class UCampusConnection {
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10000, TimeUnit.MILLISECONDS)
                 .addNetworkInterceptor(cookieAdder).addInterceptor(cookieInterceptor).build();
         // Retrofit 빌드
-        retrofit = new Retrofit.Builder().client(client).baseUrl(Interface.LOGIN_URL).build();
+        retrofit = new Retrofit.Builder().client(client).baseUrl(UCamConnectionInterface.LOGIN_URL).build();
     }
 
     /** 유캠퍼스 접속을 위한 Retrofit interface 생성 메소드 */
     private void getUCamLoginInterface() {
-        uCampusInterface = retrofit.create(Interface.class);
+        uCamConnectionInterface = retrofit.create(UCamConnectionInterface.class);
     }
 }

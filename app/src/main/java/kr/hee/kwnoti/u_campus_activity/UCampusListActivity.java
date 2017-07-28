@@ -29,7 +29,7 @@ public class UCampusListActivity extends Activity {
     UCampusListAdapter adapter;
     LinearLayoutManager layoutManager;
 
-    Interface request;
+    UCamConnectionInterface request;
 
     ProgressDialog progressDialog;
 
@@ -67,7 +67,7 @@ public class UCampusListActivity extends Activity {
             finish();
         }
         else {
-            request = UCampusConnection.getInstance().getUCamInterface();
+            request = UCamConnection.getInstance().getUCamInterface();
 
             new ParserThread(parcel).start();
         }

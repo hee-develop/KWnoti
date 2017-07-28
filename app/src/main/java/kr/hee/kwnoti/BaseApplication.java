@@ -12,11 +12,11 @@ import android.widget.ImageView;
 import com.tsengvn.typekit.Typekit;
 
 /** 폰트 적용을 위한 어플리케이션 베이스 클래스 */
-public class ApplicationBase extends Application {
-    private static ApplicationBase applicationBase;
+public class BaseApplication extends Application {
+    private static BaseApplication baseApplication;
 
-    public static ApplicationBase getInstance() {
-        return applicationBase;
+    public static BaseApplication getInstance() {
+        return baseApplication;
     }
 
     @Override public void onCreate() {
@@ -26,7 +26,7 @@ public class ApplicationBase extends Application {
                 .addNormal(Typekit.createFromAsset(this, "NanumBarunGothicLight.otf"))
                 .addBold(Typekit.createFromAsset(this, "NanumBarunGothic.otf"))
                 .add("ExtraBold", Typekit.createFromAsset(this, "NanumBarunGothicBold.otf"));
-        applicationBase = this;
+        baseApplication = this;
     }
 
     private Dialog loadingDialog;
