@@ -82,7 +82,7 @@ class TelAdapter extends RecyclerView.Adapter {
         }
         // 그룹 내 데이터에 대한 XML 인플레이트
         else {
-            View view = inflater.inflate(R.layout.recycler_content, parent, false);
+            View view = inflater.inflate(R.layout.card_tel, parent, false);
             return new ContentViewHolder(view);
         }
     }
