@@ -1,7 +1,6 @@
 package kr.hee.kwnoti;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -11,14 +10,6 @@ import android.text.Html;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.concurrent.TimeUnit;
-
-import kr.hee.kwnoti.u_campus_activity.AddCookieInterceptor;
-import kr.hee.kwnoti.u_campus_activity.Interface;
-import kr.hee.kwnoti.u_campus_activity.ReceivedCookieInterceptor;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
 
 /** 프로젝트에서 자주 쓰이는 기능들을 모아 둔 클래스 */
 public final class UTILS {
@@ -76,17 +67,17 @@ public final class UTILS {
      * @param context    로그인을 시도하는 액티비티
      * @param baseUrl    로그인을 시도 할 URL
      * @return           만들어진 Interface 객체(이 객체로 연결을 시도할 수 있음) */
-    public static Interface makeRequestClientForUCampus(Context context, String baseUrl) {
-        // 유캠퍼스 로그인을 위한 쿠키(반응과 요청에 대한 인터셉터)
-        AddCookieInterceptor cookieAdder = new AddCookieInterceptor(context);
-        ReceivedCookieInterceptor cookieInterceptor = new ReceivedCookieInterceptor(context);
-        // 인터셉터가 추가된 클라이언트를 반환
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10000, TimeUnit.MILLISECONDS)
-                .addNetworkInterceptor(cookieAdder).addInterceptor(cookieInterceptor).build();
-        // Retrofit 빌드
-        Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(baseUrl).build();
-        return retrofit.create(Interface.class);
-    }
+//    public static Interface makeRequestClientForUCampus(Context context, String baseUrl) {
+//        // 유캠퍼스 로그인을 위한 쿠키(반응과 요청에 대한 인터셉터)
+//        AddCookieInterceptor cookieAdder = new AddCookieInterceptor(context);
+//        ReceivedCookieInterceptor cookieInterceptor = new ReceivedCookieInterceptor(context);
+//        // 인터셉터가 추가된 클라이언트를 반환
+//        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10000, TimeUnit.MILLISECONDS)
+//                .addNetworkInterceptor(cookieAdder).addInterceptor(cookieInterceptor).build();
+//        // Retrofit 빌드
+//        Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(baseUrl).build();
+//        return retrofit.create(Interface.class);
+//    }
 
     // ============================ 사용자 정보가 들어 있는지 확인해주는 메소드 ===========================
     /** SharedPreferences 내부에 사용자 정보가 있는지 확인하는 메소드

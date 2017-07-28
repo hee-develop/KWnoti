@@ -57,7 +57,7 @@ public class UCampusMainActivity extends Activity {
         stuPwd  = pref.getString(getString(R.string.key_studentUCampusPassword), "");
 
         // 로그인 시도
-        request = UTILS.makeRequestClientForUCampus(this, Interface.LOGIN_URL);
+        request = UCampusConnection.getInstance().getUCamInterface(this);
         loginThread = new LoginThread();
         loginThread.start();
         // 유캠퍼스 접속 시도
@@ -67,7 +67,7 @@ public class UCampusMainActivity extends Activity {
     /** 리사이클러 뷰 초기화 및 다이얼로그 생성 메소드 */
     void initView() {
         // 리사이클러 뷰 설정
-        recyclerView = (RecyclerView)findViewById(R.id.ucampus_recyclerView);
+        recyclerView = (RecyclerView)findViewById(R.id.uCamMain_recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2열 그리드
         recyclerView.setAdapter(adapter = new UCampusMainAdapter(this));
         // 다이얼로그 생성

@@ -67,7 +67,7 @@ public class UCampusListActivity extends Activity {
             finish();
         }
         else {
-            request = UTILS.makeRequestClientForUCampus(this, Interface.LOGIN_URL);
+            request = UCampusConnection.getInstance().getUCamInterface();
 
             new ParserThread(parcel).start();
         }
