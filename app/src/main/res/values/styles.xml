@@ -56,4 +56,30 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/gray300</item>
     </style>
+
+    <!-- 강의계획서 검색에 쓰이는 표 스타일 -->
+    <style name="LectureSearch_cellStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:weightSum">1</item>
+    </style>
+    <style name="LectureSearch_titleStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="LectureSearch_contentStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.8</item>
+        <item name="android:layout_marginEnd">4dp</item>
+    </style>
+    <style name="LectureSearch_spinnerContentStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.3</item>
+    </style>
 </resources>

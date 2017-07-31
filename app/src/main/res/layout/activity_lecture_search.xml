@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="kr.hee.kwnoti.u_campus_activity.LectureSearchActivity">
-
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout style="@style/LectureSearch_cellStyle">
+            <TextView style="@style/LectureSearch_titleStyle"
+                android:text="강의명" />
+            <EditText style="@style/LectureSearch_contentStyle"
+                android:id="@+id/lecture_edit_lectureTitle" />
+        </LinearLayout>
+        <LinearLayout style="@style/LectureSearch_cellStyle">
+            <TextView style="@style/LectureSearch_titleStyle"
+                android:text="교수이름" />
+            <EditText style="@style/LectureSearch_contentStyle"
+                android:id="@+id/lecture_edit_professor" />
+        </LinearLayout>
+        <LinearLayout style="@style/LectureSearch_cellStyle">
+            <TextView style="@style/LectureSearch_titleStyle"
+                android:text="검색년도" />
+            <Spinner style="@style/LectureSearch_spinnerContentStyle"
+                android:id="@+id/lecture_spinner_year" />
+            <TextView style="@style/LectureSearch_titleStyle"
+                android:text="검색학기" />
+            <Spinner style="@style/LectureSearch_spinnerContentStyle"
+                android:id="@+id/lecture_spinner_semester" />
+        </LinearLayout>
+        <LinearLayout style="@style/LectureSearch_cellStyle">
+            <TextView style="@style/LectureSearch_titleStyle"
+                android:text="공통과목" />
+            <Spinner style="@style/LectureSearch_contentStyle"
+                android:layout_marginEnd="0dp"
+                android:id="@+id/lecture_spinner_common"/>
+        </LinearLayout>
+        <LinearLayout style="@style/LectureSearch_cellStyle">
+            <TextView style="@style/LectureSearch_titleStyle"
+                android:text="학과/전공" />
+            <Spinner style="@style/LectureSearch_contentStyle"
+                android:layout_marginEnd="0dp"
+                android:id="@+id/lecture_spinner_major" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/lecture_btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="검색!" />
+        <View style="@style/Line" android:layout_width="match_parent" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lecture_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp" />
+</LinearLayout>

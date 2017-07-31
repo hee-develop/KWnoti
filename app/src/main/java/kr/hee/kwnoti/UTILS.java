@@ -66,8 +66,8 @@ public final class UTILS {
     /** 유캠퍼스 로그인을 위해 쿠키 인터셉터를 추가해주는 메소드
      * @param context    로그인을 시도하는 액티비티
      * @param baseUrl    로그인을 시도 할 URL
-     * @return           만들어진 Interface 객체(이 객체로 연결을 시도할 수 있음) */
-//    public static Interface makeRequestClientForUCampus(Context context, String baseUrl) {
+     * @return           만들어진 UCamConnectionInterface 객체(이 객체로 연결을 시도할 수 있음) */
+//    public static UCamConnectionInterface makeRequestClientForUCampus(Context context, String baseUrl) {
 //        // 유캠퍼스 로그인을 위한 쿠키(반응과 요청에 대한 인터셉터)
 //        AddCookieInterceptor cookieAdder = new AddCookieInterceptor(context);
 //        ReceivedCookieInterceptor cookieInterceptor = new ReceivedCookieInterceptor(context);
@@ -76,7 +76,7 @@ public final class UTILS {
 //                .addNetworkInterceptor(cookieAdder).addInterceptor(cookieInterceptor).build();
 //        // Retrofit 빌드
 //        Retrofit retrofit = new Retrofit.Builder().client(client).baseUrl(baseUrl).build();
-//        return retrofit.create(Interface.class);
+//        return retrofit.create(UCamConnectionInterface.class);
 //    }
 
     // ============================ 사용자 정보가 들어 있는지 확인해주는 메소드 ===========================
