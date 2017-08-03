@@ -21,15 +21,42 @@
             <EditText style="@style/LectureSearch_contentStyle"
                 android:id="@+id/lecture_edit_professor" />
         </LinearLayout>
-        <LinearLayout style="@style/LectureSearch_cellStyle">
-            <TextView style="@style/LectureSearch_titleStyle"
-                android:text="검색년도" />
-            <Spinner style="@style/LectureSearch_spinnerContentStyle"
-                android:id="@+id/lecture_spinner_year" />
-            <TextView style="@style/LectureSearch_titleStyle"
-                android:text="검색학기" />
-            <Spinner style="@style/LectureSearch_spinnerContentStyle"
-                android:id="@+id/lecture_spinner_semester" />
+        <LinearLayout style="@style/LectureSearch_cellStyle"
+            android:layout_marginTop="8dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="검색년도" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/lecture_spinner_year" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="검색학기" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/lecture_spinner_semester" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         </LinearLayout>
         <LinearLayout style="@style/LectureSearch_cellStyle">
             <TextView style="@style/LectureSearch_titleStyle"

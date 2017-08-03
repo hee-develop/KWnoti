@@ -28,10 +28,10 @@ public interface KEY {
     String BROWSER_FROM_LECTURE_NOTE = "BrowserFromLectureNote";
     String BROWSER_URL          = "BrowserURL";
     String BROWSER_TITLE        = "BrowserTitle";
+    String BROWSER_INCLUDE_URL = "BrowserIncludeLectureUrl";
 
     // 학생증 사진 파일 이름
     String STUDENT_IMAGE    = "stuImage.jpg";
-
     // 학식 데이터의 유효기간
     String FOOD_DATE        = "foodDate";
 }

@@ -33,8 +33,8 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.net.URLDecoder;
 
-import kr.hee.kwnoti.u_campus_activity.UCamConnectionInterface;
 import kr.hee.kwnoti.u_campus_activity.UCamConnection;
+import kr.hee.kwnoti.u_campus_activity.UCamConnectionInterface;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -154,26 +154,33 @@ public class BrowserActivity extends Activity {
             UTILS.showToast(this, "잘못된 접근입니다.");
             return;
         }
-        
-        // 강의 ID를 분리해 URL 인자로 사용
-        final char[] year   = { subjectId[1], subjectId[2], subjectId[3], subjectId[4] };
-        final char   semester= subjectId[5];
-        final char[] subjId  = { subjectId[6], subjectId[7], subjectId[8], subjectId[9] },
-                     major   = { subjectId[10], subjectId[11], subjectId[12], subjectId[13] },
-                     subClass= { subjectId[14], subjectId[15] };
-        final char   grade   = subjectId[16];
 
-        // URL 쿼리 삽입
-        final StringBuilder sbURL = new StringBuilder("http://info.kw.ac.kr/");
-        sbURL.append("webnote/lecture/h_lecture01_2.php?layout_opt=N&engineer_code=&skin_opt=&")
-                .append("fsel1_code=&fsel1_str=&fsel2_code=&fsel2_str=&fsel2=00_00&")
-                .append("fsel3=&fsel4=00_00&hh=&sugang_opt=all&tmp_key=tmp__stu&")
-                .append("bunban_no=").append(subClass)
-                .append("&hakgi=").append(semester)
-                .append("&open_grade=").append(grade)
-                .append("&open_gwamok_no=").append(subjId)
-                .append("&open_major_code=").append(major)
-                .append("&this_year=").append(year);
+        final StringBuilder sbURL = new StringBuilder("http://info.kw.ac.kr/webnote/lecture/");
+        if (!lectureNoteData.getBoolean(KEY.BROWSER_INCLUDE_URL)) {
+            // 강의 ID를 분리해 URL 인자로 사용
+            final char[] year   = { subjectId[1], subjectId[2], subjectId[3], subjectId[4] };
+            final char   semester= subjectId[5];
+            final char[] subjId  = { subjectId[6], subjectId[7], subjectId[8], subjectId[9] },
+                    major   = { subjectId[10], subjectId[11], subjectId[12], subjectId[13] },
+                    subClass= { subjectId[14], subjectId[15] };
+            final char   grade   = subjectId[16];
+
+            // URL 쿼리 삽입
+            sbURL.append("h_lecture01_2.php?layout_opt=N&engineer_code=&skin_opt=&")
+                    .append("fsel1_code=&fsel1_str=&fsel2_code=&fsel2_str=&fsel2=00_00&")
+                    .append("fsel3=&fsel4=00_00&hh=&sugang_opt=all&tmp_key=tmp__stu&")
+                    .append("bunban_no=").append(subClass)
+                    .append("&hakgi=").append(semester)
+                    .append("&open_grade=").append(grade)
+                    .append("&open_gwamok_no=").append(subjId)
+                    .append("&open_major_code=").append(major)
+                    .append("&this_year=").append(year);
+        }
+        else {
+            sbURL.append(lectureNoteData.getString(KEY.BROWSER_DATA));
+        }
+        
+
 
         // 유캠퍼스 로그인
         final UCamConnectionInterface request = UCamConnection.getInstance().getUCamInterface();
