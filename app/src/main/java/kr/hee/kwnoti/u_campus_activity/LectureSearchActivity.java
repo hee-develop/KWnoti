@@ -1,11 +1,11 @@
 package kr.hee.kwnoti.u_campus_activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,8 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.hee.kwnoti.ActivityLoadingBase;
-import kr.hee.kwnoti.BrowserActivity;
-import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
 import okhttp3.ResponseBody;
@@ -38,6 +36,9 @@ public class LectureSearchActivity extends ActivityLoadingBase {
     EditText     lectureTitle, professorName;
     RecyclerView recyclerView;
     Button       button;
+
+    // 강의계획서 리스트를 위한 변수
+    LectureListAdapter lectureAdapter;
 
     // 유캠퍼스 접속을 위한 인터페이스와 콜 객체
     UCamConnectionInterface uCamInterface;
@@ -103,16 +104,16 @@ public class LectureSearchActivity extends ActivityLoadingBase {
                 // 스피너에 값을 넣기 위해 데이터 추출 및 삽입
                 Document doc = Jsoup.parse(html);
                 Elements years = doc.select("select[name=this_year] > option");
-                addToArray(years, YEAR);
+                addToSpinnerArray(years, YEAR);
 
                 Elements semesters = doc.select("select[name=hakgi] > option");
-                addToArray(semesters, SEMESTER);
+                addToSpinnerArray(semesters, SEMESTER);
 
                 Elements fsel1 = doc.select("select[name=fsel1] > option");
-                addToArray(fsel1, COMMON);
+                addToSpinnerArray(fsel1, COMMON);
 
                 Elements fsel2 = doc.select("select[name=fsel2] > option");
-                addToArray(fsel2, MAJOR);
+                addToSpinnerArray(fsel2, MAJOR);
             }
 
             @Override public void onFailure(Call<ResponseBody> call, Throwable t) {
@@ -134,43 +135,12 @@ public class LectureSearchActivity extends ActivityLoadingBase {
         recyclerView = (RecyclerView)findViewById(R.id.lecture_recyclerView);
         button       = (Button)findViewById(R.id.lecture_btn_search);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(LectureSearchActivity.this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(lectureAdapter = new LectureListAdapter(LectureSearchActivity.this));
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                loadStart();
-
-                String year     = (adapterDatas[YEAR].get(spinners[YEAR].getSelectedItemPosition())).value;
-                String semester = (adapterDatas[SEMESTER].get(spinners[SEMESTER].getSelectedItemPosition())).value;
-                String common   = (adapterDatas[COMMON].get(spinners[COMMON].getSelectedItemPosition())).value;
-                String major    = (adapterDatas[MAJOR].get(spinners[MAJOR].getSelectedItemPosition())).value;
-
-                call = uCamInterface.getLectureList(
-                        lectureTitle.getText().toString(),
-                        professorName.getText().toString(),
-                        common, year, semester, major, "00_00");
-                call.enqueue(new Callback<ResponseBody>() {
-                    @Override public void onResponse(Call<ResponseBody> call, Response<ResponseBody> res) {
-                        String html = getBodyFromResponse(res);
-
-                        Document doc = Jsoup.parse(html);
-                        Elements lectures = doc.select("table a[href^=h_lecture]");
-
-                        for (Element element : lectures) {
-
-                        }
-
-                        Intent intent = new Intent(LectureSearchActivity.this, BrowserActivity.class);
-                        intent.putExtra(KEY.BROWSER_FROM_LECTURE_NOTE, true);
-                        intent.putExtra(KEY.BROWSER_INCLUDE_URL, true);
-//                        intent.putExtra(KEY.BROWSER_URL, url);
-
-                        loadFinish();
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                    }
-                });
+                new LectureSearchThread().start();
             }
         });
 
@@ -188,7 +158,7 @@ public class LectureSearchActivity extends ActivityLoadingBase {
     /** 강의계획서 검색 데이터를 스피너의 ArrayList 변수에 삽입하는 메소드
      * @param elements    삽입할 데이터
      * @param index       ArrayList 배열에서의 index */
-    void addToArray(Elements elements, final int index) {
+    void addToSpinnerArray(Elements elements, final int index) {
         for (Element element : elements) {
             String value = element.attr("value");
             String text = element.text();
@@ -225,5 +195,72 @@ public class LectureSearchActivity extends ActivityLoadingBase {
     }
 
 
+    private class LectureSearchThread extends Thread {
 
+
+        @Override public void run() {
+            super.run();
+
+            // 다이얼로그 생성
+            loadStart();
+
+            // 스피너로부터 값을 가져옴
+            String year     = (adapterDatas[YEAR].get(spinners[YEAR].getSelectedItemPosition())).value;
+            String semester = (adapterDatas[SEMESTER].get(spinners[SEMESTER].getSelectedItemPosition())).value;
+            String common   = (adapterDatas[COMMON].get(spinners[COMMON].getSelectedItemPosition())).value;
+            String major    = (adapterDatas[MAJOR].get(spinners[MAJOR].getSelectedItemPosition())).value;
+
+            // 강의계획서 검색 객체 생성
+            call = uCamInterface.getLectureList(
+                    lectureTitle.getText().toString(),  // 강의명
+                    professorName.getText().toString(), // 교수명
+                    common, year, semester, major, "00_00"); // 기타등등
+
+            try {
+                // 동기로 요청(스레드로 생성하기
+                Response<ResponseBody> response = call.execute();
+
+                // HTML 추출
+                String html = getBodyFromResponse(response);
+
+                // JSoup 파싱 진행
+                Document doc = Jsoup.parse(html);
+//                Elements lectures = doc.select("table a[href^=h_lecture]");
+                Elements lectures = doc.select("table tr");
+
+                // 강의 당 하나씩 리사이클러 뷰 객체 생성
+                for (Element element : lectures) {
+                    // 강의계획서와 관련되지 않은 내용은 제외
+                    if (!element.hasAttr("onmouseover")) continue;
+
+                    Elements lecture = element.select("td");
+                    LectureData data = new LectureData(
+                            lecture.get(0).text(), // 학정번호
+                            lecture.get(1).text(), // 과목명
+                            lecture.get(3).text(), // 교과목 구분
+                            lecture.get(4).text(), // 학점/시간
+                            lecture.get(5).text(), // 교수
+                            lecture.get(1).select("a").attr("href") // URL
+                    );
+
+                    lectureAdapter.addData(data);
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override public void run() {
+                        lectureAdapter.notifyDataSetChanged();
+//                        recyclerView.setAdapter(lectureAdapter);
+                    }
+                });
+            }
+            catch (IOException e) {
+                UTILS.showToast(LectureSearchActivity.this, getString(R.string.toast_loadFailed));
+//                e.printStackTrace();
+                return;
+            }
+            finally {
+                loadFinish();
+            }
+        }
+    }
 }

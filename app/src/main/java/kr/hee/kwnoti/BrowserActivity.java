@@ -148,15 +148,15 @@ public class BrowserActivity extends Activity {
 
     /** 강의자료를 표시하는 메소드 */
     void loadLectureNote(Bundle lectureNoteData) {
-        // 강의 ID 추출 및 예외처리
-        char[] subjectId = lectureNoteData.getString(KEY.BROWSER_DATA, "").toCharArray();
-        if (subjectId.length == 0) {
-            UTILS.showToast(this, "잘못된 접근입니다.");
-            return;
-        }
-
         final StringBuilder sbURL = new StringBuilder("http://info.kw.ac.kr/webnote/lecture/");
         if (!lectureNoteData.getBoolean(KEY.BROWSER_INCLUDE_URL)) {
+            // 강의 ID 추출 및 예외처리
+            char[] subjectId = lectureNoteData.getString(KEY.BROWSER_DATA, "").toCharArray();
+            if (subjectId.length == 0) {
+                UTILS.showToast(this, "잘못된 접근입니다.");
+                return;
+            }
+
             // 강의 ID를 분리해 URL 인자로 사용
             final char[] year   = { subjectId[1], subjectId[2], subjectId[3], subjectId[4] };
             final char   semester= subjectId[5];
@@ -177,7 +177,7 @@ public class BrowserActivity extends Activity {
                     .append("&this_year=").append(year);
         }
         else {
-            sbURL.append(lectureNoteData.getString(KEY.BROWSER_DATA));
+            sbURL.append(lectureNoteData.getString(KEY.BROWSER_URL));
         }
         
 
@@ -194,6 +194,10 @@ public class BrowserActivity extends Activity {
                     Response<ResponseBody> response = call.execute();
                     String resBody = new String(response.body().bytes(), "EUC-KR");
                     resBody = resBody.replaceAll("width=750", "width=100%");
+                    resBody = resBody.replace("<script type=\"text/javascript\" src=\"/style/common.js\"></script>",
+                            "<style>body, table {" +
+                                    "font-size: 1.2em;"
+                                    + "}</style>");
 
                     final String finalResBody = resBody;
                     runOnUiThread(new Runnable() {
