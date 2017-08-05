@@ -61,14 +61,14 @@
 
 
         <!-- 와이파이 발급 -->
-        <Button style="@style/CardStyle"
-        android:id="@+id/main_btn_wifi"
-        android:text="@string/main_wifi" />
+        <!--<Button style="@style/CardStyle"-->
+        <!--android:id="@+id/main_btn_wifi"-->
+        <!--android:text="@string/main_wifi" />-->
 
         <!-- 오늘의 학식 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_food"
-            android:text="@string/main_food" />
+        <!--<Button style="@style/CardStyle"-->
+            <!--android:id="@+id/main_btn_food"-->
+            <!--android:text="@string/main_food" />-->
 
         <!-- 설정 -->
         <Button style="@style/CardStyle"
