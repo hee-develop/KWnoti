@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "kr.hee.kwnoti"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 12
-        versionName "0.94"
+        versionCode 13
+        versionName "0.95"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -41,6 +41,5 @@ dependencies {
     compile 'com.google.firebase:firebase-ads:10.0.1'
     testCompile 'junit:junit:4.12'
 }
-
 
 apply plugin: 'com.google.gms.google-services'
