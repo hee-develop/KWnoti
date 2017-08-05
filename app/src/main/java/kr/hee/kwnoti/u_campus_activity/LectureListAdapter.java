@@ -67,4 +67,13 @@ class LectureListAdapter extends RecyclerView.Adapter<LectureListVH> {
         array.add(data);
         return true;
     }
+
+    /** 어댑터 데이터를 지우는 메소드 */
+    boolean cleanData() {
+        if (array == null || array.size() == 0)
+            return false;
+
+        array = new ArrayList<>();
+        return true;
+    }
 }

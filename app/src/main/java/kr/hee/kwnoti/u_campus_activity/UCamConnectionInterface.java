@@ -88,14 +88,15 @@ public interface UCamConnectionInterface {
     @GET("webnote/lecture/h_lecture.php?layout_opt=N")
     Call<ResponseBody> getLectureListMain();
 
+    @FormUrlEncoded
     @POST("webnote/lecture/h_lecture.php?layout_opt=N&mode=view&user_opt=&skin_opt=&show_hakbu=&sugang_opt=all&x=29&y=18&")
     Call<ResponseBody> getLectureList(
-            @Query("hh")        String lectureName,     // 강좌명
-            @Query("prof_name") String profName,        // 교수이름
-            @Query("fsel1")     String commonSubject,   // 공통과목
-            @Query("this_year") String year,            // 검색년도
-            @Query("hakgi")     String semester,        // 검색학기
-            @Query("fsel2")     String major,           // 학과/전공
-            @Query("fsel4")     String major2           // ??
+            @Field(value = "hh", encoded = true)        String lectureName,     // 강좌명
+            @Query(value = "prof_name", encoded = true) String profName,        // 교수이름
+            @Query(value = "fsel1", encoded = true)     String commonSubject,   // 공통과목
+            @Query(value = "this_year", encoded = true) String year,            // 검색년도
+            @Query(value = "hakgi", encoded = true)     String semester,        // 검색학기
+            @Query(value = "fsel2", encoded = true)     String major,           // 학과/전공
+            @Query(value = "fsel4", encoded = true)     String major2           // ??
     );
 }

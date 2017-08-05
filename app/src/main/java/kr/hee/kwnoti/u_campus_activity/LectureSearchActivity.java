@@ -19,6 +19,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -196,13 +198,14 @@ public class LectureSearchActivity extends ActivityLoadingBase {
 
 
     private class LectureSearchThread extends Thread {
-
-
         @Override public void run() {
             super.run();
 
             // 다이얼로그 생성
             loadStart();
+
+            // 어댑터 내 데이터 삭제
+            lectureAdapter.cleanData();
 
             // 스피너로부터 값을 가져옴
             String year     = (adapterDatas[YEAR].get(spinners[YEAR].getSelectedItemPosition())).value;
@@ -211,10 +214,27 @@ public class LectureSearchActivity extends ActivityLoadingBase {
             String major    = (adapterDatas[MAJOR].get(spinners[MAJOR].getSelectedItemPosition())).value;
 
             // 강의계획서 검색 객체 생성
-            call = uCamInterface.getLectureList(
-                    lectureTitle.getText().toString(),  // 강의명
-                    professorName.getText().toString(), // 교수명
-                    common, year, semester, major, "00_00"); // 기타등등
+            try {
+                call = uCamInterface.getLectureList(
+                        URLEncoder.encode(lectureTitle.getText().toString(), "EUC-KR"), // 강의명
+                        URLEncoder.encode(professorName.getText().toString(), "EUC-KR"),// 교수명
+                        URLEncoder.encode(common, "EUC-KR"),
+                        URLEncoder.encode(year, "EUC-KR"),
+                        URLEncoder.encode(semester, "EUC-KR"),
+                        URLEncoder.encode(major, "EUC-KR"),
+                        URLEncoder.encode("00_00", "EUC-KR"));                          // 기타등등
+            }
+            catch (UnsupportedEncodingException e) {
+                runOnUiThread(new Runnable() {
+                    @Override public void run() {
+                        UTILS.showToast(LectureSearchActivity.this, "");
+                    }
+                });
+            }
+            finally {
+                if (call == null) return;
+            }
+
 
             try {
                 // 동기로 요청(스레드로 생성하기
