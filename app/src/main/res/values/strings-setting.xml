@@ -61,6 +61,11 @@
         <br>&nbsp;&nbsp; Copyright 2008 by Niall Gallagher
         <br>&nbsp;&nbsp; via Apache License 2.0
 
+        <br><b>uCrop</b>
+        <br>&nbsp;&nbsp; <a href="https://github.com/Yalantis/uCrop">https://github.com/Yalantis/uCrop</a>
+        <br>&nbsp;&nbsp; https://github.com/Yalantis/uCrop
+        <br>&nbsp;&nbsp; via Apache License 2.0
+
         <br><b>Typekit</b>
         <br>&nbsp;&nbsp; <a href="https://github.com/tsengvn/typekit">https://github.com/tsengvn/typekit</a>
         <br>&nbsp;&nbsp; Copyright © 2015 Hien Ngo
@@ -70,6 +75,8 @@
         <br>&nbsp;&nbsp; <a href="https://github.com/hdodenhof/CircleImageView">https://github.com/hdodenhof/CircleImageView</a>
         <br>&nbsp;&nbsp; Copyright 2014 - 2017 Henning Dodenhof
         <br>&nbsp;&nbsp; via Apache License 2.0
+
+        <br><b>..and RecyclerView, Constraint Layout, CardView.</b>
 ]]></string>
     <string name="app_usedColor">사용된 색상</string>
     <string name="app_color_brown" translatable="false">Material Color Brown</string>
