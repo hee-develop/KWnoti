@@ -32,7 +32,7 @@ public final class UCamConnection {
     private static Retrofit retrofit = null;
     private static UCamConnectionInterface uCamConnectionInterface = null;
 
-    public UCamConnectionInterface getUCamInterface() throws NoContextException {
+    private UCamConnectionInterface getUCamInterface() throws NoContextException {
         if (context == null)
             throw new NoContextException("Context가 null입니다.");
 
@@ -42,7 +42,8 @@ public final class UCamConnection {
         return uCamConnectionInterface;
     }
     public UCamConnectionInterface getUCamInterface(Context context) {
-        UCampusContextInit(context);
+        if (UCamConnection.context == null)
+            UCampusContextInit(context);
         return getUCamInterface();
     }
 

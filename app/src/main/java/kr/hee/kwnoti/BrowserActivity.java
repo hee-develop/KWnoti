@@ -89,6 +89,8 @@ public class BrowserActivity extends Activity {
         onNewIntent(getIntent());
     }
 
+    UCamConnectionInterface request;
+
     /** 유캠퍼스의 내용을 표시하는 메소드 */
     void loadUcampus(Bundle uCampusData) {
         // 액션바 생성
@@ -96,7 +98,8 @@ public class BrowserActivity extends Activity {
         if (actionBar != null) actionBar.show();
 
         // 유캠퍼스 접속 인터페이스 생성
-        UCamConnectionInterface request = UCamConnection.getInstance().getUCamInterface();
+        if (request == null)
+            request = UCamConnection.getInstance().getUCamInterface(BrowserActivity.this);
         // 접속을 위한 데이터 추출
         String url = uCampusData.getString(KEY.BROWSER_URL);
         String bdSeq = uCampusData.getString(KEY.BROWSER_DATA);
@@ -183,7 +186,8 @@ public class BrowserActivity extends Activity {
 
 
         // 유캠퍼스 로그인
-        final UCamConnectionInterface request = UCamConnection.getInstance().getUCamInterface();
+        if (request == null)
+            request = UCamConnection.getInstance().getUCamInterface(BrowserActivity.this);
 
         // 스레드를 통해 강의계획서를 불러옴
         new Thread(new Runnable() {
@@ -196,7 +200,7 @@ public class BrowserActivity extends Activity {
                     resBody = resBody.replaceAll("width=750", "width=100%");
                     resBody = resBody.replace("<script type=\"text/javascript\" src=\"/style/common.js\"></script>",
                             "<style>body, table {" +
-                                    "font-size: 1.2em;"
+                                    "font-size: 1.4em;"
                                     + "}</style>");
 
                     final String finalResBody = resBody;

@@ -1,7 +1,5 @@
 package kr.hee.kwnoti.u_campus_activity;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -174,7 +172,7 @@ public class UCampusMainActivity extends ActivityLoadingBase {
         void setViewData(String html) throws IOException {
             Document doc = Jsoup.parse(html);
             if (doc.text().equals(""))
-                throw new IOException();
+                throw new IOException("Blank body.");
 
             // 수강 과목 및 데이터 추출
             Elements elements = doc.select("table.main_box").last().select("td.list_txt");

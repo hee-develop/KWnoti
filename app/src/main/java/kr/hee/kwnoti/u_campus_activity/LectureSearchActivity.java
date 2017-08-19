@@ -91,7 +91,7 @@ public class LectureSearchActivity extends ActivityLoadingBase {
         initView();
 
         // 스피너 데이터를 위한 사전 작업
-        uCamInterface = UCamConnection.getInstance().getUCamInterface();
+        uCamInterface = UCamConnection.getInstance().getUCamInterface(LectureSearchActivity.this);
         call = uCamInterface.getLectureListMain();
         call.enqueue(new Callback<ResponseBody>() {
             @Override public void onResponse(Call<ResponseBody> call, Response<ResponseBody> res) {

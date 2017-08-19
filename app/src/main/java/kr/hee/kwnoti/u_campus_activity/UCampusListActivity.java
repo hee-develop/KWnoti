@@ -67,7 +67,7 @@ public class UCampusListActivity extends Activity {
             finish();
         }
         else {
-            request = UCamConnection.getInstance().getUCamInterface();
+            request = UCamConnection.getInstance().getUCamInterface(UCampusListActivity.this);
 
             new ParserThread(parcel).start();
         }
