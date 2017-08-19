@@ -25,12 +25,10 @@
 -dontwarn retrofit2.Platform$Java8
 -keepattributes Signature
 -keepattributes Exceptions
-
 -dontwarn okio.**
 -keep class retrofit2.** { *; }
 -keep class retrofit2.converter.simplexml.** { *; }
 -keep class org.simpleframework.xml.** { *; }
-
 -keepclassmembers class kr.hee.kwnoti.** { *; }
 
 # UCrop
@@ -43,3 +41,6 @@
 
 # ZXing
 -keeppackagenames com.google.zxing
+
+# Firebase
+-keeppackagenames com.google.firebase
