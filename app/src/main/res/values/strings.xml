@@ -2,6 +2,18 @@
     <string name="app_name">광운알리미</string>
     <string name="ad_unit_id" translatable="false">ca-app-pub-2752313248012612~7871776859</string>
 
+    <!-- Preferences 키값 -->
+    <string name="key_studentID" translatable="false">stuID</string>
+    <string name="key_studentName" translatable="false">stuName</string>
+    <string name="key_studentMajor" translatable="false">stuMajor</string>
+    <string name="key_studentImage" translatable="false">stuImage</string>
+    <string name="key_studentUCampusPassword" translatable="false">stuUPwd</string>
+    <string name="key_studentLibraryPassword" translatable="false">stuLibPwd</string>
+    <string name="key_pushActive" translatable="false">pushActive</string>
+    <string name="key_pushVibrator" translatable="false">vibratorActive</string>
+    <string name="key_pushSound" translatable="false">ringtoneActive</string>
+    <string name="key_weatherService" translatable="false">weatherActive</string>
+
     <!-- 브라우저 액티비티 -->
     <string name="browser_description_fab">뒤로가기 버튼</string>
 
@@ -46,62 +58,6 @@
     <string name="tel_accessibility_refresh">새로고침</string>
     <string name="tel_search_telNum">전화번호 검색</string>
 
-    <!-- 설정 액티비티 -->
-    <string name="setting_group_user">개인정보 관리</string>
-    <string name="setting_id">학번</string>
-    <string name="setting_name">이름</string>
-    <string name="setting_major">전공</string>
-    <string name="setting_u_pwd">유캠퍼스 비밀번호</string>
-    <string name="setting_image">학생증 사진 설정</string>
-    <string name="setting_summary_image">학생증 사진을 수정할 수 있습니다.</string>
-    <string name="setting_group_push">공지사항 푸쉬 알림</string>
-    <string name="setting_send_push">공지사항 알림 받기</string>
-    <string name="setting_send_push_on">공지사항을 푸쉬 알람으로 받습니다.</string>
-    <string name="setting_send_push_off">공지사항을 푸쉬 알람으로 받지 않습니다.</string>
-    <string name="setting_push_ringtone">소리 설정</string>
-    <string name="setting_push_ringtone_on">알림을 받으면 알림음이 울립니다.</string>
-    <string name="setting_push_ringtone_off">알림을 받아도 알림음이 울리지 않습니다.</string>
-    <string name="setting_push_vibrate">진동 설정</string>
-    <string name="setting_push_vibrate_on">알람을 받으면 진동이 울립니다.</string>
-    <string name="setting_push_vibrate_off">알람을 받아도 진동이 울리지 않습니다.</string>
-    <string name="setting_push_filter">알림 필터 설정</string>
-    <string name="setting_push_filter_description">특정 단어가 포함된 알림은 차단할 수 있습니다.</string>
-    <string name="setting_etc">기타</string>
-    <string name="setting_etc_appInfo">앱 정보</string>
-    <!-- 알림 필터 액티비티 -->
-    <string name="filter_add_tags">태그를 입력하여 추가합니다. (ex: 입찰)</string>
-    <string name="filter_guide">아래의 문구가 포함된 알람은 수신하지 않습니다.</string>
-    <string name="toast_tags_max_length_is">태그의 최대 길이는\n한글 10자 / 영문 30자입니다.</string>
-    <string name="toast_tags_same_found">중복된 태그가 있습니다.</string>
-    <!-- 앱 정보 액티비티 -->
-    <string name="app_story">더 이상 공지사항을 놓치지 마세요!
-        \n"광운알리미"는 공지사항을 자주 놓쳐 알림이 왔으면 좋겠다는 생각으로 만든 앱입니다.
-        \n유캠퍼스를 비롯해, 학사일정, 전화번호부 등 유용하게 쓸 수 있는 다양한 기능들을 지원하고 있습니다.
-        비록 공식 앱은 아니지만, 정보 부서에서 협의 및 허가를 받은 앱이므로 안심하고 쓰셔도 된답니다.
-        \n광운대 대표 앱이 되는 그날까지!! 많이 이용해주세요ㅎㅎ 감사합니다~! :)
-        \n\n※ 광운알리미에 작성된 개인 정보(유캠퍼스 비밀번호 등)는 휴대폰 내에만 저장됩니다.
-        \n※ 학생증을 이용하기 위해선 중앙도서관 어플을 사용한 적이 있어야 합니다(서버 인증 방식이라 어쩔수가 없네요ㅠㅠ).
-    </string>
-    <string name="app_openSource">사용된 오픈소스</string>
-    <string name="app_openSource_sourceList" translatable="false">
-<![CDATA[
-        <b>Jsoup (<a href="https://jsoup.org">https://jsoup.org</a>)</b>
-        <br>&nbsp; Copyright 2009-2016 by Jonathan Hedley
-        <br>&nbsp; via MIT License
-        <br><b>Zebra Crossing (<a href="https://github.com/zxing/zxing">https://github.com/zxing/zxing</a>)</b>
-        <br>&nbsp; Copyright 2014 by ZXing
-        <br>&nbsp; via Apache License 2.0
-        <br><b>Retrofit (<a href="https://square.github.io/retrofit">https://square.github.io/retrofit</a>)</b>
-        <br>&nbsp; Copyright 2013 by Square, Inc.
-        <br>&nbsp; via Apache License 2.0
-        <br><b>Simple (<a href="http://simple.sourceforge.net">http://simple.sourceforge.net</a>)</b>
-        <br>&nbsp; Copyright 2008 by Niall Gallagher
-        <br>&nbsp; via Apache License 2.0
-        <br><b>Typekit (<a href="https://github.com/tsengvn/typekit">https://github.com/tsengvn/typekit</a>)</b>
-        <br>&nbsp; Copyright 2015 by Hien Ngo
-        <br>&nbsp; via Apache License 2.0
-]]></string>
-
     <!-- 와이파이 액티비티 -->
     <string name="wifi_privacy" translatable="false">
 <![CDATA[
@@ -120,23 +76,6 @@
     <string name="wifi_hint">password</string>
     <string name="wifi_request">ID 발급 신청</string>
     <string name="wifi_agree">위 내용을 이해했으며 동의합니다.</string>
-
-    <string name="app_usedColor">사용된 색상</string>
-    <string name="app_color_brown" translatable="false">Material Color Brown</string>
-    <string name="app_color_amber" translatable="false">Material Color Amber</string>
-    <string name="app_color_gray" translatable="false">Material Color Gray</string>
-
-    <!-- Preferences 키값 -->
-    <string name="key_studentID" translatable="false">stuID</string>
-    <string name="key_studentName" translatable="false">stuName</string>
-    <string name="key_studentMajor" translatable="false">stuMajor</string>
-    <string name="key_studentImage" translatable="false">stuImage</string>
-    <string name="key_studentUCampusPassword" translatable="false">stuUPwd</string>
-    <string name="key_studentLibraryPassword" translatable="false">stuLibPwd</string>
-    <string name="key_pushActive" translatable="false">pushActive</string>
-    <string name="key_pushVibrator" translatable="false">vibratorActive</string>
-    <string name="key_pushSound" translatable="false">ringtoneActive</string>
-    <string name="key_weatherService" translatable="false">weatherActive</string>
 
     <!-- Toast & Dialog -->
     <string name="noti_unread">여기를 클릭하면 펼쳐집니다.</string>
