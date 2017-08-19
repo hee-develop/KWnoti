@@ -63,4 +63,9 @@ public interface WifiInterface {
             @Field("user_gbn")				String user_gbn,
             @Field("userid")				String userid
     );
+
+    /*---------------와이파이 데이터 로드-----------------*/
+    String WIFI_URL = "http://midbas.wifi.olleh.com/";
+    @GET("http://midbas.wifi.olleh.com/user/join_info/user_reg.asp")
+    Call<ResponseBody> getWifi();
 }
