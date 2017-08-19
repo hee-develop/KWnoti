@@ -1,50 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@drawable/bg_id_landscape"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
     tools:context="kr.hee.kwnoti.student_card_activity.StudentCardActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_id_landscape">
 
-    <ImageView
-        android:id="@+id/studentCard_portrait"
-        android:layout_width="133dp"
-        android:layout_height="171dp"
-        android:src="@drawable/no_image"
-        android:padding="3dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="78dp"
-        android:layout_alignParentStart="true" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/studentCard_portrait"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="48dp"
+            android:src="@drawable/no_image"
+            app:civ_border_width="0px" />
 
-    <TableLayout
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:weightSum="5"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/studentCard_portrait"
-        android:layout_marginStart="8dp"
-        android:id="@+id/tableLayout">
-        <TableRow android:layout_margin="8dp">
-            <TextView style="@style/StudentCard_titleStyle"
-                android:text="@string/studentCard_id" />
-            <TextView style="@style/StudentCard_textStyle"
-                android:id="@+id/studentCard_ID" />
-        </TableRow>
-        <View style="@style/Line" />
-        <TableRow android:layout_margin="8dp">
-            <TextView style="@style/StudentCard_titleStyle"
-                android:text="@string/studentCard_name" />
-            <TextView style="@style/StudentCard_textStyle"
-                android:id="@+id/studentCard_name" />
-        </TableRow>
-        <View style="@style/Line" />
-        <TableRow android:layout_margin="8dp">
-            <TextView style="@style/StudentCard_titleStyle"
-                android:text="@string/studentCard_major" />
-            <TextView style="@style/StudentCard_textStyle"
-                android:id="@+id/studentCard_major" />
-        </TableRow>
-    </TableLayout>
-</RelativeLayout>
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:weightSum="6"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="32dp"
+            android:paddingBottom="40dp">
+            <TableRow android:layout_margin="12dp">
+                <TextView style="@style/StudentCard_titleStyle"
+                    android:text="@string/studentCard_id" />
+                <TextView style="@style/StudentCard_textStyle"
+                    android:id="@+id/studentCard_ID" />
+            </TableRow>
+            <TableRow android:layout_margin="12dp">
+                <TextView style="@style/StudentCard_titleStyle"
+                    android:text="@string/studentCard_name" />
+                <TextView style="@style/StudentCard_textStyle"
+                    android:id="@+id/studentCard_name" />
+            </TableRow>
+            <TableRow android:layout_margin="12dp">
+                <TextView style="@style/StudentCard_titleStyle"
+                    android:text="@string/studentCard_major" />
+                <TextView style="@style/StudentCard_textStyle"
+                    android:id="@+id/studentCard_major" />
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+</LinearLayout>

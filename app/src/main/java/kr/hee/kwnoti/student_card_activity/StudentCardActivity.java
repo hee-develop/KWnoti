@@ -126,6 +126,22 @@ public class StudentCardActivity extends Activity {
         }
         // 가로 화면
         else {
+            int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
+            int newUiOptions = uiOptions;
+            boolean isImmersiveModeEnabled = ((uiOptions | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY) == uiOptions);
+//            if (isImmersiveModeEnabled) {
+//                Log.i(TAG, “Turning immersive mode mode off. “);
+//            } else {
+//                Log.i(TAG, “Turning immersive mode mode on.”);
+//            }
+            newUiOptions ^= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+            newUiOptions ^= View.SYSTEM_UI_FLAG_FULLSCREEN;
+            newUiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            getWindow().getDecorView().setSystemUiVisibility(newUiOptions);
+
+//            requestWindowFeature(Window.FEATURE_NO_TITLE);
+//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.activity_student_card);
 
             studentImage = (ImageView)findViewById(R.id.studentCard_portrait);
