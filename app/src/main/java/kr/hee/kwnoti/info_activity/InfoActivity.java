@@ -9,11 +9,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ActionMenuView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -27,6 +30,9 @@ import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
 
 public class InfoActivity extends ActivityLoadingBase {
+    Toolbar toolbar;
+    TextView toolbar_title;
+
     // 리사이클러 뷰 친구들
     RecyclerView    recyclerView;
     InfoAdapter     adapter;
@@ -48,6 +54,20 @@ public class InfoActivity extends ActivityLoadingBase {
     // 메뉴 버튼 인플레이트
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_info, menu);
+
+        RelativeLayout toolbarLayout = (RelativeLayout)toolbar.getChildAt(0);
+        ActionMenuView menuView = (ActionMenuView)toolbar.getChildAt(2);
+//        menuView.setOrientation(LinearLayout.HORIZONTAL);
+//        menuView.getLayoutParams()
+
+        toolbar.removeView(menuView);
+        toolbarLayout.addView(menuView);
+
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)menuView.getLayoutParams();
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE);
+//        layoutParams.width = 1500;
+        menuView.setLayoutParams(layoutParams);
+
         return true;
     }
 
@@ -89,6 +109,16 @@ public class InfoActivity extends ActivityLoadingBase {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+
+        toolbar = (Toolbar)findViewById(R.id.toolbar_view);
+        toolbar_title = (TextView)findViewById(R.id.kwtoolbar_title);
+        setActionBar(toolbar);
+//        getActionBar().setDisplayShowTitleEnabled(false);
+//        getActionBar().setDisplayShowTitleEnabled(false);
+//        getActionBar().setDisplayShowCustomEnabled(true);
+//        getActionBar().setDisplayUseLogoEnabled(false);
+//        getActionBar().setDisplayShowHomeEnabled(false);
+
         setTitle(R.string.info_title);
         initView();
 
