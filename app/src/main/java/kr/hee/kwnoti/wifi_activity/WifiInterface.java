@@ -65,10 +65,88 @@ public interface WifiInterface {
     );
 
     /*---------------와이파이 신청 입력양식 로드-----------------*/
-    String WIFI_URL = "http://midbas.wifi.olleh.com/";
+    String WIFI_REG_URL = "http://midbas.wifi.olleh.com/";
     @GET("http://midbas.wifi.olleh.com/user/join_info/user_reg.asp")
     Call<ResponseBody> getWifi();
 
     /*---------------와이파이발급5단계-----------------*/
-    
+    String USER_REG_URL = "http://midbas.wifi.olleh.com/";
+    @FormUrlEncoded @POST("user/join_info/user_reg_chk.asp")
+    Call<ResponseBody> getReg(
+    		@Field("agreePrv")				String agreePrv,	// 동의 여부(on,off)
+    		@Field("cellphone1")			String cellphone1,	// 휴대전화1(010)
+    		@Field("cellphone2")			String cellphone2,	// 휴대전화2
+    		@Field("cellphone3")			String cellphone3,	// 휴대전화3
+    		@Field("department")			String department,	// 부서
+    		@Field("domain")				String domain,		// 도메인인(기본은 kwu)
+    		@Field("email")					String email,		// 이메일
+    		@Field("end_date")	@Nullable	String end_date,	// 종료날짜(여기서는 빈칸)
+    		@Field("gbn")					String gbn,			// 날짜 단위(일:d, 월:m)
+    		@Field("mycoid")				String mycoid,		// 학번
+    		@Field("name")					String name,		// 이름
+    		@Field("nespass")				String nespass,		// 요구비밀번호(미설정상태)
+    		@Field("outerflag")				String outerflag,	// 플래그(기본은 1)
+    		@Field("phone1")	@Nullable	String phone1,
+    		@Field("phone2")	@Nullable	String phone2,
+    		@Field("position")				String position,
+    		@Field("start_date")			String start_date,	// 시작 날짜
+    		@Field("usergbn1")				String usergbn1,	// 사용자 유형(학생은 1)
+    		@Field("want")		@Nullable	String want
+    );
+
+    /*---------------와이파이발급6단계-----------------*/
+    String USER_REG_URL_SEC = "http://midbas.wifi.olleh.com/";
+    @FormUrlEncoded @POST("user/join_info/user_reg_chk.asp")
+    Call<ResponseBody> getRegSec(
+    		@Field("agreePrv")				String agreePrv,	// 동의 여부(on,off)
+    		@Field("cellphone1")			String cellphone1,	// 휴대전화1(010)
+    		@Field("cellphone2")			String cellphone2,	// 휴대전화2
+    		@Field("cellphone3")			String cellphone3,	// 휴대전화3
+    		@Field("department")			String department,	// 부서
+    		@Field("domain")				String domain,		// 도메인인(기본은 kwu)
+    		@Field("email")					String email,		// 이메일
+    		@Field("end_date")	@Nullable	String end_date,	// 종료날짜(여기서는 빈칸)
+    		@Field("gbn")					String gbn,			// 날짜 단위(일:d, 월:m)
+    		@Field("mycoid")				String mycoid,		// 학번
+    		@Field("name")					String name,		// 이름
+    		@Field("nespass")				String nespass,		// 요구비밀번호(미설정상태)
+    		@Field("outerflag")				String outerflag,	// 플래그(기본은 1)
+    		@Field("phone1")	@Nullable	String phone1,
+    		@Field("phone2")	@Nullable	String phone2,
+    		@Field("position")				String position,
+    		@Field("start_date")			String start_date,	// 시작 날짜
+    		@Field("usergbn1")				String usergbn1,	// 사용자 유형(학생은 1)
+    		@Field("want")					String want			// 원하는지 (기본은 1)
+    );
+
+    /*---------------와이파이발급7단계-----------------*/
+    String USER_REG_URL_THRD= "http://midbas.wifi.olleh.com/";
+    @FormUrlEncoded @POST("user/join_info/user_reg_proc.asp")
+    Call<ResponseBody> getRegThrd(
+    		@Field("agreePrv")				String agreePrv,	// 동의 여부(on,off)
+    		@Field("cellphone1")			String cellphone1,	// 휴대전화1(010)
+    		@Field("cellphone2")			String cellphone2,	// 휴대전화2
+    		@Field("cellphone3")			String cellphone3,	// 휴대전화3
+    		@Field("department")			String department,	// 부서
+    		@Field("domain")				String domain,		// 도메인인(기본은 kwu)
+    		@Field("email")					String email,		// 이메일
+    		@Field("end_date")				String end_date,	// 종료날짜(출발날짜로부터 +gbn * outerflag)
+    		@Field("gbn")					String gbn,			// 날짜 단위(일:d, 월:m)
+    		@Field("mycoid")				String mycoid,		// 학번
+    		@Field("name")					String name,		// 이름
+    		@Field("nespass")				String nespass,		// 요구비밀번호
+    		@Field("outerflag")				String outerflag,	// 플래그(기본은 1)
+    		@Field("phone1")	@Nullable	String phone1,
+    		@Field("phone2")	@Nullable	String phone2,
+    		@Field("position")				String position,
+    		@Field("start_date")			String start_date,	// 시작 날짜
+    		@Field("usergbn1")				String usergbn1,	// 사용자 유형(학생은 1)
+    		@Field("want")					String want			// 원하는지 (기본은 1)
+    );
+ 	
+
+ 	/*---------------와이파이 신청 입력양식 로드-----------------*/
+    String WIFI_URL = "http://midbas.wifi.olleh.com/";
+    @GET("http://midbas.wifi.olleh.com/user/join_info/user_reg_result1.asp")
+    Call<ResponseBody> getWifiResult();
 }
