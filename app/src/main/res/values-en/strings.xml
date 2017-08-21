@@ -30,7 +30,7 @@
     <string name="card_info_new">New notify</string>
 
     <!-- 유캠퍼스 액티비티 -->
-    <string name="ucampus_title">U-CAMPUS</string>
+    <string name="uCam_title">U-CAMPUS</string>
 
     <!-- 학사일정 액티비티 -->
     <string name="calendar_title">Schedule</string>
@@ -59,4 +59,6 @@
     <string name="wifi_request">Application for issuance of ID</string>
     <string name="wifi_title_enterPwd">Enter Wi-Fi password.</string>
     <string name="setting_privacy_policy">Privacy Policy</string>
+    <string name="uCam_lectures_noContent">No content.</string>
+    <string name="uCam_main_search">Search lecture note</string>
 </resources>
