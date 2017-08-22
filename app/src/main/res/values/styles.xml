@@ -6,6 +6,7 @@
         <item name="android:colorAccent">@color/amberA400</item>
         <item name="android:colorBackground">@color/white</item>
         <item name="android:navigationBarColor">?android:attr/colorPrimary</item>
+        <item name="android:actionMenuTextColor">?android:attr/colorPrimary</item>
     </style>
     <!-- 상단바 없는 테마 -->
     <style name="AppTheme.NoActionBar">
