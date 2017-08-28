@@ -145,7 +145,7 @@ public interface WifiInterface {
     );
  	
 
- 	/*---------------와이파이 신청 입력양식 로드-----------------*/
+ 	/*---------------와이파이 신청 결과물 로드-----------------*/
     String WIFI_URL = "http://midbas.wifi.olleh.com/";
     @GET("http://midbas.wifi.olleh.com/user/join_info/user_reg_result1.asp")
     Call<ResponseBody> getWifiResult();
