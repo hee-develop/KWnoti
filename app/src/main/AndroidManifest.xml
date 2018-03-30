@@ -68,6 +68,7 @@
         <!-- ================================= 공지사항 액티비티 ================================== -->
         <activity
             android:name=".info_activity.InfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize" />
         <!-- ================================= 학사일정 액티비티 ================================== -->
         <activity android:name=".calendar_activity.CalendarActivity" />

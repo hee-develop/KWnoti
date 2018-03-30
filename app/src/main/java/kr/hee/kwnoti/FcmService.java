@@ -1,7 +1,6 @@
 package kr.hee.kwnoti;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -21,6 +20,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import kr.hee.kwnoti.settings_activity.PushFilterDB;
+
+//import android.app.NotificationChannel;
 
 /** 파이어베이스에서 오는 푸쉬 알람을 받는 서비스 */
 public class FcmService extends FirebaseMessagingService {
@@ -80,13 +81,14 @@ public class FcmService extends FirebaseMessagingService {
                 NOTIFICATION_SERVICE);
 
         // 안드로이드 8.0 이상에서 동작하는 알림 그룹 설정
-        NotificationChannel notiChannel = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            String id = "Notice";
-            int importance = NotificationManager.IMPORTANCE_LOW;
-            notiChannel = new NotificationChannel(id, getString(R.string.app_name), importance);
-            notiManager.createNotificationChannel(notiChannel);
-        }
+// TODO Android O 타겟의 버그(elevation 안됨)에 대한 임시 수정
+//        NotificationChannel notiChannel = null;
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//            String id = "Notice";
+//            int importance = NotificationManager.IMPORTANCE_LOW;
+//            notiChannel = new NotificationChannel(id, getString(R.string.app_name), importance);
+//            notiManager.createNotificationChannel(notiChannel);
+//        }
 
         // 누가(안드로이드 7.0) 이상에서만 동작하는 알람 그룹 설정
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -98,9 +100,9 @@ public class FcmService extends FirebaseMessagingService {
                     .setSubText(getString(R.string.noti_unread))
                     .setGroup(GROUP_NAME)
                     .setGroupSummary(true);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                groupBuilder.setChannelId("Notice");
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                groupBuilder.setChannelId("Notice");
+//            }
             notiManager.notify(TAG, GROUP_ID, groupBuilder.build());
         }
 

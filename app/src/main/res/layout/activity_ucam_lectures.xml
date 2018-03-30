@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="항목이 없습니다"
+        android:text="@string/uCam_lectures_noContent"
         android:textSize="14sp"
         android:textColor="?android:colorPrimary"
         android:visibility="gone" />

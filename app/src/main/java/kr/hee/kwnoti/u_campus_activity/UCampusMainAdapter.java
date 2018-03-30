@@ -29,7 +29,7 @@ class UCampusMainAdapter extends RecyclerView.Adapter<UCampusMainViewHolder> {
      * @return            실체화된 UCampusMainViewHolder 반환 */
     @Override public UCampusMainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_ucampus_main, parent, false);
+                .inflate(R.layout.card_ucam_main, parent, false);
         return new UCampusMainViewHolder(view);
     }
 

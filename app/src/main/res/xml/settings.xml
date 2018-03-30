@@ -66,7 +66,7 @@
             android:summaryOn="1시간 뒤의 월계동의 날씨를 표시합니다."
             android:summaryOff="메인 화면에 날씨를 표시하지 않습니다." />-->
         <Preference
-            android:title="개인정보 처리 방침"
+            android:title="@string/setting_privacy_policy"
             android:persistent="false">
             <intent android:action="android.intent.action.VIEW"
                 android:data="http://hearit.tistory.com/29" />

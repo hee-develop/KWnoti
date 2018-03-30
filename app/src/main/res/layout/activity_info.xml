@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="kr.hee.kwnoti.info_activity.InfoActivity">
+    <include layout="@layout/toolbar" />
     <LinearLayout
         android:id="@+id/info_search_layout"
         android:layout_width="match_parent"

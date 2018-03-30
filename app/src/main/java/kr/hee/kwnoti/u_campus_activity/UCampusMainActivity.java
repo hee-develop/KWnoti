@@ -41,8 +41,8 @@ public class UCampusMainActivity extends ActivityLoadingBase {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ucampus_main);
-        setTitle(R.string.ucampus_title);
+        setContentView(R.layout.activity_ucam_main);
+        setTitle(R.string.uCam_title);
 
         SharedPreferences pref = UTILS.checkUserData(this);
         if (pref == null)   finish();
@@ -70,12 +70,12 @@ public class UCampusMainActivity extends ActivityLoadingBase {
     /** 리사이클러 뷰 초기화 및 다이얼로그 생성 메소드 */
     void initView() {
         // 리사이클러 뷰 설정
-        recyclerView = (RecyclerView)findViewById(R.id.uCamMain_recyclerView);
+        recyclerView = (RecyclerView)findViewById(R.id.uCam_main_recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2열 그리드
         recyclerView.setAdapter(adapter = new UCampusMainAdapter(this));
 
         // 하단 버튼 설정
-        button = (Button)findViewById(R.id.uCamMain_btn_plan);
+        button = (Button)findViewById(R.id.uCam_main_btn_search);
         button.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 startActivity(new Intent(UCampusMainActivity.this,
