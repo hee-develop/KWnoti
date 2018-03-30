@@ -3,22 +3,22 @@
     <PreferenceCategory android:title="@string/setting_group_user">
         <EditTextPreference
             android:title="@string/setting_id"
-            android:key="@string/key_studentID"
+            android:key="@string/key_stuID"
             android:inputType="numberDecimal" />
         <EditTextPreference
             android:title="@string/setting_name"
-            android:key="@string/key_studentName"
+            android:key="@string/key_stuName"
             android:inputType="text" />
         <kr.hee.kwnoti.settings_activity.AutoCompleteEditTextPreference
             android:title="@string/setting_major"
-            android:key="@string/key_studentMajor" />
+            android:key="@string/key_stuMajor" />
         <EditTextPreference
             android:title="@string/setting_u_pwd"
-            android:key="@string/key_studentUCampusPassword"
+            android:key="@string/key_stuUCampusPwd"
             android:inputType="textPassword" />
         <Preference
             android:title="@string/setting_image"
-            android:key="@string/key_studentImage"
+            android:key="@string/key_stuImage"
             android:persistent="false"
             android:summary="@string/setting_summary_image">
             <!--<intent android:action=""-->

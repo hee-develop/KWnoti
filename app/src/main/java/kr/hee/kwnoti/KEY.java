@@ -14,14 +14,14 @@ public interface KEY {
     String COOKIE_SET = "Cookies";
 
     // 인텐트 전달
-    String SUBJECT = "Subject";
-    String SUBJECT_LOAD_TYPE = "SubjectListType";
-    String SUBJECT_PLAN = "강의계획서";
-    String SUBJECT_INFO = "공지사항";
-    String SUBJECT_UTIL = "강의자료실";
-    String SUBJECT_STUDENT = "학생자료실";
-    String SUBJECT_ASSIGNMENT = "과제 제출";
-    String SUBJECT_QNA  = "강의 Q&A";
+    String SUBJECT              = "Subject";
+    String SUBJECT_LOAD_TYPE    = "SubjectListType";
+    String SUBJECT_PLAN         = "강의계획서";
+    String SUBJECT_INFO         = "공지사항";
+    String SUBJECT_UTIL         = "강의자료실";
+    String SUBJECT_STUDENT      = "학생자료실";
+    String SUBJECT_ASSIGNMENT   = "과제 제출";
+    String SUBJECT_QNA          = "강의 Q&A";
 
     String BROWSER_DATA         = "BrowserOpenData";
     String BROWSER_FROM_UCAMPUS = "BrowserFromUCampus";

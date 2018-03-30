@@ -18,8 +18,8 @@
             android:layout_height="200dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="48dp"
-            android:src="@drawable/no_image"
-            app:civ_border_width="0px" />
+            android:src="@drawable/no_image" />
+            <!--app:civ_border_width="0px" />-->
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -32,19 +32,19 @@
             android:paddingBottom="40dp">
             <TableRow android:layout_margin="12dp">
                 <TextView style="@style/StudentCard_titleStyle"
-                    android:text="@string/studentCard_id" />
+                    android:text="@string/stuCard_id" />
                 <TextView style="@style/StudentCard_textStyle"
                     android:id="@+id/studentCard_ID" />
             </TableRow>
             <TableRow android:layout_margin="12dp">
                 <TextView style="@style/StudentCard_titleStyle"
-                    android:text="@string/studentCard_name" />
+                    android:text="@string/stuCard_name" />
                 <TextView style="@style/StudentCard_textStyle"
                     android:id="@+id/studentCard_name" />
             </TableRow>
             <TableRow android:layout_margin="12dp">
                 <TextView style="@style/StudentCard_titleStyle"
-                    android:text="@string/studentCard_major" />
+                    android:text="@string/stuCard_major" />
                 <TextView style="@style/StudentCard_textStyle"
                     android:id="@+id/studentCard_major" />
             </TableRow>

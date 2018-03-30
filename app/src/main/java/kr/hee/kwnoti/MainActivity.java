@@ -51,7 +51,7 @@ public class MainActivity extends ActivityBase implements View.OnClickListener {
                             UTILS.showToast(MainActivity.this, getString(R.string.toast_first_use));
                         }
                     });
-                    Log.d("MainActivity", "First run - FCM Enabled.");
+                    Log.d("MainActivity", "First run, FCM Enabled.");
                 }
             }).start();
 
@@ -69,7 +69,7 @@ public class MainActivity extends ActivityBase implements View.OnClickListener {
     boolean checkUseWeatherService() {
         SharedPreferences useWeather = PreferenceManager.
                 getDefaultSharedPreferences(MainActivity.this);
-        return useWeather.getBoolean(getString(R.string.key_weatherService), true);
+        return useWeather.getBoolean(getString(R.string.key_weatherActive), true);
     }
 
     /** 뷰 초기화 메소드 */

@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 설정 액티비티 -->
-    <string name ="setting_group_user">Personal Information</string>
-    <string name ="setting_id">ID</string>
-    <string name ="setting_name">Name</string>
-    <string name ="setting_major">Major</string>
-    <string name ="setting_u_pwd">U-CAMPUS password</string>
+    <string name="setting_group_user">Personal Information</string>
+    <string name="setting_id">ID</string>
+    <string name="setting_name">Name</string>
+    <string name="setting_major">Major</string>
+    <string name="setting_u_pwd">U-CAMPUS password</string>
     <string name="setting_image">ID card image setting</string>
     <string name="setting_summary_image">Can change your ID card\'s image.</string>
-    <string name ="setting_group_push">Push settings</string>
-    <string name ="setting_send_push">Receive push alarms</string>
-    <string name ="setting_send_push_on">Receive new notify.</string>
-    <string name ="setting_send_push_off">Never receive new notify.</string>
-    <string name ="setting_push_ringtone">Sound</string>
-    <string name ="setting_push_ringtone_on">Rings when new notify is received.</string>
-    <string name ="setting_push_ringtone_off">Never rings even new notify is received.</string>
-    <string name ="setting_push_vibrate">Vibration</string>
-    <string name ="setting_push_vibrate_on">Vibrate when new notify is received.</string>
-    <string name ="setting_push_vibrate_off">Never vibrate even new notify is received.</string>
-    <string name ="setting_push_filter">Notification filter</string>
-    <string name ="setting_push_filter_description">You can block notifications that contain certain words.</string>
-    <string name ="setting_etc">ETC</string>
-    <string name ="setting_etc_appInfo">About</string>
+    <string name="setting_group_push">Push settings</string>
+    <string name="setting_send_push">Receive push alarms</string>
+    <string name="setting_send_push_on">Receive new notify.</string>
+    <string name="setting_send_push_off">Never receive new notify.</string>
+    <string name="setting_push_ringtone">Sound</string>
+    <string name="setting_push_ringtone_on">Rings when new notify is received.</string>
+    <string name="setting_push_ringtone_off">Never rings even new notify is received.</string>
+    <string name="setting_push_vibrate">Vibration</string>
+    <string name="setting_push_vibrate_on">Vibrate when new notify is received.</string>
+    <string name="setting_push_vibrate_off">Never vibrate even new notify is received.</string>
+    <string name="setting_push_filter">Notification filter</string>
+    <string name="setting_push_filter_description">You can block notifications that contain certain words.</string>
+    <string name="setting_etc">ETC</string>
+    <string name="setting_etc_appInfo">About</string>
+    <string name="setting_privacy_policy">Privacy Policy</string>
+
     <!-- 알림 필터 액티비티 -->
     <string name="filter_add_tags">Enter filter to add.. (ex: 입찰)</string>
     <string name="filter_guide">Alarms with the following text are not received.</string>

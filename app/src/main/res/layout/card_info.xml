@@ -61,7 +61,7 @@
             android:layout_marginTop="4dp"
             android:layout_alignParentEnd="true"
             android:src="@drawable/icon_new"
-            android:contentDescription="@string/card_info_new" />
+            android:contentDescription="@string/info_card_new" />
         <ImageView
             android:id="@+id/card_info_attach"
             android:layout_width="12dp"
@@ -70,7 +70,7 @@
             android:layout_below="@id/card_info_new"
             android:layout_marginTop="4dp"
             android:src="@drawable/icon_save"
-            android:contentDescription="@string/card_info_attachment" />
+            android:contentDescription="@string/info_card_attachment" />
     </RelativeLayout>
 
     <View style="@style/Line"

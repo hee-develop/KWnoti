@@ -56,8 +56,8 @@ public class UCampusMainActivity extends ActivityLoadingBase {
     /** 액티비티 데이터 초기화 및 데이터 불러오기 메소드 */
     void init(SharedPreferences pref) {
         // 유저 데이터 불러오기
-        stuId   = pref.getString(getString(R.string.key_studentID), "");
-        stuPwd  = pref.getString(getString(R.string.key_studentUCampusPassword), "");
+        stuId   = pref.getString(getString(R.string.key_stuID), "");
+        stuPwd  = pref.getString(getString(R.string.key_stuUCampusPwd), "");
 
         // 로그인 시도
         request = UCamConnection.getInstance().getUCamInterface(this);

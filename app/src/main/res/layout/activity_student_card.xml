@@ -23,13 +23,13 @@
             android:layout_gravity="center_horizontal"
             android:padding="4dp"
             android:background="@drawable/bg_qrcode"
-            android:contentDescription="@string/studentCard_description_qrCode" />
+            android:contentDescription="@string/stuCard_description_qrCode" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/studentCard_qrCode"
             android:layout_marginTop="4dp"
-            android:text="@string/studentCard_refresh"
+            android:text="@string/stuCard_refresh"
             android:textSize="10sp"
             android:textColor="@color/gray500"
             android:letterSpacing="0.1"
@@ -46,21 +46,21 @@
             android:weightSum="5">
             <TableRow android:layout_margin="8dp" android:gravity="center_vertical">
                 <TextView style="@style/StudentCard_titleStyle"
-                    android:text="@string/studentCard_id" />
+                    android:text="@string/stuCard_id" />
                 <TextView style="@style/StudentCard_textStyle"
                     android:id="@+id/studentCard_ID" />
             </TableRow>
             <View android:layout_height="1px" android:background="@color/gray700" />
             <TableRow android:layout_margin="8dp" android:gravity="center_vertical">
                 <TextView style="@style/StudentCard_titleStyle"
-                    android:text="@string/studentCard_name" />
+                    android:text="@string/stuCard_name" />
                 <TextView style="@style/StudentCard_textStyle"
                     android:id="@+id/studentCard_name" />
             </TableRow>
             <View android:layout_height="1px" android:background="@color/gray600" />
             <TableRow android:layout_margin="8dp" android:gravity="center_vertical">
                 <TextView style="@style/StudentCard_titleStyle"
-                    android:text="@string/studentCard_major" />
+                    android:text="@string/stuCard_major" />
                 <TextView style="@style/StudentCard_textStyle"
                     android:id="@+id/studentCard_major" />
             </TableRow>

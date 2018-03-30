@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kr.hee.kwnoti">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="kr.hee.kwnoti">
 
-    <!-- 권한 설정은 따로 필요가 없으나 PlayStore 검색 옵션을 위한 명시적 권한 설정임. -->
+    <!-- 명시적 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS" /> -->
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="false"
@@ -19,19 +18,15 @@
         android:theme="@style/AppTheme">
 
         <!-- ==================================== 푸쉬 서비스 ==================================== -->
-        <service
-            android:name=".FcmService"
-            android:enabled="true"
-            android:exported="false">
+        <service android:enabled="true" android:exported="false"
+            android:name=".FcmService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <!-- 토큰 등록 서비스 -->
-        <service
-            android:name=".FcmIdService"
-            android:enabled="true"
-            android:exported="false">
+        <service android:enabled="true" android:exported="false"
+            android:name=".FcmIdService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>

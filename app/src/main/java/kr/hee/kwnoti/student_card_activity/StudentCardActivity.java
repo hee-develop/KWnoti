@@ -54,7 +54,7 @@ public class StudentCardActivity extends Activity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.studentCard_title);
+        setTitle(R.string.stuCard_title);
 
         // 사용자 정보 유무 확인
         if ((pref = UTILS.checkUserData(this)) == null) {
@@ -63,7 +63,7 @@ public class StudentCardActivity extends Activity {
         }
 
         // 뷰 초기화 및 ID 설정
-        else ID = "0" + pref.getString(getString(R.string.key_studentID), "");
+        else ID = "0" + pref.getString(getString(R.string.key_stuID), "");
 
         // 밝기에 대한 변수 설정
         params = getWindow().getAttributes();
@@ -108,9 +108,9 @@ public class StudentCardActivity extends Activity {
     /** 뷰 초기화 메소드 */
     void initView(SharedPreferences pref, int orientation) {
         String  loadFailed = getString(R.string.toast_loadFailed);
-        String  stuId   = pref.getString(getString(R.string.key_studentID), loadFailed),
-                stuName = pref.getString(getString(R.string.key_studentName), loadFailed),
-                stuMajor= pref.getString(getString(R.string.key_studentMajor), loadFailed);
+        String  stuId   = pref.getString(getString(R.string.key_stuID), loadFailed),
+                stuName = pref.getString(getString(R.string.key_stuName), loadFailed),
+                stuMajor= pref.getString(getString(R.string.key_stuMajor), loadFailed);
 
         // 세로 화면
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 학생 정보 -->
+    <string name="key_stuID" translatable="false">studentID</string>
+    <string name="key_stuName" translatable="false">studentName</string>
+    <string name="key_stuMajor" translatable="false">studentMajor</string>
+    <string name="key_stuImage" translatable="false">studentImage</string>
+    <string name="key_stuUCampusPwd" translatable="false">studentUPwd</string>
+    <string name="key_stuLibPwd" translatable="false">studentLibraryPassword</string>
+    <!-- 푸시 설정 -->
+    <string name="key_pushActive" translatable="false">pushActive</string>
+    <string name="key_pushVibrator" translatable="false">pushVibratorActive</string>
+    <string name="key_pushSound" translatable="false">pushRingtoneActive</string>
+    <!-- 날씨 설정 -->
+    <!--<string name="key_weatherActive" translatable="false">weatherServiceActive</string>-->
+</resources>

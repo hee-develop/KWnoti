@@ -12,25 +12,28 @@
     <string name="main_food">Today\'s food</string>
     <string name="main_tel">Phone number</string>
     <string name="main_links">Links</string>
+    <string name="main_wifi">Get\nWi-Fi</string>
     <string name="main_settings">Settings</string>
 
     <!-- 학생증 액티비티 -->
-    <string name="studentCard_title">KwangWoon univ. ID card</string>
-    <string name="studentCard_refresh">Touch QR code to refresh.</string>
-    <string name="studentCard_id">ID</string>
-    <string name="studentCard_name">Name</string>
-    <string name="studentCard_major">Major</string>
-    <string name="studentCard_description_qrCode">Student ID code</string>
+    <string name="stuCard_title">KwangWoon univ. ID card</string>
+    <string name="stuCard_refresh">Touch QR code to refresh.</string>
+    <string name="stuCard_id">ID</string>
+    <string name="stuCard_name">Name</string>
+    <string name="stuCard_major">Major</string>
+    <string name="stuCard_description_qrCode">Student ID code</string>
 
     <!-- 공지사항 액티비티 -->
     <string name="info_title">Notify</string>
     <string name="info_hint_search">Search..</string>
     <string name="info_accessibility_search">Toggle search on/off</string>
-    <string name="card_info_attachment">Have attachment</string>
-    <string name="card_info_new">New notify</string>
+    <string name="info_card_attachment">Have attachment</string>
+    <string name="info_card_new">New notify</string>
 
     <!-- 유캠퍼스 액티비티 -->
     <string name="uCam_title">U-CAMPUS</string>
+    <string name="uCam_lectures_noContent">No content.</string>
+    <string name="uCam_main_search">Search lecture note</string>
 
     <!-- 학사일정 액티비티 -->
     <string name="calendar_title">Schedule</string>
@@ -41,6 +44,12 @@
     <string name="tel_accessibility_refresh">Refresh</string>
     <string name="tel_search_telNum">Search..</string>
 
+    <!-- 와이파이 액티비티 -->
+    <string name="wifi_agree">I agree and understand this collection and use of personal information.</string>
+    <string name="wifi_hint">password</string>
+    <string name="wifi_request">Application for issuance of ID</string>
+    <string name="wifi_title_enterPwd">Enter Wi-Fi password.</string>
+
     <!-- Toast & Dialog -->
     <string name="dialog_loading">Loading..</string>
     <string name="toast_loadFailed">Load failed.</string>
@@ -50,15 +59,8 @@
     <string name="toast_failed">Please check the internet state.</string>
     <string name="toast_certificate_failed">Certificate failed.</string>
     <string name="toast_check_user">Check user\'s data.</string>
+    <string name="toast_first_use">Push alarm enabled.\nYou can disable anytime when you need.</string>
+
     <string name="food_title">Food</string>
     <string name="noti_unread">Touch here to open</string>
-    <string name="main_wifi">Get\nWi-Fi</string>
-    <string name="toast_first_use">Push alarm enabled.\nYou can disable anytime when you need.</string>
-    <string name="wifi_agree">I agree and understand this collection and use of personal information.</string>
-    <string name="wifi_hint">password</string>
-    <string name="wifi_request">Application for issuance of ID</string>
-    <string name="wifi_title_enterPwd">Enter Wi-Fi password.</string>
-    <string name="setting_privacy_policy">Privacy Policy</string>
-    <string name="uCam_lectures_noContent">No content.</string>
-    <string name="uCam_main_search">Search lecture note</string>
 </resources>

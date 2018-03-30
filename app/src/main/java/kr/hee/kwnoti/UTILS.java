@@ -85,7 +85,7 @@ public final class UTILS {
     public static SharedPreferences checkUserData(Context context) {
         // SharedPreferences 데이터를 불러 옴
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        String studentId = pref.getString(context.getString(R.string.key_studentID), "");
+        String studentId = pref.getString(context.getString(R.string.key_stuID), "");
         if (studentId.length() < 1) {
             showToast(context, R.string.toast_check_user);
             return null;

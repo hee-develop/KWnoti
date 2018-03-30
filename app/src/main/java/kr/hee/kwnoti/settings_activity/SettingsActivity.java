@@ -64,10 +64,10 @@ public class SettingsActivity extends Activity {
 
         /** Summary 값을 써 주기 위한 변수 선언 */
         void initView() {
-            key_stuId   = getString(R.string.key_studentID);
-            key_stuName = getString(R.string.key_studentName);
-            key_stuMajor= getString(R.string.key_studentMajor);
-            key_stuImage= getString(R.string.key_studentImage);
+            key_stuId   = getString(R.string.key_stuID);
+            key_stuName = getString(R.string.key_stuName);
+            key_stuMajor= getString(R.string.key_stuMajor);
+            key_stuImage= getString(R.string.key_stuImage);
 
             studentId   = (EditTextPreference)findPreference(key_stuId);
             studentName = (EditTextPreference)findPreference(key_stuName);
@@ -198,8 +198,8 @@ public class SettingsActivity extends Activity {
             else setData(pref);
 
             // 학번이나 비밀번호가 변경된 경우, 쿠키를 초기화 함
-            if (key.equals(getString(R.string.key_studentID))
-                    || key.equals(getString(R.string.key_studentUCampusPassword))) {
+            if (key.equals(getString(R.string.key_stuID))
+                    || key.equals(getString(R.string.key_stuUCampusPwd))) {
                 SharedPreferences.Editor userPrefEdit = PreferenceManager.
                         getDefaultSharedPreferences(getActivity()).edit();
                 userPrefEdit.putStringSet(KEY.COOKIE_SET, null);
