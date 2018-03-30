@@ -2,13 +2,12 @@ package kr.hee.kwnoti;
 
 /** 인자 전달 등에서 사용되는 String 값을 보기 편하게 만듦 */
 public interface KEY {
-    // SharedPreference key
-
     // FCM 디바이스 확인용 토큰
     String PREFERENCE_DEVICE_TOKEN = "Device Token";
 
-    // 최초 실행 여부, true = 최초 실행임
-    String FIRST_USE = "First Use";
+    // 어플리케이션의 최초 실행 여부
+    // 최초 실행 = true
+    String FIRST_USE = "FirstUse";
 
     // 유캠퍼스 접속용 쿠키셋
     String COOKIE_SET = "Cookies";
@@ -28,10 +27,10 @@ public interface KEY {
     String BROWSER_FROM_LECTURE_NOTE = "BrowserFromLectureNote";
     String BROWSER_URL          = "BrowserURL";
     String BROWSER_TITLE        = "BrowserTitle";
-    String BROWSER_INCLUDE_URL = "BrowserIncludeLectureUrl";
+    String BROWSER_INCLUDE_URL  = "BrowserIncludeLectureUrl";
 
     // 학생증 사진 파일 이름
-    String STUDENT_IMAGE    = "stuImage.jpg";
+    String STUDENT_IMAGE        = "stuImage.jpg";
     // 학식 데이터의 유효기간
-    String FOOD_DATE        = "foodDate";
+    String FOOD_DATE            = "foodDate";
 }

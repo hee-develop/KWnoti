@@ -75,11 +75,6 @@
             android:id="@+id/main_btn_settings"
             android:text="@string/main_settings" />
 
-        <!--  기타 바로가기 모음 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_links"
-            android:text="@string/main_links" />
-
         <!--<Button style="@style/CardStyle"-->
             <!--android:id="@+id/main_btn_facility"-->
             <!--android:text="시설안내" />-->
