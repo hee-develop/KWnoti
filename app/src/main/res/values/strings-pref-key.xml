@@ -9,6 +9,7 @@
     <string name="key_stuLibPwd" translatable="false">studentLibraryPassword</string>
     <!-- 푸시 설정 -->
     <string name="key_pushActive" translatable="false">pushActive</string>
+    <string name="key_pushLight" translatable="false">pushLightActive</string>
     <string name="key_pushVibrator" translatable="false">pushVibratorActive</string>
     <string name="key_pushSound" translatable="false">pushRingtoneActive</string>
     <!-- 날씨 설정 -->
