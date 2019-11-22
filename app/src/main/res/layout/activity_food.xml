@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="지금 판매 중인 음식은\n + fdsaf"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/food_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

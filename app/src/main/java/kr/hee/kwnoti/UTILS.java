@@ -1,11 +1,11 @@
 package kr.hee.kwnoti;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import androidx.appcompat.app.AlertDialog;
 import android.text.Html;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;

@@ -1,14 +1,15 @@
 package kr.hee.kwnoti;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 
 /** 로딩 다이얼로그가 필요한 액티비티 */
-public abstract class ActivityLoadingBase extends ActivityBase {
+public abstract class ActivityLoadingBase extends Activity {
     /** 로딩이 시작됐을 때 불리는 메소드 */
     public void loadStart() {
         runOnUiThread(new Runnable() {
             @Override public void run() {
-                BaseApplication.getInstance().loadStart(ActivityLoadingBase.this);
+//                BaseApplication.getInstance().loadStart(ActivityLoadingBase.this);
                 BaseApplication.getInstance().attachCancelListener(cancelListener);
             }
         });

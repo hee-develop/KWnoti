@@ -1,15 +1,15 @@
 package kr.hee.kwnoti;
 
-import android.app.Activity;
 import android.app.Application;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.tsengvn.typekit.Typekit;
+//import com.tsengvn.typekit.Typekit;
 
 /** 폰트 적용을 위한 어플리케이션 베이스 클래스 */
 public class BaseApplication extends Application {
@@ -22,11 +22,11 @@ public class BaseApplication extends Application {
     @Override public void onCreate() {
         super.onCreate();
         // Typekit 설정
-        Typekit.getInstance()
-                .addNormal(Typekit.createFromAsset(this, "NanumBarunGothicLight.otf"))
-                .addBold(Typekit.createFromAsset(this, "NanumBarunGothic.otf"))
-                .add("ExtraBold", Typekit.createFromAsset(this, "NanumBarunGothicBold.otf"));
-        baseApplication = this;
+//        Typekit.getInstance()
+//                .addNormal(Typekit.createFromAsset(this, "NanumBarunGothicLight.otf"))
+//                .addBold(Typekit.createFromAsset(this, "NanumBarunGothic.otf"))
+//                .add("ExtraBold", Typekit.createFromAsset(this, "NanumBarunGothicBold.otf"));
+//        baseApplication = this;
     }
 
     private Dialog loadingDialog;
@@ -39,7 +39,7 @@ public class BaseApplication extends Application {
 
     /** 로딩중 다이얼로그 생성 메소드
      * @param activity    다이얼로그를 생성할 액티비티 */
-    public void loadStart(Activity activity) {
+    public void loadStart(AppCompatActivity activity) {
         // 액티비티가 없는 경우 표시하지 않음
         if (activity == null || activity.isFinishing()) return;
 

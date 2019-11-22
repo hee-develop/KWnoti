@@ -2,8 +2,9 @@ package kr.hee.kwnoti.info_activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -112,7 +112,7 @@ public class InfoActivity extends ActivityLoadingBase {
 
         toolbar = (Toolbar)findViewById(R.id.toolbar_view);
         toolbar_title = (TextView)findViewById(R.id.kwtoolbar_title);
-        setActionBar(toolbar);
+//        setSupportActionBar(toolbar);
 //        getActionBar().setDisplayShowTitleEnabled(false);
 //        getActionBar().setDisplayShowTitleEnabled(false);
 //        getActionBar().setDisplayShowCustomEnabled(true);

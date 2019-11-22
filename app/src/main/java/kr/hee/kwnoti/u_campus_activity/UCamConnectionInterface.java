@@ -1,6 +1,6 @@
 package kr.hee.kwnoti.u_campus_activity;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

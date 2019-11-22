@@ -1,9 +1,9 @@
 package kr.hee.kwnoti.wifi_activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.KeyEvent;
@@ -14,7 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.tsengvn.typekit.TypekitContextWrapper;
+//import com.tsengvn.typekit.TypekitContextWrapper;
 
 import java.util.regex.Pattern;
 
@@ -23,7 +23,7 @@ import kr.hee.kwnoti.UTILS;
 import retrofit2.Retrofit;
 
 /** 와이파이 아이디 생성 액티비티 */
-public class WifiActivity extends Activity {
+public class WifiActivity extends AppCompatActivity {
     TextView privacyView;
     CheckBox checkBox;
     EditText password;
@@ -31,7 +31,7 @@ public class WifiActivity extends Activity {
 
     /** 폰트 삽입 메소드 */
     @Override protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+//        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
     @Override protected void onCreate(Bundle savedInstanceState) {

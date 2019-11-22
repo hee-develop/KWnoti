@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_info"
     android:layout_width="match_parent"
     android:layout_height="76dp"
@@ -60,7 +61,7 @@
             android:layout_height="12dp"
             android:layout_marginTop="4dp"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/icon_new"
+            app:srcCompat="@drawable/icon_new"
             android:contentDescription="@string/info_card_new" />
         <ImageView
             android:id="@+id/card_info_attach"
@@ -69,7 +70,7 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@id/card_info_new"
             android:layout_marginTop="4dp"
-            android:src="@drawable/icon_save"
+            app:srcCompat="@drawable/icon_save"
             android:contentDescription="@string/info_card_attachment" />
     </RelativeLayout>
 

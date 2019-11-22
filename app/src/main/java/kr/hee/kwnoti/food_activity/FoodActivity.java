@@ -1,12 +1,12 @@
 package kr.hee.kwnoti.food_activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -21,7 +21,7 @@ import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.UTILS;
 
 /** 금주의 학식 */
-public class FoodActivity extends Activity {
+public class FoodActivity extends AppCompatActivity {
     TextView textView;  // 지금 시간대의 식단
     RecyclerView recyclerView;
     FoodAdapter adapter;

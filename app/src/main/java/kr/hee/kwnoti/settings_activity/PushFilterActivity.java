@@ -1,9 +1,9 @@
 package kr.hee.kwnoti.settings_activity;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import kr.hee.kwnoti.R;
 
 /** 푸쉬 알림에서 차단/수신설정 할 데이터를 넣어주는 액티비티 */
-public class PushFilterActivity extends Activity {
+public class PushFilterActivity extends AppCompatActivity {
     EditText edit_addFilter;
     RecyclerView filters;
     PushFilterAdapter adapter;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,22 +23,16 @@
             <ImageView
                 android:layout_width="168dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ci"
+                app:srcCompat="@drawable/ci"
                 android:layout_centerHorizontal="true"
                 android:contentDescription="@string/app_name" />
         </RelativeLayout>
 
         <!-- 모바일 학생증 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_idCard"
-            android:text="@string/main_idCard" />
+        <!--<Button style="@style/CardStyle"-->
+            <!--android:id="@+id/main_btn_idCard"-->
+            <!--android:text="@string/main_idCard" />-->
 
-        <!-- 유캠퍼스 공지사항 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_uInfo"
-            android:layout_width="@dimen/card_size_x2"
-            android:layout_columnSpan="2"
-            android:text="@string/main_uCampus" />
 
         <!-- 학교 공지사항 -->
         <Button style="@style/CardStyle"
@@ -59,6 +54,12 @@
             android:id="@+id/main_btn_tel"
             android:text="@string/main_tel" />
 
+        <!-- 유캠퍼스 공지사항 -->
+        <Button style="@style/CardStyle"
+            android:id="@+id/main_btn_uInfo"
+            android:layout_width="@dimen/card_size_x2"
+            android:layout_columnSpan="2"
+            android:text="@string/main_uCampus" />
 
         <!-- 와이파이 발급 -->
         <!--<Button style="@style/CardStyle"-->

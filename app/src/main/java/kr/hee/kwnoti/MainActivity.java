@@ -1,23 +1,33 @@
 package kr.hee.kwnoti;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.app.Activity;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import com.google.firebase.messaging.FirebaseMessaging;
+import androidx.annotation.Nullable;
+import jp.hee.tileview.TileView;
 
-import kr.hee.kwnoti.calendar_activity.CalendarActivity;
-import kr.hee.kwnoti.info_activity.InfoActivity;
-import kr.hee.kwnoti.settings_activity.SettingsActivity;
-import kr.hee.kwnoti.student_card_activity.StudentCardActivity;
-import kr.hee.kwnoti.tel_activity.TelActivity;
-import kr.hee.kwnoti.u_campus_activity.UCampusMainActivity;
+public class MainActivity extends Activity {
+    TileView tileView;
 
-public class MainActivity extends ActivityBase implements View.OnClickListener {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+        tileView = findViewById(R.id.test01);
+    }
+}
+
+
+
+
+
+
+
+/*
+public class MainActivity extends Activity implements View.OnClickListener {
     TextView    btn_card,       // 학생증
                 btn_calendar,   // 학사일정
                 btn_tel,        // 교내 전화번호
@@ -35,7 +45,9 @@ public class MainActivity extends ActivityBase implements View.OnClickListener {
         initView();                 // 뷰 초기화
     }
 
-    /** 최초 실행인지 확인하는 메소드 */
+    */
+/** 최초 실행인지 확인하는 메소드 *//*
+
     void checkFirstUse() {
         SharedPreferences firstUse = PreferenceManager.
                 getDefaultSharedPreferences(MainActivity.this);
@@ -63,19 +75,23 @@ public class MainActivity extends ActivityBase implements View.OnClickListener {
         }
     }
 
-    /** 학교의 날씨를 받아올지 설정을 가져오는 메소드
-     * @return  날씨 설정 여부 */
+    */
+/** 학교의 날씨를 받아올지 설정을 가져오는 메소드
+     * @return  날씨 설정 여부 *//*
+
 //    boolean checkUseWeatherService() {
 //        SharedPreferences useWeather = PreferenceManager.
 //                getDefaultSharedPreferences(MainActivity.this);
 //        return useWeather.getBoolean(getString(R.string.key_weatherActive), true);
 //    }
 
-    /** 뷰 초기화 메소드 */
-    void initView() {
-        setContentView(R.layout.activity_main);
+    */
+/** 뷰 초기화 메소드 *//*
 
-        btn_card    = (TextView)findViewById(R.id.main_btn_idCard);
+    void initView() {
+        setContentView(R.layout.activity_main_old);
+
+//        btn_card    = (TextView)findViewById(R.id.main_btn_idCard);
         btn_calendar= (TextView)findViewById(R.id.main_btn_calendar);
         btn_tel     = (TextView)findViewById(R.id.main_btn_tel);
         btn_info    = (TextView)findViewById(R.id.main_btn_info);
@@ -97,8 +113,8 @@ public class MainActivity extends ActivityBase implements View.OnClickListener {
     @Override public void onClick(View view) {
         switch (view.getId())
         {
-            case R.id.main_btn_idCard :
-                startActivity(new Intent(this, StudentCardActivity.class)); break;
+//            case R.id.main_btn_idCard :
+//                startActivity(new Intent(this, StudentCardActivity.class)); break;
             case R.id.main_btn_calendar :
                 startActivity(new Intent(this, CalendarActivity.class)); break;
             case R.id.main_btn_tel :
@@ -116,3 +132,4 @@ public class MainActivity extends ActivityBase implements View.OnClickListener {
         }
     }
 }
+*/
