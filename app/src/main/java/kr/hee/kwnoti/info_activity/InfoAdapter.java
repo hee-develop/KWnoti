@@ -45,8 +45,9 @@ class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder> {
 
         holder.tv_title.setText(infoData.title);
         holder.tv_date.setText(infoData.date);
-        if (infoData.isTopTitle)
-            holder.view.setBackgroundColor(Color.RED);
+        if (infoData.isTopTitle) {
+            holder.view.setBackground(context.getDrawable(R.drawable.bg_card_accent));
+        }
         else
             holder.view.setBackgroundColor(Color.WHITE);
 

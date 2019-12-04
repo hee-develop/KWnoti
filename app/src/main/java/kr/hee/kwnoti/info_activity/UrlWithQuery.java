@@ -18,7 +18,7 @@ public class UrlWithQuery {
 
     ArrayList<UrlQuery> urlQueryArray;
 
-    final String baseUrl;
+    private final String baseUrl;
     String url;
 
     public UrlWithQuery(String baseUrl) {
@@ -56,6 +56,15 @@ public class UrlWithQuery {
     }
     public void setUrlQuery(String queryTag, int queryValue) {
         setUrlQuery(queryTag, String.valueOf(queryValue));
+    }
+
+    public void clearUrlQuery(String queryTag) {
+        for (int i=0; i<urlQueryArray.size(); i++) {
+            if (urlQueryArray.get(i).tagName.equals(queryTag)) {
+                urlQueryArray.remove(i);
+                return;
+            }
+        }
     }
 
 

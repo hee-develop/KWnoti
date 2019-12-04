@@ -2,6 +2,16 @@ package kr.hee.kwnoti.info_activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,17 +26,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import kr.hee.kwnoti.R;
 
 
-public class InfoActivity extends Activity implements InfoDataReceived {
+public class InfoActivity extends Activity implements InfoDataReceived, OnLoadFinished {
     // recycler view
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
     InfoAdapter adapter;
+    ArrayList<InfoData> infoDataArr = new ArrayList<>();
+
+    boolean hasStrongInfo = false;
+
+    ImageView iv_search;
+    Spinner sp_category;
+    EditText et_search;
+    Spinner sp_searchOpt;
+    LinearLayout searchBar;
+
+    // search option
+    final String[] parserOptions = {"전체", "제목", "내용", "제목 + 내용", "작성자"};
+    String parserType= parserOptions[0];
 
     // url and query
     UrlWithQuery url;
     int currNoticeNumber = 0;
 
-    ArrayList<InfoData> infoDataArr = new ArrayList<>();
 
     @Override
     protected void onStart() {
@@ -45,6 +67,7 @@ public class InfoActivity extends Activity implements InfoDataReceived {
         @Override
         public void afterReceived(Document doc) {
             ArrayList<InfoData> infoArray = new ArrayList<>();
+            ArrayList<InfoData> StrongInfoArray= new ArrayList<>();
 
             // if failed
             if (doc == null) {
@@ -64,12 +87,21 @@ public class InfoActivity extends Activity implements InfoDataReceived {
                         desc[1]);
 
                 if (e.hasClass("top-notice")) {
+                    if (hasStrongInfo) continue;
+
                     eInfo.isTopTitle = true;
+                    StrongInfoArray.add(eInfo);
                 }
-                infoArray.add(eInfo);
+                else {
+                    infoArray.add(eInfo);
+                }
             }
 
+            // do not add top information twice
+            hasStrongInfo = true;
+
             // send arrayList
+            makeView(StrongInfoArray);
             makeView(infoArray);
         }
     }
@@ -81,7 +113,15 @@ public class InfoActivity extends Activity implements InfoDataReceived {
             infoDataArr.add((InfoData)i);
         }
 
-        runOnUiThread(() -> adapter.notifyDataSetChanged());
+        runOnUiThread(() -> {
+            this.onLoadFinished();
+            adapter.notifyDataSetChanged();
+        });
+    }
+
+    @Override
+    public void onLoadFinished() {
+        // TODO make loading
     }
 
     @Override
@@ -90,12 +130,21 @@ public class InfoActivity extends Activity implements InfoDataReceived {
 
 
         setContentView(R.layout.activity_info);
-        recyclerView    = findViewById(R.id.info_recyclerView);
+        recyclerView = findViewById(R.id.info_recyclerView);
+
+        iv_search = findViewById(R.id.info_toolbar_btn);
+        searchBar = findViewById(R.id.info_search_layout);
+        sp_category = findViewById(R.id.info_toolbar_spinner);
+        et_search = findViewById(R.id.info_search_editText);
+        sp_searchOpt = findViewById(R.id.info_search_spinner);
+
+
         recyclerView.setLayoutManager(layoutManager = new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter = new InfoAdapter(InfoActivity.this, infoDataArr));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                // call next notice
                 if (!recyclerView.canScrollVertically(1)) {
                     url.setUrlQuery("article.offset", currNoticeNumber += 10);
                     new RequestInfoThread(url.getUrl()).start();
@@ -104,82 +153,78 @@ public class InfoActivity extends Activity implements InfoDataReceived {
             }
         });
 
-//        RecyclerView.OnScrollListener scrollListener = endlessScrollListener;
-//        recyclerView.addOnScrollListener(scrollListener);
 
+        iv_search.setOnClickListener(v -> {
+            switch (searchBar.getVisibility()) {
+                case View.VISIBLE :
+                    searchBar.setVisibility(View.INVISIBLE);
+                    break;
+                case View.GONE :
+                    searchBar.setVisibility(View.VISIBLE);
+                    break;
+            }
+        });
 
-        // 무한 스크롤링을 위한 리스너
-//    RecyclerView.OnScrollListener endlessScrollListener = new RecyclerView.OnScrollListener() {
-//        int previousTotal = 0;      // 전체 데이터의 개수
-//        boolean loading = false;    // 일종의 semaphore. 로딩이 될 때까지 카운트하지 않음
-//        int visibleThreshold = 2;   // 남은 뷰의 개수. 해당 개수만큼 남으면 불러오기를 시작
-//        int firstVisibleItem, visibleItemCount, totalItemCount;
-//
-//        @Override public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//            super.onScrolled(recyclerView, dx, dy);
-//            visibleItemCount    = recyclerView.getChildCount();
-//            totalItemCount      = layoutManager.getItemCount();
-//            firstVisibleItem    = layoutManager.findFirstVisibleItemPosition();
-//
-//            if (loading) {
-//                if (totalItemCount > previousTotal) {
-//                    loading = false;
-//                    previousTotal = totalItemCount;
-//                }
-//            }
-//            // 데이터가 7개(화면에 들어가는 대략적인 개수)보다 적을 때,
-//            // 같은 데이터를 불러 오는 낭비를 하지 않게 하기 위해 설정
-//            if (totalItemCount > 7) {
-//                if (!loading && (totalItemCount - visibleItemCount)
-//                        <= firstVisibleItem + visibleThreshold) {
-//                    // 다음 쪽 로딩
-//                    currentPage += 10;
-//                    showTopNotify = false;
-//                    new ParserThread().start();
-//                    loading = true;
-//                }
-//            }
-//        }
-//    };
+        sp_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                final String categoryOptionStr = "srCategoryId1";
+                switch ((String)sp_category.getItemAtPosition(position)) {
+                    default:
+                    case "전체" : url.setUrlQuery(categoryOptionStr, ""); break;
+                    case "일반" : url.setUrlQuery(categoryOptionStr, "5"); break;
+                    case "학사" : url.setUrlQuery(categoryOptionStr, "6"); break;
+                    case "학생" : url.setUrlQuery(categoryOptionStr, "16"); break;
+                    case "봉사" : url.setUrlQuery(categoryOptionStr, "17"); break;
+                    case "등록/장학" : url.setUrlQuery(categoryOptionStr, "18"); break;
+                    case "입학" : url.setUrlQuery(categoryOptionStr, "19"); break;
+                    case "시설" : url.setUrlQuery(categoryOptionStr, "20"); break;
+                    case "병무" : url.setUrlQuery(categoryOptionStr, "21"); break;
+                    case "외부" : url.setUrlQuery(categoryOptionStr, "22"); break;
+                }
 
-//        search_layout   = (LinearLayout)findViewById(R.id.info_search_layout);
-//        search_editText = (EditText)findViewById(R.id.info_search_editText);
-//        search_spinner  = (Spinner)findViewById(R.id.info_search_spinner);
-//
-//        // 리사이클러 뷰 스크롤 리스너 설정 및 구성
-//        RecyclerView.OnScrollListener scrollListener = endlessScrollListener;
-        recyclerView.setLayoutManager(layoutManager = new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter = new InfoAdapter(InfoActivity.this, infoDataArr));
-//        recyclerView.addOnScrollListener(scrollListener);
-//
-//        search_editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override public boolean onEditorAction(TextView textView, int action, KeyEvent event) {
-//                if (action == EditorInfo.IME_ACTION_SEARCH) {
-//                    currentPage = 0;
-//                    adapter.cleanInfo();
-//                    showTopNotify = true;
-//                    parserType = search_spinner.getSelectedItem().toString();
-//                    new ParserThread().start();
-//                    UTILS.disappearKeyboard(InfoActivity.this, search_editText);
-//                }
-//                return false;
-//            }
-//        });
-//
-//        toolbar = (Toolbar)findViewById(R.id.toolbar_view);
-//        toolbar_title = (TextView)findViewById(R.id.kwtoolbar_title);
-////        setSupportActionBar(toolbar);
-////        getActionBar().setDisplayShowTitleEnabled(false);
-////        getActionBar().setDisplayShowTitleEnabled(false);
-////        getActionBar().setDisplayShowCustomEnabled(true);
-////        getActionBar().setDisplayUseLogoEnabled(false);
-////        getActionBar().setDisplayShowHomeEnabled(false);
-//
-//        setTitle(R.string.info_title);
-//        initView();
-//
-//        // 파싱 시작
-//        new ParserThread().start();
+                if (infoDataArr.size() != 0) {
+                    infoDataArr.clear();
+                    hasStrongInfo = false;
+                    new RequestInfoThread(url.getUrl()).start();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        et_search.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                currNoticeNumber = 0;
+                url.clearUrlQuery("article.offset");
+
+                infoDataArr.clear();
+
+                switch ((String)sp_searchOpt.getSelectedItem()) {
+                    case "제목" :
+                    case "Title" :
+                        url.setUrlQuery("srSearchKey", "article_title"); break;
+                    case "내용" :
+                    case "Content" :
+                        url.setUrlQuery("srSearchKey", "article_text"); break;
+                    case "작성자" :
+                    case "Writer" :
+                        url.setUrlQuery("srSearchKey", "writer_nm"); break;
+                    case "제목 + 내용" :
+                    case "Title+content" :
+                    default :
+                        break;
+                }
+                url.setUrlQuery("srSearchVal", v.getText().toString());
+                hasStrongInfo = false;
+
+                new RequestInfoThread(url.getUrl()).start();
+            }
+            return false;
+        });
     }
 }
 
@@ -310,64 +355,6 @@ public class InfoActivity extends Activity implements InfoDataReceived {
 //        });
 //    }
 //
-//    // 무한 스크롤링을 위한 리스너
-//    RecyclerView.OnScrollListener endlessScrollListener = new RecyclerView.OnScrollListener() {
-//        int previousTotal = 0;      // 전체 데이터의 개수
-//        boolean loading = false;    // 일종의 semaphore. 로딩이 될 때까지 카운트하지 않음
-//        int visibleThreshold = 2;   // 남은 뷰의 개수. 해당 개수만큼 남으면 불러오기를 시작
-//        int firstVisibleItem, visibleItemCount, totalItemCount;
-//
-//        @Override public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//            super.onScrolled(recyclerView, dx, dy);
-//            visibleItemCount    = recyclerView.getChildCount();
-//            totalItemCount      = layoutManager.getItemCount();
-//            firstVisibleItem    = layoutManager.findFirstVisibleItemPosition();
-//
-//            if (loading) {
-//                if (totalItemCount > previousTotal) {
-//                    loading = false;
-//                    previousTotal = totalItemCount;
-//                }
-//            }
-//            // 데이터가 7개(화면에 들어가는 대략적인 개수)보다 적을 때,
-//            // 같은 데이터를 불러 오는 낭비를 하지 않게 하기 위해 설정
-//            if (totalItemCount > 7) {
-//                if (!loading && (totalItemCount - visibleItemCount)
-//                        <= firstVisibleItem + visibleThreshold) {
-//                    // 다음 쪽 로딩
-//                    currentPage += 10;
-//                    showTopNotify = false;
-//                    new ParserThread().start();
-//                    loading = true;
-//                }
-//            }
-//        }
-//    };
-//
-//    /** 로딩화면을 중간에 멈추면 스레드 제거 */
-//    @Override public void loadCanceled() {
-//        // 현재 동작중인 ParserThread 검색
-//        ThreadGroup tg = Thread.currentThread().getThreadGroup();
-//        while (true) {
-//            ThreadGroup tg2 = tg.getParent();
-//            if (tg2 != null) tg = tg2;
-//            else break;
-//        }
-//        Thread[] threads = new Thread[64];
-//        tg.enumerate(threads); // 현재 스레드를 배열에 삽입
-//
-//        // 스레드 동작 중지 요청. interrupt()를 한다고 해도 바로 종료되지는 않기 때문에 flag 추가 설정
-//        for (Thread thread : threads) {
-//            if (thread != null && thread.getName().equals(THREAD_NAME)) {
-//                // 스레드 중지 요청
-//                thread.interrupt();
-//                // 스레드 내 반복문 강제 중지
-//                ((ParserThread)thread).stopLoop = true;
-//
-//                break;
-//            }
-//        }
-//    }
 //
 //    private final static String THREAD_NAME = "InfoThread";
 //
