@@ -15,7 +15,21 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+
+
+
+        android:usesCleartextTraffic="true">
+
+
+
+        <!-- main activity -->
+        <activity android:name=".MainActivity" android:theme="@style/MainActivity"
+            android:screenOrientation="portrait" />
+
+
+
+
 
         <!-- ==================================== 푸쉬 서비스 ==================================== -->
         <service android:enabled="true" android:exported="false"
@@ -46,11 +60,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- =================================== 메인 액티비티 =================================== -->
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- ================================= 유캠퍼스 액티비티 ================================== -->
         <activity
             android:name=".u_campus_activity.UCampusMainActivity"

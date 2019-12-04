@@ -2,79 +2,88 @@ package kr.hee.kwnoti.info_activity;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.recyclerview.widget.RecyclerView;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import kr.hee.kwnoti.BrowserActivity;
-import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
 
-/** 공지사항을 출력해 주는 어댑터 */
-class InfoAdapter extends RecyclerView.Adapter<InfoViewHolder> {
-    private ArrayList<InfoData> array;
+import static android.view.MotionEvent.ACTION_CANCEL;
+import static android.view.MotionEvent.ACTION_DOWN;
+import static android.view.MotionEvent.ACTION_UP;
+
+/** Adapter for information activity */
+class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.InfoViewHolder> {
+    private ArrayList<InfoData> dataArray;
     private Context context;
 
-    /** InfoAdapter 생성자
-     * @param context   액티비티의 context */
-    InfoAdapter(Context context) {
-        array = new ArrayList<>();
+    InfoAdapter(Context context, ArrayList<InfoData> arr) {
         this.context = context;
+        this.dataArray = arr; // soft copy
     }
 
-    /** 뷰 홀더를 inflate 시켜주는 메소드
-     * @param parent      RecyclerView
-     * @return            실체화된 InfoViewHolder 반환 */
-    @Override public InfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_info, parent, false);
-        return new InfoViewHolder(view);
+    @NonNull
+    @Override
+    public InfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new InfoViewHolder(LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.card_info, parent, false));
     }
 
-    /** 생성된 ViewHolder 객체에 데이터를 불어 넣는 메소드
-     * @param holder      'onCreateViewHolder'에서 만들어진 {@link InfoViewHolder}
-     * @param position    'RecyclerView'에서 뷰의 위치(& ArrayList 에서의 위치) */
-    @Override public void onBindViewHolder(final InfoViewHolder holder, int position) {
-        holder.title.setText(array.get(position).title);
-        holder.whoWrite.setText(array.get(position).whoWrite);
-        holder.date.setText(array.get(position).date);
-        holder.views.setText(array.get(position).views);
-        if (array.get(position).attachment) holder.attachment.setVisibility(View.VISIBLE);
-        else holder.attachment.setVisibility(View.INVISIBLE);
-        if (array.get(position).newInfo)    holder.newInfo.setVisibility(View.VISIBLE);
-        else holder.newInfo.setVisibility(View.INVISIBLE);
-        holder.view.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                Intent intent = new Intent(context, BrowserActivity.class);
-                intent.putExtra(KEY.BROWSER_URL, array.get(holder.getAdapterPosition()).link);
-                context.startActivity(intent);
+    // set data from here
+    @Override
+    public void onBindViewHolder(@NonNull InfoViewHolder holder, int position) {
+        InfoData infoData = dataArray.get(position);
+        if (infoData == null) return;
+
+        holder.tv_title.setText(infoData.title);
+        holder.tv_date.setText(infoData.date);
+        if (infoData.isTopTitle)
+            holder.view.setBackgroundColor(Color.RED);
+        else
+            holder.view.setBackgroundColor(Color.WHITE);
+
+        holder.view.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case ACTION_DOWN :
+                    holder.tv_title.setMaxLines(2);
+                    break;
+                case ACTION_UP :
+                    Intent intent = new Intent(context, BrowserActivity.class);
+                    intent.putExtra("KEY@Info", dataArray.get(holder.getAdapterPosition()).url);
+                    context.startActivity(intent);
+// TODO                        intent.putExtra(KEY.BROWSER_URL, array.get(holder.getAdapterPosition()).url);
+                    v.performClick();
+                case ACTION_CANCEL :
+                    holder.tv_title.setMaxLines(1);
             }
+            return true;
         });
     }
 
-    @Override public int getItemCount() {
-        return array.size();
+    @Override
+    public int getItemCount() {
+        return dataArray.size();
     }
 
-    /** 다음장 데이터 추가를 위한 메소드.
-     * 여기서 notifyDataSetChanged 메소드는 부르지 않음 (성능 향상을 위해)
-     * @param data    다음장의 데이터
-     * @return        제대로 추가가 되었는지 여부 */
-    boolean addInfo(InfoData data) {
-        if (data == null) return false;
-        array.add(data);
-        return true;
-    }
+    /** ViewHolder for show data */
+    class InfoViewHolder extends RecyclerView.ViewHolder {
+        View view; // for click listener
+        TextView tv_title, tv_date;
 
-    /** 어댑터의 모든 데이터를 삭제하는 메소드
-     * @return         삭제됐는지 여부(ArrayList 크기가 0 이하이면 삭제가 불가능하므로 false 반환) */
-    boolean cleanInfo() {
-        if (array.size() < 1) return false;
+        InfoViewHolder(View view) {
+            super(view);
 
-        array.clear();
-        return true;
+            this.view = view.findViewById(R.id.card_info);
+            this.tv_title= view.findViewById(R.id.card_info_title);
+            this.tv_date = view.findViewById(R.id.card_info_date);
+        }
     }
 }
