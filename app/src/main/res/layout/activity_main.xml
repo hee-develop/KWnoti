@@ -1,0 +1,120 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="4dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/main_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/main_des_logo"
+        android:src="@mipmap/ic_launcher"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_line01"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_line01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_line02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_line03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.67" />
+
+    <!-- University Information -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_info"
+        style="@style/MainActivityCard"
+
+        app:background="@drawable/ic_mic"
+        app:background_color="@color/kwRed"
+        app:layout_constraintEnd_toStartOf="@+id/main_line03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_line01"
+        app:title="@string/main_info"
+        app:title_color="@color/gray800" />
+
+    <!-- Schedule -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_calendar"
+        style="@style/MainActivityCard"
+
+        app:background="@drawable/ic_calendar"
+        app:background_color="@color/kwRed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_line03"
+        app:layout_constraintTop_toTopOf="@+id/main_line01"
+        app:title="@string/main_calendar"
+        app:title_color="@color/gray800" />
+
+    <!-- U-Campus -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_intranet"
+        style="@style/MainActivityCard"
+
+        app:title_color="@color/gray800"
+        app:background="@drawable/ic_book"
+        app:background_color="@color/kwRed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_btn_info"
+        app:title="@string/main_intranet" />
+
+    <!-- Telephone -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_telephone"
+        style="@style/MainActivityCard"
+
+        app:background="@drawable/ic_phone"
+        app:background_color="@color/kwRed"
+        app:layout_constraintEnd_toStartOf="@+id/main_line02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
+        app:title="@string/main_telephone"
+        app:title_color="@color/gray800" />
+
+    <!-- School food -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_food"
+        style="@style/MainActivityCard"
+
+        app:background="@drawable/ic_food"
+        app:background_color="@color/kwRed"
+        app:layout_constraintEnd_toEndOf="@+id/main_line03"
+        app:layout_constraintStart_toStartOf="@+id/main_line02"
+        app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
+        app:title="@string/main_food"
+        app:title_color="@color/gray800" />
+
+    <!-- Setting -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_setting"
+        style="@style/MainActivityCard"
+
+        app:background="@drawable/ic_setting"
+        app:background_color="@color/kwRed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_line03"
+        app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
+        app:title="@string/main_setting"
+        app:title_color="@color/gray800" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,32 +1,99 @@
 package kr.hee.kwnoti;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.preference.PreferenceManager;
+import android.view.View;
 
 import androidx.annotation.Nullable;
-import jp.hee.tileview.TileView;
+import jp.hee.cardwithbackground.CardWithBackground;
+import kr.hee.kwnoti.calendar_activity.CalendarActivity;
+import kr.hee.kwnoti.food_activity.FoodActivity;
+import kr.hee.kwnoti.info_activity.InfoActivity;
+import kr.hee.kwnoti.settings_activity.SettingsActivity;
+import kr.hee.kwnoti.u_campus_activity.UCampusMainActivity;
 
-public class MainActivity extends Activity {
-    TileView tileView;
+public class MainActivity extends Activity implements View.OnClickListener {
+    private enum MainButtons {
+        INFO(R.id.main_btn_info, InfoActivity.class),
+        INTRANET(R.id.main_btn_intranet, UCampusMainActivity.class),
+        CALENDAR(R.id.main_btn_calendar, CalendarActivity.class),
+        TELEPHONE(R.id.main_btn_telephone, MainActivity.class/*TODO*/),
+        FOOD(R.id.main_btn_food, FoodActivity.class),
+        SETTING(R.id.main_btn_setting, SettingsActivity.class);
+
+        int id;
+        Class className;
+
+        MainButtons(int i, Class c) {
+            this.id = i;
+            this.className = c;
+        }
+    }
+
+
+    CardWithBackground[] buttons;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        // First use
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        // TODO
 
-        tileView = findViewById(R.id.test01);
+        // Initial views
+        setContentView(R.layout.activity_main);
+        buttons = new CardWithBackground[MainButtons.values().length];
+        for (int i=0; i<buttons.length; i++) {
+            buttons[i] = findViewById(MainButtons.values()[i].id);
+            buttons[i].setOnClickListener(this);
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        for (MainButtons b : MainButtons.values()) {
+            if (v.getId() == b.id) {
+                startActivity(new Intent(getApplicationContext(), b.className));
+                break;
+            }
+        }
     }
 }
 
-
-
-
-
-
-
 /*
+
+void checkFirstUse() {
+        SharedPreferences firstUse = PreferenceManager.
+                getDefaultSharedPreferences(MainActivity.this);
+        // 최초실행일 경우 최초실행 화면을 표시
+        if (firstUse.getBoolean(KEY.FIRST_USE, true)) {
+            // FCM 공지사항 알림 수신 설정
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    FirebaseMessaging.getInstance().subscribeToTopic("notice");
+                    runOnUiThread(new Runnable() {
+                        @Override public void run() {
+                            UTILS.showToast(MainActivity.this, getString(R.string.toast_first_use));
+                        }
+                    });
+                    Log.d("MainActivity", "First run, FCM Enabled.");
+                }
+            }).start();
+
+            //startActivity(new Intent(this, FirstActivity.class)); TODO
+            //finish();
+
+            // 최초 실행 종료
+            SharedPreferences.Editor editor = firstUse.edit();
+            editor.putBoolean(KEY.FIRST_USE, false).apply();
+        }
+    }
+
 public class MainActivity extends Activity implements View.OnClickListener {
     TextView    btn_card,       // 학생증
                 btn_calendar,   // 학사일정

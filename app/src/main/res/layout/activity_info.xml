@@ -1,23 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="kr.hee.kwnoti.info_activity.InfoActivity">
-    <include layout="@layout/toolbar" />
+    <!-- toolbar -->
+    <RelativeLayout
+        android:id="@+id/info_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:elevation="4dp">
+        <Spinner
+            android:id="@+id/info_toolbar_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/info_toolbar_title"
+            android:padding="8dp"
+            android:entries="@array/info_category"
+            android:textAlignment="viewStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/info_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="?colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:text="@string/info_title" />
+        <ImageView
+            android:id="@+id/info_toolbar_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
+            android:tint="?colorPrimary"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_search" />
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/info_search_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:background="@color/gray200"
         android:gravity="center_vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
         <Spinner
             android:id="@+id/info_search_spinner"
             android:layout_width="0dp"
             android:layout_weight="0.25"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@null"
             android:padding="8dp"
             android:entries="@array/info_search_options" />
@@ -25,13 +70,12 @@
             android:id="@+id/info_search_editText"
             android:layout_width="0dp"
             android:layout_weight="0.75"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@null"
             android:padding="8dp"
             android:hint="공지사항 검색하기"
             android:textSize="16sp"
             android:textColorHint="@color/gray500"
-            android:text=""
             android:inputType="text"
             android:imeOptions="actionSearch" />
     </LinearLayout>
