@@ -26,8 +26,6 @@ public class InfoActivity extends Activity implements InfoDataReceived {
     UrlWithQuery url;
     int currNoticeNumber = 0;
 
-    boolean hasStrongInfo = false;
-
     ArrayList<InfoData> infoDataArr = new ArrayList<>();
 
     @Override
@@ -47,7 +45,6 @@ public class InfoActivity extends Activity implements InfoDataReceived {
         @Override
         public void afterReceived(Document doc) {
             ArrayList<InfoData> infoArray = new ArrayList<>();
-            ArrayList<InfoData> StrongInfoArray= new ArrayList<>();
 
             // if failed
             if (doc == null) {
@@ -67,21 +64,12 @@ public class InfoActivity extends Activity implements InfoDataReceived {
                         desc[1]);
 
                 if (e.hasClass("top-notice")) {
-                    if (hasStrongInfo) continue;
-
                     eInfo.isTopTitle = true;
-                    StrongInfoArray.add(eInfo);
                 }
-                else {
-                    infoArray.add(eInfo);
-                }
+                infoArray.add(eInfo);
             }
 
-            // do not add top information twice
-            hasStrongInfo = true;
-
             // send arrayList
-            makeView(StrongInfoArray);
             makeView(infoArray);
         }
     }
