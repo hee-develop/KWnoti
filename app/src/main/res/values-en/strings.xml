@@ -27,7 +27,7 @@
     <string name="info_title">Notify</string>
     <string name="info_hint_search">Search..</string>
     <string name="info_accessibility_search">Toggle search on/off</string>
-    <string name="info_card_attachment">Have attachment</string>
+    <string name="info_card_attachment">Have hasAttachment</string>
     <string name="info_card_new">New notify</string>
 
     <!-- 유캠퍼스 액티비티 -->

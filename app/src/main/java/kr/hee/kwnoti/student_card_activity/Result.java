@@ -1,10 +1,13 @@
+/*
 package kr.hee.kwnoti.student_card_activity;
 
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Path;
-import org.simpleframework.xml.Root;
+//import org.simpleframework.xml.Element;
+//import org.simpleframework.xml.Path;
+//import org.simpleframework.xml.Root;
 
-/** 학번을 POST 해서 얻은 결과값. 학번과 QR코드 데이터 외에도 기타 정보가 들어 있음 */
+*/
+/** 학번을 POST 해서 얻은 결과값. 학번과 QR코드 데이터 외에도 기타 정보가 들어 있음 *//*
+
 @Root
 class Result {
     @Path("item") @Element(name = "result_code")
@@ -32,3 +35,4 @@ class Result {
     @Path("item") @Element(name = "sysdate")
     public String sysDate;
 }
+*/

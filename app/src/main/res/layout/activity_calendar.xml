@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="kr.hee.kwnoti.calendar_activity.CalendarActivity">
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendar_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

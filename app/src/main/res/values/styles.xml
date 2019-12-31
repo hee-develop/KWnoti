@@ -1,22 +1,56 @@
 <resources>
+    <style name="AppTheme" parent="Theme.Design.Light.NoActionBar">
+        <item name="colorPrimary">@color/kwRed</item>
+        <item name="colorPrimaryDark">@color/kwRedDark</item>
+        <item name="colorAccent">@color/amberA400</item>
+        <item name="android:colorControlHighlight">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.red">
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <!-- theme for main activity -->
+    <style name="MainActivity" parent="AppTheme">
+
+    </style>
+    <style name="MainActivityCard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:foreground">?selectableItemBackground</item>
+    </style>
+
+
+
+
+
+
+
+
     <!-- 메인 테마 -->
-    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
-        <item name="android:colorPrimary">@color/kwRed</item>
-        <item name="android:colorPrimaryDark">@color/kwRedDark</item>
-        <item name="android:colorAccent">@color/amberA400</item>
+    <style name="AppTheme.old" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/kwRed</item>
+        <item name="colorPrimaryDark">@color/kwRedDark</item>
+        <item name="colorAccent">@color/amberA400</item>
         <item name="android:colorBackground">@color/white</item>
-        <item name="android:navigationBarColor">?android:attr/colorPrimary</item>
-        <item name="android:actionMenuTextColor">?android:attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
+        <item name="actionMenuTextColor">?attr/colorPrimary</item>
     </style>
     <!-- 상단바 없는 테마 -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
     <!-- 스플래시 테마 -->
     <style name="SplashTheme" parent="AppTheme.NoActionBar">
-        <item name="android:background">@drawable/splash</item>
+        <item name="background">@drawable/splash</item>
     </style>
 
     <!-- 메인 페이지에서 쓰이는 카드 스타일 -->
@@ -28,7 +62,7 @@
         <item name="android:layout_columnSpan">1</item>
         <item name="android:layout_rowSpan">1</item>
         <item name="android:layout_margin">2dp</item>
-        <item name="android:background">@color/white</item>
+        <item name="background">@color/white</item>
         <item name="android:foreground">@drawable/fg_ripple_white</item>
         <!-- 글자 -->
         <item name="android:gravity">bottom|end</item>
@@ -55,7 +89,7 @@
     <style name="Line">
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/gray300</item>
+        <item name="background">@color/gray300</item>
     </style>
 
     <!-- 강의계획서 검색에 쓰이는 표 스타일 -->

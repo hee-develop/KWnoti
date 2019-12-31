@@ -1,20 +1,47 @@
 <resources>
     <string name="app_name">광운알리미</string>
+
+    <!-- main -->
+    <string name="main_info">공지사항</string>
+    <string name="main_intranet">유캠퍼스</string>
+    <string name="main_calendar">학사일정</string>
+    <string name="main_telephone">교내\n전화번호</string>
+    <string name="main_food">식단안내</string>
+    <string name="main_setting">설정</string>
+
+
+    <string name="main_des_logo">광운대학교 로고</string>
+
+    <!--  -->
+
+
+
+
+
+
+
+
+
+    <!-- =========================== -->
+
+
+
+
+
+
+
+
     <string name="ad_unit_id" translatable="false">ca-app-pub-2752313248012612~7871776859</string>
 
     <!-- 브라우저 액티비티 -->
     <string name="browser_description_fab">뒤로가기 버튼</string>
 
     <!-- 메인 액티비티 -->
-    <string name="main_calendar">학사일정</string>
     <string name="main_idCard">모바일학생증</string>
-    <string name="main_info">공지사항</string>
     <string name="main_uCampus">U-CAMPUS</string>
-    <string name="main_food">오늘의 학식</string>
     <string name="main_tel">교내\n전화번호</string>
     <string name="main_links">기타\n바로가기</string>
     <string name="main_wifi">와이파이\n발급</string>
-    <string name="main_settings">설정</string>
 
     <!-- 학생증 액티비티 -->
     <string name="stuCard_title">광운대학교 모바일 학생증</string>

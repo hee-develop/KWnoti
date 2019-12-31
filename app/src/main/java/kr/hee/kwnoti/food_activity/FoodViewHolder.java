@@ -1,10 +1,8 @@
 package kr.hee.kwnoti.food_activity;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
-import kr.hee.kwnoti.R;
 
 /** XML 뷰를 실체화 시키는 뷰 홀더 */
 class FoodViewHolder extends RecyclerView.ViewHolder {

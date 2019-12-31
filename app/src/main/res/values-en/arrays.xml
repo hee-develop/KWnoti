@@ -3,7 +3,7 @@
     <string-array name="info_search_options">
         <item>Title</item>
         <item>Content</item>
-        <item>Title + content</item>
+        <item>Title+content</item>
         <item>Writer</item>
     </string-array>
     <string-array name="majors">

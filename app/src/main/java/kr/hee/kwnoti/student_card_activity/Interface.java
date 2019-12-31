@@ -10,8 +10,8 @@ interface Interface {
     String URL = "http://mobileid.kw.ac.kr/mobile/MA/xml_userInfo.php/";
 
     // POST 요청으로 Response body 받는 메소드
-    @FormUrlEncoded @POST(URL)
-    Call<Result> getBody(
-            @Field("real_id") String id,
-            @Field("new_check") String check);
+//    @FormUrlEncoded @POST(URL)
+//    Call<Result> getBody(
+//            @Field("real_id") String id,
+//            @Field("new_check") String check);
 }

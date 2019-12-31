@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_ucampus"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:visibility="gone"
-                android:src="@drawable/icon_new_info"
+                app:srcCompat="@drawable/icon_new_info"
                 tools:visibility="visible" />
             <ImageView
                 android:id="@+id/card_ucam_newAssignment"
@@ -56,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:visibility="gone"
-                android:src="@drawable/icon_new_assignment"
+                app:srcCompat="@drawable/icon_new_assignment"
                 tools:visibility="visible" />
         </LinearLayout>
     </RelativeLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

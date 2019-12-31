@@ -1,82 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/kwRed"
-    tools:context="kr.hee.kwnoti.MainActivity">
+    android:padding="4dp"
+    tools:context=".MainActivity">
 
-    <GridLayout
+    <ImageView
+        android:id="@+id/main_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/main_des_logo"
+        android:src="@mipmap/ic_launcher"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_line01"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_line01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:columnCount="3">
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
 
-        <!-- 상단 마크 및 날씨 레이아웃 -->
-        <RelativeLayout
-            android:layout_width="@dimen/card_size_x3"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"
-            android:layout_columnSpan="3">
-            <ImageView
-                android:layout_width="168dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ci"
-                android:layout_centerHorizontal="true"
-                android:contentDescription="@string/app_name" />
-        </RelativeLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_line02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
 
-        <!-- 모바일 학생증 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_idCard"
-            android:text="@string/main_idCard" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/main_line03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.67" />
 
-        <!-- 유캠퍼스 공지사항 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_uInfo"
-            android:layout_width="@dimen/card_size_x2"
-            android:layout_columnSpan="2"
-            android:text="@string/main_uCampus" />
+    <!-- University Information -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_info"
+        style="@style/MainActivityCard"
 
-        <!-- 학교 공지사항 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_info"
-            android:layout_width="@dimen/card_size_x2"
-            android:layout_height="@dimen/card_size_x2"
-            android:layout_columnSpan="2"
-            android:layout_rowSpan="2"
-            android:text="@string/main_info"
-            android:textSize="28sp" />
+        app:background="@drawable/ic_mic"
+        app:background_color="@color/kwRed"
+        app:layout_constraintEnd_toStartOf="@+id/main_line03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_line01"
+        app:title="@string/main_info"
+        app:title_color="@color/gray800" />
 
-        <!-- 학사 일정 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_calendar"
-            android:text="@string/main_calendar" />
+    <!-- Schedule -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_calendar"
+        style="@style/MainActivityCard"
 
-        <!-- 교내 전화번호 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_tel"
-            android:text="@string/main_tel" />
+        app:background="@drawable/ic_calendar"
+        app:background_color="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_line03"
+        app:layout_constraintTop_toTopOf="@+id/main_line01"
+        app:title="@string/main_calendar"
+        app:title_color="@color/gray800" />
 
+    <!-- U-Campus -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_intranet"
+        style="@style/MainActivityCard"
 
-        <!-- 와이파이 발급 -->
-        <!--<Button style="@style/CardStyle"-->
-        <!--android:id="@+id/main_btn_wifi"-->
-        <!--android:text="@string/main_wifi" />-->
+        app:title_color="@color/gray800"
+        app:background="@drawable/ic_book"
+        app:background_color="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_btn_info"
+        app:title="@string/main_intranet" />
 
-        <!-- 오늘의 학식 -->
-        <!--<Button style="@style/CardStyle"-->
-            <!--android:id="@+id/main_btn_food"-->
-            <!--android:text="@string/main_food" />-->
+    <!-- Telephone -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_telephone"
+        style="@style/MainActivityCard"
 
-        <!-- 설정 -->
-        <Button style="@style/CardStyle"
-            android:id="@+id/main_btn_settings"
-            android:text="@string/main_settings" />
+        app:background="@drawable/ic_phone"
+        app:background_color="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/main_line02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
+        app:title="@string/main_telephone"
+        app:title_color="@color/gray800" />
 
-        <!--<Button style="@style/CardStyle"-->
-            <!--android:id="@+id/main_btn_facility"-->
-            <!--android:text="시설안내" />-->
-    </GridLayout>
-</ScrollView>
+    <!-- School food -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_food"
+        style="@style/MainActivityCard"
+
+        app:background="@drawable/ic_food"
+        app:background_color="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/main_line03"
+        app:layout_constraintStart_toStartOf="@+id/main_line02"
+        app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
+        app:title="@string/main_food"
+        app:title_color="@color/gray800" />
+
+    <!-- Setting -->
+    <jp.hee.cardwithbackground.CardWithBackground
+        android:id="@+id/main_btn_setting"
+        style="@style/MainActivityCard"
+
+        app:background="@drawable/ic_setting"
+        app:background_color="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/main_line03"
+        app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
+        app:title="@string/main_setting"
+        app:title_color="@color/gray800" />
+</androidx.constraintlayout.widget.ConstraintLayout>

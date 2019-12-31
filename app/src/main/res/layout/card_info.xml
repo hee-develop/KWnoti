@@ -1,79 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_info"
     android:layout_width="match_parent"
-    android:layout_height="76dp"
-    android:foreground="@drawable/fg_ripple_gray"
-    android:orientation="vertical"
-    android:paddingTop="8dp"
-    android:paddingStart="4dp"
-    android:paddingEnd="4dp">
-    <RelativeLayout
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@color/white"
+    android:foreground="?selectableItemBackground"
+    app:cardElevation="2dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
+        android:padding="8dp">
+
         <TextView
             android:id="@+id/card_info_title"
-            android:layout_width="320dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/gray800"
             android:includeFontPadding="false"
-            android:lineSpacingMultiplier="1.1"
-            android:lines="2" />
+            android:letterSpacing="0.02"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/card_info_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="공지사항" />
 
-        <TextView
-            android:id="@+id/card_info_writer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="4dp"
-            android:textSize="12sp"
-            android:textColor="@color/gray600" />
-
-        <!-- 조회수 -->
-        <TextView
-            android:id="@+id/card_info_views"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toStartOf="@+id/card_info_date"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:textSize="10sp"
-            android:textColor="@color/gray500" />
-        <!-- 날짜 -->
         <TextView
             android:id="@+id/card_info_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="4dp"
-            android:textSize="10sp"
-            android:textColor="@color/gray600" />
-
-        <ImageView
-            android:id="@+id/card_info_new"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginTop="4dp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/icon_new"
-            android:contentDescription="@string/info_card_new" />
-        <ImageView
-            android:id="@+id/card_info_attach"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/card_info_new"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/icon_save"
-            android:contentDescription="@string/info_card_attachment" />
-    </RelativeLayout>
-
-    <View style="@style/Line"
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true" />
-</RelativeLayout>
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:alpha="0.8"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="2019.01.01" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

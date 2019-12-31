@@ -1,11 +1,11 @@
 package kr.hee.kwnoti.u_campus_activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,7 +24,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class UCampusListActivity extends Activity {
+public class UCampusListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     UCampusListAdapter adapter;
     LinearLayoutManager layoutManager;

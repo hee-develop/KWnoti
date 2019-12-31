@@ -1,8 +1,8 @@
 package kr.hee.kwnoti.settings_activity;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import kr.hee.kwnoti.R;
 
 /** 설정의 앱 정보 액티비티 */
-public class AppInfoActivity extends Activity {
+public class AppInfoActivity extends AppCompatActivity {
     TextView openSource;
 
     @Override protected void onCreate(Bundle savedInstanceState) {

@@ -1,9 +1,6 @@
 package kr.hee.kwnoti;
 
 import android.Manifest;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +9,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -41,7 +41,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /** 웹 브라우저 액티비티 */
-public class BrowserActivity extends Activity {
+public class BrowserActivity extends AppCompatActivity {
     // 브라우저
     ProgressBar progressBar; // 브라우저 로딩 바
     Browser webView; // 브라우저(웹뷰)
@@ -94,7 +94,7 @@ public class BrowserActivity extends Activity {
     /** 유캠퍼스의 내용을 표시하는 메소드 */
     void loadUcampus(Bundle uCampusData) {
         // 액션바 생성
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.show();
 
         // 유캠퍼스 접속 인터페이스 생성
@@ -228,7 +228,7 @@ public class BrowserActivity extends Activity {
     /** 일반 웹페이지의 내용을 표시하는 메소드 */
     void loadWebPage(Bundle webPageData) {
         // 액션바 제거
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.hide();
 
         // 웹사이트 로드

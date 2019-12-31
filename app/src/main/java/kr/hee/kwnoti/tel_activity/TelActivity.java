@@ -2,9 +2,9 @@ package kr.hee.kwnoti.tel_activity;
 
 import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;

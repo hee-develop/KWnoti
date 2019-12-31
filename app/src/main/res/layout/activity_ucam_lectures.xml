@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="kr.hee.kwnoti.u_campus_activity.UCampusListActivity">
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ucampusList_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -15,6 +15,6 @@
         android:layout_centerInParent="true"
         android:text="@string/uCam_lectures_noContent"
         android:textSize="14sp"
-        android:textColor="?android:colorPrimary"
+        android:textColor="?attr/colorPrimary"
         android:visibility="gone" />
 </RelativeLayout>

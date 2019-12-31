@@ -1,6 +1,5 @@
 package kr.hee.kwnoti.student_card_activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -8,17 +7,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.tsengvn.typekit.TypekitContextWrapper;
+//import com.google.zxing.BarcodeFormat;
+//import com.google.zxing.MultiFormatWriter;
+//import com.google.zxing.WriterException;
+//import com.google.zxing.common.BitMatrix;
+//import com.tsengvn.typekit.TypekitContextWrapper;
 
 import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
@@ -27,10 +27,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
+//import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 /** 학생증 액티비티 */
-public class StudentCardActivity extends Activity {
+public class StudentCardActivity extends AppCompatActivity {
     // 뷰
     TextView    studentId, studentName, studentMajor;
     // 세로 화면의 QR 코드 이미지뷰
@@ -49,7 +49,7 @@ public class StudentCardActivity extends Activity {
 
     /** 폰트 삽입 메소드 */
     @Override protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
+//        super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -163,39 +163,39 @@ public class StudentCardActivity extends Activity {
     /** 중앙도서관 서버에서 인증 시도 메소드. QR 코드 생성도 여기서 호출 */
     boolean certificate(String id) {
         // 변수 예외 처리
-        if (id == null || id.equals("0")) return false;
+//        if (id == null || id.equals("0")) return false;
 
         // Retrofit 객체
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Interface.URL)
-                .addConverterFactory(SimpleXmlConverterFactory.create()).build();
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(Interface.URL)
+//                .addConverterFactory(SimpleXmlConverterFactory.create()).build();
         // Retrofit 객체로 인터넷 연결을 시도 할 어노테이션 인터페이스
-        Interface postInterface = retrofit.create(Interface.class);
+//        Interface postInterface = retrofit.create(Interface.class);
         // Base64 인코드 및 연결 설정(encodedId, Y 두 개가 POST 할 메세지)
         final String encodedId = Base64.encodeToString(id.getBytes(), Base64.DEFAULT);
-        Call<Result> body = postInterface.getBody(encodedId, "Y");
+//        Call<Result> body = postInterface.getBody(encodedId, "Y");
 
         // Async 연결 시도
-        body.enqueue(new Callback<Result>() {
+//        body.enqueue(new Callback<Result>() {
             // 인증 성공
-            @Override public void onResponse(Call<Result> call, Response<Result> response) {
+//            @Override public void onResponse(Call<Result> call, Response<Result> response) {
                 // 정상 인증인 경우 QR 코드 생성 및 사용 가능
-                if (response.body().resultMsg.equals("정상")) {
-                    try {
-                        QRCodeGenerator(response.body().qrCode);
-                    } catch (WriterException e) {
-                        e.printStackTrace();
-                    }
-                    UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_refreshed));
-                }
-                else UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_certificate_failed));
-            }
+//                if (response.body().resultMsg.equals("정상")) {
+//                    try {
+//                        QRCodeGenerator(response.body().qrCode);
+//                    } catch (WriterException e) {
+//                        e.printStackTrace();
+//                    }
+//                    UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_refreshed));
+//                }
+//                else UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_certificate_failed));
+//            }
             // 연결 혹은 인증 실패
-            @Override public void onFailure(Call<Result> call, Throwable err) {
-                UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_certificate_failed));
-                err.printStackTrace();
-            }
-        });
+//            @Override public void onFailure(Call<Result> call, Throwable err) {
+//                UTILS.showToast(StudentCardActivity.this, getString(R.string.toast_certificate_failed));
+//                err.printStackTrace();
+//            }
+//        });
         return true;
     }
 
@@ -203,7 +203,7 @@ public class StudentCardActivity extends Activity {
      * QR 코드 생성 메소드. QR 이미지 뷰어에 자동으로 값 반환
      * @param qrValue  QR 코드를 생성할 데이터
      * @return boolean 학번 생성 여부 반환 */
-    boolean QRCodeGenerator(String qrValue) throws WriterException {
+   /* boolean QRCodeGenerator(String qrValue) throws WriterException {
         // 학번이 제대로 전달이 안되면 null 리턴
         if (qrValue.isEmpty()) return false;
 
@@ -225,5 +225,5 @@ public class StudentCardActivity extends Activity {
         });
 
         return true;
-    }
+    }*/
 }

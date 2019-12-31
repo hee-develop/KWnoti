@@ -1,18 +1,18 @@
 package kr.hee.kwnoti.food_activity;
 
-/** 캘린더 데이터를 담는 클래스 */
+/**
+ * Data class for food activity
+ */
 class FoodData {
-    String type;    // 조식, 중식, 석식
-    String price;   // 학식의 가격
-    String startTime;   // 학식 운영시간
-    String endTime;
-    String[] contents;  // 학식
+    String title;
+    String price;
+    String time;
+    String[] foodContents;
 
-    FoodData(String type, String price, String startTime, String endTime, String[] contents) {
-        this.type = type;
+    FoodData(String type, String price, String time, String[] contents) {
+        this.title = type;
         this.price = price;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.contents = contents;
+        this.time = time;
+        this.foodContents = contents;
     }
 }

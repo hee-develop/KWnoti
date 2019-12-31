@@ -2,7 +2,6 @@ package kr.hee.kwnoti.settings_activity;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,8 +14,10 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.yalantis.ucrop.UCrop;
@@ -30,16 +31,16 @@ import kr.hee.kwnoti.KEY;
 import kr.hee.kwnoti.R;
 
 /** 설정 액티비티. XML 파일을 불러 화면에 띄워줌 */
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends AppCompatActivity {
     // 인텐트의 requestCode
     private static final int PICK_FROM_GALLERY = 122;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        setTitle(R.string.main_settings);
-        getFragmentManager().beginTransaction().replace(
-                R.id.setting_frame, new SettingsFragment()).commit();
+//        setTitle(R.string.main_settings);
+//        getSupportFragmentManager().beginTransaction().replace(
+//                R.id.setting_frame, new SettingsFragment()).commit();
     }
 
     /** 설정 화면을 위한 프래그먼트. settings.xml 데이터를 가져 옴 */
