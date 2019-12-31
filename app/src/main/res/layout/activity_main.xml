@@ -64,7 +64,8 @@
         app:layout_constraintStart_toStartOf="@+id/main_line03"
         app:layout_constraintTop_toTopOf="@+id/main_line01"
         app:title="@string/main_calendar"
-        app:title_color="@color/gray800" />
+        app:title_color="@color/gray800"
+        app:card_disable="true" />
 
     <!-- U-Campus -->
     <jp.hee.cardwithbackground.CardWithBackground
@@ -77,6 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_btn_info"
+        app:card_disable="true"
         app:title="@string/main_intranet" />
 
     <!-- Telephone -->
@@ -116,5 +118,6 @@
         app:layout_constraintStart_toStartOf="@+id/main_line03"
         app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
         app:title="@string/main_setting"
-        app:title_color="@color/gray800" />
+        app:title_color="@color/gray800"
+        app:card_disable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
