@@ -29,7 +29,7 @@ class FoodDB extends DatabaseHelper {
                 "`contents` text not null);";
         /* 테이블 모양 구성 ------------------------------------
          * foodType     조식,중식,석식 구분
-         * startTime    학식 운영시간
+         * time    학식 운영시간
          * endTime      학식 운영시간
          * price        학식 가격
          * content      식단(월화수목금 식단이 전부 들어있음)
@@ -50,16 +50,16 @@ class FoodDB extends DatabaseHelper {
         FoodData data = (FoodData)value;
 
         String foodContent = "";
-        for (String content : data.contents)
-            foodContent += content + "|";
+//        for (String content : data.contents)
+//            foodContent += content + "|";
 
         try {
-            getDB().execSQL("INSERT INTO " + DB_NAME +
-                    " VALUES('" + data.type + "'," +
-                    "'" + data.startTime + "'," +
-                    "'" + data.endTime + "', " +
-                    "'" + data.price + "', " +
-                    "'" + foodContent + "');");
+//            getDB().execSQL("INSERT INTO " + DB_NAME +
+//                    " VALUES('" + data.type + "'," +
+//                    "'" + data.time + "'," +
+//                    "'" + data.endTime + "', " +
+//                    "'" + data.price + "', " +
+//                    "'" + foodContent + "');");
         }
         catch (SQLException e) {
             return false;
@@ -73,13 +73,13 @@ class FoodDB extends DatabaseHelper {
 
         Cursor cursor = getDB().rawQuery("SELECT * FROM " + DB_NAME, null);
         while (cursor.moveToNext()) {
-            FoodData data = new FoodData(
-                    cursor.getString(0), // 요일
-                    cursor.getString(1), // 시간대
-                    cursor.getString(2), // 시간대
-                    cursor.getString(3), // 시간대
-                    cursor.getString(5).split("|"));// 식단
-            ((ArrayList<FoodData>)foods).add(data);
+//            FoodData data = new FoodData(
+//                    cursor.getString(0), // 요일
+//                    cursor.getString(1), // 시간대
+//                    cursor.getString(2), // 시간대
+//                    cursor.getString(3), // 시간대
+//                    cursor.getString(5).split("|"));// 식단
+//            ((ArrayList<FoodData>)foods).add(data);
         }
         cursor.close();
     }

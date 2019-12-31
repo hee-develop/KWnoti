@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    xmlns:tools="http://schemas.android.com/tools">
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/card_food_day"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
         android:layout_height="wrap_content"
         android:text="월" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="@color/black" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/card_food_breakfast"
+        android:layout_width="0dp"
+        android:layout_weight="0.4"
         android:layout_height="wrap_content"
-        android:text="조중식"
-        />
+        tools:text="조중식" />
+
+    <TextView
+        android:id="@+id/card_food_dinner"
+        android:layout_width="0dp"
+        android:layout_weight="0.4"
+        android:layout_height="wrap_content"
+        tools:text="조중식" />
 </LinearLayout>

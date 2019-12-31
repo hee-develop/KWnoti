@@ -1,26 +1,153 @@
 package kr.hee.kwnoti.food_activity;
 
-import android.app.ProgressDialog;
-import android.content.SharedPreferences;
+import android.app.Dialog;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
-import kr.hee.kwnoti.KEY;
+import kr.hee.kwnoti.LoadingActivity;
 import kr.hee.kwnoti.R;
-import kr.hee.kwnoti.UTILS;
+import kr.hee.kwnoti.info_activity.DataReceived;
+import kr.hee.kwnoti.info_activity.RequestThread;
+
+public class FoodActivity extends LoadingActivity implements DataReceived {
+    ArrayList<FoodData> foodArray = new ArrayList<>();
+    final String URL = "https://www.kw.ac.kr/ko/life/facility11.do";
+
+    RecyclerView recyclerView;
+    FoodAdapter adapter;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        new RequestFoodThread(URL).start();
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_food);
+        recyclerView = findViewById(R.id.food_recyclerView);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter = new FoodAdapter(this, foodArray));
+    }
+
+    @Override
+    public void setDialog() {
+        Dialog d = new Dialog(this);
+        d.setTitle("A");
+        loadingDialog = d;
+    }
+
+
+    public class RequestFoodThread extends RequestThread {
+        RequestFoodThread(String url) {
+            super(url);
+        }
+
+        @Override
+        public void afterReceived(Document doc) {
+            ArrayList<FoodData> foodList = new ArrayList<>();
+            JSONObject foodJson = null;
+            String foodStartDate, foodEndDate;
+            int foodLength = 0;
+
+            String[] foodTitle;
+            String[] foodPrice;
+            String[] foodTime;
+            String[][] foodContents;
+
+            if (doc == null) return;
+
+
+            // get data
+            try {
+                foodStartDate = doc.select("#startPeriodTime").text();
+                foodEndDate   = doc.select("#endPeriodTime").text();
+
+                foodJson = new JSONObject(doc.select("div.diet>textarea[name=articleText]")
+                        .first().text());
+
+                if (foodJson.optString("dietLength").length() != 0) {
+                    foodLength = foodJson.getInt("dietLength");
+                }
+
+                // initialize array
+                foodTitle = new String[foodLength];
+                foodPrice = new String[foodLength];
+                foodTime  = new String[foodLength];
+                foodContents = new String[foodLength][7];
+
+                for (int i=0; i<foodLength; i++) {
+                    String curPtr = "diet_" + i;
+
+                    if (foodJson.optString(curPtr).length() == 0) continue;
+
+                    JSONObject curData = foodJson.getJSONArray(curPtr).getJSONObject(0);
+
+                    foodTitle[i] = curData.getString("ti");
+                    foodPrice[i] = curData.getString("p");
+                    foodTime[i]  = curData.getString("st") + " ~ " + curData.getString("et");
+
+                    for (int j=0; j<7; j++) {
+                        String curContentPtr = "d" + (j+1);
+                        if (curData.optString(curContentPtr).length() == 0) break;
+                        foodContents[i][j] = curData.getString(curContentPtr);
+                    }
+
+                    foodList.add(new FoodData(foodTitle[i], foodPrice[i], foodTime[i], foodContents[i]));
+                }
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            // set view
+            runOnUiThread(() -> {
+                LinearLayout layout = findViewById(R.id.food_layout_restaurant);
+//                layout.addView(new TextView(getApplicationContext()?));
+            });
+
+            makeView(foodList);
+        }
+    }
+
+
+    @Override
+    public void makeView(ArrayList arr) {
+        for (Object i : arr) {
+            foodArray.add((FoodData)i);
+        }
+
+        runOnUiThread(() -> {
+            this.onLoadFinished();
+            adapter.notifyDataSetChanged();
+        });
+    }
+}
+
+
 
 /** 금주의 학식 */
+
+
+/*
+
 public class FoodActivity extends AppCompatActivity {
     TextView textView;  // 지금 시간대의 식단
     RecyclerView recyclerView;
@@ -61,7 +188,9 @@ public class FoodActivity extends AppCompatActivity {
             progressDialog.dismiss();
     }
 
-    /** Jsoup을 이용한 파서 스레드 */
+    */
+/** Jsoup을 이용한 파서 스레드 *//*
+
     private class ParserThread extends Thread {
         @Override public void run() {
             super.run();
@@ -105,7 +234,7 @@ public class FoodActivity extends AppCompatActivity {
                     // 조식, 중식, 석식 구분
                     String type = (String)foodObject.get("ti");
                     // 학식 운영시간
-                    String startTime = (String)foodObject.get("st");
+                    String time = (String)foodObject.get("st");
                     String endTime   = (String)foodObject.get("et");
                     // 가격
                     String price     = (String)foodObject.get("p");
@@ -119,7 +248,7 @@ public class FoodActivity extends AppCompatActivity {
                     };
 
                     // DB에 학식 데이터 추가
-                    FoodData data = new FoodData(type, price, startTime, endTime, foods);
+                    FoodData data = new FoodData(type, price, time, endTime, foods);
                     db.addToDB(data);
                 }
 
@@ -154,3 +283,4 @@ public class FoodActivity extends AppCompatActivity {
         }
     }
 }
+*/

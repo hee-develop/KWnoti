@@ -59,7 +59,7 @@
         style="@style/MainActivityCard"
 
         app:background="@drawable/ic_calendar"
-        app:background_color="@color/kwRed"
+        app:background_color="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/main_line03"
         app:layout_constraintTop_toTopOf="@+id/main_line01"
@@ -73,7 +73,7 @@
 
         app:title_color="@color/gray800"
         app:background="@drawable/ic_book"
-        app:background_color="@color/kwRed"
+        app:background_color="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_btn_info"
@@ -85,7 +85,7 @@
         style="@style/MainActivityCard"
 
         app:background="@drawable/ic_phone"
-        app:background_color="@color/kwRed"
+        app:background_color="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/main_line02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
@@ -98,7 +98,7 @@
         style="@style/MainActivityCard"
 
         app:background="@drawable/ic_food"
-        app:background_color="@color/kwRed"
+        app:background_color="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/main_line03"
         app:layout_constraintStart_toStartOf="@+id/main_line02"
         app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
@@ -111,7 +111,7 @@
         style="@style/MainActivityCard"
 
         app:background="@drawable/ic_setting"
-        app:background_color="@color/kwRed"
+        app:background_color="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/main_line03"
         app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"

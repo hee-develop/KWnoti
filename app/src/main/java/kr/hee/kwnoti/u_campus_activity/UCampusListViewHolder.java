@@ -19,10 +19,10 @@ class UCampusListViewHolder extends RecyclerView.ViewHolder {
         super(view);
         this.view = view.findViewById(R.id.card_info);
         title   = (TextView)view.findViewById(R.id.card_info_title);
-        whoWrite= (TextView)view.findViewById(R.id.card_info_writer);
+//        whoWrite= (TextView)view.findViewById(R.id.card_info_writer);
         date    = (TextView)view.findViewById(R.id.card_info_date);
-        views   = (TextView)view.findViewById(R.id.card_info_views);
-        newInfo = (ImageView)view.findViewById(R.id.card_info_new);
-        attachment = (ImageView)view.findViewById(R.id.card_info_attach);
+//        views   = (TextView)view.findViewById(R.id.card_info_views);
+//        newInfo = (ImageView)view.findViewById(R.id.card_info_new);
+//        attachment = (ImageView)view.findViewById(R.id.card_info_attach);
     }
 }

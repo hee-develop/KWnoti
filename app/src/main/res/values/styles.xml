@@ -1,6 +1,40 @@
 <resources>
+    <style name="AppTheme" parent="Theme.Design.Light.NoActionBar">
+        <item name="colorPrimary">@color/kwRed</item>
+        <item name="colorPrimaryDark">@color/kwRedDark</item>
+        <item name="colorAccent">@color/amberA400</item>
+        <item name="android:colorControlHighlight">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.red">
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <!-- theme for main activity -->
+    <style name="MainActivity" parent="AppTheme">
+
+    </style>
+    <style name="MainActivityCard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:foreground">?selectableItemBackground</item>
+    </style>
+
+
+
+
+
+
+
+
     <!-- 메인 테마 -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme.old" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/kwRed</item>
         <item name="colorPrimaryDark">@color/kwRedDark</item>
         <item name="colorAccent">@color/amberA400</item>

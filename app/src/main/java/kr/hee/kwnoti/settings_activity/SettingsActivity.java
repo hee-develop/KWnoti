@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        setTitle(R.string.main_settings);
+//        setTitle(R.string.main_settings);
 //        getSupportFragmentManager().beginTransaction().replace(
 //                R.id.setting_frame, new SettingsFragment()).commit();
     }

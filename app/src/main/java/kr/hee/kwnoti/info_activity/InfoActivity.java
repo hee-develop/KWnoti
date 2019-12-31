@@ -24,7 +24,7 @@ import kr.hee.kwnoti.LoadingActivity;
 import kr.hee.kwnoti.R;
 
 
-public class InfoActivity extends LoadingActivity implements InfoDataReceived {
+public class InfoActivity extends LoadingActivity implements DataReceived {
     // recycler view
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
