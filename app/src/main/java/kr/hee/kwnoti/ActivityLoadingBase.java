@@ -10,7 +10,7 @@ public abstract class ActivityLoadingBase extends Activity {
         runOnUiThread(new Runnable() {
             @Override public void run() {
 //                BaseApplication.getInstance().loadStart(ActivityLoadingBase.this);
-                BaseApplication.getInstance().attachCancelListener(cancelListener);
+//                BaseApplication.getInstance().attachCancelListener(cancelListener);
             }
         });
     }
@@ -19,7 +19,7 @@ public abstract class ActivityLoadingBase extends Activity {
     public void loadFinish() {
         runOnUiThread(new Runnable() {
             @Override public void run() {
-                BaseApplication.getInstance().loadFinish();
+//                BaseApplication.getInstance().loadFinish();
             }
         });
     }
@@ -39,6 +39,6 @@ public abstract class ActivityLoadingBase extends Activity {
     /** 액티비티가 종료될 때 다이얼로그로 인한 메모리 누수 방지 */
     @Override protected void onDestroy() {
         super.onDestroy();
-        loadFinish();
+//        loadFinish();
     }
 }

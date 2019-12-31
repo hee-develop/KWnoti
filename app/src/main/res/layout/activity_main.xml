@@ -64,8 +64,7 @@
         app:layout_constraintStart_toStartOf="@+id/main_line03"
         app:layout_constraintTop_toTopOf="@+id/main_line01"
         app:title="@string/main_calendar"
-        app:title_color="@color/gray800"
-        app:card_disable="true" />
+        app:title_color="@color/gray800" />
 
     <!-- U-Campus -->
     <jp.hee.cardwithbackground.CardWithBackground
@@ -105,7 +104,8 @@
         app:layout_constraintStart_toStartOf="@+id/main_line02"
         app:layout_constraintTop_toBottomOf="@+id/main_btn_intranet"
         app:title="@string/main_food"
-        app:title_color="@color/gray800" />
+        app:title_color="@color/gray800"
+        app:card_disable="true" />
 
     <!-- Setting -->
     <jp.hee.cardwithbackground.CardWithBackground
