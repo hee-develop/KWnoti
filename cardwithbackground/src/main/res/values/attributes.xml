@@ -5,6 +5,6 @@
         <attr name="title_color" format="reference" />
         <attr name="background" format="reference" />
         <attr name="background_color" format="reference" />
-        <attr name="disable" format="boolean" />
+        <attr name="card_disable" format="boolean" />
     </declare-styleable>
 </resources>

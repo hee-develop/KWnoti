@@ -39,14 +39,6 @@ public class CardWithBackground extends RelativeLayout {
 
     // Initialize attribute and layout
     private void initView(Context context, AttributeSet attrs) {
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (inflater == null) {
-            Log.e(TAG, "Cannot find inflater.");
-            return;
-        }
-        inflater.inflate(R.layout.card_with_background, this);
-        /* call onFinishInflate and make view */
-
         if (attrs == null) return;
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CardWithBackground);
@@ -54,9 +46,17 @@ public class CardWithBackground extends RelativeLayout {
         titleColor = ta.getResourceId(R.styleable.CardWithBackground_title_color, -1);
         imgSrc = ta.getResourceId(R.styleable.CardWithBackground_background, -1);
         imgColor = ta.getResourceId(R.styleable.CardWithBackground_background_color, -1);
-        tileInActive = ta.getBoolean(R.styleable.CardWithBackground_disable, false);
+        tileInActive = ta.getBoolean(R.styleable.CardWithBackground_card_disable, false);
 
         ta.recycle();
+
+        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (inflater == null) {
+            Log.e(TAG, "Cannot find inflater.");
+            return;
+        }
+        inflater.inflate(R.layout.card_with_background, this);
+        /* call onFinishInflate and make view */
     }
 
     @Override
@@ -65,8 +65,15 @@ public class CardWithBackground extends RelativeLayout {
 
         // set basic attribute
         this.setBackgroundColor(Color.WHITE);
-        this.setClickable(true);
-        this.setFocusable(true);
+        if (tileInActive) {
+            this.setAlpha(0.5f);
+            this.setClickable(false);
+            this.setFocusable(false);
+        }
+        else {
+            this.setClickable(true);
+            this.setFocusable(true);
+        }
 
         titleTextView = findViewById(R.id.title);
         backgroundImageView = findViewById(R.id.background);
