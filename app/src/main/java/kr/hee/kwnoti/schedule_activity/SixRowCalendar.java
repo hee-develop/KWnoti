@@ -8,12 +8,27 @@ public class SixRowCalendar {
     private static final int DAYS_OF_WEEK = 7;
     private static final int ROWS_OF_CALENDAR = 6;
 
+    public class Date {
+        int year;
+        int month;
+        int date;
+
+        public Date(int year, int month, int date) {
+            this.year = year;
+            this.month = month;
+            this.date = date;
+        }
+    }
+
     private Calendar calendar;
-    private ArrayList<Integer> calendarData;
+    private ArrayList<Date> calendarData;
 
     int maxDateOfCurrent;
     int dayOfPrevMonthLast;
     int dayOfNextMonthFirst;
+
+    int currYear;
+    int currMonth;
 
     /**
      * Callback interface for month changed
@@ -51,6 +66,8 @@ public class SixRowCalendar {
         calendarData.clear();
 
         calendar.set(Calendar.DATE, 1);
+        currYear = calendar.get(Calendar.YEAR);
+        currMonth= calendar.get(Calendar.MONTH)+1;
         maxDateOfCurrent = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         dayOfPrevMonthLast = calendar.get(Calendar.DAY_OF_WEEK) - 1;
@@ -71,16 +88,26 @@ public class SixRowCalendar {
         int maxDate = cal.getActualMaximum(Calendar.DATE);
         int maxOffsetDate = maxDate - dayOfPrevMonthLast;
         for (int i = 1; i<=dayOfPrevMonthLast; i++) {
-            calendarData.add(++maxOffsetDate);
+            int curY = cal.get(Calendar.YEAR);
+            int curM = cal.get(Calendar.MONTH)+1;
+            calendarData.add(new Date(curY, curM, ++maxOffsetDate));
         }
     }
     private void putCurrMonth(Calendar cal) {
-        for (int i=1; i<=cal.getActualMaximum(Calendar.DATE); i++)
-            calendarData.add(i);
+        for (int i=1; i<=cal.getActualMaximum(Calendar.DATE); i++) {
+            int curY = cal.get(Calendar.YEAR);
+            int curM = cal.get(Calendar.MONTH)+1;
+
+            calendarData.add(new Date(curY, curM, i));
+        }
     }
     private void putNextMonth() {
-        for (int i=1; i<=dayOfNextMonthFirst; i++)
-            calendarData.add(i);
+        for (int i=1; i<=dayOfNextMonthFirst; i++) {
+            int curY = calendar.get(Calendar.YEAR);
+            int curM = calendar.get(Calendar.MONTH)+2;
+
+            calendarData.add(new Date(curY, curM, i));
+        }
     }
 
     /* Change month */
@@ -93,7 +120,7 @@ public class SixRowCalendar {
         makeCalendar();
     }
 
-    public int getDate(int index) {
+    public Date getDate(int index) {
         return calendarData.get(index);
     }
     public int getCalendarLength() {
