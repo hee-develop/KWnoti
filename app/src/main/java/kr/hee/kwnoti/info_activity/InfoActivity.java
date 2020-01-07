@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import kr.hee.kwnoti.LoadingActivity;
 import kr.hee.kwnoti.R;
+import kr.hee.kwnoti.RequestThread;
 
 
 public class InfoActivity extends LoadingActivity implements DataReceived {
@@ -97,6 +98,11 @@ public class InfoActivity extends LoadingActivity implements DataReceived {
             // send arrayList
             makeView(StrongInfoArray);
             makeView(infoArray);
+        }
+
+        @Override
+        public void catchError() {
+            /*TODO*/
         }
     }
 

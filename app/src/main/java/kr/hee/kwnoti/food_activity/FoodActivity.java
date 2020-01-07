@@ -7,9 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 import kr.hee.kwnoti.LoadingActivity;
 import kr.hee.kwnoti.R;
 import kr.hee.kwnoti.info_activity.DataReceived;
-import kr.hee.kwnoti.info_activity.RequestThread;
+import kr.hee.kwnoti.RequestThread;
 
 public class FoodActivity extends LoadingActivity implements DataReceived {
     ArrayList<FoodData> foodArray = new ArrayList<>();
@@ -124,6 +122,11 @@ public class FoodActivity extends LoadingActivity implements DataReceived {
             });
 
             makeView(foodList);
+        }
+
+        @Override
+        public void catchError() {
+            /*TODO*/
         }
     }
 

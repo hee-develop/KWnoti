@@ -1,4 +1,4 @@
-package kr.hee.kwnoti.info_activity;
+package kr.hee.kwnoti;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,14 +19,14 @@ public abstract class RequestThread extends Thread {
     public void run() {
         try {
             doc = Jsoup.connect(url).timeout(TIMEOUT).get();
+            afterReceived(doc);
         }
         catch (IOException e) {
-            doc = null;
-        }
-        finally {
-            afterReceived(doc);
+            catchError();
         }
     }
 
     public abstract void afterReceived(Document doc);
+
+    public abstract void catchError();
 }
