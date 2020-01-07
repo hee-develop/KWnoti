@@ -32,9 +32,9 @@ public final class UCamConnection {
     private static Retrofit retrofit = null;
     private static UCamConnectionInterface uCamConnectionInterface = null;
 
-    private UCamConnectionInterface getUCamInterface() throws NoContextException {
-        if (context == null)
-            throw new NoContextException("Context가 null입니다.");
+    private UCamConnectionInterface getUCamInterface() {
+//        if (context == null)
+//            throw new NoContextException("Context가 null입니다.");
 
         // 인터페이스가 정의돼있지 않다면 생성
         if (uCamConnectionInterface == null)

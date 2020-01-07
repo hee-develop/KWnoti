@@ -12,16 +12,20 @@ import jp.hee.cardwithbackground.CardWithBackground;
 import kr.hee.kwnoti.calendar_activity.CalendarActivity;
 import kr.hee.kwnoti.food_activity.FoodActivity;
 import kr.hee.kwnoti.info_activity.InfoActivity;
+//import kr.hee.kwnoti.schedule_activity.ScheduleActivity;
 import kr.hee.kwnoti.settings_activity.SettingsActivity;
 import kr.hee.kwnoti.tel_activity.TelActivity;
-import kr.hee.kwnoti.u_campus_activity.UCampusMainActivity;
+import kr.hee.kwnoti.u_campus_activity.CampusActivity;
+//import kr.hee.kwnoti.u_campus_activity.UCampusMainActivity;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private enum MainButtons {
         INFO(R.id.main_btn_info, InfoActivity.class),
 
-        INTRANET(R.id.main_btn_intranet, UCampusMainActivity.class),
-        CALENDAR(R.id.main_btn_calendar, CalendarActivity.class),
+        INTRANET(R.id.main_btn_intranet, CampusActivity.class),
+//        INTRANET(R.id.main_btn_intranet, UCampusMainActivity.class),
+//        CALENDAR(R.id.main_btn_calendar, ScheduleActivity.class),
+//        CALENDAR(R.id.main_btn_calendar, CalendarActivity.class),
         TELEPHONE(R.id.main_btn_telephone, TelActivity.class/*TODO*/),
         FOOD(R.id.main_btn_food, FoodActivity.class),
         SETTING(R.id.main_btn_setting, SettingsActivity.class);
@@ -41,6 +45,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        Stetho.initializeWithDefaults(this);
+
+        SharedPreferencesHandler handler = new SharedPreferencesHandler(this);
 
         // First use
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

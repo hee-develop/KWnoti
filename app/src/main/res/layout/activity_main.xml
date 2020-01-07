@@ -53,7 +53,7 @@
         app:title="@string/main_info"
         app:title_color="@color/gray800" />
 
-    <!-- Schedule -->
+    <!-- SixRowCalendar -->
     <jp.hee.cardwithbackground.CardWithBackground
         android:id="@+id/main_btn_calendar"
         style="@style/MainActivityCard"
@@ -77,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_btn_info"
-        app:card_disable="true"
+
         app:title="@string/main_intranet" />
 
     <!-- Telephone -->

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="kr.hee.kwnoti">
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kr.hee.kwnoti">
     <!-- 명시적 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS" /> -->
 
     <application
         android:name=".BaseApplication"
@@ -16,39 +15,32 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-
-
-
         android:usesCleartextTraffic="true">
-
-
-
+        <activity android:name=".u_campus_activity.CampusActivity"></activity>
         <!-- main activity -->
-        <activity android:name=".MainActivity" android:theme="@style/MainActivity"
-            android:screenOrientation="portrait" />
-
-
-
-
-
-        <!-- ==================================== 푸쉬 서비스 ==================================== -->
-        <service android:enabled="true" android:exported="false"
-            android:name=".FcmService">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MainActivity" /> <!-- ==================================== 푸쉬 서비스 ==================================== -->
+        <service
+            android:name=".FcmService"
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-        <!-- 토큰 등록 서비스 -->
-        <service android:enabled="true" android:exported="false"
-            android:name=".FcmIdService">
+        </service> <!-- 토큰 등록 서비스 -->
+        <service
+            android:name=".FcmIdService"
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-        </service>
-        <!-- Android O 대응용 알림 채널 코드 -->
-        <!--<meta-data-->
-            <!--android:name="com.google.firebase.messaging.default_notification_channel_id"-->
-            <!--android:value="@string/default_notification_channel_id" />-->
+        </service> <!-- Android O 대응용 알림 채널 코드 -->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.firebase.messaging.default_notification_channel_id" -->
+        <!-- android:value="@string/default_notification_channel_id" /> -->
         <!-- ================================= 스플래시 액티비티 ================================== -->
         <activity
             android:name=".SplashActivity"
@@ -59,42 +51,30 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- ================================= 유캠퍼스 액티비티 ================================== -->
+        </activity> <!-- ================================= 유캠퍼스 액티비티 ================================== -->
         <activity
             android:name=".u_campus_activity.UCampusMainActivity"
             android:configChanges="orientation|screenSize" />
         <activity
             android:name=".u_campus_activity.UCampusListActivity"
-            android:configChanges="orientation|screenSize" />
-        <!-- 강의계획서 검색 액티비티 -->
-        <activity android:name=".u_campus_activity.LectureSearchActivity" />
-        <!-- ================================= 공지사항 액티비티 ================================== -->
+            android:configChanges="orientation|screenSize" /> <!-- 강의계획서 검색 액티비티 -->
+        <activity android:name=".u_campus_activity.LectureSearchActivity" /> <!-- ================================= 공지사항 액티비티 ================================== -->
         <activity
             android:name=".info_activity.InfoActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|screenSize" />
-        <!-- ================================= 학사일정 액티비티 ================================== -->
-        <activity android:name=".calendar_activity.CalendarActivity" />
-        <!-- ================================== 학생증 액티비티 =================================== -->
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- ================================= 학사일정 액티비티 ================================== -->
+        <activity android:name=".calendar_activity.CalendarActivity" /> <!-- ================================== 학생증 액티비티 =================================== -->
         <activity
             android:name=".student_card_activity.StudentCardActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!-- ================================= 교내전화 액티비티 ================================== -->
-        <activity android:name=".tel_activity.TelActivity" />
-        <!-- =================================== 학식 액티비티 =================================== -->
-        <activity android:name=".food_activity.FoodActivity" />
-        <!-- =================================== 설정 액티비티 =================================== -->
-        <activity android:name=".settings_activity.SettingsActivity" />
-        <!-- 학생증 크롭 액티비티 -->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- ================================= 교내전화 액티비티 ================================== -->
+        <activity android:name=".tel_activity.TelActivity" /> <!-- =================================== 학식 액티비티 =================================== -->
+        <activity android:name=".food_activity.FoodActivity" /> <!-- =================================== 설정 액티비티 =================================== -->
+        <activity android:name=".settings_activity.SettingsActivity" /> <!-- 학생증 크롭 액티비티 -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
-        <!-- 앱 정보 액티비티 -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity> <!-- 앱 정보 액티비티 -->
         <activity
             android:name=".settings_activity.AppInfoActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -103,23 +83,20 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-        <!-- 푸쉬 필터 액티비티 -->
+        </activity> <!-- 푸쉬 필터 액티비티 -->
         <activity android:name=".settings_activity.PushFilterActivity">
             <intent-filter>
                 <action android:name="hee.kwnoti.intent.action.PUSH_FILTER" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-        <!-- ================================= 브라우저 액티비티 ================================== -->
+        </activity> <!-- ================================= 브라우저 액티비티 ================================== -->
         <activity
             android:name=".BrowserActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan" />
-        <!-- =============================== 올레 와이파이 액티비티 ================================ -->
+            android:windowSoftInputMode="adjustPan" /> <!-- =============================== 올레 와이파이 액티비티 ================================ -->
         <activity
             android:name=".wifi_activity.WifiActivity"
             android:windowSoftInputMode="adjustPan" />
