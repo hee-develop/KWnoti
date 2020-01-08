@@ -10,7 +10,10 @@
     <string name="main_setting">설정</string>
     <string name="main_des_logo">광운대학교 로고</string>
 
-    <!--  -->
+    <!-- loading dialog -->
+    <string name="loading_title">불러오는 중..</string>
+    <string name="loading_btn_cancel">중지</string>
+    <string name="loading_snack_cancel">불러오기를 중지했습니다.</string>
 
 
     <!-- =========================== -->
