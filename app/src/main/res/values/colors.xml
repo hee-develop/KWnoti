@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="kwRed">#79242F</color>
+    <color name="kwRedTransparent">#9979242F</color>
     <color name="kwRedDark">#47141B</color>
     <color name="white">#FFFFFF</color>
+    <color name="whiteTransparent">#99FFFFFF</color>
     <color name="black">#222222</color>
 
     <color name="kwLightGray">#7B7B7B</color>

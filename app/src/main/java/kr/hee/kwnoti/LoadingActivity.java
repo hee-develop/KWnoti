@@ -1,41 +1,71 @@
 package kr.hee.kwnoti;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.os.Bundle;
-import android.widget.Toast;
+import android.os.Handler;
+import android.view.View;
+import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import kr.hee.kwnoti.info_activity.OnLoadData;
+import com.google.android.material.snackbar.Snackbar;
 
-public abstract class LoadingActivity extends Activity implements OnLoadData {
-    protected Dialog loadingDialog;
+/**
+ * Activity class for using loading progress
+ * Please insert loading xml in loading activity that you want to use.
+ */
+public abstract class LoadingActivity extends Activity {
+    View mProgressLayout;
+    TextView mProgressCancelBtn;
 
+    Handler mHandler;
 
+    /**
+     * override onStart method
+     * onStart method calls after onCreate, so
+     * we can use findViewById method
+     */
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setDialog();
+    protected void onStart() {
+        super.onStart();
 
-        if (loadingDialog == null) {
-            Toast.makeText(this, "Cannot find dialog", Toast.LENGTH_SHORT).show();
-        }
-        loadingDialog.show();
+        mProgressLayout = findViewById(R.id.loading_layout);
+        mProgressCancelBtn = findViewById(R.id.loading_btn_stop);
+
+        mHandler = new Handler();
+
+        onLoadStart();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        loadingDialog.dismiss();
+    /**
+     * use to view progress
+     */
+    private void onLoadStart() {
+        mProgressLayout.setVisibility(View.VISIBLE);
+
+        mHandler.postDelayed(() -> runOnUiThread(() -> {
+            if (mProgressCancelBtn != null) mProgressCancelBtn.setVisibility(View.VISIBLE);
+        }), 2000);
     }
 
-    public abstract void setDialog();
-
-    public void onLoadStart() {
-        if (loadingDialog != null) loadingDialog.show();
+    /**
+     * use to hide progress
+     * call onLoadFinishedCallback()
+     */
+    private void onLoadFinished() {
+        mProgressLayout.setVisibility(View.GONE);
+        onLoadFinishedCallback();
     }
 
-    @Override public void onLoadFinished() {
-        if (loadingDialog != null) loadingDialog.hide();
+    /**
+     * use to hide progress
+     * show bar to notify load failed
+     */
+    private void onLoadCanceled() {
+        View rootView = getWindow().getDecorView().getRootView();
+
+        if (rootView == null) return;
+
+        Snackbar.make(getWindow().getDecorView().getRootView(),
+                R.string.loading_snack_cancel, Snackbar.LENGTH_SHORT).show();
     }
+
+    abstract void onLoadFinishedCallback();
 }
