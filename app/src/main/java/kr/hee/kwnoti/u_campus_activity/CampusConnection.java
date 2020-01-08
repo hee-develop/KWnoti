@@ -61,7 +61,7 @@ public class CampusConnection {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                // todo
             }
         });
     }

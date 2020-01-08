@@ -16,7 +16,7 @@
         android:layout_marginBottom="8dp"
         android:layout_above="@id/uCam_main_btn_search"
         android:overScrollMode="never"
-        tools:listitem="@layout/card_ucam_main" />
+        tools:listitem="@layout/card_campus" />
 
     <Button
         android:id="@+id/uCam_main_btn_search"
