@@ -28,6 +28,7 @@ public abstract class LoadingActivity extends Activity {
 
         mProgressLayout = findViewById(R.id.loading_layout);
         mProgressCancelBtn = findViewById(R.id.loading_btn_stop);
+        mProgressCancelBtn.setOnClickListener((v) -> onLoadCanceled());
 
         mHandler = new Handler();
 
